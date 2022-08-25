@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from tcp_format/srv/SocketFormat.srv
+// generated code does not contain a copyright notice
+
+
+module tcp_format {
+  module srv {
+    struct SocketFormat_Request {
+      string target_ip;
+
+      string target_port;
+
+      string send_message;
+    };
+    struct SocketFormat_Response {
+      string error;
+
+      string receive_message;
+    };
+  };
+};

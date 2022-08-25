@@ -1,0 +1,17 @@
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/server
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/client
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/ament_index/resource_index/package_run_dependencies/tcp_handle
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/ament_index/resource_index/parent_prefix_path/tcp_handle
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/ament_prefix_path.sh
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/ament_prefix_path.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/path.sh
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/path.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.bash
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.sh
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.zsh
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/ament_index/resource_index/packages/tcp_handle
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/cmake/tcp_handleConfig.cmake
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/cmake/tcp_handleConfig-version.cmake
+/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.xml

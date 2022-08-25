@@ -1,0 +1,6 @@
+{
+  "package_name": "tcp_format",
+  "non_idl_tuples": [
+    "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format:srv/SocketFormat.srv"
+  ]
+}
