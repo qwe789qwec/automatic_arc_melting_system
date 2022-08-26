@@ -1,0 +1,16 @@
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/lib/auto_weighting/client
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/ament_index/resource_index/package_run_dependencies/auto_weighting
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/ament_index/resource_index/parent_prefix_path/auto_weighting
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/environment/ament_prefix_path.sh
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/environment/ament_prefix_path.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/environment/path.sh
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/environment/path.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/local_setup.bash
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/local_setup.sh
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/local_setup.zsh
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/local_setup.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/ament_index/resource_index/packages/auto_weighting
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/cmake/auto_weightingConfig.cmake
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/cmake/auto_weightingConfig-version.cmake
+/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.xml

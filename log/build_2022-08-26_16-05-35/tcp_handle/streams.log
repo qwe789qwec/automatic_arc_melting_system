@@ -1,0 +1,21 @@
+[0.012s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle -- -j16 -l16
+[0.038s] [35m[1mScanning dependencies of target server[0m
+[0.049s] [ 50%] Built target client
+[0.057s] [ 75%] [32mBuilding CXX object CMakeFiles/server.dir/src/tcp_client.cpp.o[0m
+[0.956s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_client.cpp:[m[K In function ‘[01m[Kvoid sock_handle(std::shared_ptr<tcp_format::srv::SocketFormat_Request_<std::allocator<void> > >, std::shared_ptr<tcp_format::srv::SocketFormat_Response_<std::allocator<void> > >)[m[K’:
+[0.956s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_client.cpp:155:7:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kint send_fd[m[K’
+[0.956s]   155 |   int [01;31m[Ksend_fd[m[K = send(port_fd, message2char, strlen(message2char), 0);
+[0.956s]       |       [01;31m[K^~~~~~~[m[K
+[0.956s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_client.cpp:141:7:[m[K [01;36m[Knote: [m[K‘[01m[Kint send_fd[m[K’ previously declared here
+[0.956s]   141 |   int [01;36m[Ksend_fd[m[K = send(port_fd, message2char, strlen(message2char), 0);
+[0.956s]       |       [01;36m[K^~~~~~~[m[K
+[0.956s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_client.cpp:162:7:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kint recv_fd[m[K’
+[0.956s]   162 |   int [01;31m[Krecv_fd[m[K = recv_socket(port_fd, message2char);
+[0.956s]       |       [01;31m[K^~~~~~~[m[K
+[0.956s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_client.cpp:148:7:[m[K [01;36m[Knote: [m[K‘[01m[Kint recv_fd[m[K’ previously declared here
+[0.956s]   148 |   int [01;36m[Krecv_fd[m[K = recv_socket(port_fd, message2char);
+[0.956s]       |       [01;36m[K^~~~~~~[m[K
+[1.273s] make[2]: *** [CMakeFiles/server.dir/build.make:63: CMakeFiles/server.dir/src/tcp_client.cpp.o] Error 1
+[1.273s] make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/server.dir/all] Error 2
+[1.273s] make: *** [Makefile:141: all] Error 2
+[1.274s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle' returned '2': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle -- -j16 -l16

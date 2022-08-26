@@ -1,0 +1,26 @@
+[0.011s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process -- -j16 -l16
+[0.038s] [35m[1mScanning dependencies of target client[0m
+[0.054s] [ 50%] [32mBuilding CXX object CMakeFiles/client.dir/src/cobotta_io.cpp.o[0m
+[1.789s] [100%] [32m[1mLinking CXX executable client[0m
+[1.872s] [100%] Built target client
+[1.880s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process -- -j16 -l16
+[1.895s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process
+[1.900s] -- Install configuration: ""
+[1.900s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib/cobotta_process/client
+[1.900s] -- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib/cobotta_process/client" to ""
+[1.900s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/ament_index/resource_index/package_run_dependencies/cobotta_process
+[1.900s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/ament_index/resource_index/parent_prefix_path/cobotta_process
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/environment/ament_prefix_path.sh
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/environment/ament_prefix_path.dsv
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/environment/path.sh
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/environment/path.dsv
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/local_setup.bash
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/local_setup.sh
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/local_setup.zsh
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/local_setup.dsv
+[1.901s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.dsv
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/ament_index/resource_index/packages/cobotta_process
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/cmake/cobotta_processConfig.cmake
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/cmake/cobotta_processConfig-version.cmake
+[1.901s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.xml
+[1.904s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process

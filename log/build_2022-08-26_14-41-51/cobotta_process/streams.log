@@ -1,0 +1,20 @@
+[0.011s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process -- -j16 -l16
+[0.039s] [35m[1mScanning dependencies of target client[0m
+[0.055s] [ 50%] [32mBuilding CXX object CMakeFiles/client.dir/src/cobotta_io.cpp.o[0m
+[0.942s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[0.942s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:72:8:[m[K [01;31m[Kerror: [m[Kconflicting declaration ‘[01m[Kauto result[m[K’
+[0.942s]    72 |   auto [01;31m[Kresult[m[K = client->async_send_request(request);
+[0.942s]       |        [01;31m[K^~~~~~[m[K
+[0.942s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:46:8:[m[K [01;36m[Knote: [m[Kprevious declaration as ‘[01m[Kstd::shared_future<std::shared_ptr<tcp_format::srv::SocketFormat_Response_<std::allocator<void> > > > result[m[K’
+[0.942s]    46 |   auto [01;36m[Kresult[m[K = client->async_send_request(request);
+[0.942s]       |        [01;36m[K^~~~~~[m[K
+[0.944s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:97:8:[m[K [01;31m[Kerror: [m[Kconflicting declaration ‘[01m[Kauto result[m[K’
+[0.944s]    97 |   auto [01;31m[Kresult[m[K = client->async_send_request(request);
+[0.944s]       |        [01;31m[K^~~~~~[m[K
+[0.944s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:46:8:[m[K [01;36m[Knote: [m[Kprevious declaration as ‘[01m[Kstd::shared_future<std::shared_ptr<tcp_format::srv::SocketFormat_Response_<std::allocator<void> > > > result[m[K’
+[0.944s]    46 |   auto [01;36m[Kresult[m[K = client->async_send_request(request);
+[0.944s]       |        [01;36m[K^~~~~~[m[K
+[1.313s] make[2]: *** [CMakeFiles/client.dir/build.make:63: CMakeFiles/client.dir/src/cobotta_io.cpp.o] Error 1
+[1.313s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/client.dir/all] Error 2
+[1.313s] make: *** [Makefile:141: all] Error 2
+[1.316s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process' returned '2': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process -- -j16 -l16

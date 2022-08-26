@@ -19,16 +19,13 @@
 
 int set_socket(int socket_fd, int stat){
 	int oldSocketFlag = fcntl(socket_fd, F_GETFL, 0);
-	int newSocketFlag;
+	int newSocketFlag = oldSocketFlag | O_NONBLOCK;
 	if(stat == block){
 		newSocketFlag = oldSocketFlag & (~O_NONBLOCK);
 	}
-	else if(stat == nonblock){
-		newSocketFlag = oldSocketFlag | O_NONBLOCK;
-	}
 
     if (fcntl(socket_fd, F_SETFL,  newSocketFlag) == -1) {
-		// "\nset socket to nonblock error.\n"
+		// "\nset socket fd error.\n"
         close(socket_fd);
         return -1;
     }
@@ -75,7 +72,6 @@ int recv_socket(int socket_fd, char* message){
 		close(socket_fd);
 		return -1;
 	}
-
 	int errorTimes = 0;
 	int strlen = 0;
 	char buffer[1024];
@@ -94,7 +90,6 @@ int recv_socket(int socket_fd, char* message){
 			sleep(3);
 			errorTimes++;
 			if(errorTimes >= 3){
-				close(socket_fd);
 				// "\ntime out\n"
 				return socket_fd;
 			}
@@ -103,6 +98,10 @@ int recv_socket(int socket_fd, char* message){
 			}
 		}
     }
+	if(set_socket(socket_fd, block) < 0){
+		close(socket_fd);
+		return -1;
+	}
 	return socket_fd;
 }
 
@@ -119,7 +118,7 @@ void sock_handle(const std::shared_ptr<tcp_format::srv::SocketFormat::Request>		
 	response->receive_message = "init msg";
 
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "ip address: %s", ip.c_str());
-	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "port: %d", port_fd);
+	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "port_fd: %d", port_fd);
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "send message: %s", message.c_str());
 
@@ -139,12 +138,14 @@ void sock_handle(const std::shared_ptr<tcp_format::srv::SocketFormat::Request>		
 
 	if(action.compare("send") == 0){
 		char* message2char = strcpy(new char[message.length() + 1], message.c_str());
-		if(send(port_fd, message2char, strlen(message2char), 0) < 0){
+		int send_fd = send(port_fd, message2char, strlen(message2char), 0);
+		if(send_fd < 0){
 			response->status = "send message error";
 			response->receive_message = "no message";
 			return;
 		}
-		if(recv_socket(port_fd, message2char) < 0){
+		int recv_fd = recv_socket(port_fd, message2char);
+		if(recv_fd < 0){
 			response->status = "recv message error";
 			response->receive_message = "no message";
 			return;
@@ -152,6 +153,7 @@ void sock_handle(const std::shared_ptr<tcp_format::srv::SocketFormat::Request>		
 		else{
 			response->status = "send and recv message";
 			response->receive_message = message2char;
+			RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "recv message: %s", message2char);
 			response->socket_fd = port_fd;
 		}
 	}

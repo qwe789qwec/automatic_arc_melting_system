@@ -1,0 +1,3 @@
+[35m[1mScanning dependencies of target server[0m
+[ 50%] Built target client
+[ 75%] [32mBuilding CXX object CMakeFiles/server.dir/src/tcp_client.cpp.o[0m
