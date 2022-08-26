@@ -34,8 +34,8 @@ cdr_serialize(
 {
   // Member: target_ip
   cdr << ros_message.target_ip;
-  // Member: target_port
-  cdr << ros_message.target_port;
+  // Member: port_fd
+  cdr << ros_message.port_fd;
   // Member: action
   cdr << ros_message.action;
   // Member: send_message
@@ -52,8 +52,8 @@ cdr_deserialize(
   // Member: target_ip
   cdr >> ros_message.target_ip;
 
-  // Member: target_port
-  cdr >> ros_message.target_port;
+  // Member: port_fd
+  cdr >> ros_message.port_fd;
 
   // Member: action
   cdr >> ros_message.action;
@@ -81,10 +81,12 @@ get_serialized_size(
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
     (ros_message.target_ip.size() + 1);
-  // Member: target_port
-  current_alignment += padding +
-    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
-    (ros_message.target_port.size() + 1);
+  // Member: port_fd
+  {
+    size_t item_size = sizeof(ros_message.port_fd);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
   // Member: action
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
@@ -124,16 +126,12 @@ max_serialized_size_SocketFormat_Request(
     }
   }
 
-  // Member: target_port
+  // Member: port_fd
   {
     size_t array_size = 1;
 
-    full_bounded = false;
-    for (size_t index = 0; index < array_size; ++index) {
-      current_alignment += padding +
-        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
-        1;
-    }
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
 
   // Member: action
@@ -282,6 +280,8 @@ cdr_serialize(
   const tcp_format::srv::SocketFormat_Response & ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
+  // Member: socket_fd
+  cdr << ros_message.socket_fd;
   // Member: status
   cdr << ros_message.status;
   // Member: receive_message
@@ -295,6 +295,9 @@ cdr_deserialize(
   eprosima::fastcdr::Cdr & cdr,
   tcp_format::srv::SocketFormat_Response & ros_message)
 {
+  // Member: socket_fd
+  cdr >> ros_message.socket_fd;
+
   // Member: status
   cdr >> ros_message.status;
 
@@ -317,6 +320,12 @@ get_serialized_size(
   (void)padding;
   (void)wchar_size;
 
+  // Member: socket_fd
+  {
+    size_t item_size = sizeof(ros_message.socket_fd);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
   // Member: status
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
@@ -343,6 +352,14 @@ max_serialized_size_SocketFormat_Response(
   (void)wchar_size;
   (void)full_bounded;
 
+
+  // Member: socket_fd
+  {
+    size_t array_size = 1;
+
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
 
   // Member: status
   {

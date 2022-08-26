@@ -1,4 +1,4 @@
 string target_ip
-string target_port
+int64 port_fd
 string action
 string send_message

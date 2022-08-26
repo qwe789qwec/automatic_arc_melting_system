@@ -54,14 +54,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SocketFormat_
     nullptr  // resize(index) function pointer
   },
   {
-    "target_port",  // name
-    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
+    "port_fd",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(tcp_format::srv::SocketFormat_Request, target_port),  // bytes offset in struct
+    offsetof(tcp_format::srv::SocketFormat_Request, port_fd),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -199,7 +199,22 @@ void SocketFormat_Response_fini_function(void * message_memory)
   typed_message->~SocketFormat_Response();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember SocketFormat_Response_message_member_array[2] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember SocketFormat_Response_message_member_array[3] = {
+  {
+    "socket_fd",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT64,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(tcp_format::srv::SocketFormat_Response, socket_fd),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
+  },
   {
     "status",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
@@ -235,7 +250,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SocketFormat_
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers SocketFormat_Response_message_members = {
   "tcp_format::srv",  // message namespace
   "SocketFormat_Response",  // message name
-  2,  // number of fields
+  3,  // number of fields
   sizeof(tcp_format::srv::SocketFormat_Response),
   SocketFormat_Response_message_member_array,  // message members
   SocketFormat_Response_init_function,  // function to initialize message memory (memory has to be allocated)

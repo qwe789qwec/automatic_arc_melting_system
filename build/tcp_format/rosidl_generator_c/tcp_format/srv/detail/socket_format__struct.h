@@ -19,7 +19,6 @@ extern "C"
 
 // Include directives for member types
 // Member 'target_ip'
-// Member 'target_port'
 // Member 'action'
 // Member 'send_message'
 #include "rosidl_runtime_c/string.h"
@@ -28,7 +27,7 @@ extern "C"
 typedef struct tcp_format__srv__SocketFormat_Request
 {
   rosidl_runtime_c__String target_ip;
-  rosidl_runtime_c__String target_port;
+  int64_t port_fd;
   rosidl_runtime_c__String action;
   rosidl_runtime_c__String send_message;
 } tcp_format__srv__SocketFormat_Request;
@@ -55,6 +54,7 @@ typedef struct tcp_format__srv__SocketFormat_Request__Sequence
 // Struct defined in srv/SocketFormat in the package tcp_format.
 typedef struct tcp_format__srv__SocketFormat_Response
 {
+  int64_t socket_fd;
   rosidl_runtime_c__String status;
   rosidl_runtime_c__String receive_message;
 } tcp_format__srv__SocketFormat_Response;

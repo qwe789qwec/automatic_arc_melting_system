@@ -52,15 +52,15 @@ private:
   ::tcp_format::srv::SocketFormat_Request msg_;
 };
 
-class Init_SocketFormat_Request_target_port
+class Init_SocketFormat_Request_port_fd
 {
 public:
-  explicit Init_SocketFormat_Request_target_port(::tcp_format::srv::SocketFormat_Request & msg)
+  explicit Init_SocketFormat_Request_port_fd(::tcp_format::srv::SocketFormat_Request & msg)
   : msg_(msg)
   {}
-  Init_SocketFormat_Request_action target_port(::tcp_format::srv::SocketFormat_Request::_target_port_type arg)
+  Init_SocketFormat_Request_action port_fd(::tcp_format::srv::SocketFormat_Request::_port_fd_type arg)
   {
-    msg_.target_port = std::move(arg);
+    msg_.port_fd = std::move(arg);
     return Init_SocketFormat_Request_action(msg_);
   }
 
@@ -74,10 +74,10 @@ public:
   Init_SocketFormat_Request_target_ip()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  Init_SocketFormat_Request_target_port target_ip(::tcp_format::srv::SocketFormat_Request::_target_ip_type arg)
+  Init_SocketFormat_Request_port_fd target_ip(::tcp_format::srv::SocketFormat_Request::_target_ip_type arg)
   {
     msg_.target_ip = std::move(arg);
-    return Init_SocketFormat_Request_target_port(msg_);
+    return Init_SocketFormat_Request_port_fd(msg_);
   }
 
 private:
@@ -129,13 +129,29 @@ private:
 class Init_SocketFormat_Response_status
 {
 public:
-  Init_SocketFormat_Response_status()
-  : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
+  explicit Init_SocketFormat_Response_status(::tcp_format::srv::SocketFormat_Response & msg)
+  : msg_(msg)
   {}
   Init_SocketFormat_Response_receive_message status(::tcp_format::srv::SocketFormat_Response::_status_type arg)
   {
     msg_.status = std::move(arg);
     return Init_SocketFormat_Response_receive_message(msg_);
+  }
+
+private:
+  ::tcp_format::srv::SocketFormat_Response msg_;
+};
+
+class Init_SocketFormat_Response_socket_fd
+{
+public:
+  Init_SocketFormat_Response_socket_fd()
+  : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
+  {}
+  Init_SocketFormat_Response_status socket_fd(::tcp_format::srv::SocketFormat_Response::_socket_fd_type arg)
+  {
+    msg_.socket_fd = std::move(arg);
+    return Init_SocketFormat_Response_status(msg_);
   }
 
 private:
@@ -153,7 +169,7 @@ template<>
 inline
 auto build<::tcp_format::srv::SocketFormat_Response>()
 {
-  return tcp_format::srv::builder::Init_SocketFormat_Response_status();
+  return tcp_format::srv::builder::Init_SocketFormat_Response_socket_fd();
 }
 
 }  // namespace tcp_format

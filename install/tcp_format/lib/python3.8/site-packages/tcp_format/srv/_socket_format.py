@@ -54,21 +54,21 @@ class SocketFormat_Request(metaclass=Metaclass_SocketFormat_Request):
 
     __slots__ = [
         '_target_ip',
-        '_target_port',
+        '_port_fd',
         '_action',
         '_send_message',
     ]
 
     _fields_and_field_types = {
         'target_ip': 'string',
-        'target_port': 'string',
+        'port_fd': 'int64',
         'action': 'string',
         'send_message': 'string',
     }
 
     SLOT_TYPES = (
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
-        rosidl_parser.definition.UnboundedString(),  # noqa: E501
+        rosidl_parser.definition.BasicType('int64'),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
     )
@@ -78,7 +78,7 @@ class SocketFormat_Request(metaclass=Metaclass_SocketFormat_Request):
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
         self.target_ip = kwargs.get('target_ip', str())
-        self.target_port = kwargs.get('target_port', str())
+        self.port_fd = kwargs.get('port_fd', int())
         self.action = kwargs.get('action', str())
         self.send_message = kwargs.get('send_message', str())
 
@@ -113,7 +113,7 @@ class SocketFormat_Request(metaclass=Metaclass_SocketFormat_Request):
             return False
         if self.target_ip != other.target_ip:
             return False
-        if self.target_port != other.target_port:
+        if self.port_fd != other.port_fd:
             return False
         if self.action != other.action:
             return False
@@ -140,17 +140,19 @@ class SocketFormat_Request(metaclass=Metaclass_SocketFormat_Request):
         self._target_ip = value
 
     @property
-    def target_port(self):
-        """Message field 'target_port'."""
-        return self._target_port
+    def port_fd(self):
+        """Message field 'port_fd'."""
+        return self._port_fd
 
-    @target_port.setter
-    def target_port(self, value):
+    @port_fd.setter
+    def port_fd(self, value):
         if __debug__:
             assert \
-                isinstance(value, str), \
-                "The 'target_port' field must be of type 'str'"
-        self._target_port = value
+                isinstance(value, int), \
+                "The 'port_fd' field must be of type 'int'"
+            assert value >= -9223372036854775808 and value < 9223372036854775808, \
+                "The 'port_fd' field must be an integer in [-9223372036854775808, 9223372036854775807]"
+        self._port_fd = value
 
     @property
     def action(self):
@@ -230,16 +232,19 @@ class SocketFormat_Response(metaclass=Metaclass_SocketFormat_Response):
     """Message class 'SocketFormat_Response'."""
 
     __slots__ = [
+        '_socket_fd',
         '_status',
         '_receive_message',
     ]
 
     _fields_and_field_types = {
+        'socket_fd': 'int64',
         'status': 'string',
         'receive_message': 'string',
     }
 
     SLOT_TYPES = (
+        rosidl_parser.definition.BasicType('int64'),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
     )
@@ -248,6 +253,7 @@ class SocketFormat_Response(metaclass=Metaclass_SocketFormat_Response):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
+        self.socket_fd = kwargs.get('socket_fd', int())
         self.status = kwargs.get('status', str())
         self.receive_message = kwargs.get('receive_message', str())
 
@@ -280,6 +286,8 @@ class SocketFormat_Response(metaclass=Metaclass_SocketFormat_Response):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
+        if self.socket_fd != other.socket_fd:
+            return False
         if self.status != other.status:
             return False
         if self.receive_message != other.receive_message:
@@ -290,6 +298,21 @@ class SocketFormat_Response(metaclass=Metaclass_SocketFormat_Response):
     def get_fields_and_field_types(cls):
         from copy import copy
         return copy(cls._fields_and_field_types)
+
+    @property
+    def socket_fd(self):
+        """Message field 'socket_fd'."""
+        return self._socket_fd
+
+    @socket_fd.setter
+    def socket_fd(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, int), \
+                "The 'socket_fd' field must be of type 'int'"
+            assert value >= -9223372036854775808 and value < 9223372036854775808, \
+                "The 'socket_fd' field must be an integer in [-9223372036854775808, 9223372036854775807]"
+        self._socket_fd = value
 
     @property
     def status(self):

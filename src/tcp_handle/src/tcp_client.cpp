@@ -35,7 +35,7 @@ int set_socket(int socket_fd, int stat){
 	return 0;
 }
 
-int creat_socket(std::string ip, std::string port){
+int creat_socket(std::string ip, int port){
 	// struct timeval timeout;
 	// fd_set readfds;
 	// timeout.tv_sec = 5;
@@ -54,7 +54,7 @@ int creat_socket(std::string ip, std::string port){
 
 	struct sockaddr_in serv_addr;
 	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_port = htons(std::stoi(port));
+	serv_addr.sin_port = htons(port);
 	if (inet_pton(AF_INET, ip.c_str(), &serv_addr.sin_addr)<= 0) {
 		//"\nInvalid address/ Address not supported.\n"
 		return -1;
@@ -108,39 +108,42 @@ int recv_socket(int socket_fd, char* message){
 void sock_handle(const std::shared_ptr<tcp_format::srv::SocketFormat::Request>		request,
 					std::shared_ptr<tcp_format::srv::SocketFormat::Response>	response)
 {
-	std::string ip, port, action, message;
+	std::string ip, action, message;
+	int port_fd;
 	ip = request->target_ip;
-	port = request->target_port;
+	port_fd = request->port_fd;
 	action = request->action;
 	message = request->send_message;
 	response->status = "init status";
 	response->receive_message = "init msg";
 
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "ip address: %s", ip.c_str());
-	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "port: %s", port.c_str());
+	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "port: %d", port_fd);
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "send message: %s", message.c_str());
 
-	int socket_fd = creat_socket(ip, port);;
-	char* message2char;
-	if(socket_fd < 0){
-		response->status = "socket creat/connect error";
-		response->receive_message = "no message";
-		return;
-	}
-	else{
-		response->status = "socket creat/connect success";
-		response->receive_message = "no message";
+	if(action.compare("creat") == 0){
+		int socket_fd = creat_socket(ip, port_fd);;
+		if(socket_fd < 0){
+			response->status = "socket creat/connect error";
+			response->receive_message = "no message";
+			return;
+		}
+		else{
+			response->socket_fd = socket_fd;
+			response->status = "socket creat/connect success";
+			response->receive_message = "no message";
+		}
 	}
 
 	if(action.compare("send") == 0){
-		message2char = strcpy(new char[message.length() + 1], message.c_str());
-		if(send(socket_fd, message2char, strlen(message2char), 0) < 0){
+		char* message2char = strcpy(new char[message.length() + 1], message.c_str());
+		if(send(port_fd, message2char, strlen(message2char), 0) < 0){
 			response->status = "send message error";
 			response->receive_message = "no message";
 			return;
 		}
-		if(recv_socket(socket_fd, message2char) < 0){
+		if(recv_socket(port_fd, message2char) < 0){
 			response->status = "recv message error";
 			response->receive_message = "no message";
 			return;
@@ -152,7 +155,7 @@ void sock_handle(const std::shared_ptr<tcp_format::srv::SocketFormat::Request>		
 	}
 
 	if(action.compare("close") == 0){
-		if(close(socket_fd) < 0){
+		if(close(port_fd) < 0){
 			response->status = "close socket error";
 			response->receive_message = "no message";
 			return;

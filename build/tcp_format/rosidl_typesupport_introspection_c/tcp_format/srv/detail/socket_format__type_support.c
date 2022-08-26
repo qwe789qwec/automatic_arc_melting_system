@@ -14,7 +14,6 @@
 
 // Include directives for member types
 // Member `target_ip`
-// Member `target_port`
 // Member `action`
 // Member `send_message`
 #include "rosidl_runtime_c/string_functions.h"
@@ -55,14 +54,14 @@ static rosidl_typesupport_introspection_c__MessageMember SocketFormat_Request__r
     NULL  // resize(index) function pointer
   },
   {
-    "target_port",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
+    "port_fd",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_INT64,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(tcp_format__srv__SocketFormat_Request, target_port),  // bytes offset in struct
+    offsetof(tcp_format__srv__SocketFormat_Request, port_fd),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -175,7 +174,22 @@ void SocketFormat_Response__rosidl_typesupport_introspection_c__SocketFormat_Res
   tcp_format__srv__SocketFormat_Response__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember SocketFormat_Response__rosidl_typesupport_introspection_c__SocketFormat_Response_message_member_array[2] = {
+static rosidl_typesupport_introspection_c__MessageMember SocketFormat_Response__rosidl_typesupport_introspection_c__SocketFormat_Response_message_member_array[3] = {
+  {
+    "socket_fd",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_INT64,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(tcp_format__srv__SocketFormat_Response, socket_fd),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL  // resize(index) function pointer
+  },
   {
     "status",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
@@ -211,7 +225,7 @@ static rosidl_typesupport_introspection_c__MessageMember SocketFormat_Response__
 static const rosidl_typesupport_introspection_c__MessageMembers SocketFormat_Response__rosidl_typesupport_introspection_c__SocketFormat_Response_message_members = {
   "tcp_format__srv",  // message namespace
   "SocketFormat_Response",  // message name
-  2,  // number of fields
+  3,  // number of fields
   sizeof(tcp_format__srv__SocketFormat_Response),
   SocketFormat_Response__rosidl_typesupport_introspection_c__SocketFormat_Response_message_member_array,  // message members
   SocketFormat_Response__rosidl_typesupport_introspection_c__SocketFormat_Response_init_function,  // function to initialize message memory (memory has to be allocated)

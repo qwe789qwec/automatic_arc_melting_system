@@ -34,8 +34,8 @@ extern "C"
 {
 #endif
 
-#include "rosidl_runtime_c/string.h"  // action, send_message, target_ip, target_port
-#include "rosidl_runtime_c/string_functions.h"  // action, send_message, target_ip, target_port
+#include "rosidl_runtime_c/string.h"  // action, send_message, target_ip
+#include "rosidl_runtime_c/string_functions.h"  // action, send_message, target_ip
 
 // forward declare type support functions
 
@@ -65,18 +65,9 @@ static bool _SocketFormat_Request__cdr_serialize(
     cdr << str->data;
   }
 
-  // Field name: target_port
+  // Field name: port_fd
   {
-    const rosidl_runtime_c__String * str = &ros_message->target_port;
-    if (str->capacity == 0 || str->capacity <= str->size) {
-      fprintf(stderr, "string capacity not greater than size\n");
-      return false;
-    }
-    if (str->data[str->size] != '\0') {
-      fprintf(stderr, "string not null-terminated\n");
-      return false;
-    }
-    cdr << str->data;
+    cdr << ros_message->port_fd;
   }
 
   // Field name: action
@@ -135,20 +126,9 @@ static bool _SocketFormat_Request__cdr_deserialize(
     }
   }
 
-  // Field name: target_port
+  // Field name: port_fd
   {
-    std::string tmp;
-    cdr >> tmp;
-    if (!ros_message->target_port.data) {
-      rosidl_runtime_c__String__init(&ros_message->target_port);
-    }
-    bool succeeded = rosidl_runtime_c__String__assign(
-      &ros_message->target_port,
-      tmp.c_str());
-    if (!succeeded) {
-      fprintf(stderr, "failed to assign string into field 'target_port'\n");
-      return false;
-    }
+    cdr >> ros_message->port_fd;
   }
 
   // Field name: action
@@ -204,10 +184,12 @@ size_t get_serialized_size_tcp_format__srv__SocketFormat_Request(
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
     (ros_message->target_ip.size + 1);
-  // field.name target_port
-  current_alignment += padding +
-    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
-    (ros_message->target_port.size + 1);
+  // field.name port_fd
+  {
+    size_t item_size = sizeof(ros_message->port_fd);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
   // field.name action
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
@@ -251,16 +233,12 @@ size_t max_serialized_size_tcp_format__srv__SocketFormat_Request(
         1;
     }
   }
-  // member: target_port
+  // member: port_fd
   {
     size_t array_size = 1;
 
-    full_bounded = false;
-    for (size_t index = 0; index < array_size; ++index) {
-      current_alignment += padding +
-        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
-        1;
-    }
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
   // member: action
   {
@@ -378,6 +356,11 @@ static bool _SocketFormat_Response__cdr_serialize(
     return false;
   }
   const _SocketFormat_Response__ros_msg_type * ros_message = static_cast<const _SocketFormat_Response__ros_msg_type *>(untyped_ros_message);
+  // Field name: socket_fd
+  {
+    cdr << ros_message->socket_fd;
+  }
+
   // Field name: status
   {
     const rosidl_runtime_c__String * str = &ros_message->status;
@@ -418,6 +401,11 @@ static bool _SocketFormat_Response__cdr_deserialize(
     return false;
   }
   _SocketFormat_Response__ros_msg_type * ros_message = static_cast<_SocketFormat_Response__ros_msg_type *>(untyped_ros_message);
+  // Field name: socket_fd
+  {
+    cdr >> ros_message->socket_fd;
+  }
+
   // Field name: status
   {
     std::string tmp;
@@ -467,6 +455,12 @@ size_t get_serialized_size_tcp_format__srv__SocketFormat_Response(
   (void)padding;
   (void)wchar_size;
 
+  // field.name socket_fd
+  {
+    size_t item_size = sizeof(ros_message->socket_fd);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
   // field.name status
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
@@ -499,6 +493,13 @@ size_t max_serialized_size_tcp_format__srv__SocketFormat_Response(
   (void)wchar_size;
   (void)full_bounded;
 
+  // member: socket_fd
+  {
+    size_t array_size = 1;
+
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
   // member: status
   {
     size_t array_size = 1;

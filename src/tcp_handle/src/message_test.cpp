@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
   argv_message = argv_message + "\r\n";
 	// std::replace( argv_message.begin(), argv_message.end(), '^', ' '); // replace all '^' to ' '
   request->target_ip = argv_ip;
-  request->target_port = argv_port;
+  request->port_fd = std::stoi(argv_port);
   request->action = argv_action;
   request->send_message = argv_message;
 
@@ -59,6 +59,7 @@ int main(int argc, char *argv[])
     rclcpp::FutureReturnCode::SUCCESS)
   {
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "status: %s", result.get()->status.c_str());
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "socket_fd: %d", result.get()->socket_fd);
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", result.get()->receive_message.c_str());
   } else {
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to send socket");

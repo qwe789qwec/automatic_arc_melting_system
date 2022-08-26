@@ -1,0 +1,229 @@
+[0.000000] (-) TimerEvent: {}
+[0.000203] (-) JobUnselected: {'identifier': 'tcp_handle'}
+[0.000237] (tcp_format) JobQueued: {'identifier': 'tcp_format', 'dependencies': OrderedDict()}
+[0.000256] (tcp_format) JobStarted: {'identifier': 'tcp_format'}
+[0.008783] (tcp_format) JobProgress: {'identifier': 'tcp_format', 'progress': 'cmake'}
+[0.009314] (tcp_format) JobProgress: {'identifier': 'tcp_format', 'progress': 'build'}
+[0.009756] (tcp_format) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format', '--', '-j16', '-l16'], 'cwd': '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'wilson'), ('LC_TIME', 'ja_JP.UTF-8'), ('SSH_AGENT_PID', '2070'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/wilson'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.70.2'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL', 'true'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'ja_JP.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1887'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '237918'), ('MANDATORY_PATH', '/usr/share/gconf/ubuntu.mandatory.path'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'wilson'), ('JOURNAL_STREAM', '8:60557'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/ubuntu.default.path'), ('USERNAME', 'wilson'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/wilson/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/AORUS:@/tmp/.ICE-unix/2105,unix/AORUS:/tmp/.ICE-unix/2105'), ('INVOCATION_ID', '1f2e8407d32641bd986e2913bbf0f476'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ja_JP.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'ja_JP.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-14f5e2bea2.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/wilson/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ja_JP.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'ja_JP.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'ja_JP.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', '--ms-enable-electron-run-as-node'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/wilson/anaconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'ja_JP.UTF-8'), ('LC_PAPER', 'ja_JP.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.029472] (tcp_format) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.044229] (tcp_format) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.044401] (tcp_format) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.099601] (-) TimerEvent: {}
+[0.164194] (tcp_format) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)\n'}
+[0.165509] (tcp_format) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.167927] (tcp_format) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.199712] (-) TimerEvent: {}
+[0.257484] (tcp_format) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.288769] (tcp_format) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") \n'}
+[0.299812] (-) TimerEvent: {}
+[0.368399] (tcp_format) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)\n'}
+[0.399925] (-) TimerEvent: {}
+[0.428662] (tcp_format) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.433690] (tcp_format) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.448645] (tcp_format) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[0.448796] (tcp_format) StdoutLine: {'line': b'-- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)\n'}
+[0.463545] (tcp_format) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.463650] (tcp_format) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8\n'}
+[0.463709] (tcp_format) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.8.so\n'}
+[0.472553] (tcp_format) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[0.479726] (tcp_format) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[0.480721] (tcp_format) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[0.481464] (tcp_format) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[0.483730] (tcp_format) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.500020] (-) TimerEvent: {}
+[0.503031] (tcp_format) StdoutLine: {'line': b'-- Generating done\n'}
+[0.505270] (tcp_format) StdoutLine: {'line': b'-- Build files have been written to: /home/arc/Documents/automatic_arc_melting_system/build/tcp_format\n'}
+[0.521036] (tcp_format) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[0.527677] (tcp_format) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[0.600101] (-) TimerEvent: {}
+[0.684699] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_generator_c\x1b[0m\n'}
+[0.691236] (tcp_format) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding C object CMakeFiles/tcp_format__rosidl_generator_c.dir/rosidl_generator_c/tcp_format/srv/detail/socket_format__functions.c.o\x1b[0m\n'}
+[0.694811] (tcp_format) StdoutLine: {'line': b'[  9%] Built target tcp_format__cpp\n'}
+[0.700195] (-) TimerEvent: {}
+[0.701172] (tcp_format) StdoutLine: {'line': b'[ 19%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[0.701359] (tcp_format) StdoutLine: {'line': b'[ 19%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[0.701479] (tcp_format) StdoutLine: {'line': b'[ 19%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[0.721696] (tcp_format) StdoutLine: {'line': b'[ 22%] \x1b[32m\x1b[1mLinking C shared library libtcp_format__rosidl_generator_c.so\x1b[0m\n'}
+[0.744139] (tcp_format) StdoutLine: {'line': b'[ 22%] Built target tcp_format__rosidl_generator_c\n'}
+[0.750516] (tcp_format) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[0.750691] (tcp_format) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[0.800280] (-) TimerEvent: {}
+[0.846992] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_typesupport_cpp\x1b[0m\n'}
+[0.855057] (tcp_format) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/tcp_format__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/tcp_format/srv/socket_format__type_support.cpp.o\x1b[0m\n'}
+[0.861290] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_typesupport_introspection_cpp\x1b[0m\n'}
+[0.868886] (tcp_format) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/tcp_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_format__type_support.cpp.o\x1b[0m\n'}
+[0.869221] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_typesupport_fastrtps_cpp\x1b[0m\n'}
+[0.878389] (tcp_format) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp.o\x1b[0m\n'}
+[0.896557] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_typesupport_c\x1b[0m\n'}
+[0.900384] (-) TimerEvent: {}
+[0.904558] (tcp_format) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/tcp_format__rosidl_typesupport_c.dir/rosidl_typesupport_c/tcp_format/srv/socket_format__type_support.cpp.o\x1b[0m\n'}
+[0.912478] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_typesupport_introspection_c\x1b[0m\n'}
+[0.920804] (tcp_format) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding C object CMakeFiles/tcp_format__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/tcp_format/srv/detail/socket_format__type_support.c.o\x1b[0m\n'}
+[0.926225] (tcp_format) StdoutLine: {'line': b'[ 48%] \x1b[32m\x1b[1mLinking CXX shared library libtcp_format__rosidl_typesupport_c.so\x1b[0m\n'}
+[0.944294] (tcp_format) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking C shared library libtcp_format__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[0.955977] (tcp_format) StdoutLine: {'line': b'[ 51%] Built target tcp_format__rosidl_typesupport_c\n'}
+[0.963659] (tcp_format) StdoutLine: {'line': b'[ 51%] Built target tcp_format__rosidl_typesupport_introspection_c\n'}
+[1.000485] (-) TimerEvent: {}
+[1.051904] (tcp_format) StdoutLine: {'line': b'[ 54%] \x1b[32m\x1b[1mLinking CXX shared library libtcp_format__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[1.073185] (tcp_format) StdoutLine: {'line': b'[ 58%] \x1b[32m\x1b[1mLinking CXX shared library libtcp_format__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[1.077070] (tcp_format) StdoutLine: {'line': b'[ 58%] Built target tcp_format__rosidl_typesupport_cpp\n'}
+[1.100565] (-) TimerEvent: {}
+[1.109839] (tcp_format) StdoutLine: {'line': b'[ 58%] Built target tcp_format__rosidl_typesupport_introspection_cpp\n'}
+[1.178583] (tcp_format) StdoutLine: {'line': b'[ 61%] \x1b[32m\x1b[1mLinking CXX shared library libtcp_format__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[1.200682] (-) TimerEvent: {}
+[1.230059] (tcp_format) StdoutLine: {'line': b'[ 61%] Built target tcp_format__rosidl_typesupport_fastrtps_cpp\n'}
+[1.236405] (tcp_format) StdoutLine: {'line': b'[ 64%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[1.300788] (-) TimerEvent: {}
+[1.395608] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_typesupport_fastrtps_c\x1b[0m\n'}
+[1.400888] (-) TimerEvent: {}
+[1.404221] (tcp_format) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/tcp_format/srv/detail/socket_format__type_support_c.cpp.o\x1b[0m\n'}
+[1.500996] (-) TimerEvent: {}
+[1.601277] (-) TimerEvent: {}
+[1.674941] (tcp_format) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libtcp_format__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[1.701373] (-) TimerEvent: {}
+[1.727698] (tcp_format) StdoutLine: {'line': b'[ 70%] Built target tcp_format__rosidl_typesupport_fastrtps_c\n'}
+[1.740018] (tcp_format) StdoutLine: {'line': b'[ 70%] Built target tcp_format\n'}
+[1.752400] (tcp_format) StdoutLine: {'line': b'[ 74%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[1.801455] (-) TimerEvent: {}
+[1.901680] (-) TimerEvent: {}
+[2.001905] (-) TimerEvent: {}
+[2.058820] (tcp_format) StdoutLine: {'line': b'[ 74%] Built target tcp_format__py\n'}
+[2.065271] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__python\x1b[0m\n'}
+[2.074586] (tcp_format) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding C object CMakeFiles/tcp_format__python.dir/rosidl_generator_py/tcp_format/srv/_socket_format_s.c.o\x1b[0m\n'}
+[2.102022] (-) TimerEvent: {}
+[2.138345] (tcp_format) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/tcp_format/libtcp_format__python.so\x1b[0m\n'}
+[2.162507] (tcp_format) StdoutLine: {'line': b'[ 80%] Built target tcp_format__python\n'}
+[2.169273] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_typesupport_introspection_c__pyext\x1b[0m\n'}
+[2.169427] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_typesupport_c__pyext\x1b[0m\n'}
+[2.169508] (tcp_format) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tcp_format__rosidl_typesupport_fastrtps_c__pyext\x1b[0m\n'}
+[2.178538] (tcp_format) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/tcp_format__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[2.178700] (tcp_format) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[2.178791] (tcp_format) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/tcp_format__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[2.202109] (-) TimerEvent: {}
+[2.232093] (tcp_format) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/tcp_format/tcp_format_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so\x1b[0m\n'}
+[2.232285] (tcp_format) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/tcp_format/tcp_format_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so\x1b[0m\n'}
+[2.232380] (tcp_format) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared library rosidl_generator_py/tcp_format/tcp_format_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so\x1b[0m\n'}
+[2.253924] (tcp_format) StdoutLine: {'line': b'[100%] Built target tcp_format__rosidl_typesupport_introspection_c__pyext\n'}
+[2.254064] (tcp_format) StdoutLine: {'line': b'[100%] Built target tcp_format__rosidl_typesupport_c__pyext\n'}
+[2.272406] (tcp_format) StdoutLine: {'line': b'[100%] Built target tcp_format__rosidl_typesupport_fastrtps_c__pyext\n'}
+[2.280242] (tcp_format) CommandEnded: {'returncode': 0}
+[2.302203] (-) TimerEvent: {}
+[2.308265] (tcp_format) JobProgress: {'identifier': 'tcp_format', 'progress': 'install'}
+[2.315957] (tcp_format) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format'], 'cwd': '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'wilson'), ('LC_TIME', 'ja_JP.UTF-8'), ('SSH_AGENT_PID', '2070'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/wilson'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.70.2'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL', 'true'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'ja_JP.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1887'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '237918'), ('MANDATORY_PATH', '/usr/share/gconf/ubuntu.mandatory.path'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'wilson'), ('JOURNAL_STREAM', '8:60557'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/ubuntu.default.path'), ('USERNAME', 'wilson'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/wilson/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/AORUS:@/tmp/.ICE-unix/2105,unix/AORUS:/tmp/.ICE-unix/2105'), ('INVOCATION_ID', '1f2e8407d32641bd986e2913bbf0f476'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ja_JP.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'ja_JP.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-14f5e2bea2.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/wilson/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ja_JP.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'ja_JP.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'ja_JP.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', '--ms-enable-electron-run-as-node'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/wilson/anaconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'ja_JP.UTF-8'), ('LC_PAPER', 'ja_JP.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[2.321665] (tcp_format) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.321821] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/ament_index/resource_index/rosidl_interfaces/tcp_format\n'}
+[2.321970] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format\n'}
+[2.322074] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv\n'}
+[2.322170] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail\n'}
+[2.322269] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__functions.h\n'}
+[2.322354] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__struct.h\n'}
+[2.322428] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__functions.c\n'}
+[2.322517] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__type_support.h\n'}
+[2.322596] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/socket_format.h\n'}
+[2.322678] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg\n'}
+[2.322773] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg/rosidl_generator_c__visibility_control.h\n'}
+[2.322864] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/library_path.sh\n'}
+[2.322949] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/library_path.dsv\n'}
+[2.323030] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_generator_c.so\n'}
+[2.323110] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_generator_c.so" to ""\n'}
+[2.323184] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format\n'}
+[2.323264] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv\n'}
+[2.323359] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail\n'}
+[2.323449] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__rosidl_typesupport_fastrtps_c.h\n'}
+[2.323546] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg\n'}
+[2.323622] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[2.323707] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_fastrtps_c.so\n'}
+[2.323784] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[2.323856] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format\n'}
+[2.323949] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv\n'}
+[2.324042] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail\n'}
+[2.324131] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[2.324218] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/dds_fastrtps\n'}
+[2.324298] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg\n'}
+[2.324375] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[2.324453] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_fastrtps_cpp.so\n'}
+[2.324539] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[2.324619] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format\n'}
+[2.324696] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv\n'}
+[2.324768] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail\n'}
+[2.324864] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__rosidl_typesupport_introspection_c.h\n'}
+[2.324965] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__type_support.c\n'}
+[2.325056] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg\n'}
+[2.325155] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[2.325245] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_introspection_c.so\n'}
+[2.325336] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_introspection_c.so" to ""\n'}
+[2.325435] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_c.so\n'}
+[2.325508] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_c.so" to ""\n'}
+[2.325593] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format\n'}
+[2.325666] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv\n'}
+[2.325739] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail\n'}
+[2.325817] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__struct.hpp\n'}
+[2.325899] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__builder.hpp\n'}
+[2.325979] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__traits.hpp\n'}
+[2.326052] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/socket_format.hpp\n'}
+[2.326134] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format\n'}
+[2.326227] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv\n'}
+[2.326305] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail\n'}
+[2.326388] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__type_support.cpp\n'}
+[2.326461] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_format__rosidl_typesupport_introspection_cpp.hpp\n'}
+[2.326533] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_introspection_cpp.so\n'}
+[2.326605] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[2.326682] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_cpp.so\n'}
+[2.326754] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_cpp.so" to ""\n'}
+[2.326825] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/pythonpath.sh\n'}
+[2.326897] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/pythonpath.dsv\n'}
+[2.326969] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/__init__.py\n'}
+[2.345674] (tcp_format) StdoutLine: {'line': b"Compiling '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/__init__.py'...\n"}
+[2.348075] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv\n'}
+[2.348218] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/__init__.py\n'}
+[2.348308] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/_socket_format.py\n'}
+[2.348386] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/_socket_format_s.c\n'}
+[2.348524] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/tcp_format_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so\n'}
+[2.348814] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/tcp_format_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so" to ""\n'}
+[2.349092] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/tcp_format_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so\n'}
+[2.349388] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/tcp_format_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so" to ""\n'}
+[2.349600] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/tcp_format_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so\n'}
+[2.349863] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/tcp_format_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so" to ""\n'}
+[2.349980] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__python.so\n'}
+[2.350183] (tcp_format) StdoutLine: {'line': b'-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__python.so" to ""\n'}
+[2.350266] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketFormat.idl\n'}
+[2.350354] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketFormat.srv\n'}
+[2.350440] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketFormat_Request.msg\n'}
+[2.350525] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketFormat_Response.msg\n'}
+[2.350607] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/ament_index/resource_index/package_run_dependencies/tcp_format\n'}
+[2.350703] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/ament_index/resource_index/parent_prefix_path/tcp_format\n'}
+[2.350785] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/ament_prefix_path.sh\n'}
+[2.350876] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/ament_prefix_path.dsv\n'}
+[2.350974] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/path.sh\n'}
+[2.351065] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/path.dsv\n'}
+[2.351150] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/local_setup.bash\n'}
+[2.351230] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/local_setup.sh\n'}
+[2.351310] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/local_setup.zsh\n'}
+[2.351401] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/local_setup.dsv\n'}
+[2.351483] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.dsv\n'}
+[2.351539] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/ament_index/resource_index/packages/tcp_format\n'}
+[2.351591] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_generator_cExport.cmake\n'}
+[2.351667] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_generator_cExport-noconfig.cmake\n'}
+[2.351719] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_introspection_cExport.cmake\n'}
+[2.351798] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[2.351857] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_cExport.cmake\n'}
+[2.351935] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[2.352035] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_generator_cppExport.cmake\n'}
+[2.352136] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[2.352238] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[2.352310] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_cppExport.cmake\n'}
+[2.352373] (tcp_format) StdoutLine: {'line': b'-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[2.352442] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/rosidl_cmake-extras.cmake\n'}
+[2.352513] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[2.352582] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[2.352649] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[2.352712] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[2.352763] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[2.352816] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[2.352875] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_formatConfig.cmake\n'}
+[2.352931] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_formatConfig-version.cmake\n'}
+[2.352984] (tcp_format) StdoutLine: {'line': b'-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.xml\n'}
+[2.354052] (tcp_format) CommandEnded: {'returncode': 0}
+[2.402307] (-) TimerEvent: {}
+[2.407633] (tcp_format) JobEnded: {'identifier': 'tcp_format', 'rc': 0}
+[2.408104] (-) EventReactorShutdown: {}
