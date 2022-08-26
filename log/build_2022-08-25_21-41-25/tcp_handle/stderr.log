@@ -1,0 +1,16 @@
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:[m[K In function ‘[01m[Kvoid send_socket(std::shared_ptr<tcp_format::srv::SocketMessage_Request_<std::allocator<void> > >, std::shared_ptr<tcp_format::srv::SocketMessage_Response_<std::allocator<void> > >)[m[K’:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:40:6:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kint oldSocketFlag[m[K’
+   40 |  int [01;31m[KoldSocketFlag[m[K = fcntl(sock_fd, F_GETFL, 0);
+      |      [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:23:6:[m[K [01;36m[Knote: [m[K‘[01m[Kint oldSocketFlag[m[K’ previously declared here
+   23 |  int [01;36m[KoldSocketFlag[m[K = fcntl(sock_fd, F_GETFL, 0);
+      |      [01;36m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:41:9:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kint newSocketFlag[m[K’
+   41 |     int [01;31m[KnewSocketFlag[m[K = oldSocketFlag | O_NONBLOCK;
+      |         [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:24:9:[m[K [01;36m[Knote: [m[K‘[01m[Kint newSocketFlag[m[K’ previously declared here
+   24 |     int [01;36m[KnewSocketFlag[m[K = oldSocketFlag & (~O_NONBLOCK);
+      |         [01;36m[K^~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/send.dir/build.make:63: CMakeFiles/send.dir/src/tcp_send.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/send.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

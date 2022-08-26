@@ -1,0 +1,95 @@
+[0.008s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/opt/ros/foxy /usr/bin/cmake /home/arc/Documents/automatic_arc_melting_system/src/tcp_handle -DCMAKE_INSTALL_PREFIX=/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle
+[0.043s] -- The C compiler identification is GNU 9.4.0
+[0.077s] -- The CXX compiler identification is GNU 9.4.0
+[0.080s] -- Check for working C compiler: /usr/bin/cc
+[0.123s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.124s] -- Detecting C compiler ABI info
+[0.166s] -- Detecting C compiler ABI info - done
+[0.174s] -- Detecting C compile features
+[0.174s] -- Detecting C compile features - done
+[0.175s] -- Check for working CXX compiler: /usr/bin/c++
+[0.227s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.228s] -- Detecting CXX compiler ABI info
+[0.278s] -- Detecting CXX compiler ABI info - done
+[0.286s] -- Detecting CXX compile features
+[0.287s] -- Detecting CXX compile features - done
+[0.288s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.304s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.304s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.434s] -- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.462s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.466s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.509s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.527s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.576s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.614s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.615s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.615s] -- Looking for pthread.h
+[0.661s] -- Looking for pthread.h - found
+[0.661s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.706s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[0.706s] -- Looking for pthread_create in pthreads
+[0.744s] -- Looking for pthread_create in pthreads - not found
+[0.744s] -- Looking for pthread_create in pthread
+[0.788s] -- Looking for pthread_create in pthread - found
+[0.788s] -- Found Threads: TRUE  
+[0.902s] -- Found tcp_format: 0.0.0 (/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake)
+[0.910s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.959s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.959s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.959s] -- Configured cppcheck include dirs: 
+[0.959s] -- Configured cppcheck exclude dirs and/or files: 
+[0.960s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.960s] -- Configured cpplint exclude dirs and/or files: 
+[0.960s] -- Added test 'lint_cmake' to check CMake code style
+[0.961s] -- Added test 'uncrustify' to check C / C++ code style
+[0.961s] -- Configured uncrustify additional arguments: 
+[0.961s] -- Added test 'xmllint' to check XML markup files
+[0.963s] -- Configuring done
+[0.974s] -- Generating done
+[0.975s] -- Build files have been written to: /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle
+[0.979s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/opt/ros/foxy /usr/bin/cmake /home/arc/Documents/automatic_arc_melting_system/src/tcp_handle -DCMAKE_INSTALL_PREFIX=/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle
+[0.981s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle -- -j16 -l16
+[1.007s] [35m[1mScanning dependencies of target client[0m
+[1.007s] [35m[1mScanning dependencies of target send[0m
+[1.007s] [35m[1mScanning dependencies of target creat[0m
+[1.007s] [35m[1mScanning dependencies of target close[0m
+[1.031s] [ 50%] [32mBuilding CXX object CMakeFiles/send.dir/src/tcp_send.cpp.o[0m
+[1.031s] [ 50%] [32mBuilding CXX object CMakeFiles/close.dir/src/tcp_close.cpp.o[0m
+[1.031s] [ 50%] [32mBuilding CXX object CMakeFiles/creat.dir/src/tcp_client.cpp.o[0m
+[1.031s] [ 50%] [32mBuilding CXX object CMakeFiles/client.dir/src/message_test.cpp.o[0m
+[2.467s] [ 62%] [32m[1mLinking CXX executable creat[0m
+[2.480s] [ 75%] [32m[1mLinking CXX executable send[0m
+[2.485s] [ 87%] [32m[1mLinking CXX executable close[0m
+[2.561s] [ 87%] Built target creat
+[2.574s] [ 87%] Built target send
+[2.577s] [ 87%] Built target close
+[3.367s] [100%] [32m[1mLinking CXX executable client[0m
+[3.469s] [100%] Built target client
+[3.476s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle -- -j16 -l16
+[3.496s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle
+[3.501s] -- Install configuration: ""
+[3.501s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/creat
+[3.502s] -- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/creat" to ""
+[3.502s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/send
+[3.502s] -- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/send" to ""
+[3.502s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/close
+[3.502s] -- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/close" to ""
+[3.502s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/client
+[3.503s] -- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/client" to ""
+[3.503s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/ament_index/resource_index/package_run_dependencies/tcp_handle
+[3.503s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/ament_index/resource_index/parent_prefix_path/tcp_handle
+[3.503s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/ament_prefix_path.sh
+[3.503s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/ament_prefix_path.dsv
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/path.sh
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/path.dsv
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.bash
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.sh
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.zsh
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.dsv
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.dsv
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/ament_index/resource_index/packages/tcp_handle
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/cmake/tcp_handleConfig.cmake
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/cmake/tcp_handleConfig-version.cmake
+[3.504s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.xml
+[3.507s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle

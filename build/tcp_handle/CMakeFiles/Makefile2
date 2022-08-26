@@ -54,7 +54,9 @@ CMAKE_BINARY_DIR = /home/arc/Documents/automatic_arc_melting_system/build/tcp_ha
 
 # The main recursive "all" target.
 all: CMakeFiles/client.dir/all
-all: CMakeFiles/server.dir/all
+all: CMakeFiles/close.dir/all
+all: CMakeFiles/send.dir/all
+all: CMakeFiles/creat.dir/all
 
 .PHONY : all
 
@@ -65,7 +67,9 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/client.dir/clean
-clean: CMakeFiles/server.dir/clean
+clean: CMakeFiles/close.dir/clean
+clean: CMakeFiles/send.dir/clean
+clean: CMakeFiles/creat.dir/clean
 clean: CMakeFiles/tcp_handle_uninstall.dir/clean
 clean: CMakeFiles/uninstall.dir/clean
 
@@ -99,31 +103,85 @@ CMakeFiles/client.dir/clean:
 .PHONY : CMakeFiles/client.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/server.dir
+# Target rules for target CMakeFiles/close.dir
 
 # All Build rule for target.
-CMakeFiles/server.dir/all:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles --progress-num=3,4 "Built target server"
-.PHONY : CMakeFiles/server.dir/all
+CMakeFiles/close.dir/all:
+	$(MAKE) -f CMakeFiles/close.dir/build.make CMakeFiles/close.dir/depend
+	$(MAKE) -f CMakeFiles/close.dir/build.make CMakeFiles/close.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles --progress-num=3,4 "Built target close"
+.PHONY : CMakeFiles/close.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/server.dir/rule: cmake_check_build_system
+CMakeFiles/close.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/close.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles 0
-.PHONY : CMakeFiles/server.dir/rule
+.PHONY : CMakeFiles/close.dir/rule
 
 # Convenience name for target.
-server: CMakeFiles/server.dir/rule
+close: CMakeFiles/close.dir/rule
 
-.PHONY : server
+.PHONY : close
 
 # clean rule for target.
-CMakeFiles/server.dir/clean:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/clean
-.PHONY : CMakeFiles/server.dir/clean
+CMakeFiles/close.dir/clean:
+	$(MAKE) -f CMakeFiles/close.dir/build.make CMakeFiles/close.dir/clean
+.PHONY : CMakeFiles/close.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/send.dir
+
+# All Build rule for target.
+CMakeFiles/send.dir/all:
+	$(MAKE) -f CMakeFiles/send.dir/build.make CMakeFiles/send.dir/depend
+	$(MAKE) -f CMakeFiles/send.dir/build.make CMakeFiles/send.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles --progress-num=7,8 "Built target send"
+.PHONY : CMakeFiles/send.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/send.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/send.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles 0
+.PHONY : CMakeFiles/send.dir/rule
+
+# Convenience name for target.
+send: CMakeFiles/send.dir/rule
+
+.PHONY : send
+
+# clean rule for target.
+CMakeFiles/send.dir/clean:
+	$(MAKE) -f CMakeFiles/send.dir/build.make CMakeFiles/send.dir/clean
+.PHONY : CMakeFiles/send.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/creat.dir
+
+# All Build rule for target.
+CMakeFiles/creat.dir/all:
+	$(MAKE) -f CMakeFiles/creat.dir/build.make CMakeFiles/creat.dir/depend
+	$(MAKE) -f CMakeFiles/creat.dir/build.make CMakeFiles/creat.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles --progress-num=5,6 "Built target creat"
+.PHONY : CMakeFiles/creat.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/creat.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/creat.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles 0
+.PHONY : CMakeFiles/creat.dir/rule
+
+# Convenience name for target.
+creat: CMakeFiles/creat.dir/rule
+
+.PHONY : creat
+
+# clean rule for target.
+CMakeFiles/creat.dir/clean:
+	$(MAKE) -f CMakeFiles/creat.dir/build.make CMakeFiles/creat.dir/clean
+.PHONY : CMakeFiles/creat.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/tcp_handle_uninstall.dir

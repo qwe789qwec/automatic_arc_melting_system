@@ -53,45 +53,87 @@ CMAKE_BINARY_DIR = /home/arc/Documents/automatic_arc_melting_system/build/tcp_fo
 # Include the progress variables for this target.
 include CMakeFiles/tcp_format__cpp.dir/progress.make
 
-CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
-CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__builder.hpp
-CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__struct.hpp
-CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__traits.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__builder.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__struct.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__traits.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_message.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_message__builder.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_message__struct.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_message__traits.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_close.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_close__builder.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_close__struct.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_close__traits.hpp
 
 
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/lib/rosidl_generator_cpp/rosidl_generator_cpp
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/lib/python3.8/site-packages/rosidl_generator_cpp/__init__.py
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/action__builder.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/action__struct.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/action__traits.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/idl.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/idl__builder.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/idl__struct.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/idl__traits.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/msg__builder.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/msg__struct.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/msg__traits.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__builder.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__struct.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__traits.hpp.em
-rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: rosidl_adapter/tcp_format/srv/SocketFormat.idl
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/lib/rosidl_generator_cpp/rosidl_generator_cpp
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/lib/python3.8/site-packages/rosidl_generator_cpp/__init__.py
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/action__builder.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/action__struct.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/action__traits.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/idl.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/idl__builder.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/idl__struct.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/idl__traits.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/msg__builder.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/msg__struct.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/msg__traits.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__builder.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__struct.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__traits.hpp.em
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: rosidl_adapter/tcp_format/srv/SocketCreat.idl
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: rosidl_adapter/tcp_format/srv/SocketMessage.idl
+rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp: rosidl_adapter/tcp_format/srv/SocketClose.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code for ROS interfaces"
 	/usr/bin/python3 /opt/ros/foxy/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp --generator-arguments-file /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_cpp__arguments.json
 
-rosidl_generator_cpp/tcp_format/srv/detail/socket_format__builder.hpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_format__builder.hpp
+rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__builder.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__builder.hpp
 
-rosidl_generator_cpp/tcp_format/srv/detail/socket_format__struct.hpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_format__struct.hpp
+rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__struct.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__struct.hpp
 
-rosidl_generator_cpp/tcp_format/srv/detail/socket_format__traits.hpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_format__traits.hpp
+rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__traits.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__traits.hpp
+
+rosidl_generator_cpp/tcp_format/srv/socket_message.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/socket_message.hpp
+
+rosidl_generator_cpp/tcp_format/srv/detail/socket_message__builder.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_message__builder.hpp
+
+rosidl_generator_cpp/tcp_format/srv/detail/socket_message__struct.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_message__struct.hpp
+
+rosidl_generator_cpp/tcp_format/srv/detail/socket_message__traits.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_message__traits.hpp
+
+rosidl_generator_cpp/tcp_format/srv/socket_close.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/socket_close.hpp
+
+rosidl_generator_cpp/tcp_format/srv/detail/socket_close__builder.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_close__builder.hpp
+
+rosidl_generator_cpp/tcp_format/srv/detail/socket_close__struct.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_close__struct.hpp
+
+rosidl_generator_cpp/tcp_format/srv/detail/socket_close__traits.hpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_close__traits.hpp
 
 tcp_format__cpp: CMakeFiles/tcp_format__cpp
-tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
-tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__builder.hpp
-tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__struct.hpp
-tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__traits.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_creat.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__builder.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__struct.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_creat__traits.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_message.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_message__builder.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_message__struct.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_message__traits.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_close.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_close__builder.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_close__struct.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_close__traits.hpp
 tcp_format__cpp: CMakeFiles/tcp_format__cpp.dir/build.make
 
 .PHONY : tcp_format__cpp

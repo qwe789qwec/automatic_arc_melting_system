@@ -53,9 +53,15 @@ CMAKE_BINARY_DIR = /home/arc/Documents/automatic_arc_melting_system/build/tcp_fo
 # Include the progress variables for this target.
 include CMakeFiles/tcp_format.dir/progress.make
 
-CMakeFiles/tcp_format: /home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketFormat.srv
-CMakeFiles/tcp_format: rosidl_cmake/srv/SocketFormat_Request.msg
-CMakeFiles/tcp_format: rosidl_cmake/srv/SocketFormat_Response.msg
+CMakeFiles/tcp_format: /home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketCreat.srv
+CMakeFiles/tcp_format: rosidl_cmake/srv/SocketCreat_Request.msg
+CMakeFiles/tcp_format: rosidl_cmake/srv/SocketCreat_Response.msg
+CMakeFiles/tcp_format: /home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketMessage.srv
+CMakeFiles/tcp_format: rosidl_cmake/srv/SocketMessage_Request.msg
+CMakeFiles/tcp_format: rosidl_cmake/srv/SocketMessage_Response.msg
+CMakeFiles/tcp_format: /home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketClose.srv
+CMakeFiles/tcp_format: rosidl_cmake/srv/SocketClose_Request.msg
+CMakeFiles/tcp_format: rosidl_cmake/srv/SocketClose_Response.msg
 
 
 tcp_format: CMakeFiles/tcp_format

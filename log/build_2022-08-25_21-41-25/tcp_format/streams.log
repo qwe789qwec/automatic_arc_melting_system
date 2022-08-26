@@ -1,0 +1,161 @@
+[0.016s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_format -- -j16 -l16
+[0.049s] [  2%] Built target tcp_format__cpp
+[0.049s] [ 12%] Built target tcp_format__rosidl_generator_c
+[0.062s] [ 55%] Built target tcp_format__rosidl_typesupport_c
+[0.063s] [ 55%] Built target tcp_format__rosidl_typesupport_introspection_cpp
+[0.063s] [ 55%] Built target tcp_format__rosidl_typesupport_introspection_c
+[0.065s] [ 55%] Built target tcp_format__rosidl_typesupport_cpp
+[0.066s] [ 65%] Built target tcp_format__rosidl_typesupport_fastrtps_cpp
+[0.083s] [ 76%] Built target tcp_format__rosidl_typesupport_fastrtps_c
+[0.097s] [ 76%] Built target tcp_format
+[0.108s] [ 78%] Built target tcp_format__py
+[0.126s] [ 87%] Built target tcp_format__python
+[0.143s] [100%] Built target tcp_format__rosidl_typesupport_introspection_c__pyext
+[0.143s] [100%] Built target tcp_format__rosidl_typesupport_c__pyext
+[0.143s] [100%] Built target tcp_format__rosidl_typesupport_fastrtps_c__pyext
+[0.150s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_format -- -j16 -l16
+[0.193s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_format
+[0.198s] -- Install configuration: ""
+[0.198s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/ament_index/resource_index/rosidl_interfaces/tcp_format
+[0.198s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/socket_creat.h
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/socket_close.h
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__type_support.h
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__struct.h
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__functions.h
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__struct.h
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__functions.c
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__functions.h
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__functions.c
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__type_support.h
+[0.199s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__functions.h
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__type_support.h
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__functions.c
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__struct.h
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/socket_message.h
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg/rosidl_generator_c__visibility_control.h
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/library_path.sh
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/library_path.dsv
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_generator_c.so
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format
+[0.200s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__rosidl_typesupport_fastrtps_c.h
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__rosidl_typesupport_fastrtps_c.h
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__rosidl_typesupport_fastrtps_c.h
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_fastrtps_c.so
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/dds_fastrtps
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__rosidl_typesupport_fastrtps_cpp.hpp
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__rosidl_typesupport_fastrtps_cpp.hpp
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__rosidl_typesupport_fastrtps_cpp.hpp
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg
+[0.201s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_fastrtps_cpp.so
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__rosidl_typesupport_introspection_c.h
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__type_support.c
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__rosidl_typesupport_introspection_c.h
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__type_support.c
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__type_support.c
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__rosidl_typesupport_introspection_c.h
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_introspection_c.so
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_c.so
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv
+[0.202s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/socket_creat.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__struct.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__traits.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__traits.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__struct.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__builder.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__builder.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__struct.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__builder.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__traits.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/socket_close.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/socket_message.hpp
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail
+[0.203s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__rosidl_typesupport_introspection_cpp.hpp
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__rosidl_typesupport_introspection_cpp.hpp
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_creat__type_support.cpp
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__rosidl_typesupport_introspection_cpp.hpp
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_close__type_support.cpp
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/include/tcp_format/srv/detail/socket_message__type_support.cpp
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_introspection_cpp.so
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__rosidl_typesupport_cpp.so
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/pythonpath.sh
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/pythonpath.dsv
+[0.204s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/__init__.py
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/__init__.py
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/_socket_close_s.c
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/_socket_creat_s.c
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/_socket_message.py
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/_socket_creat.py
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/_socket_message_s.c
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/srv/_socket_close.py
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/tcp_format_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+[0.223s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/tcp_format_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+[0.224s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages/tcp_format/tcp_format_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+[0.224s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/libtcp_format__python.so
+[0.224s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketCreat.idl
+[0.224s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketMessage.idl
+[0.224s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketClose.idl
+[0.224s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketCreat.srv
+[0.224s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketCreat_Request.msg
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketCreat_Response.msg
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketMessage.srv
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketMessage_Request.msg
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketMessage_Response.msg
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketClose.srv
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketClose_Request.msg
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/srv/SocketClose_Response.msg
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/ament_index/resource_index/package_run_dependencies/tcp_format
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/ament_index/resource_index/parent_prefix_path/tcp_format
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/ament_prefix_path.sh
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/ament_prefix_path.dsv
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/path.sh
+[0.225s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/environment/path.dsv
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/local_setup.bash
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/local_setup.sh
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/local_setup.zsh
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/local_setup.dsv
+[0.226s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.dsv
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/ament_index/resource_index/packages/tcp_format
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_generator_cExport.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_generator_cExport-noconfig.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_introspection_cExport.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_cExport.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_cExport-noconfig.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_generator_cppExport.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_introspection_cppExport.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_cppExport.cmake
+[0.226s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_format__rosidl_typesupport_cppExport-noconfig.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/rosidl_cmake-extras.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/ament_cmake_export_dependencies-extras.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/ament_cmake_export_libraries-extras.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/ament_cmake_export_targets-extras.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/ament_cmake_export_include_directories-extras.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_formatConfig.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake/tcp_formatConfig-version.cmake
+[0.227s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.xml
+[0.229s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_format

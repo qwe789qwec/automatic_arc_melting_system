@@ -1,0 +1,9 @@
+/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/CMakeFiles/install/strip.dir
+/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/CMakeFiles/install/local.dir
+/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/CMakeFiles/install.dir
+/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/CMakeFiles/list_install_components.dir
+/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/CMakeFiles/rebuild_cache.dir
+/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/CMakeFiles/edit_cache.dir
+/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/CMakeFiles/test.dir
+/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/CMakeFiles/cobotta_bcap_uninstall.dir
+/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/CMakeFiles/uninstall.dir

@@ -1,0 +1,15 @@
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index/resource_index/package_run_dependencies/cobotta_bcap
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index/resource_index/parent_prefix_path/cobotta_bcap
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/environment/ament_prefix_path.sh
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/environment/ament_prefix_path.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/environment/path.sh
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/environment/path.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/local_setup.bash
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/local_setup.sh
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/local_setup.zsh
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/local_setup.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/package.dsv
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index/resource_index/packages/cobotta_bcap
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/cmake/cobotta_bcapConfig.cmake
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/cmake/cobotta_bcapConfig-version.cmake
+/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/package.xml

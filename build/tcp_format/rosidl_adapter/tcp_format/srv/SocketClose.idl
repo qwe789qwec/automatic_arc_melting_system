@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from tcp_format/srv/SocketClose.srv
+// generated code does not contain a copyright notice
+
+
+module tcp_format {
+  module srv {
+    struct SocketClose_Request {
+      int64 socket_fd;
+    };
+    struct SocketClose_Response {
+      string status;
+    };
+  };
+};

@@ -1,0 +1,5 @@
+string target_ip
+string target_port
+---
+string status
+int64 socket_fd

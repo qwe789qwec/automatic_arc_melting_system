@@ -1,0 +1,8 @@
+[35m[1mScanning dependencies of target send[0m
+[35m[1mScanning dependencies of target client[0m
+[ 37%] Built target close
+[ 50%] Built target creat
+[ 75%] [32mBuilding CXX object CMakeFiles/send.dir/src/tcp_send.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/client.dir/src/message_test.cpp.o[0m
+[ 87%] [32m[1mLinking CXX executable client[0m
+[ 87%] Built target client

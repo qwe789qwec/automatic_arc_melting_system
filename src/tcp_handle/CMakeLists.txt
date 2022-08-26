@@ -20,8 +20,16 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(tcp_format REQUIRED)
 
-add_executable(server src/tcp_client.cpp)
-ament_target_dependencies(server
+add_executable(creat src/tcp_client.cpp)
+ament_target_dependencies(creat
+  rclcpp tcp_format)
+
+add_executable(send src/tcp_send.cpp)
+ament_target_dependencies(send
+  rclcpp tcp_format)
+
+add_executable(close src/tcp_close.cpp)
+ament_target_dependencies(close
   rclcpp tcp_format)
 
 add_executable(client src/message_test.cpp)
@@ -44,7 +52,9 @@ if(BUILD_TESTING)
 endif()
 
 install(TARGETS
-  server
+  creat
+  send
+  close
   client
   DESTINATION lib/${PROJECT_NAME})
 

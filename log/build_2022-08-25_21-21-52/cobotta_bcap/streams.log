@@ -1,0 +1,20 @@
+[0.013s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap -- -j16 -l16
+[0.035s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap -- -j16 -l16
+[0.056s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap
+[0.061s] -- Install configuration: ""
+[0.061s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index/resource_index/package_run_dependencies/cobotta_bcap
+[0.061s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index/resource_index/parent_prefix_path/cobotta_bcap
+[0.061s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/environment/ament_prefix_path.sh
+[0.061s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/environment/ament_prefix_path.dsv
+[0.061s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/environment/path.sh
+[0.061s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/environment/path.dsv
+[0.062s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/local_setup.bash
+[0.062s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/local_setup.sh
+[0.062s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/local_setup.zsh
+[0.062s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/local_setup.dsv
+[0.062s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/package.dsv
+[0.062s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index/resource_index/packages/cobotta_bcap
+[0.062s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/cmake/cobotta_bcapConfig.cmake
+[0.062s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/cmake/cobotta_bcapConfig-version.cmake
+[0.062s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/package.xml
+[0.063s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap

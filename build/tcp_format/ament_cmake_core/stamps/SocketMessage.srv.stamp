@@ -1,0 +1,5 @@
+int64 socket_fd
+string send_message
+---
+string status
+string receive_message

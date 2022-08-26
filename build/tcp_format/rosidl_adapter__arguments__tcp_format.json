@@ -1,6 +1,8 @@
 {
   "package_name": "tcp_format",
   "non_idl_tuples": [
-    "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format:srv/SocketFormat.srv"
+    "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format:srv/SocketCreat.srv",
+    "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format:srv/SocketMessage.srv",
+    "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format:srv/SocketClose.srv"
   ]
 }

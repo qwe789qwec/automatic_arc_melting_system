@@ -56,18 +56,6 @@ CMAKE_BINARY_DIR = /home/arc/Documents/automatic_arc_melting_system/build/tcp_ha
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -135,6 +123,18 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle/CMakeFiles/progress.marks
@@ -181,17 +181,43 @@ client/fast:
 .PHONY : client/fast
 
 #=============================================================================
-# Target rules for targets named server
+# Target rules for targets named close
 
 # Build rule for target.
-server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 server
-.PHONY : server
+close: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 close
+.PHONY : close
 
 # fast build rule for target.
-server/fast:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-.PHONY : server/fast
+close/fast:
+	$(MAKE) -f CMakeFiles/close.dir/build.make CMakeFiles/close.dir/build
+.PHONY : close/fast
+
+#=============================================================================
+# Target rules for targets named send
+
+# Build rule for target.
+send: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 send
+.PHONY : send
+
+# fast build rule for target.
+send/fast:
+	$(MAKE) -f CMakeFiles/send.dir/build.make CMakeFiles/send.dir/build
+.PHONY : send/fast
+
+#=============================================================================
+# Target rules for targets named creat
+
+# Build rule for target.
+creat: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 creat
+.PHONY : creat
+
+# fast build rule for target.
+creat/fast:
+	$(MAKE) -f CMakeFiles/creat.dir/build.make CMakeFiles/creat.dir/build
+.PHONY : creat/fast
 
 #=============================================================================
 # Target rules for targets named tcp_handle_uninstall
@@ -252,7 +278,7 @@ src/tcp_client.o: src/tcp_client.cpp.o
 
 # target to build an object file
 src/tcp_client.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/tcp_client.cpp.o
+	$(MAKE) -f CMakeFiles/creat.dir/build.make CMakeFiles/creat.dir/src/tcp_client.cpp.o
 .PHONY : src/tcp_client.cpp.o
 
 src/tcp_client.i: src/tcp_client.cpp.i
@@ -261,7 +287,7 @@ src/tcp_client.i: src/tcp_client.cpp.i
 
 # target to preprocess a source file
 src/tcp_client.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/tcp_client.cpp.i
+	$(MAKE) -f CMakeFiles/creat.dir/build.make CMakeFiles/creat.dir/src/tcp_client.cpp.i
 .PHONY : src/tcp_client.cpp.i
 
 src/tcp_client.s: src/tcp_client.cpp.s
@@ -270,8 +296,62 @@ src/tcp_client.s: src/tcp_client.cpp.s
 
 # target to generate assembly for a file
 src/tcp_client.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/tcp_client.cpp.s
+	$(MAKE) -f CMakeFiles/creat.dir/build.make CMakeFiles/creat.dir/src/tcp_client.cpp.s
 .PHONY : src/tcp_client.cpp.s
+
+src/tcp_close.o: src/tcp_close.cpp.o
+
+.PHONY : src/tcp_close.o
+
+# target to build an object file
+src/tcp_close.cpp.o:
+	$(MAKE) -f CMakeFiles/close.dir/build.make CMakeFiles/close.dir/src/tcp_close.cpp.o
+.PHONY : src/tcp_close.cpp.o
+
+src/tcp_close.i: src/tcp_close.cpp.i
+
+.PHONY : src/tcp_close.i
+
+# target to preprocess a source file
+src/tcp_close.cpp.i:
+	$(MAKE) -f CMakeFiles/close.dir/build.make CMakeFiles/close.dir/src/tcp_close.cpp.i
+.PHONY : src/tcp_close.cpp.i
+
+src/tcp_close.s: src/tcp_close.cpp.s
+
+.PHONY : src/tcp_close.s
+
+# target to generate assembly for a file
+src/tcp_close.cpp.s:
+	$(MAKE) -f CMakeFiles/close.dir/build.make CMakeFiles/close.dir/src/tcp_close.cpp.s
+.PHONY : src/tcp_close.cpp.s
+
+src/tcp_send.o: src/tcp_send.cpp.o
+
+.PHONY : src/tcp_send.o
+
+# target to build an object file
+src/tcp_send.cpp.o:
+	$(MAKE) -f CMakeFiles/send.dir/build.make CMakeFiles/send.dir/src/tcp_send.cpp.o
+.PHONY : src/tcp_send.cpp.o
+
+src/tcp_send.i: src/tcp_send.cpp.i
+
+.PHONY : src/tcp_send.i
+
+# target to preprocess a source file
+src/tcp_send.cpp.i:
+	$(MAKE) -f CMakeFiles/send.dir/build.make CMakeFiles/send.dir/src/tcp_send.cpp.i
+.PHONY : src/tcp_send.cpp.i
+
+src/tcp_send.s: src/tcp_send.cpp.s
+
+.PHONY : src/tcp_send.s
+
+# target to generate assembly for a file
+src/tcp_send.cpp.s:
+	$(MAKE) -f CMakeFiles/send.dir/build.make CMakeFiles/send.dir/src/tcp_send.cpp.s
+.PHONY : src/tcp_send.cpp.s
 
 # Help Target
 help:
@@ -279,7 +359,6 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
@@ -287,7 +366,10 @@ help:
 	@echo "... test"
 	@echo "... client"
 	@echo "... install/local"
-	@echo "... server"
+	@echo "... close"
+	@echo "... send"
+	@echo "... install/strip"
+	@echo "... creat"
 	@echo "... tcp_handle_uninstall"
 	@echo "... uninstall"
 	@echo "... src/message_test.o"
@@ -296,6 +378,12 @@ help:
 	@echo "... src/tcp_client.o"
 	@echo "... src/tcp_client.i"
 	@echo "... src/tcp_client.s"
+	@echo "... src/tcp_close.o"
+	@echo "... src/tcp_close.i"
+	@echo "... src/tcp_close.s"
+	@echo "... src/tcp_send.o"
+	@echo "... src/tcp_send.i"
+	@echo "... src/tcp_send.s"
 .PHONY : help
 
 

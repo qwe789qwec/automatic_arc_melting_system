@@ -1,1 +1,3 @@
-/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format:srv/SocketFormat.idl
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format:srv/SocketCreat.idl
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format:srv/SocketMessage.idl
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format:srv/SocketClose.idl

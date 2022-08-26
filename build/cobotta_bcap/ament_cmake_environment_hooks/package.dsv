@@ -1,0 +1,4 @@
+source;share/cobotta_bcap/local_setup.bash
+source;share/cobotta_bcap/local_setup.dsv
+source;share/cobotta_bcap/local_setup.sh
+source;share/cobotta_bcap/local_setup.zsh

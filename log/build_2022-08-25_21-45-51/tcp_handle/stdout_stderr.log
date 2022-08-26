@@ -1,0 +1,25 @@
+[35m[1mScanning dependencies of target send[0m
+[35m[1mScanning dependencies of target client[0m
+[ 37%] Built target close
+[ 50%] Built target creat
+[ 75%] [32mBuilding CXX object CMakeFiles/send.dir/src/tcp_send.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/client.dir/src/message_test.cpp.o[0m
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:[m[K In function ‘[01m[Kvoid send_socket(std::shared_ptr<tcp_format::srv::SocketMessage_Request_<std::allocator<void> > >, std::shared_ptr<tcp_format::srv::SocketMessage_Response_<std::allocator<void> > >)[m[K’:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:45:6:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kint oldSocketFlag[m[K’
+   45 |  int [01;31m[KoldSocketFlag[m[K = fcntl(sock_fd, F_GETFL, 0);
+      |      [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:23:6:[m[K [01;36m[Knote: [m[K‘[01m[Kint oldSocketFlag[m[K’ previously declared here
+   23 |  int [01;36m[KoldSocketFlag[m[K = fcntl(sock_fd, F_GETFL, 0);
+      |      [01;36m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:46:9:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kint newSocketFlag[m[K’
+   46 |     int [01;31m[KnewSocketFlag[m[K = oldSocketFlag | O_NONBLOCK;
+      |         [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_send.cpp:24:9:[m[K [01;36m[Knote: [m[K‘[01m[Kint newSocketFlag[m[K’ previously declared here
+   24 |     int [01;36m[KnewSocketFlag[m[K = oldSocketFlag & (~O_NONBLOCK);
+      |         [01;36m[K^~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/send.dir/build.make:63: CMakeFiles/send.dir/src/tcp_send.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/send.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[ 87%] [32m[1mLinking CXX executable client[0m
+[ 87%] Built target client
+make: *** [Makefile:141: all] Error 2

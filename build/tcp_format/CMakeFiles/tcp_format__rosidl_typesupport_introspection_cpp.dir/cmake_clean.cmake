@@ -1,9 +1,15 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/tcp_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_format__type_support.cpp.o"
+  "CMakeFiles/tcp_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_close__type_support.cpp.o"
+  "CMakeFiles/tcp_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_creat__type_support.cpp.o"
+  "CMakeFiles/tcp_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_message__type_support.cpp.o"
   "libtcp_format__rosidl_typesupport_introspection_cpp.pdb"
   "libtcp_format__rosidl_typesupport_introspection_cpp.so"
-  "rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_format__rosidl_typesupport_introspection_cpp.hpp"
-  "rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_format__type_support.cpp"
+  "rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_close__rosidl_typesupport_introspection_cpp.hpp"
+  "rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_close__type_support.cpp"
+  "rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_creat__rosidl_typesupport_introspection_cpp.hpp"
+  "rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_creat__type_support.cpp"
+  "rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_message__rosidl_typesupport_introspection_cpp.hpp"
+  "rosidl_typesupport_introspection_cpp/tcp_format/srv/detail/socket_message__type_support.cpp"
 )
 
 # Per-language clean rules from dependency scanning.

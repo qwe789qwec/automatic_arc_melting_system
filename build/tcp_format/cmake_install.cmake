@@ -351,19 +351,51 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format/srv/SocketFormat.idl")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format/srv/SocketCreat.idl")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketFormat.srv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format/srv/SocketMessage.idl")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/SocketFormat_Request.msg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format/srv/SocketClose.idl")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/SocketFormat_Response.msg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketCreat.srv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/SocketCreat_Request.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/SocketCreat_Response.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketMessage.srv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/SocketMessage_Request.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/SocketMessage_Response.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketClose.srv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/SocketClose_Request.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/SocketClose_Response.msg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
