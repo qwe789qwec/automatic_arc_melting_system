@@ -1,3 +1,3 @@
 
-string error
+string status
 string receive_message

@@ -39,6 +39,7 @@ struct SocketFormat_Request_
     {
       this->target_ip = "";
       this->target_port = "";
+      this->action = "";
       this->send_message = "";
     }
   }
@@ -46,6 +47,7 @@ struct SocketFormat_Request_
   explicit SocketFormat_Request_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   : target_ip(_alloc),
     target_port(_alloc),
+    action(_alloc),
     send_message(_alloc)
   {
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
@@ -53,6 +55,7 @@ struct SocketFormat_Request_
     {
       this->target_ip = "";
       this->target_port = "";
+      this->action = "";
       this->send_message = "";
     }
   }
@@ -64,6 +67,9 @@ struct SocketFormat_Request_
   using _target_port_type =
     std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _target_port_type target_port;
+  using _action_type =
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+  _action_type action;
   using _send_message_type =
     std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _send_message_type send_message;
@@ -79,6 +85,12 @@ struct SocketFormat_Request_
     const std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other> & _arg)
   {
     this->target_port = _arg;
+    return *this;
+  }
+  Type & set__action(
+    const std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other> & _arg)
+  {
+    this->action = _arg;
     return *this;
   }
   Type & set__send_message(
@@ -136,6 +148,9 @@ struct SocketFormat_Request_
     if (this->target_port != other.target_port) {
       return false;
     }
+    if (this->action != other.action) {
+      return false;
+    }
     if (this->send_message != other.send_message) {
       return false;
     }
@@ -181,36 +196,36 @@ struct SocketFormat_Response_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->error = "";
+      this->status = "";
       this->receive_message = "";
     }
   }
 
   explicit SocketFormat_Response_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
-  : error(_alloc),
+  : status(_alloc),
     receive_message(_alloc)
   {
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->error = "";
+      this->status = "";
       this->receive_message = "";
     }
   }
 
   // field types and members
-  using _error_type =
+  using _status_type =
     std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
-  _error_type error;
+  _status_type status;
   using _receive_message_type =
     std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _receive_message_type receive_message;
 
   // setters for named parameter idiom
-  Type & set__error(
+  Type & set__status(
     const std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other> & _arg)
   {
-    this->error = _arg;
+    this->status = _arg;
     return *this;
   }
   Type & set__receive_message(
@@ -262,7 +277,7 @@ struct SocketFormat_Response_
   // comparison operators
   bool operator==(const SocketFormat_Response_ & other) const
   {
-    if (this->error != other.error) {
+    if (this->status != other.status) {
       return false;
     }
     if (this->receive_message != other.receive_message) {

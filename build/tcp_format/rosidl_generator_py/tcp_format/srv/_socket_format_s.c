@@ -83,6 +83,21 @@ bool tcp_format__srv__socket_format__request__convert_from_py(PyObject * _pymsg,
     Py_DECREF(encoded_field);
     Py_DECREF(field);
   }
+  {  // action
+    PyObject * field = PyObject_GetAttrString(_pymsg, "action");
+    if (!field) {
+      return false;
+    }
+    assert(PyUnicode_Check(field));
+    PyObject * encoded_field = PyUnicode_AsUTF8String(field);
+    if (!encoded_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    rosidl_runtime_c__String__assign(&ros_message->action, PyBytes_AS_STRING(encoded_field));
+    Py_DECREF(encoded_field);
+    Py_DECREF(field);
+  }
   {  // send_message
     PyObject * field = PyObject_GetAttrString(_pymsg, "send_message");
     if (!field) {
@@ -148,6 +163,23 @@ PyObject * tcp_format__srv__socket_format__request__convert_to_py(void * raw_ros
     }
     {
       int rc = PyObject_SetAttrString(_pymessage, "target_port", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // action
+    PyObject * field = NULL;
+    field = PyUnicode_DecodeUTF8(
+      ros_message->action.data,
+      strlen(ros_message->action.data),
+      "strict");
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "action", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
@@ -229,8 +261,8 @@ bool tcp_format__srv__socket_format__response__convert_from_py(PyObject * _pymsg
     assert(strncmp("tcp_format.srv._socket_format.SocketFormat_Response", full_classname_dest, 51) == 0);
   }
   tcp_format__srv__SocketFormat_Response * ros_message = _ros_message;
-  {  // error
-    PyObject * field = PyObject_GetAttrString(_pymsg, "error");
+  {  // status
+    PyObject * field = PyObject_GetAttrString(_pymsg, "status");
     if (!field) {
       return false;
     }
@@ -240,7 +272,7 @@ bool tcp_format__srv__socket_format__response__convert_from_py(PyObject * _pymsg
       Py_DECREF(field);
       return false;
     }
-    rosidl_runtime_c__String__assign(&ros_message->error, PyBytes_AS_STRING(encoded_field));
+    rosidl_runtime_c__String__assign(&ros_message->status, PyBytes_AS_STRING(encoded_field));
     Py_DECREF(encoded_field);
     Py_DECREF(field);
   }
@@ -281,17 +313,17 @@ PyObject * tcp_format__srv__socket_format__response__convert_to_py(void * raw_ro
     }
   }
   tcp_format__srv__SocketFormat_Response * ros_message = (tcp_format__srv__SocketFormat_Response *)raw_ros_message;
-  {  // error
+  {  // status
     PyObject * field = NULL;
     field = PyUnicode_DecodeUTF8(
-      ros_message->error.data,
-      strlen(ros_message->error.data),
+      ros_message->status.data,
+      strlen(ros_message->status.data),
       "strict");
     if (!field) {
       return NULL;
     }
     {
-      int rc = PyObject_SetAttrString(_pymessage, "error", field);
+      int rc = PyObject_SetAttrString(_pymessage, "status", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

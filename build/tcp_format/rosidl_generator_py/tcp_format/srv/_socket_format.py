@@ -55,16 +55,19 @@ class SocketFormat_Request(metaclass=Metaclass_SocketFormat_Request):
     __slots__ = [
         '_target_ip',
         '_target_port',
+        '_action',
         '_send_message',
     ]
 
     _fields_and_field_types = {
         'target_ip': 'string',
         'target_port': 'string',
+        'action': 'string',
         'send_message': 'string',
     }
 
     SLOT_TYPES = (
+        rosidl_parser.definition.UnboundedString(),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
@@ -76,6 +79,7 @@ class SocketFormat_Request(metaclass=Metaclass_SocketFormat_Request):
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
         self.target_ip = kwargs.get('target_ip', str())
         self.target_port = kwargs.get('target_port', str())
+        self.action = kwargs.get('action', str())
         self.send_message = kwargs.get('send_message', str())
 
     def __repr__(self):
@@ -111,6 +115,8 @@ class SocketFormat_Request(metaclass=Metaclass_SocketFormat_Request):
             return False
         if self.target_port != other.target_port:
             return False
+        if self.action != other.action:
+            return False
         if self.send_message != other.send_message:
             return False
         return True
@@ -145,6 +151,19 @@ class SocketFormat_Request(metaclass=Metaclass_SocketFormat_Request):
                 isinstance(value, str), \
                 "The 'target_port' field must be of type 'str'"
         self._target_port = value
+
+    @property
+    def action(self):
+        """Message field 'action'."""
+        return self._action
+
+    @action.setter
+    def action(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, str), \
+                "The 'action' field must be of type 'str'"
+        self._action = value
 
     @property
     def send_message(self):
@@ -211,12 +230,12 @@ class SocketFormat_Response(metaclass=Metaclass_SocketFormat_Response):
     """Message class 'SocketFormat_Response'."""
 
     __slots__ = [
-        '_error',
+        '_status',
         '_receive_message',
     ]
 
     _fields_and_field_types = {
-        'error': 'string',
+        'status': 'string',
         'receive_message': 'string',
     }
 
@@ -229,7 +248,7 @@ class SocketFormat_Response(metaclass=Metaclass_SocketFormat_Response):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.error = kwargs.get('error', str())
+        self.status = kwargs.get('status', str())
         self.receive_message = kwargs.get('receive_message', str())
 
     def __repr__(self):
@@ -261,7 +280,7 @@ class SocketFormat_Response(metaclass=Metaclass_SocketFormat_Response):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.error != other.error:
+        if self.status != other.status:
             return False
         if self.receive_message != other.receive_message:
             return False
@@ -273,17 +292,17 @@ class SocketFormat_Response(metaclass=Metaclass_SocketFormat_Response):
         return copy(cls._fields_and_field_types)
 
     @property
-    def error(self):
-        """Message field 'error'."""
-        return self._error
+    def status(self):
+        """Message field 'status'."""
+        return self._status
 
-    @error.setter
-    def error(self, value):
+    @status.setter
+    def status(self, value):
         if __debug__:
             assert \
                 isinstance(value, str), \
-                "The 'error' field must be of type 'str'"
-        self._error = value
+                "The 'status' field must be of type 'str'"
+        self._status = value
 
     @property
     def receive_message(self):

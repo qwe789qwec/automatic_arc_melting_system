@@ -36,6 +36,8 @@ cdr_serialize(
   cdr << ros_message.target_ip;
   // Member: target_port
   cdr << ros_message.target_port;
+  // Member: action
+  cdr << ros_message.action;
   // Member: send_message
   cdr << ros_message.send_message;
   return true;
@@ -52,6 +54,9 @@ cdr_deserialize(
 
   // Member: target_port
   cdr >> ros_message.target_port;
+
+  // Member: action
+  cdr >> ros_message.action;
 
   // Member: send_message
   cdr >> ros_message.send_message;
@@ -80,6 +85,10 @@ get_serialized_size(
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
     (ros_message.target_port.size() + 1);
+  // Member: action
+  current_alignment += padding +
+    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+    (ros_message.action.size() + 1);
   // Member: send_message
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
@@ -116,6 +125,18 @@ max_serialized_size_SocketFormat_Request(
   }
 
   // Member: target_port
+  {
+    size_t array_size = 1;
+
+    full_bounded = false;
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment += padding +
+        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+        1;
+    }
+  }
+
+  // Member: action
   {
     size_t array_size = 1;
 
@@ -261,8 +282,8 @@ cdr_serialize(
   const tcp_format::srv::SocketFormat_Response & ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  // Member: error
-  cdr << ros_message.error;
+  // Member: status
+  cdr << ros_message.status;
   // Member: receive_message
   cdr << ros_message.receive_message;
   return true;
@@ -274,8 +295,8 @@ cdr_deserialize(
   eprosima::fastcdr::Cdr & cdr,
   tcp_format::srv::SocketFormat_Response & ros_message)
 {
-  // Member: error
-  cdr >> ros_message.error;
+  // Member: status
+  cdr >> ros_message.status;
 
   // Member: receive_message
   cdr >> ros_message.receive_message;
@@ -296,10 +317,10 @@ get_serialized_size(
   (void)padding;
   (void)wchar_size;
 
-  // Member: error
+  // Member: status
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
-    (ros_message.error.size() + 1);
+    (ros_message.status.size() + 1);
   // Member: receive_message
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
@@ -323,7 +344,7 @@ max_serialized_size_SocketFormat_Response(
   (void)full_bounded;
 
 
-  // Member: error
+  // Member: status
   {
     size_t array_size = 1;
 

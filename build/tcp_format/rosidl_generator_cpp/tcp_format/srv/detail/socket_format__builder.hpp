@@ -36,16 +36,32 @@ private:
   ::tcp_format::srv::SocketFormat_Request msg_;
 };
 
+class Init_SocketFormat_Request_action
+{
+public:
+  explicit Init_SocketFormat_Request_action(::tcp_format::srv::SocketFormat_Request & msg)
+  : msg_(msg)
+  {}
+  Init_SocketFormat_Request_send_message action(::tcp_format::srv::SocketFormat_Request::_action_type arg)
+  {
+    msg_.action = std::move(arg);
+    return Init_SocketFormat_Request_send_message(msg_);
+  }
+
+private:
+  ::tcp_format::srv::SocketFormat_Request msg_;
+};
+
 class Init_SocketFormat_Request_target_port
 {
 public:
   explicit Init_SocketFormat_Request_target_port(::tcp_format::srv::SocketFormat_Request & msg)
   : msg_(msg)
   {}
-  Init_SocketFormat_Request_send_message target_port(::tcp_format::srv::SocketFormat_Request::_target_port_type arg)
+  Init_SocketFormat_Request_action target_port(::tcp_format::srv::SocketFormat_Request::_target_port_type arg)
   {
     msg_.target_port = std::move(arg);
-    return Init_SocketFormat_Request_send_message(msg_);
+    return Init_SocketFormat_Request_action(msg_);
   }
 
 private:
@@ -110,15 +126,15 @@ private:
   ::tcp_format::srv::SocketFormat_Response msg_;
 };
 
-class Init_SocketFormat_Response_error
+class Init_SocketFormat_Response_status
 {
 public:
-  Init_SocketFormat_Response_error()
+  Init_SocketFormat_Response_status()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  Init_SocketFormat_Response_receive_message error(::tcp_format::srv::SocketFormat_Response::_error_type arg)
+  Init_SocketFormat_Response_receive_message status(::tcp_format::srv::SocketFormat_Response::_status_type arg)
   {
-    msg_.error = std::move(arg);
+    msg_.status = std::move(arg);
     return Init_SocketFormat_Response_receive_message(msg_);
   }
 
@@ -137,7 +153,7 @@ template<>
 inline
 auto build<::tcp_format::srv::SocketFormat_Response>()
 {
-  return tcp_format::srv::builder::Init_SocketFormat_Response_error();
+  return tcp_format::srv::builder::Init_SocketFormat_Response_status();
 }
 
 }  // namespace tcp_format

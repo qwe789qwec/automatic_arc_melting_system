@@ -11,6 +11,7 @@
 // Include directives for member types
 // Member `target_ip`
 // Member `target_port`
+// Member `action`
 // Member `send_message`
 #include "rosidl_runtime_c/string_functions.h"
 
@@ -27,6 +28,11 @@ tcp_format__srv__SocketFormat_Request__init(tcp_format__srv__SocketFormat_Reques
   }
   // target_port
   if (!rosidl_runtime_c__String__init(&msg->target_port)) {
+    tcp_format__srv__SocketFormat_Request__fini(msg);
+    return false;
+  }
+  // action
+  if (!rosidl_runtime_c__String__init(&msg->action)) {
     tcp_format__srv__SocketFormat_Request__fini(msg);
     return false;
   }
@@ -48,6 +54,8 @@ tcp_format__srv__SocketFormat_Request__fini(tcp_format__srv__SocketFormat_Reques
   rosidl_runtime_c__String__fini(&msg->target_ip);
   // target_port
   rosidl_runtime_c__String__fini(&msg->target_port);
+  // action
+  rosidl_runtime_c__String__fini(&msg->action);
   // send_message
   rosidl_runtime_c__String__fini(&msg->send_message);
 }
@@ -163,7 +171,7 @@ tcp_format__srv__SocketFormat_Request__Sequence__destroy(tcp_format__srv__Socket
 
 
 // Include directives for member types
-// Member `error`
+// Member `status`
 // Member `receive_message`
 // already included above
 // #include "rosidl_runtime_c/string_functions.h"
@@ -174,8 +182,8 @@ tcp_format__srv__SocketFormat_Response__init(tcp_format__srv__SocketFormat_Respo
   if (!msg) {
     return false;
   }
-  // error
-  if (!rosidl_runtime_c__String__init(&msg->error)) {
+  // status
+  if (!rosidl_runtime_c__String__init(&msg->status)) {
     tcp_format__srv__SocketFormat_Response__fini(msg);
     return false;
   }
@@ -193,8 +201,8 @@ tcp_format__srv__SocketFormat_Response__fini(tcp_format__srv__SocketFormat_Respo
   if (!msg) {
     return;
   }
-  // error
-  rosidl_runtime_c__String__fini(&msg->error);
+  // status
+  rosidl_runtime_c__String__fini(&msg->status);
   // receive_message
   rosidl_runtime_c__String__fini(&msg->receive_message);
 }

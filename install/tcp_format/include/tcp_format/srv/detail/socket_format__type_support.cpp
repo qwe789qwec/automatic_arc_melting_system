@@ -37,7 +37,7 @@ void SocketFormat_Request_fini_function(void * message_memory)
   typed_message->~SocketFormat_Request();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember SocketFormat_Request_message_member_array[3] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember SocketFormat_Request_message_member_array[4] = {
   {
     "target_ip",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
@@ -69,6 +69,21 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SocketFormat_
     nullptr  // resize(index) function pointer
   },
   {
+    "action",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(tcp_format::srv::SocketFormat_Request, action),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
     "send_message",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
     0,  // upper bound of string
@@ -88,7 +103,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SocketFormat_
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers SocketFormat_Request_message_members = {
   "tcp_format::srv",  // message namespace
   "SocketFormat_Request",  // message name
-  3,  // number of fields
+  4,  // number of fields
   sizeof(tcp_format::srv::SocketFormat_Request),
   SocketFormat_Request_message_member_array,  // message members
   SocketFormat_Request_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -186,14 +201,14 @@ void SocketFormat_Response_fini_function(void * message_memory)
 
 static const ::rosidl_typesupport_introspection_cpp::MessageMember SocketFormat_Response_message_member_array[2] = {
   {
-    "error",  // name
+    "status",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(tcp_format::srv::SocketFormat_Response, error),  // bytes offset in struct
+    offsetof(tcp_format::srv::SocketFormat_Response, status),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer

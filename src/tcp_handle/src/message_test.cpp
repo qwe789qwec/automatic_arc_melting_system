@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
   rclcpp::init(argc, argv);
 
-  if (argc != 4) {
+  if (argc != 5) {
       RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "usage: test socket message");
       return 1;
   }
@@ -29,16 +29,19 @@ int main(int argc, char *argv[])
 
   std::string argv_ip = argv[1];
   std::string argv_port = argv[2];
-  std::string argv_message = argv[3];
+  std::string argv_action = argv[3];
+  std::string argv_message = argv[4];
   // request->target_ip = atoll(argv_ip);
   argv_message = argv_message + "\r\n";
 	// std::replace( argv_message.begin(), argv_message.end(), '^', ' '); // replace all '^' to ' '
   request->target_ip = argv_ip;
   request->target_port = argv_port;
+  request->action = argv_action;
   request->send_message = argv_message;
 
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "ip string: %s", argv_ip.c_str());
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "port string: %s", argv_port.c_str());
+  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", argv_action.c_str());
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message string: %s", argv_message.c_str());
 
 
@@ -55,7 +58,7 @@ int main(int argc, char *argv[])
   if (rclcpp::spin_until_future_complete(node, result) ==
     rclcpp::FutureReturnCode::SUCCESS)
   {
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error: %s", result.get()->error.c_str());
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "status: %s", result.get()->status.c_str());
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", result.get()->receive_message.c_str());
   } else {
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to send socket");

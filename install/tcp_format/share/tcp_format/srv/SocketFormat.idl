@@ -10,10 +10,12 @@ module tcp_format {
 
       string target_port;
 
+      string action;
+
       string send_message;
     };
     struct SocketFormat_Response {
-      string error;
+      string status;
 
       string receive_message;
     };
