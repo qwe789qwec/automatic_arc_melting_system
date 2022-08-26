@@ -1,0 +1,77 @@
+[0.010s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/arc/Documents/automatic_arc_melting_system/src/cobotta_process -DCMAKE_INSTALL_PREFIX=/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process
+[0.044s] -- The C compiler identification is GNU 9.4.0
+[0.079s] -- The CXX compiler identification is GNU 9.4.0
+[0.083s] -- Check for working C compiler: /usr/bin/cc
+[0.124s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.125s] -- Detecting C compiler ABI info
+[0.167s] -- Detecting C compiler ABI info - done
+[0.176s] -- Detecting C compile features
+[0.176s] -- Detecting C compile features - done
+[0.178s] -- Check for working CXX compiler: /usr/bin/c++
+[0.229s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.230s] -- Detecting CXX compiler ABI info
+[0.280s] -- Detecting CXX compiler ABI info - done
+[0.288s] -- Detecting CXX compile features
+[0.289s] -- Detecting CXX compile features - done
+[0.290s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.305s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.305s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.436s] -- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.465s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.469s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.512s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.530s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.580s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.618s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.619s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.620s] -- Looking for pthread.h
+[0.666s] -- Looking for pthread.h - found
+[0.666s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.712s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[0.712s] -- Looking for pthread_create in pthreads
+[0.749s] -- Looking for pthread_create in pthreads - not found
+[0.749s] -- Looking for pthread_create in pthread
+[0.792s] -- Looking for pthread_create in pthread - found
+[0.793s] -- Found Threads: TRUE  
+[0.899s] -- Found tcp_format: 0.0.0 (/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake)
+[0.905s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.954s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.955s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.955s] -- Configured cppcheck include dirs: 
+[0.955s] -- Configured cppcheck exclude dirs and/or files: 
+[0.955s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.956s] -- Configured cpplint exclude dirs and/or files: 
+[0.956s] -- Added test 'lint_cmake' to check CMake code style
+[0.956s] -- Added test 'uncrustify' to check C / C++ code style
+[0.956s] -- Configured uncrustify additional arguments: 
+[0.957s] -- Added test 'xmllint' to check XML markup files
+[0.959s] -- Configuring done
+[0.963s] -- Generating done
+[0.964s] -- Build files have been written to: /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process
+[0.969s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/arc/Documents/automatic_arc_melting_system/src/cobotta_process -DCMAKE_INSTALL_PREFIX=/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process
+[0.970s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process -- -j16 -l16
+[0.996s] [35m[1mScanning dependencies of target client[0m
+[1.017s] [ 50%] [32mBuilding CXX object CMakeFiles/client.dir/src/cobotta_io.cpp.o[0m
+[2.677s] [100%] [32m[1mLinking CXX executable client[0m
+[2.763s] [100%] Built target client
+[2.770s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process -- -j16 -l16
+[2.785s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process
+[2.790s] -- Install configuration: ""
+[2.790s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib/cobotta_process/client
+[2.791s] -- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib/cobotta_process/client" to ""
+[2.791s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/ament_index/resource_index/package_run_dependencies/cobotta_process
+[2.791s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/ament_index/resource_index/parent_prefix_path/cobotta_process
+[2.791s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/environment/ament_prefix_path.sh
+[2.791s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/environment/ament_prefix_path.dsv
+[2.791s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/environment/path.sh
+[2.791s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/environment/path.dsv
+[2.791s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/local_setup.bash
+[2.791s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/local_setup.sh
+[2.792s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/local_setup.zsh
+[2.792s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/local_setup.dsv
+[2.792s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.dsv
+[2.792s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/ament_index/resource_index/packages/cobotta_process
+[2.792s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/cmake/cobotta_processConfig.cmake
+[2.792s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/cmake/cobotta_processConfig-version.cmake
+[2.792s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.xml
+[2.795s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process

@@ -1,0 +1,40 @@
+[35m[1mScanning dependencies of target client[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/client.dir/src/cobotta_io.cpp.o[0m
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:11:19:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-fconcepts[m[K’
+   11 |                   [01;35m[Kauto[m[K request){
+      |                   [01;35m[K^~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:[m[K In function ‘[01m[Kint creat_socket(rclcpp::Client<tcp_format::srv::SocketFormat>::SharedPtr, auto:12)[m[K’:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:23:42:[m[K [01;31m[Kerror: [m[K‘[01m[Knode[m[K’ was not declared in this scope
+   23 |   if (rclcpp::spin_until_future_complete([01;31m[Knode[m[K, result) ==
+      |                                          [01;31m[K^~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:[m[K At global scope:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:38:19:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-fconcepts[m[K’
+   38 |                   [01;35m[Kauto[m[K request){
+      |                   [01;35m[K^~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:[m[K In function ‘[01m[Kint send_socket(rclcpp::Client<tcp_format::srv::SocketFormat>::SharedPtr, auto:13)[m[K’:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:49:42:[m[K [01;31m[Kerror: [m[K‘[01m[Knode[m[K’ was not declared in this scope
+   49 |   if (rclcpp::spin_until_future_complete([01;31m[Knode[m[K, result) ==
+      |                                          [01;31m[K^~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:53:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksocket_fd[m[K’ was not declared in this scope
+   53 |     [01;31m[Ksocket_fd[m[K = result.get()->socket_fd;
+      |     [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:59:10:[m[K [01;31m[Kerror: [m[K‘[01m[Ksocket_fd[m[K’ was not declared in this scope
+   59 |   return [01;31m[Ksocket_fd[m[K;
+      |          [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:[m[K At global scope:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:63:19:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-fconcepts[m[K’
+   63 |                   [01;35m[Kauto[m[K request){
+      |                   [01;35m[K^~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:[m[K In function ‘[01m[Kint close_socket(rclcpp::Client<tcp_format::srv::SocketFormat>::SharedPtr, auto:14)[m[K’:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:74:42:[m[K [01;31m[Kerror: [m[K‘[01m[Knode[m[K’ was not declared in this scope
+   74 |   if (rclcpp::spin_until_future_complete([01;31m[Knode[m[K, result) ==
+      |                                          [01;31m[K^~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:78:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksocket_fd[m[K’ was not declared in this scope
+   78 |     [01;31m[Ksocket_fd[m[K = result.get()->socket_fd;
+      |     [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process/src/cobotta_io.cpp:84:10:[m[K [01;31m[Kerror: [m[K‘[01m[Ksocket_fd[m[K’ was not declared in this scope
+   84 |   return [01;31m[Ksocket_fd[m[K;
+      |          [01;31m[K^~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/client.dir/build.make:63: CMakeFiles/client.dir/src/cobotta_io.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/client.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

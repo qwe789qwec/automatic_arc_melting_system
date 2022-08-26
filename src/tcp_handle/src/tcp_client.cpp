@@ -32,7 +32,7 @@ int set_socket(int socket_fd, int stat){
         close(socket_fd);
         return -1;
     }
-	return 0;
+	return socket_fd;
 }
 
 int creat_socket(std::string ip, int port){
@@ -72,6 +72,7 @@ int creat_socket(std::string ip, int port){
 
 int recv_socket(int socket_fd, char* message){
 	if(set_socket(socket_fd, nonblock) < 0){
+		close(socket_fd);
 		return -1;
 	}
 
@@ -95,14 +96,14 @@ int recv_socket(int socket_fd, char* message){
 			if(errorTimes >= 3){
 				close(socket_fd);
 				// "\ntime out\n"
-				return -1;
+				return socket_fd;
 			}
 			else{
 				printf("recv failed\n");
 			}
 		}
     }
-	return 1;
+	return socket_fd;
 }
 
 void sock_handle(const std::shared_ptr<tcp_format::srv::SocketFormat::Request>		request,
@@ -151,6 +152,7 @@ void sock_handle(const std::shared_ptr<tcp_format::srv::SocketFormat::Request>		
 		else{
 			response->status = "send and recv message";
 			response->receive_message = message2char;
+			response->socket_fd = port_fd;
 		}
 	}
 
@@ -163,6 +165,7 @@ void sock_handle(const std::shared_ptr<tcp_format::srv::SocketFormat::Request>		
 		else{
 			response->status = "close socket";
 			response->receive_message = "no message";
+			response->socket_fd = port_fd;
 		}
 	}
 	return;

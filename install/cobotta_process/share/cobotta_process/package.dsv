@@ -1,0 +1,8 @@
+source;share/cobotta_process/hook/cmake_prefix_path.ps1
+source;share/cobotta_process/hook/cmake_prefix_path.dsv
+source;share/cobotta_process/hook/cmake_prefix_path.sh
+source;share/cobotta_process/local_setup.bash
+source;share/cobotta_process/local_setup.dsv
+source;share/cobotta_process/local_setup.ps1
+source;share/cobotta_process/local_setup.sh
+source;share/cobotta_process/local_setup.zsh

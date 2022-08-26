@@ -1,0 +1,24 @@
+[0.011s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle -- -j16 -l16
+[0.049s] [100%] Built target client
+[0.049s] [100%] Built target server
+[0.056s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle -- -j16 -l16
+[0.073s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle
+[0.078s] -- Install configuration: ""
+[0.078s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/server
+[0.078s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/tcp_handle/client
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/ament_index/resource_index/package_run_dependencies/tcp_handle
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/ament_index/resource_index/parent_prefix_path/tcp_handle
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/ament_prefix_path.sh
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/ament_prefix_path.dsv
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/path.sh
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/environment/path.dsv
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.bash
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.sh
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.zsh
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/local_setup.dsv
+[0.079s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.dsv
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/ament_index/resource_index/packages/tcp_handle
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/cmake/tcp_handleConfig.cmake
+[0.079s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/cmake/tcp_handleConfig-version.cmake
+[0.080s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.xml
+[0.082s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle
