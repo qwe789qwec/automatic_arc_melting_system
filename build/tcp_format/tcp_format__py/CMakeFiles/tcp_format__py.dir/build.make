@@ -57,8 +57,10 @@ tcp_format__py/CMakeFiles/tcp_format__py: rosidl_generator_py/tcp_format/_tcp_fo
 tcp_format__py/CMakeFiles/tcp_format__py: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_introspection_c.c
 tcp_format__py/CMakeFiles/tcp_format__py: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_c.c
 tcp_format__py/CMakeFiles/tcp_format__py: rosidl_generator_py/tcp_format/srv/_socket_format.py
+tcp_format__py/CMakeFiles/tcp_format__py: rosidl_generator_py/tcp_format/srv/_cobotta_bcap.py
 tcp_format__py/CMakeFiles/tcp_format__py: rosidl_generator_py/tcp_format/srv/__init__.py
 tcp_format__py/CMakeFiles/tcp_format__py: rosidl_generator_py/tcp_format/srv/_socket_format_s.c
+tcp_format__py/CMakeFiles/tcp_format__py: rosidl_generator_py/tcp_format/srv/_cobotta_bcap_s.c
 
 
 rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/lib/rosidl_generator_py/rosidl_generator_py
@@ -75,6 +77,7 @@ rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c:
 rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv_pkg_typesupport_entry_point.c.em
 rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv.py.em
 rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/tcp_format/srv/SocketFormat.idl
+rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/tcp_format/srv/CobottaBcap.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code for ROS interfaces"
 	cd /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/tcp_format__py && /usr/bin/python3 /opt/ros/foxy/share/rosidl_generator_py/cmake/../../../lib/rosidl_generator_py/rosidl_generator_py --generator-arguments-file /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_py__arguments.json --typesupport-impls "rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c;rosidl_typesupport_c"
 
@@ -87,19 +90,27 @@ rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_c.c: rosidl_g
 rosidl_generator_py/tcp_format/srv/_socket_format.py: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/tcp_format/srv/_socket_format.py
 
+rosidl_generator_py/tcp_format/srv/_cobotta_bcap.py: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/tcp_format/srv/_cobotta_bcap.py
+
 rosidl_generator_py/tcp_format/srv/__init__.py: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/tcp_format/srv/__init__.py
 
 rosidl_generator_py/tcp_format/srv/_socket_format_s.c: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/tcp_format/srv/_socket_format_s.c
 
+rosidl_generator_py/tcp_format/srv/_cobotta_bcap_s.c: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/tcp_format/srv/_cobotta_bcap_s.c
+
 tcp_format__py: tcp_format__py/CMakeFiles/tcp_format__py
 tcp_format__py: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_fastrtps_c.c
 tcp_format__py: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_introspection_c.c
 tcp_format__py: rosidl_generator_py/tcp_format/_tcp_format_s.ep.rosidl_typesupport_c.c
 tcp_format__py: rosidl_generator_py/tcp_format/srv/_socket_format.py
+tcp_format__py: rosidl_generator_py/tcp_format/srv/_cobotta_bcap.py
 tcp_format__py: rosidl_generator_py/tcp_format/srv/__init__.py
 tcp_format__py: rosidl_generator_py/tcp_format/srv/_socket_format_s.c
+tcp_format__py: rosidl_generator_py/tcp_format/srv/_cobotta_bcap_s.c
 tcp_format__py: tcp_format__py/CMakeFiles/tcp_format__py.dir/build.make
 
 .PHONY : tcp_format__py

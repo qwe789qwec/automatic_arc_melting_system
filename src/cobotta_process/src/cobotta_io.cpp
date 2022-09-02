@@ -49,20 +49,16 @@ int main(int argc, char *argv[])
   auto request = std::make_shared<tcp_format::srv::SocketFormat::Request>();
 
   int socket_fd = 0;
-  request->target_ip = "192.168.0.2";
-  request->port_fd = 8001;
+  request->target_ip = "172.17.4.71";
+  request->port_fd = 35353;
   request->action = "creat";
   request->send_message = "init\r\n";
   socket_fd = service_process(request);
 
   request->port_fd = socket_fd;
   request->action = "send";
-  request->send_message = "QRA 60 7 3\r\n";
-  socket_fd = service_process(request);
-
-  request->port_fd = socket_fd;
-  request->action = "send";
-  request->send_message = "QRA 60 7 2\r\n";
+  const char message[] = "\x01\x10\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x04";
+  request->send_message = message;
   socket_fd = service_process(request);
 
   request->port_fd = socket_fd;

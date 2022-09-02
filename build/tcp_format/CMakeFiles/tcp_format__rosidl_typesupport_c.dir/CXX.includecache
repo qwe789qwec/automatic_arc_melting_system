@@ -6,6 +6,30 @@
 
 #IncludeRegexTransform: 
 
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/cobotta_bcap__type_support.cpp
+cstddef
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/cstddef
+rosidl_runtime_c/message_type_support_struct.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/rosidl_runtime_c/message_type_support_struct.h
+tcp_format/msg/rosidl_typesupport_c__visibility_control.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/tcp_format/msg/rosidl_typesupport_c__visibility_control.h
+tcp_format/srv/detail/cobotta_bcap__struct.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/tcp_format/srv/detail/cobotta_bcap__struct.h
+rosidl_typesupport_c/identifier.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/rosidl_typesupport_c/identifier.h
+rosidl_typesupport_c/message_type_support_dispatch.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/rosidl_typesupport_c/message_type_support_dispatch.h
+rosidl_typesupport_c/type_support_map.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/rosidl_typesupport_c/type_support_map.h
+rosidl_typesupport_c/visibility_control.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/rosidl_typesupport_c/visibility_control.h
+rosidl_typesupport_interface/macros.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/rosidl_typesupport_interface/macros.h
+rosidl_runtime_c/service_type_support_struct.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/rosidl_runtime_c/service_type_support_struct.h
+rosidl_typesupport_c/service_type_support_dispatch.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/rosidl_typesupport_c/service_type_support_dispatch.h
+
 /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/socket_format__type_support.cpp
 cstddef
 /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_c/tcp_format/srv/cstddef
@@ -81,6 +105,16 @@ cstddef
 /opt/ros/foxy/include/rosidl_typesupport_c/visibility_control.h
 
 /opt/ros/foxy/include/rosidl_typesupport_interface/macros.h
+
+rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__struct.h
+stdbool.h
+-
+stddef.h
+-
+stdint.h
+-
+rosidl_runtime_c/string.h
+rosidl_generator_c/tcp_format/srv/detail/rosidl_runtime_c/string.h
 
 rosidl_generator_c/tcp_format/srv/detail/socket_format__struct.h
 stdbool.h

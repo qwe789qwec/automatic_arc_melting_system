@@ -1,0 +1,56 @@
+[0.011s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_format -- -j16 -l16
+[0.027s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.041s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.041s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.163s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.164s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.166s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.256s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.286s] -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+[0.405s] CMake Error at /opt/ros/foxy/share/rosidl_adapter/cmake/rosidl_adapt_interfaces.cmake:60 (message):
+[0.405s]   execute_process(/usr/bin/python3 -m rosidl_adapter --package-name
+[0.405s]   tcp_format --arguments-file
+[0.405s]   /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter__arguments__tcp_format.json
+[0.405s]   --output-dir
+[0.405s]   /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format
+[0.405s]   --output-file
+[0.405s]   /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format.idls)
+[0.406s]   returned error code 1:
+[0.406s] 
+[0.406s]   Error processing 'char send_message[]' of
+[0.406s]   'tcp_format/SocketFormat_Request': ''send_message[]' is an invalid field
+[0.406s]   name.  It should have the pattern '^(?!.*__)(?!.*_$)[a-z][a-z0-9_]*$''
+[0.406s] 
+[0.406s]   Traceback (most recent call last):
+[0.406s] 
+[0.406s]     File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+[0.406s]       return _run_code(code, main_globals, None,
+[0.406s]     File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+[0.406s]       exec(code, run_globals)
+[0.406s]     File "/opt/ros/foxy/lib/python3.8/site-packages/rosidl_adapter/__main__.py", line 19, in <module>
+[0.406s]       sys.exit(main())
+[0.407s]     File "/opt/ros/foxy/lib/python3.8/site-packages/rosidl_adapter/main.py", line 53, in main
+[0.407s]       abs_idl_file = convert_to_idl(
+[0.407s]     File "/opt/ros/foxy/lib/python3.8/site-packages/rosidl_adapter/__init__.py", line 24, in convert_to_idl
+[0.407s]       return convert_srv_to_idl(
+[0.407s]     File "/opt/ros/foxy/lib/python3.8/site-packages/rosidl_adapter/srv/__init__.py", line 28, in convert_srv_to_idl
+[0.407s]       srv = parse_service_string(package_name, input_file.stem, content)
+[0.407s]     File "/opt/ros/foxy/lib/python3.8/site-packages/rosidl_adapter/parser.py", line 852, in parse_service_string
+[0.407s]       request_message = parse_message_string(
+[0.407s]     File "/opt/ros/foxy/lib/python3.8/site-packages/rosidl_adapter/parser.py", line 515, in parse_message_string
+[0.407s]       fields.append(Field(
+[0.407s]     File "/opt/ros/foxy/lib/python3.8/site-packages/rosidl_adapter/parser.py", line 353, in __init__
+[0.407s]       raise NameError(
+[0.407s] 
+[0.407s]   NameError: 'send_message[]' is an invalid field name.  It should have the
+[0.407s]   pattern '^(?!.*__)(?!.*_$)[a-z][a-z0-9_]*$'
+[0.407s] 
+[0.407s] Call Stack (most recent call first):
+[0.408s]   /opt/ros/foxy/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:130 (rosidl_adapt_interfaces)
+[0.408s]   CMakeLists.txt:26 (rosidl_generate_interfaces)
+[0.408s] 
+[0.408s] 
+[0.408s] -- Configuring incomplete, errors occurred!
+[0.408s] See also "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/CMakeFiles/CMakeOutput.log".
+[0.413s] make: *** [Makefile:748: cmake_check_build_system] Error 1
+[0.414s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_format -- -j16 -l16

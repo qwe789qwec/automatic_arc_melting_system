@@ -1,0 +1,23 @@
+running egg_info
+writing ../../build/cobotta_bcap/cobotta_bcap.egg-info/PKG-INFO
+writing dependency_links to ../../build/cobotta_bcap/cobotta_bcap.egg-info/dependency_links.txt
+writing entry points to ../../build/cobotta_bcap/cobotta_bcap.egg-info/entry_points.txt
+writing requirements to ../../build/cobotta_bcap/cobotta_bcap.egg-info/requires.txt
+writing top-level names to ../../build/cobotta_bcap/cobotta_bcap.egg-info/top_level.txt
+reading manifest file '../../build/cobotta_bcap/cobotta_bcap.egg-info/SOURCES.txt'
+writing manifest file '../../build/cobotta_bcap/cobotta_bcap.egg-info/SOURCES.txt'
+running build
+running build_py
+copying cobotta_bcap/io_control_service.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+running install
+running install_lib
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/io_control_service.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/io_control_service.py to io_control_service.cpython-38.pyc
+running install_data
+running install_egg_info
+removing '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/cobotta_bcap/cobotta_bcap.egg-info to /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap-0.0.0-py3.8.egg-info
+running install_scripts
+Installing client script to /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/cobotta_bcap
+Installing service script to /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/cobotta_bcap
+writing list of installed files to '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/install.log'

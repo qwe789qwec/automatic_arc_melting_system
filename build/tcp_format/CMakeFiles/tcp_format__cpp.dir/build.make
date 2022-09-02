@@ -57,6 +57,10 @@ CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hp
 CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__builder.hpp
 CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__struct.hpp
 CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__traits.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/cobotta_bcap.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__builder.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__struct.hpp
+CMakeFiles/tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__traits.hpp
 
 
 rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/lib/rosidl_generator_cpp/rosidl_generator_cpp
@@ -75,6 +79,7 @@ rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosid
 rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__struct.hpp.em
 rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__traits.hpp.em
 rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: rosidl_adapter/tcp_format/srv/SocketFormat.idl
+rosidl_generator_cpp/tcp_format/srv/socket_format.hpp: rosidl_adapter/tcp_format/srv/CobottaBcap.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code for ROS interfaces"
 	/usr/bin/python3 /opt/ros/foxy/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp --generator-arguments-file /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_cpp__arguments.json
 
@@ -87,11 +92,27 @@ rosidl_generator_cpp/tcp_format/srv/detail/socket_format__struct.hpp: rosidl_gen
 rosidl_generator_cpp/tcp_format/srv/detail/socket_format__traits.hpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/socket_format__traits.hpp
 
+rosidl_generator_cpp/tcp_format/srv/cobotta_bcap.hpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/cobotta_bcap.hpp
+
+rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__builder.hpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__builder.hpp
+
+rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__struct.hpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__struct.hpp
+
+rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__traits.hpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__traits.hpp
+
 tcp_format__cpp: CMakeFiles/tcp_format__cpp
 tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/socket_format.hpp
 tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__builder.hpp
 tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__struct.hpp
 tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/socket_format__traits.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/cobotta_bcap.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__builder.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__struct.hpp
+tcp_format__cpp: rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__traits.hpp
 tcp_format__cpp: CMakeFiles/tcp_format__cpp.dir/build.make
 
 .PHONY : tcp_format__cpp

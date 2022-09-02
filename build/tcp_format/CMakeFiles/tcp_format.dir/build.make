@@ -56,6 +56,9 @@ include CMakeFiles/tcp_format.dir/progress.make
 CMakeFiles/tcp_format: /home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketFormat.srv
 CMakeFiles/tcp_format: rosidl_cmake/srv/SocketFormat_Request.msg
 CMakeFiles/tcp_format: rosidl_cmake/srv/SocketFormat_Response.msg
+CMakeFiles/tcp_format: /home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/CobottaBcap.srv
+CMakeFiles/tcp_format: rosidl_cmake/srv/CobottaBcap_Request.msg
+CMakeFiles/tcp_format: rosidl_cmake/srv/CobottaBcap_Response.msg
 
 
 tcp_format: CMakeFiles/tcp_format

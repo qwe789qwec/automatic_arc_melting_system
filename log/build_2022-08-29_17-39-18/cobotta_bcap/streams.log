@@ -1,0 +1,26 @@
+[0.512s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_bcap': PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/cobotta_bcap build --build-base /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build install --prefix /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap --record /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/install.log --single-version-externally-managed
+[0.663s] running egg_info
+[0.663s] writing ../../build/cobotta_bcap/cobotta_bcap.egg-info/PKG-INFO
+[0.663s] writing dependency_links to ../../build/cobotta_bcap/cobotta_bcap.egg-info/dependency_links.txt
+[0.663s] writing entry points to ../../build/cobotta_bcap/cobotta_bcap.egg-info/entry_points.txt
+[0.663s] writing requirements to ../../build/cobotta_bcap/cobotta_bcap.egg-info/requires.txt
+[0.663s] writing top-level names to ../../build/cobotta_bcap/cobotta_bcap.egg-info/top_level.txt
+[0.686s] package init file 'cobotta_bcap/pybcapclient/__init__.py' not found (or not a regular file)
+[0.686s] reading manifest file '../../build/cobotta_bcap/cobotta_bcap.egg-info/SOURCES.txt'
+[0.687s] writing manifest file '../../build/cobotta_bcap/cobotta_bcap.egg-info/SOURCES.txt'
+[0.687s] running build
+[0.687s] running build_py
+[0.687s] copying cobotta_bcap/pybcapclient/bcapclient.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/pybcapclient
+[0.688s] running install
+[0.688s] running install_lib
+[0.689s] copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/pybcapclient/bcapclient.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/pybcapclient
+[0.689s] byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/pybcapclient/bcapclient.py to bcapclient.cpython-38.pyc
+[0.694s] running install_data
+[0.694s] running install_egg_info
+[0.695s] removing '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap-0.0.0-py3.8.egg-info' (and everything under it)
+[0.695s] Copying ../../build/cobotta_bcap/cobotta_bcap.egg-info to /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap-0.0.0-py3.8.egg-info
+[0.696s] running install_scripts
+[0.707s] Installing client script to /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/cobotta_bcap
+[0.707s] Installing service script to /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/cobotta_bcap
+[0.708s] writing list of installed files to '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/install.log'
+[0.722s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_bcap' returned '0': PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/cobotta_bcap build --build-base /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build install --prefix /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap --record /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/install.log --single-version-externally-managed

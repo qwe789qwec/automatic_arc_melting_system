@@ -3,7 +3,8 @@
   "output_dir": "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_c/tcp_format",
   "template_dir": "/opt/ros/foxy/share/rosidl_generator_c/cmake/../resource",
   "idl_tuples": [
-    "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format:srv/SocketFormat.idl"
+    "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format:srv/SocketFormat.idl",
+    "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format:srv/CobottaBcap.idl"
   ],
   "target_dependencies": [
     "/opt/ros/foxy/share/rosidl_generator_c/cmake/../../../lib/rosidl_generator_c/rosidl_generator_c",
@@ -19,6 +20,7 @@
     "/opt/ros/foxy/share/rosidl_generator_c/cmake/../resource/msg__struct.h.em",
     "/opt/ros/foxy/share/rosidl_generator_c/cmake/../resource/msg__type_support.h.em",
     "/opt/ros/foxy/share/rosidl_generator_c/cmake/../resource/srv__type_support.h.em",
-    "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format/srv/SocketFormat.idl"
+    "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format/srv/SocketFormat.idl",
+    "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format/srv/CobottaBcap.idl"
   ]
 }

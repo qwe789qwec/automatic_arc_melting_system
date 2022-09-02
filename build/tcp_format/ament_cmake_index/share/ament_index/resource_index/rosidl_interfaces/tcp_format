@@ -1,3 +1,7 @@
+srv/CobottaBcap.idl
+srv/CobottaBcap.srv
+srv/CobottaBcap_Request.msg
+srv/CobottaBcap_Response.msg
 srv/SocketFormat.idl
 srv/SocketFormat.srv
 srv/SocketFormat_Request.msg

@@ -1,0 +1,5 @@
+  File "/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/io_control_service.py", line 2
+    import .pybcapclient.bcapclient as bcapclient
+           ^
+SyntaxError: invalid syntax
+

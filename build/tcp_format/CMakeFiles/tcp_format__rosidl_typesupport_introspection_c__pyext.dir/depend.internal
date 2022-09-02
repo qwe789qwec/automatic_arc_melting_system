@@ -98,6 +98,9 @@ CMakeFiles/tcp_format__rosidl_typesupport_introspection_c__pyext.dir/rosidl_gene
  /usr/include/python3.8/warnings.h
  /usr/include/python3.8/weakrefobject.h
  rosidl_generator_c/tcp_format/msg/rosidl_generator_c__visibility_control.h
+ rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__functions.h
+ rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__struct.h
+ rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__type_support.h
  rosidl_generator_c/tcp_format/srv/detail/socket_format__functions.h
  rosidl_generator_c/tcp_format/srv/detail/socket_format__struct.h
  rosidl_generator_c/tcp_format/srv/detail/socket_format__type_support.h

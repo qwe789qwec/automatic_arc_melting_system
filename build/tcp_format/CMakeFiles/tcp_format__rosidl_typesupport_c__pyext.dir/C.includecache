@@ -27,6 +27,12 @@ tcp_format/srv/detail/socket_format__struct.h
 /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_py/tcp_format/tcp_format/srv/detail/socket_format__struct.h
 tcp_format/srv/detail/socket_format__functions.h
 /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_py/tcp_format/tcp_format/srv/detail/socket_format__functions.h
+tcp_format/srv/detail/cobotta_bcap__type_support.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_py/tcp_format/tcp_format/srv/detail/cobotta_bcap__type_support.h
+tcp_format/srv/detail/cobotta_bcap__struct.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_py/tcp_format/tcp_format/srv/detail/cobotta_bcap__struct.h
+tcp_format/srv/detail/cobotta_bcap__functions.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_py/tcp_format/tcp_format/srv/detail/cobotta_bcap__functions.h
 
 /opt/ros/foxy/include/rosidl_runtime_c/action_type_support_struct.h
 rosidl_runtime_c/message_type_support_struct.h
@@ -571,6 +577,38 @@ cpython/unicodeobject.h
 /usr/include/python3.8/weakrefobject.h
 
 rosidl_generator_c/tcp_format/msg/rosidl_generator_c__visibility_control.h
+
+rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__functions.h
+stdbool.h
+-
+stdlib.h
+-
+rosidl_runtime_c/visibility_control.h
+rosidl_generator_c/tcp_format/srv/detail/rosidl_runtime_c/visibility_control.h
+tcp_format/msg/rosidl_generator_c__visibility_control.h
+rosidl_generator_c/tcp_format/srv/detail/tcp_format/msg/rosidl_generator_c__visibility_control.h
+tcp_format/srv/detail/cobotta_bcap__struct.h
+rosidl_generator_c/tcp_format/srv/detail/tcp_format/srv/detail/cobotta_bcap__struct.h
+
+rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__struct.h
+stdbool.h
+-
+stddef.h
+-
+stdint.h
+-
+rosidl_runtime_c/string.h
+rosidl_generator_c/tcp_format/srv/detail/rosidl_runtime_c/string.h
+
+rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__type_support.h
+rosidl_typesupport_interface/macros.h
+rosidl_generator_c/tcp_format/srv/detail/rosidl_typesupport_interface/macros.h
+tcp_format/msg/rosidl_generator_c__visibility_control.h
+rosidl_generator_c/tcp_format/srv/detail/tcp_format/msg/rosidl_generator_c__visibility_control.h
+rosidl_runtime_c/message_type_support_struct.h
+rosidl_generator_c/tcp_format/srv/detail/rosidl_runtime_c/message_type_support_struct.h
+rosidl_runtime_c/service_type_support_struct.h
+rosidl_generator_c/tcp_format/srv/detail/rosidl_runtime_c/service_type_support_struct.h
 
 rosidl_generator_c/tcp_format/srv/detail/socket_format__functions.h
 stdbool.h

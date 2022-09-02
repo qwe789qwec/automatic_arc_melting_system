@@ -1,0 +1,60 @@
+running egg_info
+creating ../../build/cobotta_bcap/cobotta_bcap.egg-info
+writing ../../build/cobotta_bcap/cobotta_bcap.egg-info/PKG-INFO
+writing dependency_links to ../../build/cobotta_bcap/cobotta_bcap.egg-info/dependency_links.txt
+writing entry points to ../../build/cobotta_bcap/cobotta_bcap.egg-info/entry_points.txt
+writing requirements to ../../build/cobotta_bcap/cobotta_bcap.egg-info/requires.txt
+writing top-level names to ../../build/cobotta_bcap/cobotta_bcap.egg-info/top_level.txt
+writing manifest file '../../build/cobotta_bcap/cobotta_bcap.egg-info/SOURCES.txt'
+reading manifest file '../../build/cobotta_bcap/cobotta_bcap.egg-info/SOURCES.txt'
+writing manifest file '../../build/cobotta_bcap/cobotta_bcap.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build
+creating /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib
+creating /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/__init__.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/io_control_service.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/01_00_ReadWrite.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/03_01_Task.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/03_00_Task.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/02_00_IOReadWrite.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/05_00_slvMove.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/01_01_ReadWrite.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/cobotta_client.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+copying cobotta_bcap/04_00_Move.py -> /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap
+running install
+running install_lib
+creating /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/__init__.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/io_control_service.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/01_00_ReadWrite.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/03_01_Task.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/03_00_Task.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/02_00_IOReadWrite.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/05_00_slvMove.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/01_01_ReadWrite.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/cobotta_client.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+copying /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build/lib/cobotta_bcap/04_00_Move.py -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/io_control_service.py to io_control_service.cpython-38.pyc
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/01_00_ReadWrite.py to 01_00_ReadWrite.cpython-38.pyc
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/03_01_Task.py to 03_01_Task.cpython-38.pyc
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/03_00_Task.py to 03_00_Task.cpython-38.pyc
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/02_00_IOReadWrite.py to 02_00_IOReadWrite.cpython-38.pyc
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/05_00_slvMove.py to 05_00_slvMove.cpython-38.pyc
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/01_01_ReadWrite.py to 01_01_ReadWrite.cpython-38.pyc
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/cobotta_client.py to cobotta_client.cpython-38.pyc
+byte-compiling /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap/04_00_Move.py to 04_00_Move.cpython-38.pyc
+running install_data
+creating /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index
+creating /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index/resource_index
+creating /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index/resource_index/packages
+copying resource/cobotta_bcap -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/ament_index/resource_index/packages
+copying package.xml -> /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap
+running install_egg_info
+Copying ../../build/cobotta_bcap/cobotta_bcap.egg-info to /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages/cobotta_bcap-0.0.0-py3.8.egg-info
+running install_scripts
+Installing client script to /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/cobotta_bcap
+Installing service script to /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/cobotta_bcap
+writing list of installed files to '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/install.log'

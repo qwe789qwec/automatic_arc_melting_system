@@ -66,11 +66,18 @@ rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format
 rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp: /opt/ros/foxy/share/rosidl_typesupport_fastrtps_cpp/resource/srv__rosidl_typesupport_fastrtps_cpp.hpp.em
 rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp: /opt/ros/foxy/share/rosidl_typesupport_fastrtps_cpp/resource/srv__type_support.cpp.em
 rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp: rosidl_adapter/tcp_format/srv/SocketFormat.idl
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp: rosidl_adapter/tcp_format/srv/CobottaBcap.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ type support for eProsima Fast-RTPS"
 	/usr/bin/python3 /opt/ros/foxy/lib/rosidl_typesupport_fastrtps_cpp/rosidl_typesupport_fastrtps_cpp --generator-arguments-file /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp__arguments.json
 
 rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/socket_format__rosidl_typesupport_fastrtps_cpp.hpp: rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/socket_format__rosidl_typesupport_fastrtps_cpp.hpp
+
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp: rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp
+
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/cobotta_bcap__rosidl_typesupport_fastrtps_cpp.hpp: rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/cobotta_bcap__rosidl_typesupport_fastrtps_cpp.hpp
 
 CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp.o: CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/flags.make
 CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp.o: rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp
@@ -85,14 +92,29 @@ CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fa
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp -o CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp.s
 
+CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.o: CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/flags.make
+CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.o: rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.o -c /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp
+
+CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp > CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.i
+
+CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp -o CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.s
+
 # Object files for target tcp_format__rosidl_typesupport_fastrtps_cpp
 tcp_format__rosidl_typesupport_fastrtps_cpp_OBJECTS = \
-"CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp.o"
+"CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp.o" \
+"CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.o"
 
 # External object files for target tcp_format__rosidl_typesupport_fastrtps_cpp
 tcp_format__rosidl_typesupport_fastrtps_cpp_EXTERNAL_OBJECTS =
 
 libtcp_format__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp.o
+libtcp_format__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp.o
 libtcp_format__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/build.make
 libtcp_format__rosidl_typesupport_fastrtps_cpp.so: /opt/ros/foxy/lib/librmw.so
 libtcp_format__rosidl_typesupport_fastrtps_cpp.so: /opt/ros/foxy/lib/librosidl_runtime_c.so
@@ -106,7 +128,7 @@ libtcp_format__rosidl_typesupport_fastrtps_cpp.so: /usr/lib/x86_64-linux-gnu/lib
 libtcp_format__rosidl_typesupport_fastrtps_cpp.so: /usr/lib/x86_64-linux-gnu/libssl.so
 libtcp_format__rosidl_typesupport_fastrtps_cpp.so: /usr/lib/x86_64-linux-gnu/libcrypto.so
 libtcp_format__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libtcp_format__rosidl_typesupport_fastrtps_cpp.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library libtcp_format__rosidl_typesupport_fastrtps_cpp.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -120,6 +142,8 @@ CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/clean:
 
 CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp
 CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/socket_format__rosidl_typesupport_fastrtps_cpp.hpp
+CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp
+CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/cobotta_bcap__rosidl_typesupport_fastrtps_cpp.hpp
 	cd /home/arc/Documents/automatic_arc_melting_system/build/tcp_format && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arc/Documents/automatic_arc_melting_system/src/tcp_format /home/arc/Documents/automatic_arc_melting_system/src/tcp_format /home/arc/Documents/automatic_arc_melting_system/build/tcp_format /home/arc/Documents/automatic_arc_melting_system/build/tcp_format /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/tcp_format__rosidl_typesupport_fastrtps_cpp.dir/depend
 

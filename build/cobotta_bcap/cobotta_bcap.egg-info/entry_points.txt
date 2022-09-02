@@ -1,0 +1,4 @@
+[console_scripts]
+client = cobotta_bcap.cobotta_client:main
+service = cobotta_bcap.io_control_service:main
+

@@ -355,6 +355,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_adapter/tcp_format/srv/CobottaBcap.idl")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/SocketFormat.srv")
 endif()
 
@@ -364,6 +368,18 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/SocketFormat_Response.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/src/tcp_format/srv/CobottaBcap.srv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/CobottaBcap_Request.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tcp_format/srv" TYPE FILE FILES "/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_cmake/srv/CobottaBcap_Response.msg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

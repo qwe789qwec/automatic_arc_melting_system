@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__functions.c
+tcp_format/srv/detail/cobotta_bcap__functions.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_c/tcp_format/srv/detail/tcp_format/srv/detail/cobotta_bcap__functions.h
+assert.h
+-
+stdbool.h
+-
+stdlib.h
+-
+string.h
+-
+rosidl_runtime_c/string_functions.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_c/tcp_format/srv/detail/rosidl_runtime_c/string_functions.h
+
 /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_c/tcp_format/srv/detail/socket_format__functions.c
 tcp_format/srv/detail/socket_format__functions.h
 /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_generator_c/tcp_format/srv/detail/tcp_format/srv/detail/socket_format__functions.h
@@ -45,6 +59,28 @@ rosidl_runtime_c/visibility_control.h
 /opt/ros/foxy/include/rosidl_runtime_c/visibility_control.h
 
 rosidl_generator_c/tcp_format/msg/rosidl_generator_c__visibility_control.h
+
+rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__functions.h
+stdbool.h
+-
+stdlib.h
+-
+rosidl_runtime_c/visibility_control.h
+rosidl_generator_c/tcp_format/srv/detail/rosidl_runtime_c/visibility_control.h
+tcp_format/msg/rosidl_generator_c__visibility_control.h
+rosidl_generator_c/tcp_format/srv/detail/tcp_format/msg/rosidl_generator_c__visibility_control.h
+tcp_format/srv/detail/cobotta_bcap__struct.h
+rosidl_generator_c/tcp_format/srv/detail/tcp_format/srv/detail/cobotta_bcap__struct.h
+
+rosidl_generator_c/tcp_format/srv/detail/cobotta_bcap__struct.h
+stdbool.h
+-
+stddef.h
+-
+stdint.h
+-
+rosidl_runtime_c/string.h
+rosidl_generator_c/tcp_format/srv/detail/rosidl_runtime_c/string.h
 
 rosidl_generator_c/tcp_format/srv/detail/socket_format__functions.h
 stdbool.h

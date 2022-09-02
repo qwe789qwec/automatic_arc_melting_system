@@ -6,6 +6,36 @@
 
 #IncludeRegexTransform: 
 
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/cobotta_bcap__type_support.cpp
+tcp_format/srv/detail/cobotta_bcap__rosidl_typesupport_fastrtps_cpp.hpp
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/tcp_format/srv/detail/cobotta_bcap__rosidl_typesupport_fastrtps_cpp.hpp
+tcp_format/srv/detail/cobotta_bcap__struct.hpp
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/tcp_format/srv/detail/cobotta_bcap__struct.hpp
+limits
+-
+stdexcept
+-
+string
+-
+rosidl_typesupport_cpp/message_type_support.hpp
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/rosidl_typesupport_cpp/message_type_support.hpp
+rosidl_typesupport_fastrtps_cpp/identifier.hpp
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/rosidl_typesupport_fastrtps_cpp/identifier.hpp
+rosidl_typesupport_fastrtps_cpp/message_type_support.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/rosidl_typesupport_fastrtps_cpp/message_type_support.h
+rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp
+rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp
+fastcdr/Cdr.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/fastcdr/Cdr.h
+rmw/error_handling.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/rmw/error_handling.h
+rosidl_typesupport_fastrtps_cpp/service_type_support.h
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/rosidl_typesupport_fastrtps_cpp/service_type_support.h
+rosidl_typesupport_fastrtps_cpp/service_type_support_decl.hpp
+/home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/rosidl_typesupport_fastrtps_cpp/service_type_support_decl.hpp
+
 /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/socket_format__type_support.cpp
 tcp_format/srv/detail/socket_format__rosidl_typesupport_fastrtps_cpp.hpp
 /home/arc/Documents/automatic_arc_melting_system/build/tcp_format/rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/dds_fastrtps/tcp_format/srv/detail/socket_format__rosidl_typesupport_fastrtps_cpp.hpp
@@ -472,6 +502,22 @@ string
 
 /opt/ros/foxy/include/rosidl_typesupport_interface/macros.h
 
+rosidl_generator_cpp/tcp_format/srv/detail/cobotta_bcap__struct.hpp
+rosidl_runtime_cpp/bounded_vector.hpp
+-
+rosidl_runtime_cpp/message_initialization.hpp
+-
+algorithm
+-
+array
+-
+memory
+-
+string
+-
+vector
+-
+
 rosidl_generator_cpp/tcp_format/srv/detail/socket_format__struct.hpp
 rosidl_runtime_cpp/bounded_vector.hpp
 -
@@ -489,6 +535,22 @@ vector
 -
 
 rosidl_typesupport_fastrtps_cpp/tcp_format/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/cobotta_bcap__rosidl_typesupport_fastrtps_cpp.hpp
+rosidl_runtime_c/message_type_support_struct.h
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/rosidl_runtime_c/message_type_support_struct.h
+rosidl_typesupport_interface/macros.h
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/rosidl_typesupport_interface/macros.h
+tcp_format/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/tcp_format/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+tcp_format/srv/detail/cobotta_bcap__struct.hpp
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/tcp_format/srv/detail/cobotta_bcap__struct.hpp
+fastcdr/Cdr.h
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/fastcdr/Cdr.h
+rmw/types.h
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/rmw/types.h
+rosidl_typesupport_cpp/service_type_support.hpp
+rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/rosidl_typesupport_cpp/service_type_support.hpp
 
 rosidl_typesupport_fastrtps_cpp/tcp_format/srv/detail/socket_format__rosidl_typesupport_fastrtps_cpp.hpp
 rosidl_runtime_c/message_type_support_struct.h
