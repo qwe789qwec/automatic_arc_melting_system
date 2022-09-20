@@ -1,4 +1,0 @@
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_client.cpp:[m[K In function ‘[01m[Kvoid sock_handle(std::shared_ptr<tcp_format::srv::SocketFormat_Request_<std::allocator<void> > >, std::shared_ptr<tcp_format::srv::SocketFormat_Response_<std::allocator<void> > >)[m[K’:
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_client.cpp:123:10:[m[K [01;35m[Kwarning: [m[K‘[01m[Ksocket_fd[m[K’ may be used uninitialized in this function [[01;35m[K-Wmaybe-uninitialized[m[K]
-  123 |   if([01;35m[Ksend(socket_fd, message2char, strlen(message2char), 0)[m[K < 0){
-      |      [01;35m[K~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K

@@ -1,0 +1,77 @@
+[0.021s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/arc/Documents/automatic_arc_melting_system/src/auto_weighting -DCMAKE_INSTALL_PREFIX=/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting
+[0.060s] -- The C compiler identification is GNU 9.4.0
+[0.097s] -- The CXX compiler identification is GNU 9.4.0
+[0.100s] -- Check for working C compiler: /usr/bin/cc
+[0.145s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.146s] -- Detecting C compiler ABI info
+[0.192s] -- Detecting C compiler ABI info - done
+[0.203s] -- Detecting C compile features
+[0.203s] -- Detecting C compile features - done
+[0.205s] -- Check for working CXX compiler: /usr/bin/c++
+[0.259s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.260s] -- Detecting CXX compiler ABI info
+[0.315s] -- Detecting CXX compiler ABI info - done
+[0.325s] -- Detecting CXX compile features
+[0.326s] -- Detecting CXX compile features - done
+[0.327s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.346s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.346s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.492s] -- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.536s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.543s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.602s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.622s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.672s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.711s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.712s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.712s] -- Looking for pthread.h
+[0.765s] -- Looking for pthread.h - found
+[0.765s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.815s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[0.815s] -- Looking for pthread_create in pthreads
+[0.852s] -- Looking for pthread_create in pthreads - not found
+[0.852s] -- Looking for pthread_create in pthread
+[0.897s] -- Looking for pthread_create in pthread - found
+[0.898s] -- Found Threads: TRUE  
+[1.026s] -- Found tcp_format: 0.0.0 (/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/cmake)
+[1.032s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.096s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.096s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.096s] -- Configured cppcheck include dirs: 
+[1.096s] -- Configured cppcheck exclude dirs and/or files: 
+[1.097s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.097s] -- Configured cpplint exclude dirs and/or files: 
+[1.097s] -- Added test 'lint_cmake' to check CMake code style
+[1.098s] -- Added test 'uncrustify' to check C / C++ code style
+[1.098s] -- Configured uncrustify additional arguments: 
+[1.099s] -- Added test 'xmllint' to check XML markup files
+[1.102s] -- Configuring done
+[1.110s] -- Generating done
+[1.111s] -- Build files have been written to: /home/arc/Documents/automatic_arc_melting_system/build/auto_weighting
+[1.119s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/arc/Documents/automatic_arc_melting_system/src/auto_weighting -DCMAKE_INSTALL_PREFIX=/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting
+[1.119s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/auto_weighting -- -j16 -l16
+[1.144s] [35m[1mScanning dependencies of target client[0m
+[1.169s] [ 50%] [32mBuilding CXX object CMakeFiles/client.dir/src/frontdoor.cpp.o[0m
+[3.146s] [100%] [32m[1mLinking CXX executable client[0m
+[3.244s] [100%] Built target client
+[3.252s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/auto_weighting -- -j16 -l16
+[3.270s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/auto_weighting
+[3.276s] -- Install configuration: ""
+[3.276s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/lib/auto_weighting/client
+[3.277s] -- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/lib/auto_weighting/client" to ""
+[3.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/ament_index/resource_index/package_run_dependencies/auto_weighting
+[3.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/ament_index/resource_index/parent_prefix_path/auto_weighting
+[3.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/environment/ament_prefix_path.sh
+[3.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/environment/ament_prefix_path.dsv
+[3.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/environment/path.sh
+[3.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/environment/path.dsv
+[3.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/local_setup.bash
+[3.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/local_setup.sh
+[3.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/local_setup.zsh
+[3.278s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/local_setup.dsv
+[3.278s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.dsv
+[3.278s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/ament_index/resource_index/packages/auto_weighting
+[3.278s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/cmake/auto_weightingConfig.cmake
+[3.278s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/cmake/auto_weightingConfig-version.cmake
+[3.278s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.xml
+[3.281s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting' returned '0': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/auto_weighting
