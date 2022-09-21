@@ -1,4 +1,0 @@
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:[m[K In function ‘[01m[Kvoid plc_main(std::shared_ptr<msg_format::srv::PlcFormat_Request_<std::allocator<void> > >, std::shared_ptr<msg_format::srv::PlcFormat_Response_<std::allocator<void> > >)[m[K’:
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:20:11:[m[K [01;35m[Kwarning: [m[K‘[01m[Kreceive_msg[m[K’ may be used uninitialized in this function [[01;35m[K-Wmaybe-uninitialized[m[K]
-   20 |     [01;35m[Kstrcpy(receive_msg, "init msg")[m[K;
-      |     [01;35m[K~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K

@@ -1,4 +1,0 @@
-source;share/plc_control/local_setup.bash
-source;share/plc_control/local_setup.dsv
-source;share/plc_control/local_setup.sh
-source;share/plc_control/local_setup.zsh

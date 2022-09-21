@@ -1,7 +1,0 @@
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_socket.cpp:[m[K In member function ‘[01m[Kint plc_socket::receive(char*)[m[K’:
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_socket.cpp:95:12:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
-   95 |  message = [01;35m[K"start"[m[K;
-      |            [01;35m[K^~~~~~~[m[K
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_socket.cpp:116:14:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
-  116 |    message = [01;35m[K"fail"[m[K;
-      |              [01;35m[K^~~~~~[m[K

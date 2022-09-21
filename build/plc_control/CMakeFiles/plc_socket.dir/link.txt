@@ -1,2 +1,0 @@
-/usr/bin/ar qc libplc_socket.a  CMakeFiles/plc_socket.dir/src/plc_socket.cpp.o
-/usr/bin/ranlib libplc_socket.a

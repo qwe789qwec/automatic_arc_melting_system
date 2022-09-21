@@ -1,4 +1,0 @@
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:[m[K In function ‘[01m[Kvoid plc_main(std::shared_ptr<msg_format::srv::PlcFormat_Request_<std::allocator<void> > >, std::shared_ptr<msg_format::srv::PlcFormat_Response_<std::allocator<void> > >)[m[K’:
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:21:25:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
-   21 |     char* receive_msg = [01;35m[K"init msg"[m[K;
-      |                         [01;35m[K^~~~~~~~~~[m[K

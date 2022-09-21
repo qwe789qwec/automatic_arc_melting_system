@@ -1,5 +1,0 @@
-[0.015s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp': AMENT_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp -- -j16 -l16
-[0.069s] [ 50%] Built target fibonacci_action_server
-[0.069s] [ 50%] Built target action_server
-[0.070s] [ 75%] Built target fibonacci_action_client
-[0.071s] [100%] Built target action_client

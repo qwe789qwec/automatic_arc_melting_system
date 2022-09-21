@@ -1,5 +1,0 @@
-[35m[1mScanning dependencies of target plc_socket[0m
-[ 25%] [32mBuilding CXX object CMakeFiles/plc_socket.dir/src/plc_socket.cpp.o[0m
-[ 50%] [32m[1mLinking CXX executable PlcServer[0m
-[ 75%] [32m[1mLinking CXX static library libplc_socket.a[0m
-[ 75%] Built target plc_socket

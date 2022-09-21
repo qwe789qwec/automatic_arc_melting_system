@@ -1,4 +1,0 @@
-source;share/msg_format/local_setup.bash
-source;share/msg_format/local_setup.dsv
-source;share/msg_format/local_setup.sh
-source;share/msg_format/local_setup.zsh

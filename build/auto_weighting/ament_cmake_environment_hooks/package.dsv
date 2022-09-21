@@ -1,4 +1,0 @@
-source;share/auto_weighting/local_setup.bash
-source;share/auto_weighting/local_setup.dsv
-source;share/auto_weighting/local_setup.sh
-source;share/auto_weighting/local_setup.zsh

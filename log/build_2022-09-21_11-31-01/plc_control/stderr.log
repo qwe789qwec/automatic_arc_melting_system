@@ -1,5 +1,0 @@
-CMake Error at CMakeLists.txt:42 (install):
-  install TARGETS given target "plcServer" which does not exist.
-
-
-make: *** [Makefile:222: cmake_check_build_system] Error 1

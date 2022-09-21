@@ -1,2 +1,0 @@
-cobotta_bcap
-cobotta_bcap/pybcapclient

@@ -1,4 +1,0 @@
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:[m[K In function ‘[01m[Kvoid plc_main(std::shared_ptr<msg_format::srv::PlcFormat_Request_<std::allocator<void> > >, std::shared_ptr<msg_format::srv::PlcFormat_Response_<std::allocator<void> > >)[m[K’:
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:20:9:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kstate[m[K’ [[01;35m[K-Wunused-variable[m[K]
-   20 |     int [01;35m[Kstate[m[K = plc_handler.receive(receive_msg);
-      |         [01;35m[K^~~~~[m[K

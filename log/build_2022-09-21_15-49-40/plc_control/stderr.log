@@ -1,7 +1,0 @@
-[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:3:10:[m[K [01;31m[Kfatal error: [m[Kplc_control/plc_socket.hpp: No such file or directory
-    3 | #include [01;31m[K"plc_control/plc_socket.hpp"[m[K
-      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
-compilation terminated.
-make[2]: *** [CMakeFiles/PlcServer.dir/build.make:63: CMakeFiles/PlcServer.dir/src/plc_server.cpp.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/PlcServer.dir/all] Error 2
-make: *** [Makefile:141: all] Error 2
