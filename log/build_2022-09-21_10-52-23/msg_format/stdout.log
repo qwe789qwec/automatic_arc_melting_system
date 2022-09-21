@@ -1,0 +1,343 @@
+-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Using PYTHON_EXECUTABLE: /home/wilson/anaconda3/bin/python3
+-- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+-- Found PythonInterp: /home/wilson/anaconda3/bin/python3 (found version "3.9.12") 
+-- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found PythonInterp: /home/wilson/anaconda3/bin/python3 (found suitable version "3.9.12", minimum required is "3.5") 
+-- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)
+-- Found PythonLibs: /home/wilson/anaconda3/lib/libpython3.9.so (found suitable version "3.9.12", minimum required is "3.5") 
+-- Using PYTHON_EXECUTABLE: /home/wilson/anaconda3/bin/python3
+-- Using PYTHON_INCLUDE_DIRS: /home/wilson/anaconda3/include/python3.9
+-- Using PYTHON_LIBRARIES: /home/wilson/anaconda3/lib/libpython3.9.so
+-- Found PythonExtra: .so  
+-- Using numpy include directory: /home/wilson/anaconda3/lib/python3.9/site-packages/numpy/core/include
+-- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+-- Added test 'copyright' to check source files copyright and LICENSE
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/arc/Documents/automatic_arc_melting_system/build/msg_format
+[  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[35m[1mScanning dependencies of target msg_format__cpp[0m
+[  2%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[35m[1mScanning dependencies of target msg_format__rosidl_generator_c[0m
+[  5%] [32mBuilding C object CMakeFiles/msg_format__rosidl_generator_c.dir/rosidl_generator_c/msg_format/srv/detail/furnace_format__functions.c.o[0m
+[  5%] [32mBuilding C object CMakeFiles/msg_format__rosidl_generator_c.dir/rosidl_generator_c/msg_format/srv/detail/weighing_format__functions.c.o[0m
+[  7%] [32mBuilding C object CMakeFiles/msg_format__rosidl_generator_c.dir/rosidl_generator_c/msg_format/srv/detail/cobotta_format__functions.c.o[0m
+[  7%] Built target msg_format__cpp
+[  8%] [32mBuilding C object CMakeFiles/msg_format__rosidl_generator_c.dir/rosidl_generator_c/msg_format/srv/detail/gripper_format__functions.c.o[0m
+[  9%] [32mBuilding C object CMakeFiles/msg_format__rosidl_generator_c.dir/rosidl_generator_c/msg_format/srv/detail/plc_format__functions.c.o[0m
+[ 11%] [32mBuilding C object CMakeFiles/msg_format__rosidl_generator_c.dir/rosidl_generator_c/msg_format/srv/detail/slider_format__functions.c.o[0m
+[ 14%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[ 14%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[ 15%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[ 16%] [32m[1mLinking C shared library libmsg_format__rosidl_generator_c.so[0m
+[ 16%] Built target msg_format__rosidl_generator_c
+[ 19%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[ 19%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[35m[1mScanning dependencies of target msg_format__rosidl_typesupport_cpp[0m
+[ 21%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/msg_format/srv/slider_format__type_support.cpp.o[0m
+[ 26%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/msg_format/srv/furnace_format__type_support.cpp.o[0m
+[ 26%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/msg_format/srv/cobotta_format__type_support.cpp.o[0m
+[ 26%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/msg_format/srv/plc_format__type_support.cpp.o[0m
+[ 26%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/msg_format/srv/gripper_format__type_support.cpp.o[0m
+[ 28%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/msg_format/srv/weighing_format__type_support.cpp.o[0m
+[35m[1mScanning dependencies of target msg_format__rosidl_typesupport_c[0m
+[ 29%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_c.dir/rosidl_typesupport_c/msg_format/srv/cobotta_format__type_support.cpp.o[0m
+[ 30%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_c.dir/rosidl_typesupport_c/msg_format/srv/gripper_format__type_support.cpp.o[0m
+[ 32%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_c.dir/rosidl_typesupport_c/msg_format/srv/furnace_format__type_support.cpp.o[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_c.dir/rosidl_typesupport_c/msg_format/srv/plc_format__type_support.cpp.o[0m
+[ 35%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_c.dir/rosidl_typesupport_c/msg_format/srv/weighing_format__type_support.cpp.o[0m
+[ 36%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_c.dir/rosidl_typesupport_c/msg_format/srv/slider_format__type_support.cpp.o[0m
+[35m[1mScanning dependencies of target msg_format__rosidl_typesupport_introspection_cpp[0m
+[ 38%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/msg_format/srv/detail/cobotta_format__type_support.cpp.o[0m
+[ 39%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/msg_format/srv/detail/furnace_format__type_support.cpp.o[0m
+[ 40%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/msg_format/srv/detail/gripper_format__type_support.cpp.o[0m
+[ 42%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/msg_format/srv/detail/plc_format__type_support.cpp.o[0m
+[ 43%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/msg_format/srv/detail/slider_format__type_support.cpp.o[0m
+[ 45%] [32m[1mLinking CXX shared library libmsg_format__rosidl_typesupport_c.so[0m
+[ 46%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/msg_format/srv/detail/weighing_format__type_support.cpp.o[0m
+[ 46%] Built target msg_format__rosidl_typesupport_c
+[35m[1mScanning dependencies of target msg_format__rosidl_typesupport_fastrtps_cpp[0m
+[35m[1mScanning dependencies of target msg_format__rosidl_typesupport_introspection_c[0m
+[ 47%] [32mBuilding C object CMakeFiles/msg_format__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/msg_format/srv/detail/cobotta_format__type_support.c.o[0m
+[ 49%] [32mBuilding C object CMakeFiles/msg_format__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/msg_format/srv/detail/furnace_format__type_support.c.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/msg_format/srv/detail/dds_fastrtps/furnace_format__type_support.cpp.o[0m
+[ 52%] [32mBuilding C object CMakeFiles/msg_format__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/msg_format/srv/detail/gripper_format__type_support.c.o[0m
+[ 53%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/msg_format/srv/detail/dds_fastrtps/cobotta_format__type_support.cpp.o[0m
+[ 54%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/msg_format/srv/detail/dds_fastrtps/gripper_format__type_support.cpp.o[0m
+[ 56%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/msg_format/srv/detail/dds_fastrtps/plc_format__type_support.cpp.o[0m
+[ 57%] [32m[1mLinking CXX shared library libmsg_format__rosidl_typesupport_cpp.so[0m
+[ 59%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/msg_format/srv/detail/dds_fastrtps/slider_format__type_support.cpp.o[0m
+[ 60%] [32mBuilding C object CMakeFiles/msg_format__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/msg_format/srv/detail/plc_format__type_support.c.o[0m
+[ 61%] [32mBuilding C object CMakeFiles/msg_format__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/msg_format/srv/detail/slider_format__type_support.c.o[0m
+[ 63%] Built target msg_format__rosidl_typesupport_cpp
+[ 63%] [32mBuilding C object CMakeFiles/msg_format__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/msg_format/srv/detail/weighing_format__type_support.c.o[0m
+[ 64%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/msg_format/srv/detail/dds_fastrtps/weighing_format__type_support.cpp.o[0m
+[ 66%] [32m[1mLinking C shared library libmsg_format__rosidl_typesupport_introspection_c.so[0m
+[ 66%] Built target msg_format__rosidl_typesupport_introspection_c
+[ 67%] [32m[1mLinking CXX shared library libmsg_format__rosidl_typesupport_introspection_cpp.so[0m
+[ 67%] Built target msg_format__rosidl_typesupport_introspection_cpp
+[ 69%] [32m[1mLinking CXX shared library libmsg_format__rosidl_typesupport_fastrtps_cpp.so[0m
+[ 69%] Built target msg_format__rosidl_typesupport_fastrtps_cpp
+[ 70%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[35m[1mScanning dependencies of target msg_format__rosidl_typesupport_fastrtps_c[0m
+[ 76%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/plc_format__type_support_c.cpp.o[0m
+[ 76%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/furnace_format__type_support_c.cpp.o[0m
+[ 76%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/slider_format__type_support_c.cpp.o[0m
+[ 76%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/gripper_format__type_support_c.cpp.o[0m
+[ 77%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/cobotta_format__type_support_c.cpp.o[0m
+[ 78%] [32mBuilding CXX object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/weighing_format__type_support_c.cpp.o[0m
+[ 80%] [32m[1mLinking CXX shared library libmsg_format__rosidl_typesupport_fastrtps_c.so[0m
+[ 80%] Built target msg_format__rosidl_typesupport_fastrtps_c
+[35m[1mScanning dependencies of target msg_format[0m
+[ 80%] Built target msg_format
+[35m[1mScanning dependencies of target msg_format__py[0m
+[ 81%] [34m[1mGenerating Python code for ROS interfaces[0m
+[ 81%] Built target msg_format__py
+[35m[1mScanning dependencies of target msg_format__python[0m
+[ 90%] [32mBuilding C object CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_furnace_format_s.c.o[0m
+[ 90%] [32mBuilding C object CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_slider_format_s.c.o[0m
+[ 90%] [32mBuilding C object CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_weighing_format_s.c.o[0m
+[ 90%] [32mBuilding C object CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_plc_format_s.c.o[0m
+[ 90%] [32mBuilding C object CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_cobotta_format_s.c.o[0m
+[ 90%] [32mBuilding C object CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_gripper_format_s.c.o[0m
+[ 91%] [32m[1mLinking C shared library rosidl_generator_py/msg_format/libmsg_format__python.so[0m
+[ 91%] Built target msg_format__python
+[35m[1mScanning dependencies of target msg_format__rosidl_typesupport_introspection_c__pyext[0m
+[35m[1mScanning dependencies of target msg_format__rosidl_typesupport_c__pyext[0m
+[35m[1mScanning dependencies of target msg_format__rosidl_typesupport_fastrtps_c__pyext[0m
+[ 95%] [32mBuilding C object CMakeFiles/msg_format__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/msg_format/_msg_format_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[ 95%] [32mBuilding C object CMakeFiles/msg_format__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/msg_format/_msg_format_s.ep.rosidl_typesupport_c.c.o[0m
+[ 95%] [32mBuilding C object CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/msg_format/_msg_format_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[100%] [32m[1mLinking CXX shared library rosidl_generator_py/msg_format/msg_format_s__rosidl_typesupport_fastrtps_c.cpython-39-x86_64-linux-gnu.so[0m
+[100%] [32m[1mLinking C shared library rosidl_generator_py/msg_format/msg_format_s__rosidl_typesupport_introspection_c.cpython-39-x86_64-linux-gnu.so[0m
+[100%] [32m[1mLinking C shared library rosidl_generator_py/msg_format/msg_format_s__rosidl_typesupport_c.cpython-39-x86_64-linux-gnu.so[0m
+[100%] Built target msg_format__rosidl_typesupport_c__pyext
+[100%] Built target msg_format__rosidl_typesupport_introspection_c__pyext
+[100%] Built target msg_format__rosidl_typesupport_fastrtps_c__pyext
+-- Install configuration: ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/ament_index/resource_index/rosidl_interfaces/msg_format
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/cobotta_format.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/plc_format.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/weighing_format.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__functions.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__struct.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__type_support.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__functions.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__functions.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__functions.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__functions.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__type_support.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__struct.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__functions.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__type_support.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__functions.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__struct.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__type_support.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__struct.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__type_support.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__type_support.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__functions.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__struct.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__functions.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__functions.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__struct.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__functions.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__functions.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/gripper_format.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/furnace_format.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/slider_format.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/msg/rosidl_generator_c__visibility_control.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/environment/library_path.sh
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/environment/library_path.dsv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_generator_c.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_generator_c.so" to ""
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_fastrtps_c.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_fastrtps_c.so" to ""
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/dds_fastrtps
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_fastrtps_cpp.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_fastrtps_cpp.so" to ""
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__type_support.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__type_support.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__rosidl_typesupport_introspection_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__type_support.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__type_support.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__rosidl_typesupport_introspection_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__rosidl_typesupport_introspection_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__type_support.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__rosidl_typesupport_introspection_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__rosidl_typesupport_introspection_c.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__type_support.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_introspection_c.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_introspection_c.so" to ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_c.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_c.so" to ""
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/slider_format.hpp
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__traits.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__struct.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__builder.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__struct.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__struct.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__builder.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__builder.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__traits.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__struct.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__traits.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__struct.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__builder.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__builder.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__builder.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__struct.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__traits.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__traits.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__traits.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/cobotta_format.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/gripper_format.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/weighing_format.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/plc_format.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/furnace_format.hpp
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__type_support.cpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__type_support.cpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/plc_format__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/slider_format__type_support.cpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/gripper_format__type_support.cpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/furnace_format__type_support.cpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/cobotta_format__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/include/msg_format/srv/detail/weighing_format__type_support.cpp
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_introspection_cpp.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_introspection_cpp.so" to ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_cpp.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__rosidl_typesupport_cpp.so" to ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/environment/pythonpath.sh
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/environment/pythonpath.dsv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/__init__.py
+Compiling '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/__init__.py'...
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_furnace_format.py
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/__init__.py
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_weighing_format_s.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_slider_format_s.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_gripper_format.py
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_cobotta_format_s.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_plc_format_s.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_cobotta_format.py
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_plc_format.py
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_slider_format.py
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_weighing_format.py
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_furnace_format_s.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/srv/_gripper_format_s.c
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/msg_format_s__rosidl_typesupport_fastrtps_c.cpython-39-x86_64-linux-gnu.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/msg_format_s__rosidl_typesupport_fastrtps_c.cpython-39-x86_64-linux-gnu.so" to ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/msg_format_s__rosidl_typesupport_introspection_c.cpython-39-x86_64-linux-gnu.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/msg_format_s__rosidl_typesupport_introspection_c.cpython-39-x86_64-linux-gnu.so" to ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/msg_format_s__rosidl_typesupport_c.cpython-39-x86_64-linux-gnu.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages/msg_format/msg_format_s__rosidl_typesupport_c.cpython-39-x86_64-linux-gnu.so" to ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__python.so
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/libmsg_format__python.so" to ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/CobottaFormat.idl
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/FurnaceFormat.idl
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/GripperFormat.idl
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/PlcFormat.idl
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/SliderFormat.idl
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/WeighingFormat.idl
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/CobottaFormat.srv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/CobottaFormat_Request.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/CobottaFormat_Response.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/FurnaceFormat.srv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/FurnaceFormat_Request.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/FurnaceFormat_Response.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/GripperFormat.srv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/GripperFormat_Request.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/GripperFormat_Response.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/PlcFormat.srv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/PlcFormat_Request.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/PlcFormat_Response.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/SliderFormat.srv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/SliderFormat_Request.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/SliderFormat_Response.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/WeighingFormat.srv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/WeighingFormat_Request.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/srv/WeighingFormat_Response.msg
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/ament_index/resource_index/package_run_dependencies/msg_format
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/ament_index/resource_index/parent_prefix_path/msg_format
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/environment/ament_prefix_path.sh
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/environment/ament_prefix_path.dsv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/environment/path.sh
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/environment/path.dsv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/local_setup.bash
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/local_setup.sh
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/local_setup.zsh
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/local_setup.dsv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.dsv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/ament_index/resource_index/packages/msg_format
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_generator_cExport.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_generator_cExport-noconfig.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_typesupport_introspection_cExport.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_typesupport_introspection_cExport-noconfig.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_typesupport_cExport.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_typesupport_cExport-noconfig.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_generator_cppExport.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_typesupport_introspection_cppExport.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_typesupport_cppExport.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_format__rosidl_typesupport_cppExport-noconfig.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/rosidl_cmake-extras.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_formatConfig.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake/msg_formatConfig-version.cmake
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.xml

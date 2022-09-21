@@ -1,0 +1,48 @@
+-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found msg_format: 0.0.0 (/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/cmake)
+-- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+-- Added test 'copyright' to check source files copyright and LICENSE
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: /home/arc/Documents/automatic_arc_melting_system/src/plc_control/include
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'cpplint' to check C / C++ code against the Google style
+-- Configured cpplint exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/arc/Documents/automatic_arc_melting_system/build/plc_control
+[35m[1mScanning dependencies of target PlcServer[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/PlcServer.dir/src/plc_socket.cpp.o[0m
+[ 66%] [32m[1mLinking CXX executable PlcServer[0m
+[100%] Built target PlcServer
+-- Install configuration: ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib/plc_control/PlcServer
+-- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib/plc_control/PlcServer" to ""
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/include
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/include/plc_control
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/include/plc_control/plc_socket.hpp
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/ament_index/resource_index/package_run_dependencies/plc_control
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/ament_index/resource_index/parent_prefix_path/plc_control
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/environment/ament_prefix_path.sh
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/environment/path.sh
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/environment/path.dsv
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/local_setup.bash
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/local_setup.sh
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/local_setup.zsh
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/local_setup.dsv
+-- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.dsv
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/ament_index/resource_index/packages/plc_control
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/cmake/plc_controlConfig.cmake
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/cmake/plc_controlConfig-version.cmake
+-- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.xml

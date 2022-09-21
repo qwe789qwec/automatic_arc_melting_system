@@ -1,0 +1,34 @@
+[0.193s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/plc_control -- -j16 -l16
+[0.220s] [35m[1mScanning dependencies of target PlcServer[0m
+[0.239s] [ 33%] [32mBuilding CXX object CMakeFiles/PlcServer.dir/src/plc_socket.cpp.o[0m
+[0.239s] [ 66%] [32mBuilding CXX object CMakeFiles/PlcServer.dir/src/plc_server.cpp.o[0m
+[1.191s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:[m[K In function ‘[01m[Kvoid plc_main(std::shared_ptr<msg_format::srv::PlcFormat_Request_<std::allocator<void> > >, std::shared_ptr<msg_format::srv::PlcFormat_Response_<std::allocator<void> > >)[m[K’:
+[1.191s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:19:25:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+[1.191s]    19 |     char* receive_msg = [01;35m[K"init msg"[m[K;
+[1.191s]       |                         [01;35m[K^~~~~~~~~~[m[K
+[1.712s] [100%] [32m[1mLinking CXX executable PlcServer[0m
+[1.794s] [100%] Built target PlcServer
+[1.801s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/plc_control -- -j16 -l16
+[1.817s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/plc_control
+[1.824s] -- Install configuration: ""
+[1.824s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib/plc_control/PlcServer
+[1.824s] -- Set runtime path of "/home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib/plc_control/PlcServer" to ""
+[1.824s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/include
+[1.824s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/include/plc_control
+[1.824s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/include/plc_control/plc_socket.hpp
+[1.824s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/ament_index/resource_index/package_run_dependencies/plc_control
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/ament_index/resource_index/parent_prefix_path/plc_control
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/environment/ament_prefix_path.sh
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/environment/ament_prefix_path.dsv
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/environment/path.sh
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/environment/path.dsv
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/local_setup.bash
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/local_setup.sh
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/local_setup.zsh
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/local_setup.dsv
+[1.825s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.dsv
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/ament_index/resource_index/packages/plc_control
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/cmake/plc_controlConfig.cmake
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/cmake/plc_controlConfig-version.cmake
+[1.825s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.xml
+[1.828s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/plc_control

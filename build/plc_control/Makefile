@@ -168,6 +168,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named PlcServer
+
+# Build rule for target.
+PlcServer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PlcServer
+.PHONY : PlcServer
+
+# fast build rule for target.
+PlcServer/fast:
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/build
+.PHONY : PlcServer/fast
+
+#=============================================================================
 # Target rules for targets named plc_control_uninstall
 
 # Build rule for target.
@@ -193,6 +206,60 @@ uninstall/fast:
 	$(MAKE) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
+src/plc_server.o: src/plc_server.cpp.o
+
+.PHONY : src/plc_server.o
+
+# target to build an object file
+src/plc_server.cpp.o:
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/src/plc_server.cpp.o
+.PHONY : src/plc_server.cpp.o
+
+src/plc_server.i: src/plc_server.cpp.i
+
+.PHONY : src/plc_server.i
+
+# target to preprocess a source file
+src/plc_server.cpp.i:
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/src/plc_server.cpp.i
+.PHONY : src/plc_server.cpp.i
+
+src/plc_server.s: src/plc_server.cpp.s
+
+.PHONY : src/plc_server.s
+
+# target to generate assembly for a file
+src/plc_server.cpp.s:
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/src/plc_server.cpp.s
+.PHONY : src/plc_server.cpp.s
+
+src/plc_socket.o: src/plc_socket.cpp.o
+
+.PHONY : src/plc_socket.o
+
+# target to build an object file
+src/plc_socket.cpp.o:
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/src/plc_socket.cpp.o
+.PHONY : src/plc_socket.cpp.o
+
+src/plc_socket.i: src/plc_socket.cpp.i
+
+.PHONY : src/plc_socket.i
+
+# target to preprocess a source file
+src/plc_socket.cpp.i:
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/src/plc_socket.cpp.i
+.PHONY : src/plc_socket.cpp.i
+
+src/plc_socket.s: src/plc_socket.cpp.s
+
+.PHONY : src/plc_socket.s
+
+# target to generate assembly for a file
+src/plc_socket.cpp.s:
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/src/plc_socket.cpp.s
+.PHONY : src/plc_socket.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -205,9 +272,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... PlcServer"
 	@echo "... install/local"
 	@echo "... plc_control_uninstall"
 	@echo "... uninstall"
+	@echo "... src/plc_server.o"
+	@echo "... src/plc_server.i"
+	@echo "... src/plc_server.s"
+	@echo "... src/plc_socket.o"
+	@echo "... src/plc_socket.i"
+	@echo "... src/plc_socket.s"
 .PHONY : help
 
 

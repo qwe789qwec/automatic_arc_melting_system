@@ -1,0 +1,27 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/cobotta_format__type_support_c.cpp.o"
+  "CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/furnace_format__type_support_c.cpp.o"
+  "CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/gripper_format__type_support_c.cpp.o"
+  "CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/plc_format__type_support_c.cpp.o"
+  "CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/slider_format__type_support_c.cpp.o"
+  "CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/msg_format/srv/detail/weighing_format__type_support_c.cpp.o"
+  "libmsg_format__rosidl_typesupport_fastrtps_c.pdb"
+  "libmsg_format__rosidl_typesupport_fastrtps_c.so"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/cobotta_format__rosidl_typesupport_fastrtps_c.h"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/cobotta_format__type_support_c.cpp"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/furnace_format__rosidl_typesupport_fastrtps_c.h"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/furnace_format__type_support_c.cpp"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/gripper_format__rosidl_typesupport_fastrtps_c.h"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/gripper_format__type_support_c.cpp"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/plc_format__rosidl_typesupport_fastrtps_c.h"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/plc_format__type_support_c.cpp"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/slider_format__rosidl_typesupport_fastrtps_c.h"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/slider_format__type_support_c.cpp"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/weighing_format__rosidl_typesupport_fastrtps_c.h"
+  "rosidl_typesupport_fastrtps_c/msg_format/srv/detail/weighing_format__type_support_c.cpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/msg_format__rosidl_typesupport_fastrtps_c.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

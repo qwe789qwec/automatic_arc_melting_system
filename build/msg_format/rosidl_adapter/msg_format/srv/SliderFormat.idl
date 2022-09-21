@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from msg_format/srv/SliderFormat.srv
+// generated code does not contain a copyright notice
+
+
+module msg_format {
+  module srv {
+    struct SliderFormat_Request {
+      string action;
+    };
+    struct SliderFormat_Response {
+      string result;
+    };
+  };
+};

@@ -1,0 +1,770 @@
+[0.109s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.109s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f179c82d250>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=16, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f179c82d250>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7f179c82d790>)
+[0.128s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.128s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.128s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.128s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.128s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.128s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.128s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/arc/Documents/automatic_arc_melting_system'
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.136s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.136s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.136s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.136s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.136s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.137s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_cpp) by extensions ['ignore', 'ignore_ament_install']
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_cpp) by extension 'ignore'
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_cpp) by extension 'ignore_ament_install'
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_cpp) by extensions ['colcon_pkg']
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_cpp) by extension 'colcon_pkg'
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_cpp) by extensions ['colcon_meta']
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_cpp) by extension 'colcon_meta'
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_cpp) by extensions ['ros']
+[0.138s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_cpp) by extension 'ros'
+[0.140s] DEBUG:colcon.colcon_core.package_identification:Package 'src/action_tutorials_cpp' with type 'ros.ament_cmake' and name 'action_tutorials_cpp'
+[0.140s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.140s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_interfaces) by extension 'ignore'
+[0.140s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_interfaces) by extension 'ignore_ament_install'
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_interfaces) by extensions ['colcon_pkg']
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_interfaces) by extension 'colcon_pkg'
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_interfaces) by extensions ['colcon_meta']
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_interfaces) by extension 'colcon_meta'
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_interfaces) by extensions ['ros']
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_tutorials_interfaces) by extension 'ros'
+[0.141s] DEBUG:colcon.colcon_core.package_identification:Package 'src/action_tutorials_interfaces' with type 'ros.ament_cmake' and name 'action_tutorials_interfaces'
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/auto_weighting) by extensions ['ignore', 'ignore_ament_install']
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/auto_weighting) by extension 'ignore'
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/auto_weighting) by extension 'ignore_ament_install'
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/auto_weighting) by extensions ['colcon_pkg']
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/auto_weighting) by extension 'colcon_pkg'
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/auto_weighting) by extensions ['colcon_meta']
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/auto_weighting) by extension 'colcon_meta'
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/auto_weighting) by extensions ['ros']
+[0.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/auto_weighting) by extension 'ros'
+[0.142s] DEBUG:colcon.colcon_core.package_identification:Package 'src/auto_weighting' with type 'ros.ament_cmake' and name 'auto_weighting'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extensions ['ignore', 'ignore_ament_install']
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extension 'ignore'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) ignored
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_bcap) by extensions ['ignore', 'ignore_ament_install']
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_bcap) by extension 'ignore'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_bcap) by extension 'ignore_ament_install'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_bcap) by extensions ['colcon_pkg']
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_bcap) by extension 'colcon_pkg'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_bcap) by extensions ['colcon_meta']
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_bcap) by extension 'colcon_meta'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_bcap) by extensions ['ros']
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_bcap) by extension 'ros'
+[0.143s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cobotta_bcap' with type 'ros.ament_python' and name 'cobotta_bcap'
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_process) by extensions ['ignore', 'ignore_ament_install']
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_process) by extension 'ignore'
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_process) by extension 'ignore_ament_install'
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_process) by extensions ['colcon_pkg']
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_process) by extension 'colcon_pkg'
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_process) by extensions ['colcon_meta']
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_process) by extension 'colcon_meta'
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_process) by extensions ['ros']
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/cobotta_process) by extension 'ros'
+[0.149s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cobotta_process' with type 'ros.ament_cmake' and name 'cobotta_process'
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extensions ['ignore', 'ignore_ament_install']
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extension 'ignore'
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) ignored
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extensions ['ignore', 'ignore_ament_install']
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extension 'ignore'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) ignored
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/main_process) by extensions ['ignore', 'ignore_ament_install']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/main_process) by extension 'ignore'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/main_process) by extension 'ignore_ament_install'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/main_process) by extensions ['colcon_pkg']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/main_process) by extension 'colcon_pkg'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/main_process) by extensions ['colcon_meta']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/main_process) by extension 'colcon_meta'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/main_process) by extensions ['ros']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/main_process) by extension 'ros'
+[0.150s] DEBUG:colcon.colcon_core.package_identification:Package 'src/main_process' with type 'ros.ament_cmake' and name 'main_process'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/msg_format) by extensions ['ignore', 'ignore_ament_install']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/msg_format) by extension 'ignore'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/msg_format) by extension 'ignore_ament_install'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/msg_format) by extensions ['colcon_pkg']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/msg_format) by extension 'colcon_pkg'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/msg_format) by extensions ['colcon_meta']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/msg_format) by extension 'colcon_meta'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/msg_format) by extensions ['ros']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/msg_format) by extension 'ros'
+[0.151s] DEBUG:colcon.colcon_core.package_identification:Package 'src/msg_format' with type 'ros.ament_cmake' and name 'msg_format'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/plc_control) by extensions ['ignore', 'ignore_ament_install']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/plc_control) by extension 'ignore'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/plc_control) by extension 'ignore_ament_install'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/plc_control) by extensions ['colcon_pkg']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/plc_control) by extension 'colcon_pkg'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/plc_control) by extensions ['colcon_meta']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/plc_control) by extension 'colcon_meta'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/plc_control) by extensions ['ros']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/plc_control) by extension 'ros'
+[0.152s] DEBUG:colcon.colcon_core.package_identification:Package 'src/plc_control' with type 'ros.ament_cmake' and name 'plc_control'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_format) by extensions ['ignore', 'ignore_ament_install']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_format) by extension 'ignore'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_format) by extension 'ignore_ament_install'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_format) by extensions ['colcon_pkg']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_format) by extension 'colcon_pkg'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_format) by extensions ['colcon_meta']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_format) by extension 'colcon_meta'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_format) by extensions ['ros']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_format) by extension 'ros'
+[0.152s] DEBUG:colcon.colcon_core.package_identification:Package 'src/tcp_format' with type 'ros.ament_cmake' and name 'tcp_format'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_handle) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_handle) by extension 'ignore'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_handle) by extension 'ignore_ament_install'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_handle) by extensions ['colcon_pkg']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_handle) by extension 'colcon_pkg'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_handle) by extensions ['colcon_meta']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_handle) by extension 'colcon_meta'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_handle) by extensions ['ros']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/tcp_handle) by extension 'ros'
+[0.153s] DEBUG:colcon.colcon_core.package_identification:Package 'src/tcp_handle' with type 'ros.ament_cmake' and name 'tcp_handle'
+[0.153s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.153s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.153s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.153s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.153s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.168s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.168s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.170s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 10 installed packages in /home/arc/Documents/automatic_arc_melting_system/install
+[0.171s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 256 installed packages in /opt/ros/foxy
+[0.172s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.220s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'action_tutorials_interfaces' is in: /home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces, /opt/ros/foxy
+	'action_tutorials_cpp' is in: /home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp, /opt/ros/foxy
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding action_tutorials_cpp action_tutorials_interfaces
+
+This may be promoted to an error in a future release of colcon-override-check.
+[0.221s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_interfaces' build argument 'cmake_args' from command line to 'None'
+[0.221s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_interfaces' build argument 'cmake_target' from command line to 'None'
+[0.221s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_interfaces' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.221s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_interfaces' build argument 'cmake_clean_cache' from command line to 'False'
+[0.221s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_interfaces' build argument 'cmake_clean_first' from command line to 'False'
+[0.221s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_interfaces' build argument 'cmake_force_configure' from command line to 'False'
+[0.221s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_interfaces' build argument 'ament_cmake_args' from command line to 'None'
+[0.221s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_interfaces' build argument 'catkin_cmake_args' from command line to 'None'
+[0.221s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_interfaces' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.221s] DEBUG:colcon.colcon_core.verb:Building package 'action_tutorials_interfaces' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_interfaces', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/action_tutorials_interfaces', 'symlink_install': False, 'test_result_base': None}
+[0.222s] Level 5:colcon.colcon_core.verb:set package 'cobotta_bcap' build argument 'cmake_args' from command line to 'None'
+[0.222s] Level 5:colcon.colcon_core.verb:set package 'cobotta_bcap' build argument 'cmake_target' from command line to 'None'
+[0.222s] Level 5:colcon.colcon_core.verb:set package 'cobotta_bcap' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.222s] Level 5:colcon.colcon_core.verb:set package 'cobotta_bcap' build argument 'cmake_clean_cache' from command line to 'False'
+[0.222s] Level 5:colcon.colcon_core.verb:set package 'cobotta_bcap' build argument 'cmake_clean_first' from command line to 'False'
+[0.222s] Level 5:colcon.colcon_core.verb:set package 'cobotta_bcap' build argument 'cmake_force_configure' from command line to 'False'
+[0.222s] Level 5:colcon.colcon_core.verb:set package 'cobotta_bcap' build argument 'ament_cmake_args' from command line to 'None'
+[0.222s] Level 5:colcon.colcon_core.verb:set package 'cobotta_bcap' build argument 'catkin_cmake_args' from command line to 'None'
+[0.222s] Level 5:colcon.colcon_core.verb:set package 'cobotta_bcap' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.222s] DEBUG:colcon.colcon_core.verb:Building package 'cobotta_bcap' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_bcap', 'symlink_install': False, 'test_result_base': None}
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'main_process' build argument 'cmake_args' from command line to 'None'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'main_process' build argument 'cmake_target' from command line to 'None'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'main_process' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'main_process' build argument 'cmake_clean_cache' from command line to 'False'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'main_process' build argument 'cmake_clean_first' from command line to 'False'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'main_process' build argument 'cmake_force_configure' from command line to 'False'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'main_process' build argument 'ament_cmake_args' from command line to 'None'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'main_process' build argument 'catkin_cmake_args' from command line to 'None'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'main_process' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.223s] DEBUG:colcon.colcon_core.verb:Building package 'main_process' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/main_process', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/main_process', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/main_process', 'symlink_install': False, 'test_result_base': None}
+[0.224s] Level 5:colcon.colcon_core.verb:set package 'msg_format' build argument 'cmake_args' from command line to 'None'
+[0.224s] Level 5:colcon.colcon_core.verb:set package 'msg_format' build argument 'cmake_target' from command line to 'None'
+[0.224s] Level 5:colcon.colcon_core.verb:set package 'msg_format' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.224s] Level 5:colcon.colcon_core.verb:set package 'msg_format' build argument 'cmake_clean_cache' from command line to 'False'
+[0.224s] Level 5:colcon.colcon_core.verb:set package 'msg_format' build argument 'cmake_clean_first' from command line to 'False'
+[0.224s] Level 5:colcon.colcon_core.verb:set package 'msg_format' build argument 'cmake_force_configure' from command line to 'False'
+[0.225s] Level 5:colcon.colcon_core.verb:set package 'msg_format' build argument 'ament_cmake_args' from command line to 'None'
+[0.225s] Level 5:colcon.colcon_core.verb:set package 'msg_format' build argument 'catkin_cmake_args' from command line to 'None'
+[0.225s] Level 5:colcon.colcon_core.verb:set package 'msg_format' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.225s] DEBUG:colcon.colcon_core.verb:Building package 'msg_format' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/msg_format', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/msg_format', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/msg_format', 'symlink_install': False, 'test_result_base': None}
+[0.226s] Level 5:colcon.colcon_core.verb:set package 'plc_control' build argument 'cmake_args' from command line to 'None'
+[0.226s] Level 5:colcon.colcon_core.verb:set package 'plc_control' build argument 'cmake_target' from command line to 'None'
+[0.226s] Level 5:colcon.colcon_core.verb:set package 'plc_control' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.226s] Level 5:colcon.colcon_core.verb:set package 'plc_control' build argument 'cmake_clean_cache' from command line to 'False'
+[0.226s] Level 5:colcon.colcon_core.verb:set package 'plc_control' build argument 'cmake_clean_first' from command line to 'False'
+[0.226s] Level 5:colcon.colcon_core.verb:set package 'plc_control' build argument 'cmake_force_configure' from command line to 'False'
+[0.226s] Level 5:colcon.colcon_core.verb:set package 'plc_control' build argument 'ament_cmake_args' from command line to 'None'
+[0.226s] Level 5:colcon.colcon_core.verb:set package 'plc_control' build argument 'catkin_cmake_args' from command line to 'None'
+[0.226s] Level 5:colcon.colcon_core.verb:set package 'plc_control' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.226s] DEBUG:colcon.colcon_core.verb:Building package 'plc_control' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/plc_control', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/plc_control', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/plc_control', 'symlink_install': False, 'test_result_base': None}
+[0.227s] Level 5:colcon.colcon_core.verb:set package 'tcp_format' build argument 'cmake_args' from command line to 'None'
+[0.227s] Level 5:colcon.colcon_core.verb:set package 'tcp_format' build argument 'cmake_target' from command line to 'None'
+[0.227s] Level 5:colcon.colcon_core.verb:set package 'tcp_format' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.227s] Level 5:colcon.colcon_core.verb:set package 'tcp_format' build argument 'cmake_clean_cache' from command line to 'False'
+[0.228s] Level 5:colcon.colcon_core.verb:set package 'tcp_format' build argument 'cmake_clean_first' from command line to 'False'
+[0.228s] Level 5:colcon.colcon_core.verb:set package 'tcp_format' build argument 'cmake_force_configure' from command line to 'False'
+[0.228s] Level 5:colcon.colcon_core.verb:set package 'tcp_format' build argument 'ament_cmake_args' from command line to 'None'
+[0.228s] Level 5:colcon.colcon_core.verb:set package 'tcp_format' build argument 'catkin_cmake_args' from command line to 'None'
+[0.228s] Level 5:colcon.colcon_core.verb:set package 'tcp_format' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.228s] DEBUG:colcon.colcon_core.verb:Building package 'tcp_format' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/tcp_format', 'symlink_install': False, 'test_result_base': None}
+[0.229s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_cpp' build argument 'cmake_args' from command line to 'None'
+[0.229s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_cpp' build argument 'cmake_target' from command line to 'None'
+[0.229s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_cpp' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.229s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_cpp' build argument 'cmake_clean_cache' from command line to 'False'
+[0.229s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_cpp' build argument 'cmake_clean_first' from command line to 'False'
+[0.229s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_cpp' build argument 'cmake_force_configure' from command line to 'False'
+[0.229s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_cpp' build argument 'ament_cmake_args' from command line to 'None'
+[0.229s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_cpp' build argument 'catkin_cmake_args' from command line to 'None'
+[0.229s] Level 5:colcon.colcon_core.verb:set package 'action_tutorials_cpp' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.229s] DEBUG:colcon.colcon_core.verb:Building package 'action_tutorials_cpp' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/action_tutorials_cpp', 'symlink_install': False, 'test_result_base': None}
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'auto_weighting' build argument 'cmake_args' from command line to 'None'
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'auto_weighting' build argument 'cmake_target' from command line to 'None'
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'auto_weighting' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'auto_weighting' build argument 'cmake_clean_cache' from command line to 'False'
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'auto_weighting' build argument 'cmake_clean_first' from command line to 'False'
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'auto_weighting' build argument 'cmake_force_configure' from command line to 'False'
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'auto_weighting' build argument 'ament_cmake_args' from command line to 'None'
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'auto_weighting' build argument 'catkin_cmake_args' from command line to 'None'
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'auto_weighting' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.230s] DEBUG:colcon.colcon_core.verb:Building package 'auto_weighting' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/auto_weighting', 'symlink_install': False, 'test_result_base': None}
+[0.230s] Level 5:colcon.colcon_core.verb:set package 'cobotta_process' build argument 'cmake_args' from command line to 'None'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'cobotta_process' build argument 'cmake_target' from command line to 'None'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'cobotta_process' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'cobotta_process' build argument 'cmake_clean_cache' from command line to 'False'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'cobotta_process' build argument 'cmake_clean_first' from command line to 'False'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'cobotta_process' build argument 'cmake_force_configure' from command line to 'False'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'cobotta_process' build argument 'ament_cmake_args' from command line to 'None'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'cobotta_process' build argument 'catkin_cmake_args' from command line to 'None'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'cobotta_process' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.231s] DEBUG:colcon.colcon_core.verb:Building package 'cobotta_process' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process', 'symlink_install': False, 'test_result_base': None}
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'tcp_handle' build argument 'cmake_args' from command line to 'None'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'tcp_handle' build argument 'cmake_target' from command line to 'None'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'tcp_handle' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.231s] Level 5:colcon.colcon_core.verb:set package 'tcp_handle' build argument 'cmake_clean_cache' from command line to 'False'
+[0.232s] Level 5:colcon.colcon_core.verb:set package 'tcp_handle' build argument 'cmake_clean_first' from command line to 'False'
+[0.232s] Level 5:colcon.colcon_core.verb:set package 'tcp_handle' build argument 'cmake_force_configure' from command line to 'False'
+[0.232s] Level 5:colcon.colcon_core.verb:set package 'tcp_handle' build argument 'ament_cmake_args' from command line to 'None'
+[0.232s] Level 5:colcon.colcon_core.verb:set package 'tcp_handle' build argument 'catkin_cmake_args' from command line to 'None'
+[0.232s] Level 5:colcon.colcon_core.verb:set package 'tcp_handle' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.232s] DEBUG:colcon.colcon_core.verb:Building package 'tcp_handle' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle', 'merge_install': False, 'path': '/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle', 'symlink_install': False, 'test_result_base': None}
+[0.233s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.237s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.237s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/tcp_format' with build type 'ament_cmake'
+[0.237s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/arc/Documents/automatic_arc_melting_system/src/tcp_format'
+[0.241s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.241s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.242s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.248s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/action_tutorials_interfaces' with build type 'ament_cmake'
+[0.248s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/arc/Documents/automatic_arc_melting_system/src/action_tutorials_interfaces'
+[0.250s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.250s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.256s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_bcap' with build type 'ament_python'
+[0.257s] Level 1:colcon.colcon_core.shell:create_environment_hook('cobotta_bcap', 'ament_prefix_path')
+[0.258s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/hook/ament_prefix_path.ps1'
+[0.259s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/hook/ament_prefix_path.dsv'
+[0.260s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/hook/ament_prefix_path.sh'
+[0.262s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.262s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.268s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/main_process' with build type 'ament_cmake'
+[0.268s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/arc/Documents/automatic_arc_melting_system/src/main_process'
+[0.270s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.270s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.276s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/msg_format' with build type 'ament_cmake'
+[0.277s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/arc/Documents/automatic_arc_melting_system/src/msg_format'
+[0.278s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.279s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.285s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/plc_control' with build type 'ament_cmake'
+[0.285s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/arc/Documents/automatic_arc_melting_system/src/plc_control'
+[0.287s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.287s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.299s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_format -- -j16 -l16
+[0.305s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_interfaces -- -j16 -l16
+[0.475s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_bcap'
+[0.476s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.476s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.483s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/main_process': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/main_process -- -j16 -l16
+[0.487s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/msg_format -- -j16 -l16
+[0.489s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/plc_control -- -j16 -l16
+[0.503s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_format -- -j16 -l16
+[0.503s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_interfaces -- -j16 -l16
+[0.540s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_interfaces
+[0.544s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_format
+[0.549s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/plc_control -- -j16 -l16
+[0.566s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/plc_control
+[0.574s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(plc_control)
+[0.577s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/plc_control
+[0.582s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control' for CMake module files
+[0.583s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control' for CMake config files
+[0.584s] Level 1:colcon.colcon_core.shell:create_environment_hook('plc_control', 'cmake_prefix_path')
+[0.585s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/hook/cmake_prefix_path.ps1'
+[0.586s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/hook/cmake_prefix_path.dsv'
+[0.586s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/hook/cmake_prefix_path.sh'
+[0.587s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib'
+[0.588s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/bin'
+[0.588s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib/pkgconfig/plc_control.pc'
+[0.588s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib/python3.8/site-packages'
+[0.588s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/bin'
+[0.589s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.ps1'
+[0.590s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.dsv'
+[0.591s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.sh'
+[0.591s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.bash'
+[0.592s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.zsh'
+[0.593s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/colcon-core/packages/plc_control)
+[0.596s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(action_tutorials_interfaces)
+[0.598s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces' for CMake module files
+[0.599s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces' for CMake config files
+[0.600s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_interfaces', 'cmake_prefix_path')
+[0.601s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/cmake_prefix_path.ps1'
+[0.601s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/cmake_prefix_path.dsv'
+[0.602s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/cmake_prefix_path.sh'
+[0.602s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib'
+[0.603s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_interfaces', 'ld_library_path_lib')
+[0.604s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/ld_library_path_lib.ps1'
+[0.604s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/ld_library_path_lib.dsv'
+[0.605s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/ld_library_path_lib.sh'
+[0.605s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/bin'
+[0.605s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib/pkgconfig/action_tutorials_interfaces.pc'
+[0.605s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib/python3.8/site-packages'
+[0.606s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_interfaces', 'pythonpath')
+[0.607s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/pythonpath.ps1'
+[0.607s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/pythonpath.dsv'
+[0.608s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_interfaces
+[0.608s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/pythonpath.sh'
+[0.608s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/bin'
+[0.609s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.ps1'
+[0.610s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.dsv'
+[0.610s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.sh'
+[0.610s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.bash'
+[0.611s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.zsh'
+[0.611s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/colcon-core/packages/action_tutorials_interfaces)
+[0.614s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(tcp_format)
+[0.615s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format' for CMake module files
+[0.616s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_format' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_format
+[0.616s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format' for CMake config files
+[0.616s] Level 1:colcon.colcon_core.shell:create_environment_hook('tcp_format', 'cmake_prefix_path')
+[0.617s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/cmake_prefix_path.ps1'
+[0.618s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/cmake_prefix_path.dsv'
+[0.618s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/cmake_prefix_path.sh'
+[0.618s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib'
+[0.618s] Level 1:colcon.colcon_core.shell:create_environment_hook('tcp_format', 'ld_library_path_lib')
+[0.619s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/ld_library_path_lib.ps1'
+[0.620s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/ld_library_path_lib.dsv'
+[0.620s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/ld_library_path_lib.sh'
+[0.620s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/bin'
+[0.620s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/pkgconfig/tcp_format.pc'
+[0.620s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages'
+[0.620s] Level 1:colcon.colcon_core.shell:create_environment_hook('tcp_format', 'pythonpath')
+[0.621s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/pythonpath.ps1'
+[0.622s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/pythonpath.dsv'
+[0.622s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/pythonpath.sh'
+[0.622s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/bin'
+[0.623s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.ps1'
+[0.624s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.dsv'
+[0.624s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.sh'
+[0.625s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.bash'
+[0.625s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.zsh'
+[0.625s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/colcon-core/packages/tcp_format)
+[0.631s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(plc_control)
+[0.633s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control' for CMake module files
+[0.634s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control' for CMake config files
+[0.634s] Level 1:colcon.colcon_core.shell:create_environment_hook('plc_control', 'cmake_prefix_path')
+[0.636s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/hook/cmake_prefix_path.ps1'
+[0.636s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/hook/cmake_prefix_path.dsv'
+[0.637s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/hook/cmake_prefix_path.sh'
+[0.637s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib'
+[0.637s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/bin'
+[0.637s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib/pkgconfig/plc_control.pc'
+[0.638s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/lib/python3.8/site-packages'
+[0.638s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/bin'
+[0.639s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.ps1'
+[0.639s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.dsv'
+[0.640s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.sh'
+[0.640s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.bash'
+[0.640s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/plc_control/package.zsh'
+[0.641s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/plc_control/share/colcon-core/packages/plc_control)
+[0.645s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(action_tutorials_interfaces)
+[0.646s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces' for CMake module files
+[0.647s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces' for CMake config files
+[0.647s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_interfaces', 'cmake_prefix_path')
+[0.648s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/cmake_prefix_path.ps1'
+[0.648s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/cmake_prefix_path.dsv'
+[0.648s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/cmake_prefix_path.sh'
+[0.649s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib'
+[0.649s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_interfaces', 'ld_library_path_lib')
+[0.650s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/ld_library_path_lib.ps1'
+[0.650s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/ld_library_path_lib.dsv'
+[0.650s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/ld_library_path_lib.sh'
+[0.651s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/bin'
+[0.651s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib/pkgconfig/action_tutorials_interfaces.pc'
+[0.651s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib/python3.8/site-packages'
+[0.651s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_interfaces', 'pythonpath')
+[0.652s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/pythonpath.ps1'
+[0.653s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/pythonpath.dsv'
+[0.653s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/hook/pythonpath.sh'
+[0.653s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/bin'
+[0.654s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.ps1'
+[0.655s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.dsv'
+[0.655s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.sh'
+[0.656s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.bash'
+[0.656s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.zsh'
+[0.656s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/share/colcon-core/packages/action_tutorials_interfaces)
+[0.657s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/action_tutorials_cpp' with build type 'ament_cmake'
+[0.657s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/arc/Documents/automatic_arc_melting_system/src/action_tutorials_cpp'
+[0.658s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.658s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.664s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/msg_format -- -j16 -l16
+[0.670s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib/python3.8/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp -- -j16 -l16
+[0.673s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(tcp_format)
+[0.675s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format' for CMake module files
+[0.675s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format' for CMake config files
+[0.675s] Level 1:colcon.colcon_core.shell:create_environment_hook('tcp_format', 'cmake_prefix_path')
+[0.676s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/cmake_prefix_path.ps1'
+[0.677s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/cmake_prefix_path.dsv'
+[0.677s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/cmake_prefix_path.sh'
+[0.677s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib'
+[0.677s] Level 1:colcon.colcon_core.shell:create_environment_hook('tcp_format', 'ld_library_path_lib')
+[0.678s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/ld_library_path_lib.ps1'
+[0.679s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/ld_library_path_lib.dsv'
+[0.679s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/ld_library_path_lib.sh'
+[0.679s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/bin'
+[0.679s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/pkgconfig/tcp_format.pc'
+[0.679s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages'
+[0.679s] Level 1:colcon.colcon_core.shell:create_environment_hook('tcp_format', 'pythonpath')
+[0.681s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/pythonpath.ps1'
+[0.681s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/pythonpath.dsv'
+[0.682s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/hook/pythonpath.sh'
+[0.682s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/bin'
+[0.683s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.ps1'
+[0.684s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.dsv'
+[0.684s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.sh'
+[0.685s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.bash'
+[0.685s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/tcp_format/package.zsh'
+[0.685s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/share/colcon-core/packages/tcp_format)
+[0.685s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/auto_weighting' with build type 'ament_cmake'
+[0.686s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/arc/Documents/automatic_arc_melting_system/src/auto_weighting'
+[0.687s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.687s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.693s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process' with build type 'ament_cmake'
+[0.693s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_process'
+[0.695s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.695s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.702s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle' with build type 'ament_cmake'
+[0.703s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle'
+[0.706s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.706s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.721s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/auto_weighting -- -j16 -l16
+[0.737s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process -- -j16 -l16
+[0.746s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle -- -j16 -l16
+[0.748s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib/python3.8/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp -- -j16 -l16
+[0.773s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/msg_format
+[0.777s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib/python3.8/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp
+[0.787s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(action_tutorials_cpp)
+[0.789s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp' for CMake module files
+[0.790s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp' for CMake config files
+[0.791s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_cpp', 'cmake_prefix_path')
+[0.793s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/cmake_prefix_path.ps1'
+[0.794s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/cmake_prefix_path.dsv'
+[0.794s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/cmake_prefix_path.sh'
+[0.795s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib'
+[0.795s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_cpp', 'ld_library_path_lib')
+[0.797s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/ld_library_path_lib.ps1'
+[0.798s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/ld_library_path_lib.dsv'
+[0.798s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/ld_library_path_lib.sh'
+[0.799s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/bin'
+[0.799s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib/pkgconfig/action_tutorials_cpp.pc'
+[0.800s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib/python3.8/site-packages'
+[0.800s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/bin'
+[0.802s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.ps1'
+[0.803s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.dsv'
+[0.804s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.sh'
+[0.805s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.bash'
+[0.806s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.zsh'
+[0.807s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/colcon-core/packages/action_tutorials_cpp)
+[0.826s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy LD_LIBRARY_PATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib:/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces/lib/python3.8/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/tcp_format/lib/python3.8/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.9/site-packages:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/action_tutorials_cpp
+[0.828s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/auto_weighting -- -j16 -l16
+[0.828s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process -- -j16 -l16
+[0.829s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle -- -j16 -l16
+[0.835s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(action_tutorials_cpp)
+[0.838s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp' for CMake module files
+[0.840s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp' for CMake config files
+[0.842s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_cpp', 'cmake_prefix_path')
+[0.844s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/cmake_prefix_path.ps1'
+[0.845s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/cmake_prefix_path.dsv'
+[0.845s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/cmake_prefix_path.sh'
+[0.846s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib'
+[0.847s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/auto_weighting
+[0.847s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_tutorials_cpp', 'ld_library_path_lib')
+[0.849s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/ld_library_path_lib.ps1'
+[0.849s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/ld_library_path_lib.dsv'
+[0.850s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/hook/ld_library_path_lib.sh'
+[0.851s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/bin'
+[0.851s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib/pkgconfig/action_tutorials_cpp.pc'
+[0.851s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/lib/python3.8/site-packages'
+[0.851s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/bin'
+[0.853s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.ps1'
+[0.854s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.dsv'
+[0.855s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.sh'
+[0.856s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.bash'
+[0.856s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/action_tutorials_cpp/package.zsh'
+[0.857s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp/share/colcon-core/packages/action_tutorials_cpp)
+[0.859s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msg_format)
+[0.862s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format' for CMake module files
+[0.864s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/msg_format
+[0.864s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format' for CMake config files
+[0.865s] Level 1:colcon.colcon_core.shell:create_environment_hook('msg_format', 'cmake_prefix_path')
+[0.866s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/cmake_prefix_path.ps1'
+[0.867s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/cmake_prefix_path.dsv'
+[0.867s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/cmake_prefix_path.sh'
+[0.868s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib'
+[0.868s] Level 1:colcon.colcon_core.shell:create_environment_hook('msg_format', 'ld_library_path_lib')
+[0.870s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/ld_library_path_lib.ps1'
+[0.870s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/ld_library_path_lib.dsv'
+[0.870s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/ld_library_path_lib.sh'
+[0.871s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/bin'
+[0.871s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/pkgconfig/msg_format.pc'
+[0.871s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.8/site-packages'
+[0.871s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/bin'
+[0.873s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.ps1'
+[0.874s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.dsv'
+[0.874s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.sh'
+[0.874s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.bash'
+[0.875s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.zsh'
+[0.875s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/colcon-core/packages/msg_format)
+[0.881s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process
+[0.883s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle
+[0.887s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_bcap': PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/cobotta_bcap build --build-base /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build install --prefix /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap --record /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/install.log --single-version-externally-managed
+[0.888s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(auto_weighting)
+[0.890s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting' for CMake module files
+[0.891s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/auto_weighting' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/auto_weighting
+[0.891s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting' for CMake config files
+[0.891s] Level 1:colcon.colcon_core.shell:create_environment_hook('auto_weighting', 'cmake_prefix_path')
+[0.893s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/hook/cmake_prefix_path.ps1'
+[0.894s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/hook/cmake_prefix_path.dsv'
+[0.894s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/hook/cmake_prefix_path.sh'
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/lib'
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/bin'
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/lib/pkgconfig/auto_weighting.pc'
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/lib/python3.8/site-packages'
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/bin'
+[0.896s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.ps1'
+[0.897s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.dsv'
+[0.897s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.sh'
+[0.897s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.bash'
+[0.897s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.zsh'
+[0.898s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/colcon-core/packages/auto_weighting)
+[0.901s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cobotta_process)
+[0.903s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process' for CMake module files
+[0.904s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process' for CMake config files
+[0.904s] Level 1:colcon.colcon_core.shell:create_environment_hook('cobotta_process', 'cmake_prefix_path')
+[0.906s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/hook/cmake_prefix_path.ps1'
+[0.906s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/hook/cmake_prefix_path.dsv'
+[0.907s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/hook/cmake_prefix_path.sh'
+[0.908s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib'
+[0.908s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/bin'
+[0.908s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib/pkgconfig/cobotta_process.pc'
+[0.908s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib/python3.8/site-packages'
+[0.909s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/bin'
+[0.911s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.ps1'
+[0.912s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.dsv'
+[0.912s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.sh'
+[0.913s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/cobotta_process' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/cobotta_process
+[0.913s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.bash'
+[0.914s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.zsh'
+[0.914s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/colcon-core/packages/cobotta_process)
+[0.918s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(tcp_handle)
+[0.921s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle' for CMake module files
+[0.921s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/tcp_handle' returned '0': CMAKE_PREFIX_PATH=/home/arc/Documents/automatic_arc_melting_system/install/tcp_format:/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process:/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting:/home/arc/Documents/automatic_arc_melting_system/install/plc_control:/home/arc/Documents/automatic_arc_melting_system/install/msg_format:/home/arc/Documents/automatic_arc_melting_system/install/main_process:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_cpp:/home/arc/Documents/automatic_arc_melting_system/install/action_tutorials_interfaces:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/tcp_handle
+[0.922s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle' for CMake config files
+[0.922s] Level 1:colcon.colcon_core.shell:create_environment_hook('tcp_handle', 'cmake_prefix_path')
+[0.924s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/hook/cmake_prefix_path.ps1'
+[0.924s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/hook/cmake_prefix_path.dsv'
+[0.925s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/hook/cmake_prefix_path.sh'
+[0.925s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib'
+[0.925s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/bin'
+[0.925s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/pkgconfig/tcp_handle.pc'
+[0.926s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/python3.8/site-packages'
+[0.926s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/bin'
+[0.928s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.ps1'
+[0.928s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.dsv'
+[0.929s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.sh'
+[0.929s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.bash'
+[0.929s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.zsh'
+[0.930s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/colcon-core/packages/tcp_handle)
+[0.935s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(auto_weighting)
+[0.938s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting' for CMake module files
+[0.939s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting' for CMake config files
+[0.939s] Level 1:colcon.colcon_core.shell:create_environment_hook('auto_weighting', 'cmake_prefix_path')
+[0.941s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/hook/cmake_prefix_path.ps1'
+[0.941s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/hook/cmake_prefix_path.dsv'
+[0.942s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/hook/cmake_prefix_path.sh'
+[0.942s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/lib'
+[0.942s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/bin'
+[0.943s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/lib/pkgconfig/auto_weighting.pc'
+[0.943s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/lib/python3.8/site-packages'
+[0.943s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/bin'
+[0.945s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.ps1'
+[0.946s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.dsv'
+[0.946s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.sh'
+[0.947s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.bash'
+[0.947s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/auto_weighting/package.zsh'
+[0.948s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/auto_weighting/share/colcon-core/packages/auto_weighting)
+[0.951s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cobotta_process)
+[0.953s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process' for CMake module files
+[0.954s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process' for CMake config files
+[0.954s] Level 1:colcon.colcon_core.shell:create_environment_hook('cobotta_process', 'cmake_prefix_path')
+[0.956s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/hook/cmake_prefix_path.ps1'
+[0.957s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/hook/cmake_prefix_path.dsv'
+[0.957s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/hook/cmake_prefix_path.sh'
+[0.957s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib'
+[0.957s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/bin'
+[0.958s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib/pkgconfig/cobotta_process.pc'
+[0.958s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/lib/python3.8/site-packages'
+[0.958s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/bin'
+[0.960s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.ps1'
+[0.961s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.dsv'
+[0.961s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.sh'
+[0.962s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.bash'
+[0.962s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/cobotta_process/package.zsh'
+[0.962s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/cobotta_process/share/colcon-core/packages/cobotta_process)
+[0.965s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(tcp_handle)
+[0.968s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle' for CMake module files
+[0.969s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle' for CMake config files
+[0.969s] Level 1:colcon.colcon_core.shell:create_environment_hook('tcp_handle', 'cmake_prefix_path')
+[0.971s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/hook/cmake_prefix_path.ps1'
+[0.971s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/hook/cmake_prefix_path.dsv'
+[0.972s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/hook/cmake_prefix_path.sh'
+[0.972s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib'
+[0.972s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/bin'
+[0.972s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/pkgconfig/tcp_handle.pc'
+[0.972s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/lib/python3.8/site-packages'
+[0.973s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/bin'
+[0.975s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.ps1'
+[0.975s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.dsv'
+[0.976s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.sh'
+[0.976s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.bash'
+[0.976s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/tcp_handle/package.zsh'
+[0.977s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/tcp_handle/share/colcon-core/packages/tcp_handle)
+[0.979s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msg_format)
+[0.982s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format' for CMake module files
+[0.983s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format' for CMake config files
+[0.983s] Level 1:colcon.colcon_core.shell:create_environment_hook('msg_format', 'cmake_prefix_path')
+[0.985s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/cmake_prefix_path.ps1'
+[0.986s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/cmake_prefix_path.dsv'
+[0.986s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/cmake_prefix_path.sh'
+[0.986s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib'
+[0.986s] Level 1:colcon.colcon_core.shell:create_environment_hook('msg_format', 'ld_library_path_lib')
+[0.988s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/ld_library_path_lib.ps1'
+[0.989s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/ld_library_path_lib.dsv'
+[0.989s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/hook/ld_library_path_lib.sh'
+[0.990s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/bin'
+[0.990s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/pkgconfig/msg_format.pc'
+[0.990s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/lib/python3.8/site-packages'
+[0.990s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/bin'
+[0.992s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.ps1'
+[0.993s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.dsv'
+[0.994s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.sh'
+[0.994s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.bash'
+[0.994s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/msg_format/package.zsh'
+[0.995s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/msg_format/share/colcon-core/packages/msg_format)
+[1.118s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap' for CMake module files
+[1.119s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/src/cobotta_bcap' returned '0': PYTHONPATH=/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/cobotta_bcap build --build-base /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/build install --prefix /home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap --record /home/arc/Documents/automatic_arc_melting_system/build/cobotta_bcap/install.log --single-version-externally-managed
+[1.119s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap' for CMake config files
+[1.120s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib'
+[1.120s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/bin'
+[1.120s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/pkgconfig/cobotta_bcap.pc'
+[1.120s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/lib/python3.8/site-packages'
+[1.120s] Level 1:colcon.colcon_core.shell:create_environment_hook('cobotta_bcap', 'pythonpath')
+[1.121s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/hook/pythonpath.ps1'
+[1.121s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/hook/pythonpath.dsv'
+[1.121s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/hook/pythonpath.sh'
+[1.122s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/bin'
+[1.122s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cobotta_bcap)
+[1.123s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/package.ps1'
+[1.123s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/package.dsv'
+[1.123s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/package.sh'
+[1.124s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/package.bash'
+[1.124s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/cobotta_bcap/package.zsh'
+[1.124s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap/share/colcon-core/packages/cobotta_bcap)
+[2.367s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/main_process' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/main_process -- -j16 -l16
+[2.383s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/main_process': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/main_process
+[2.392s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(main_process)
+[2.394s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process' for CMake module files
+[2.394s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/main_process' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arc/Documents/automatic_arc_melting_system/install/cobotta_bcap:/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/main_process
+[2.394s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process' for CMake config files
+[2.395s] Level 1:colcon.colcon_core.shell:create_environment_hook('main_process', 'cmake_prefix_path')
+[2.396s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/hook/cmake_prefix_path.ps1'
+[2.396s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/hook/cmake_prefix_path.dsv'
+[2.397s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/hook/cmake_prefix_path.sh'
+[2.397s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/lib'
+[2.397s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/bin'
+[2.397s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/lib/pkgconfig/main_process.pc'
+[2.397s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/lib/python3.8/site-packages'
+[2.397s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/bin'
+[2.399s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.ps1'
+[2.399s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.dsv'
+[2.399s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.sh'
+[2.400s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.bash'
+[2.400s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.zsh'
+[2.400s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/colcon-core/packages/main_process)
+[2.418s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(main_process)
+[2.419s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process' for CMake module files
+[2.420s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process' for CMake config files
+[2.420s] Level 1:colcon.colcon_core.shell:create_environment_hook('main_process', 'cmake_prefix_path')
+[2.421s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/hook/cmake_prefix_path.ps1'
+[2.421s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/hook/cmake_prefix_path.dsv'
+[2.421s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/hook/cmake_prefix_path.sh'
+[2.422s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/lib'
+[2.422s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/bin'
+[2.422s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/lib/pkgconfig/main_process.pc'
+[2.422s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/lib/python3.8/site-packages'
+[2.422s] Level 1:colcon.colcon_core.environment:checking '/home/arc/Documents/automatic_arc_melting_system/install/main_process/bin'
+[2.423s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.ps1'
+[2.423s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.dsv'
+[2.424s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.sh'
+[2.424s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.bash'
+[2.424s] INFO:colcon.colcon_core.shell:Creating package script '/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.zsh'
+[2.425s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/arc/Documents/automatic_arc_melting_system/install/main_process/share/colcon-core/packages/main_process)
+[2.425s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[2.425s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[2.425s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[2.425s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[2.431s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[2.431s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[2.431s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[2.437s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.438s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/arc/Documents/automatic_arc_melting_system/install/local_setup.ps1'
+[2.439s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/arc/Documents/automatic_arc_melting_system/install/_local_setup_util_ps1.py'
+[2.440s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/arc/Documents/automatic_arc_melting_system/install/setup.ps1'
+[2.441s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/arc/Documents/automatic_arc_melting_system/install/local_setup.sh'
+[2.441s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/arc/Documents/automatic_arc_melting_system/install/_local_setup_util_sh.py'
+[2.442s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/arc/Documents/automatic_arc_melting_system/install/setup.sh'
+[2.443s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/arc/Documents/automatic_arc_melting_system/install/local_setup.bash'
+[2.443s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/arc/Documents/automatic_arc_melting_system/install/setup.bash'
+[2.444s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/arc/Documents/automatic_arc_melting_system/install/local_setup.zsh'
+[2.445s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/arc/Documents/automatic_arc_melting_system/install/setup.zsh'

@@ -1,0 +1,3 @@
+[35m[1mScanning dependencies of target PlcServer[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/PlcServer.dir/src/plc_server.cpp.o[0m
+[100%] [32m[1mLinking CXX executable PlcServer[0m

@@ -1,0 +1,22 @@
+[0.193s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/main_process': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/main_process -- -j16 -l16
+[0.235s] [100%] Built target MainProcess
+[0.246s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/main_process' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/main_process -- -j16 -l16
+[0.271s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/main_process': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/main_process
+[0.272s] -- Install configuration: ""
+[0.272s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/lib/main_process/MainProcess
+[0.273s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/ament_index/resource_index/package_run_dependencies/main_process
+[0.274s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/ament_index/resource_index/parent_prefix_path/main_process
+[0.274s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/environment/ament_prefix_path.sh
+[0.274s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/environment/ament_prefix_path.dsv
+[0.275s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/environment/path.sh
+[0.275s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/environment/path.dsv
+[0.275s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/local_setup.bash
+[0.276s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/local_setup.sh
+[0.276s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/local_setup.zsh
+[0.277s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/local_setup.dsv
+[0.277s] -- Installing: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.dsv
+[0.278s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/ament_index/resource_index/packages/main_process
+[0.278s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/cmake/main_processConfig.cmake
+[0.278s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/cmake/main_processConfig-version.cmake
+[0.278s] -- Up-to-date: /home/arc/Documents/automatic_arc_melting_system/install/main_process/share/main_process/package.xml
+[0.279s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/main_process' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/main_process

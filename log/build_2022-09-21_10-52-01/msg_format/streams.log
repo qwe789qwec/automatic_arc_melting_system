@@ -1,0 +1,16 @@
+[0.205s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/arc/Documents/automatic_arc_melting_system/src/msg_format -DCMAKE_INSTALL_PREFIX=/home/arc/Documents/automatic_arc_melting_system/install/msg_format
+[0.220s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.237s] -- Using PYTHON_EXECUTABLE: /home/wilson/anaconda3/bin/python3
+[0.446s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.447s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.450s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.571s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.602s] CMake Error at /opt/ros/foxy/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:59 (message):
+[0.604s]   rosidl_generate_interfaces() called without any interface files
+[0.604s] Call Stack (most recent call first):
+[0.604s]   CMakeLists.txt:35 (rosidl_generate_interfaces)
+[0.604s] 
+[0.604s] 
+[0.605s] -- Configuring incomplete, errors occurred!
+[0.605s] See also "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/CMakeFiles/CMakeOutput.log".
+[0.615s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format' returned '1': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/arc/Documents/automatic_arc_melting_system/src/msg_format -DCMAKE_INSTALL_PREFIX=/home/arc/Documents/automatic_arc_melting_system/install/msg_format

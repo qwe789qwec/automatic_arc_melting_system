@@ -4,6 +4,7 @@
 /home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles/rebuild_cache.dir
 /home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles/edit_cache.dir
 /home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles/test.dir
+/home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles/PlcServer.dir
 /home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles/install/local.dir
 /home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles/plc_control_uninstall.dir
 /home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles/uninstall.dir

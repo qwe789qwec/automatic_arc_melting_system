@@ -1,0 +1,4 @@
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:[m[K In function ‘[01m[Kvoid plc_main(std::shared_ptr<msg_format::srv::PlcFormat_Request_<std::allocator<void> > >, std::shared_ptr<msg_format::srv::PlcFormat_Response_<std::allocator<void> > >)[m[K’:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:18:10:[m[K [01;35m[Kwarning: [m[KISO C++ forbids variable length array ‘[01m[Kwrite_msg[m[K’ [[01;35m[K-Wvla[m[K]
+   18 |     char [01;35m[Kwrite_msg[m[K[n + 1];
+      |          [01;35m[K^~~~~~~~~[m[K

@@ -1,0 +1,4 @@
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:[m[K In function ‘[01m[Kvoid plc_main(std::shared_ptr<msg_format::srv::PlcFormat_Request_<std::allocator<void> > >, std::shared_ptr<msg_format::srv::PlcFormat_Response_<std::allocator<void> > >)[m[K’:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:115:9:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ksocket_fd[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  115 |     int [01;35m[Ksocket_fd[m[K = creat_socket(plc_ip, port_fd);
+      |         [01;35m[K^~~~~~~~~[m[K

@@ -1,0 +1,10 @@
+[0.196s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/plc_control -- -j16 -l16
+[0.236s] [ 50%] [32mBuilding CXX object CMakeFiles/PlcServer.dir/src/plc_server.cpp.o[0m
+[0.339s] [01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:3:10:[m[K [01;31m[Kfatal error: [m[Kplc_control/plc_socket.hpp: No such file or directory
+[0.340s]     3 | #include [01;31m[K"plc_control/plc_socket.hpp"[m[K
+[0.344s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.344s] compilation terminated.
+[0.344s] make[2]: *** [CMakeFiles/PlcServer.dir/build.make:63: CMakeFiles/PlcServer.dir/src/plc_server.cpp.o] Error 1
+[0.345s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/PlcServer.dir/all] Error 2
+[0.345s] make: *** [Makefile:141: all] Error 2
+[0.363s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/plc_control' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/plc_control -- -j16 -l16

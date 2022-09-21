@@ -1,0 +1,4 @@
+Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/msg_format -- -j16 -l16
+Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/msg_format -- -j16 -l16
+Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/msg_format
+Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/arc/Documents/automatic_arc_melting_system/build/msg_format

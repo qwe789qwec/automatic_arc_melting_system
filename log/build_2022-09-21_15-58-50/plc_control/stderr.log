@@ -1,0 +1,13 @@
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:[m[K In function ‘[01m[Kvoid plc_main(std::shared_ptr<msg_format::srv::PlcFormat_Request_<std::allocator<void> > >, std::shared_ptr<msg_format::srv::PlcFormat_Response_<std::allocator<void> > >)[m[K’:
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/plc_control/src/plc_server.cpp:18:25:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+   18 |     char* receive_msg = [01;35m[K"init msg"[m[K;
+      |                         [01;35m[K^~~~~~~~~~[m[K
+/usr/bin/ld: CMakeFiles/PlcServer.dir/src/plc_server.cpp.o: in function `plc_main(std::shared_ptr<msg_format::srv::PlcFormat_Request_<std::allocator<void> > >, std::shared_ptr<msg_format::srv::PlcFormat_Response_<std::allocator<void> > >)':
+plc_server.cpp:(.text+0x412): undefined reference to `plc_socket::plc_socket(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int)'
+/usr/bin/ld: plc_server.cpp:(.text+0x479): undefined reference to `plc_socket::write(char*)'
+/usr/bin/ld: plc_server.cpp:(.text+0x4a0): undefined reference to `plc_socket::receive(char*)'
+/usr/bin/ld: plc_server.cpp:(.text+0x4af): undefined reference to `plc_socket::end()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/PlcServer.dir/build.make:141: PlcServer] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/PlcServer.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

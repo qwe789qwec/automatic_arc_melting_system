@@ -1,0 +1,10 @@
+/usr/bin/ld: CMakeFiles/PlcServer.dir/src/plc_server.cpp.o: in function `plc_main(std::shared_ptr<msg_format::srv::PlcFormat_Request_<std::allocator<void> > >, std::shared_ptr<msg_format::srv::PlcFormat_Response_<std::allocator<void> > >)':
+plc_server.cpp:(.text+0x412): undefined reference to `plc_socket::plc_socket(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int)'
+/usr/bin/ld: plc_server.cpp:(.text+0x479): undefined reference to `plc_socket::write(char*)'
+/usr/bin/ld: plc_server.cpp:(.text+0x4a0): undefined reference to `plc_socket::receive(char*)'
+/usr/bin/ld: plc_server.cpp:(.text+0x4af): undefined reference to `plc_socket::end()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/PlcServer.dir/build.make:141: PlcServer] Error 1
+make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/PlcServer.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:141: all] Error 2

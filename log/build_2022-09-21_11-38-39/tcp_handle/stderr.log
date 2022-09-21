@@ -1,0 +1,6 @@
+[01m[K/home/arc/Documents/automatic_arc_melting_system/src/tcp_handle/src/tcp_client.cpp:4:10:[m[K [01;31m[Kerror: [m[Kempty filename in #include
+    4 | #include [01;31m[K""[m[K
+      |          [01;31m[K^~[m[K
+make[2]: *** [CMakeFiles/server.dir/build.make:63: CMakeFiles/server.dir/src/tcp_client.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/server.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

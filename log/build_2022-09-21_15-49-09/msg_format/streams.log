@@ -1,0 +1,16 @@
+[0.218s] Invoking command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/msg_format -- -j16 -l16
+[0.253s] [  1%] Built target msg_format__cpp
+[0.254s] [ 12%] Built target msg_format__rosidl_generator_c
+[0.270s] [ 23%] Built target msg_format__rosidl_typesupport_cpp
+[0.273s] [ 35%] Built target msg_format__rosidl_typesupport_introspection_c
+[0.274s] [ 46%] Built target msg_format__rosidl_typesupport_introspection_cpp
+[0.276s] [ 57%] Built target msg_format__rosidl_typesupport_c
+[0.280s] [ 69%] Built target msg_format__rosidl_typesupport_fastrtps_cpp
+[0.302s] [ 80%] Built target msg_format__rosidl_typesupport_fastrtps_c
+[0.332s] [ 80%] Built target msg_format
+[0.333s] [ 81%] Built target msg_format__py
+[0.347s] [ 91%] Built target msg_format__python
+[0.365s] [ 95%] Built target msg_format__rosidl_typesupport_c__pyext
+[0.366s] [ 97%] Built target msg_format__rosidl_typesupport_introspection_c__pyext
+[0.366s] [100%] Built target msg_format__rosidl_typesupport_fastrtps_c__pyext
+[0.396s] Invoked command in '/home/arc/Documents/automatic_arc_melting_system/build/msg_format' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/arc/Documents/automatic_arc_melting_system/build/msg_format -- -j16 -l16

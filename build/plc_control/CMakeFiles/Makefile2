@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/arc/Documents/automatic_arc_melting_system/build/plc_co
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all:
+all: CMakeFiles/PlcServer.dir/all
 
 .PHONY : all
 
@@ -63,10 +63,38 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/PlcServer.dir/clean
 clean: CMakeFiles/plc_control_uninstall.dir/clean
 clean: CMakeFiles/uninstall.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/PlcServer.dir
+
+# All Build rule for target.
+CMakeFiles/PlcServer.dir/all:
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/depend
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles --progress-num=1,2,3 "Built target PlcServer"
+.PHONY : CMakeFiles/PlcServer.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/PlcServer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/PlcServer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arc/Documents/automatic_arc_melting_system/build/plc_control/CMakeFiles 0
+.PHONY : CMakeFiles/PlcServer.dir/rule
+
+# Convenience name for target.
+PlcServer: CMakeFiles/PlcServer.dir/rule
+
+.PHONY : PlcServer
+
+# clean rule for target.
+CMakeFiles/PlcServer.dir/clean:
+	$(MAKE) -f CMakeFiles/PlcServer.dir/build.make CMakeFiles/PlcServer.dir/clean
+.PHONY : CMakeFiles/PlcServer.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/plc_control_uninstall.dir

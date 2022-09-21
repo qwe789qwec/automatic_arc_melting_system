@@ -1,0 +1,40 @@
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  "C"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_C
+  "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/rosidl_generator_py/msg_format/srv/_cobotta_format_s.c" "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_cobotta_format_s.c.o"
+  "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/rosidl_generator_py/msg_format/srv/_furnace_format_s.c" "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_furnace_format_s.c.o"
+  "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/rosidl_generator_py/msg_format/srv/_gripper_format_s.c" "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_gripper_format_s.c.o"
+  "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/rosidl_generator_py/msg_format/srv/_plc_format_s.c" "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_plc_format_s.c.o"
+  "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/rosidl_generator_py/msg_format/srv/_slider_format_s.c" "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_slider_format_s.c.o"
+  "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/rosidl_generator_py/msg_format/srv/_weighing_format_s.c" "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/CMakeFiles/msg_format__python.dir/rosidl_generator_py/msg_format/srv/_weighing_format_s.c.o"
+  )
+set(CMAKE_C_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_C
+  "RCUTILS_ENABLE_FAULT_INJECTION"
+  "ROS_PACKAGE_NAME=\"msg_format\""
+  "msg_format__python_EXPORTS"
+  )
+
+# The include file search paths:
+set(CMAKE_C_TARGET_INCLUDE_PATH
+  "rosidl_generator_c"
+  "rosidl_generator_py"
+  "/home/wilson/anaconda3/include/python3.9"
+  "/home/wilson/anaconda3/lib/python3.9/site-packages/numpy/core/include"
+  "rosidl_typesupport_c"
+  "/opt/ros/foxy/include"
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/CMakeFiles/msg_format__rosidl_generator_c.dir/DependInfo.cmake"
+  "/home/arc/Documents/automatic_arc_melting_system/build/msg_format/CMakeFiles/msg_format__rosidl_typesupport_c.dir/DependInfo.cmake"
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

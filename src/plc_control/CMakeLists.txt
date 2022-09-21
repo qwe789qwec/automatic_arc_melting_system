@@ -21,6 +21,15 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
+find_package(rclcpp REQUIRED)
+find_package(msg_format REQUIRED)
+
+add_executable(PlcServer src/plc_server.cpp src/plc_socket.cpp)
+ament_target_dependencies(PlcServer
+rclcpp msg_format)
+
+include_directories(include)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -31,5 +40,15 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+install(
+  TARGETS PlcServer
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(
+  DIRECTORY include/
+  DESTINATION include
+)
 
 ament_package()
