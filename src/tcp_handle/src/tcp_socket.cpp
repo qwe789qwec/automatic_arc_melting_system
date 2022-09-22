@@ -9,18 +9,18 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "plc_control/plc_socket.hpp"
+#include "tcp_handle/tcp_socket.hpp"
 
 #define nonblock 0
 #define block 1
 
-plc_socket::plc_socket(std::string plc_ip, int plc_port)
+tcp_socket::tcp_socket(std::string pkg_ip, int pkg_port)
 {
-	ip = plc_ip;
-    port = plc_port;
+	ip = pkg_ip;
+    port = pkg_port;
 }
 
-int plc_socket::create(){
+int tcp_socket::create(){
 	// struct timeval timeout;
 	// fd_set readfds;
 	// timeout.tv_sec = 5;
@@ -61,7 +61,7 @@ int plc_socket::create(){
 	return 0;
 }
 
-int plc_socket::write(std::string message){
+int tcp_socket::write(std::string message){
 	char* write_msg = strcpy(new char[message.length() + 1], message.c_str());
 	int errorTimes = 0;
 	while(true){
@@ -90,7 +90,7 @@ int plc_socket::write(std::string message){
 	return 0;
 }
 
-int plc_socket::receive(char message[]){
+int tcp_socket::receive(char message[]){
 	int errorTimes = 0;
 	char buffer[1024];
 	while(true){
@@ -121,14 +121,14 @@ int plc_socket::receive(char message[]){
 	return 0;
 }
 
-int plc_socket::end(){
+int tcp_socket::end(){
 	if(close(socket_fd) < 0){
 		return -1;
 	}
 	return 0;
 }
 
-int plc_socket::socket_type(int type){
+int tcp_socket::socket_type(int type){
 	int oldSocketFlag = fcntl(socket_fd, F_GETFL, 0);
 	int newSocketFlag = oldSocketFlag | O_NONBLOCK;
 	if(type == block){

@@ -1,10 +1,10 @@
-#ifndef PLC_SOCKET_H
-#define PLC_SOCKET_H
+#ifndef DEV_SOCKET_H
+#define DEV_SOCKET_H
 
 #include <chrono>
 #include <thread>
 
-class plc_socket {
+class tcp_socket {
 	private:
 		std::string ip;
 		int port;
@@ -13,12 +13,12 @@ class plc_socket {
 
 	public:
 		std::string status;
-		plc_socket(std::string plc_ip, int plc_port);
+		tcp_socket(std::string , int);
 		int create();
-		int write(std::string message);
+		int write(std::string);
 		int receive(char*);
 		int end();
-		int socket_type(int type);
+		int socket_type(int);
 };
 
 #endif

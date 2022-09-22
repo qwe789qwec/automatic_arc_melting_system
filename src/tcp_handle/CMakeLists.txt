@@ -19,6 +19,8 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(tcp_format REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 
 add_executable(server src/tcp_client.cpp)
 ament_target_dependencies(server
@@ -27,6 +29,20 @@ ament_target_dependencies(server
 add_executable(client src/message_test.cpp)
 ament_target_dependencies(client
   rclcpp tcp_format)
+
+set(srv_files
+  "srv/CobottaFormat.srv"
+  "srv/FurnaceFormat.srv"
+  "srv/GripperFormat.srv"
+  "srv/PlcFormat.srv"
+  "srv/SliderFormat.srv"
+  "srv/WeighingFormat.srv"
+)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${srv_files}
+  DEPENDENCIES geometry_msgs # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
+)
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
