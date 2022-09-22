@@ -1,6 +1,6 @@
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/srv/plc_format.hpp"
-#include "plc_control/plc_socket.hpp"
+#include "tcp_handle/tcp_socket.hpp"
 
 #include <memory>
 
@@ -12,10 +12,9 @@ void plc_main(const std::shared_ptr<msg_format::srv::PlcFormat::Request> request
 
     std::string plc_ip = "172.17.4.71";
     int plc_port = 35353;
-    plc_socket plc_handler(plc_ip, plc_port);
+    tcp_socket plc_handler(plc_ip, plc_port);
     plc_handler.create();
-    char* write_msg = strcpy(new char[action.length() + 1], action.c_str());
-    plc_handler.write(write_msg);
+    plc_handler.write(action);
     char receive_msg[1024] = "init msg";
     plc_handler.receive(receive_msg);
     plc_handler.end();

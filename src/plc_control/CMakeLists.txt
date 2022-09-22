@@ -23,12 +23,11 @@ find_package(ament_cmake REQUIRED)
 
 find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
+find_package(tcp_handle REQUIRED)
 
-add_executable(PlcServer src/plc_server.cpp src/plc_socket.cpp)
+add_executable(PlcServer src/plc_server.cpp)
 ament_target_dependencies(PlcServer
-rclcpp msg_format)
-
-include_directories(include)
+rclcpp msg_format tcp_handle)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -44,11 +43,6 @@ endif()
 install(
   TARGETS PlcServer
   DESTINATION lib/${PROJECT_NAME}
-)
-
-install(
-  DIRECTORY include/
-  DESTINATION include
 )
 
 ament_package()

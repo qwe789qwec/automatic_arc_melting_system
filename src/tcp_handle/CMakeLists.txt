@@ -18,31 +18,6 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(tcp_format REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(rosidl_default_generators REQUIRED)
-
-add_executable(server src/tcp_client.cpp)
-ament_target_dependencies(server
-  rclcpp tcp_format)
-
-add_executable(client src/message_test.cpp)
-ament_target_dependencies(client
-  rclcpp tcp_format)
-
-set(srv_files
-  "srv/CobottaFormat.srv"
-  "srv/FurnaceFormat.srv"
-  "srv/GripperFormat.srv"
-  "srv/PlcFormat.srv"
-  "srv/SliderFormat.srv"
-  "srv/WeighingFormat.srv"
-)
-
-rosidl_generate_interfaces(${PROJECT_NAME}
-  ${srv_files}
-  DEPENDENCIES geometry_msgs # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
-)
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
@@ -59,9 +34,25 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-install(TARGETS
-  server
-  client
-  DESTINATION lib/${PROJECT_NAME})
+include_directories(include)
+
+add_library(tcp_socket src/tcp_socket.cpp)
+
+ament_export_targets(tcp_socket HAS_LIBRARY_TARGET)
+
+install(
+  DIRECTORY include/
+  DESTINATION include
+)
+
+install(
+  TARGETS tcp_socket
+  EXPORT tcp_socket
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include)
+
+  # https://www.youtube.com/watch?v=S7AjhNKHpvs
 
 ament_package()

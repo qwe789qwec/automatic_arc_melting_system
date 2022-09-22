@@ -17,15 +17,17 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(tcp_format REQUIRED)
-
-add_executable(client src/frontdoor.cpp)
-ament_target_dependencies(client
-  rclcpp tcp_format)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+
+find_package(rclcpp REQUIRED)
+find_package(msg_format REQUIRED)
+find_package(tcp_handle REQUIRED)
+
+add_executable(client src/frontdoor.cpp)
+ament_target_dependencies(client
+  rclcpp msg_format tcp_handle)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

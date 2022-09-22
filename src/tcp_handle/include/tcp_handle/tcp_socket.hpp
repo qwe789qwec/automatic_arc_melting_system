@@ -1,5 +1,5 @@
-#ifndef DEV_SOCKET_H
-#define DEV_SOCKET_H
+#ifndef TCP_SOCKET_HPP
+#define TCP_SOCKET_HPP
 
 #include <chrono>
 #include <thread>
