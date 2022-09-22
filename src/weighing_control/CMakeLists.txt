@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(auto_weighting)
+project(weighing_control)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -21,14 +21,6 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-find_package(rclcpp REQUIRED)
-find_package(msg_format REQUIRED)
-find_package(tcp_handle REQUIRED)
-
-add_executable(client src/frontdoor.cpp)
-ament_target_dependencies(client
-  rclcpp msg_format tcp_handle)
-
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -40,8 +32,17 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-install(TARGETS
-  client
-  DESTINATION lib/${PROJECT_NAME})
+find_package(rclcpp REQUIRED)
+find_package(msg_format REQUIRED)
+find_package(tcp_handle REQUIRED)
+
+add_executable(WeighingServer src/weighing_server.cpp)
+ament_target_dependencies(WeighingServer
+rclcpp msg_format tcp_handle)
+
+install(
+  TARGETS WeighingServer
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 ament_package()

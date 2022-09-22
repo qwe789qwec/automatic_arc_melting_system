@@ -1,5 +1,6 @@
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/srv/plc_format.hpp"
+#include "msg_format/srv/weighing_format.hpp"
 
 #include <chrono>
 #include <cstdlib>
@@ -17,15 +18,15 @@ int main(int argc, char **argv)
   }
 
   std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("main_process");
-  rclcpp::Client<msg_format::srv::PlcFormat>::SharedPtr main_process =
-    node->create_client<msg_format::srv::PlcFormat>("plc_format");
+  rclcpp::Client<msg_format::srv::WeighingFormat>::SharedPtr main_process =
+    node->create_client<msg_format::srv::WeighingFormat>("weighing_format");
 
   std::string action = argv[1];
   action = action + "\r\n";
 
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
 
-  auto request = std::make_shared<msg_format::srv::PlcFormat::Request>();
+  auto request = std::make_shared<msg_format::srv::WeighingFormat::Request>();
   request->action = action;
 
   while (!main_process->wait_for_service(1s)) {

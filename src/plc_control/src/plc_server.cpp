@@ -10,8 +10,8 @@ void plc_main(const std::shared_ptr<msg_format::srv::PlcFormat::Request> request
     std::string action = request->action;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
 
-    std::string plc_ip = "172.17.4.71";
-    int plc_port = 35353;
+    std::string plc_ip = "192.168.0.4";
+    int plc_port = 9527;
     tcp_socket plc_handler(plc_ip, plc_port);
     plc_handler.create();
     plc_handler.write(action);
