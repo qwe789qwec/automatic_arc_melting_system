@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     rclcpp::Service<msg_format::srv::WeighingFormat>::SharedPtr WeighingServer =
         node->create_service<msg_format::srv::WeighingFormat>("weighing_format", &plc_main);
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "plc_main");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "weighing_main");
 
     rclcpp::spin(node);
     rclcpp::shutdown();

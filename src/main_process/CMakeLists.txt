@@ -28,6 +28,10 @@ add_executable(MainProcess src/main_process.cpp)
 ament_target_dependencies(MainProcess
 rclcpp msg_format)
 
+add_executable(multnode src/multnode.cpp)
+ament_target_dependencies(multnode
+rclcpp msg_format)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -41,6 +45,7 @@ endif()
 
 install(TARGETS
   MainProcess
+  multnode
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
