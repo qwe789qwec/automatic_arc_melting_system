@@ -24,8 +24,8 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
 
-add_executable(MainProcess src/main_process.cpp)
-ament_target_dependencies(MainProcess
+add_executable(mainbroad src/main_broad.cpp)
+ament_target_dependencies(mainbroad
 rclcpp msg_format)
 
 add_executable(multnode src/multnode.cpp)
@@ -44,7 +44,7 @@ if(BUILD_TESTING)
 endif()
 
 install(TARGETS
-  MainProcess
+  mainbroad
   multnode
   DESTINATION lib/${PROJECT_NAME})
 

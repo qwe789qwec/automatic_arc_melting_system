@@ -24,17 +24,23 @@ find_package(ament_cmake REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
+set(msg_files
+  "msg/Process.msg"
+)
+
 set(srv_files
   "srv/CobottaFormat.srv"
   "srv/FurnaceFormat.srv"
   "srv/GripperFormat.srv"
   "srv/PlcFormat.srv"
+  "srv/ProcessFormat.srv"
   "srv/SliderFormat.srv"
   "srv/WeighingFormat.srv"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   ${srv_files}
+  ${msg_files}
   DEPENDENCIES geometry_msgs # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
 )
 
