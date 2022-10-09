@@ -9,8 +9,8 @@
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
-int plc_client(std::string action){
-    std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("plc_process");
+int weighing_client(std::string action){
+    std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("weighing_process");
     int count = std::stoi(action);
     rclcpp::Client<msg_format::srv::ProcessFormat>::SharedPtr plc_process =
         node->create_client<msg_format::srv::ProcessFormat>("process_format");
@@ -52,14 +52,14 @@ int plc_client(std::string action){
     return 0;
 }
 
-class PlcSubscriber : public rclcpp::Node
+class WeighingSubscriber : public rclcpp::Node
 {
   public:
-    PlcSubscriber()
-    : Node("plc_subscriber")
+    WeighingSubscriber()
+    : Node("weighing_subscriber")
     {
       subscription_ = this->create_subscription<msg_format::msg::Process>(
-      "topic", 10, std::bind(&PlcSubscriber::topic_callback, this, _1));
+      "topic", 10, std::bind(&WeighingSubscriber::topic_callback, this, _1));
     }
 
   private:
@@ -70,21 +70,21 @@ class PlcSubscriber : public rclcpp::Node
       if(message.rfind("init", 0) == 0){
         message = message.substr(5);
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        plc_client(message);
+        weighing_client(message);
       }
       else if(message.rfind("keep", 0) == 0){
         message = message.substr(5);
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        plc_client(message);
+        weighing_client(message);
       }
       else if(message.rfind("first", 0) == 0){
         message = message.substr(7);
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        plc_client(message);
+        weighing_client(message);
       }
       else{
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        plc_client("0");
+        weighing_client("0");
       }
     }
     rclcpp::Subscription<msg_format::msg::Process>::SharedPtr subscription_;
@@ -93,7 +93,7 @@ class PlcSubscriber : public rclcpp::Node
 int main(int argc, char * argv[])
 {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<PlcSubscriber>());
+    rclcpp::spin(std::make_shared<WeighingSubscriber>());
 
     rclcpp::shutdown();
     return 0;

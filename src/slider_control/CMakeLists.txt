@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(weighing_control)
+project(slider_control)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -36,18 +36,13 @@ find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
 find_package(tcp_handle REQUIRED)
 
-add_executable(WeighingServer src/weighing_server.cpp)
-ament_target_dependencies(WeighingServer
-rclcpp msg_format tcp_handle)
-
-add_executable(WeighingControl src/weighing_control.cpp)
-ament_target_dependencies(WeighingControl
+add_executable(SliderControl src/slider_control.cpp)
+ament_target_dependencies(SliderControl
 rclcpp msg_format tcp_handle)
 
 install(
   TARGETS
-  WeighingServer
-  WeighingControl
+  SliderControl
   DESTINATION lib/${PROJECT_NAME}
 )
 
