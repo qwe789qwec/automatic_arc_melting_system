@@ -1,52 +1,132 @@
-#include "rclcpp/rclcpp.hpp"
-#include "msg_format/srv/plc_format.hpp"
-#include "msg_format/srv/weighing_format.hpp"
-
 #include <chrono>
-#include <cstdlib>
+#include <cinttypes>
+#include <cstdio>
+#include <memory>
+#include <string>
+#include <utility>
+
+#include "rclcpp/rclcpp.hpp"
+#include "msg_format/msg/process_msg.hpp"
+#include "msg_format/srv/process_service.hpp"
 #include <memory>
 
 using namespace std::chrono_literals;
 
-int main(int argc, char **argv)
+/* This example creates a subclass of Node and uses std::bind() to register a
+* member function as a callback from the timer. */
+
+std::string step = "init ";
+// init
+// weighing open
+// slider move 10
+// cobotta Yes3.pcs
+// weighing close slider move 10
+// cobotta Yes3.pcs
+
+void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> request,
+          std::shared_ptr<msg_format::srv::ProcessService::Response>      response)
 {
-  rclcpp::init(argc, argv);
-
-  if (argc != 2) {
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "main process");
-      return 1;
-  }
-
-  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("main_process");
-  rclcpp::Client<msg_format::srv::WeighingFormat>::SharedPtr main_process =
-    node->create_client<msg_format::srv::WeighingFormat>("weighing_format");
-
-  std::string action = argv[1];
-  action = action + "\r\n";
-
+  std::string action = request->action;
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
 
-  auto request = std::make_shared<msg_format::srv::WeighingFormat::Request>();
-  request->action = action;
-
-  while (!main_process->wait_for_service(1s)) {
-    if (!rclcpp::ok()) {
-      RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service. Exiting.");
-      return 0;
+  if(step.compare("init") == 0){
+    if(action.compare("slider ok") == 0){
+      response->result = "OK";
+      step = "step one weighing open";
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service not available, waiting again...");
   }
+  else if(step.compare("step one") == 0){
+    if(action.compare("weighing ok") == 0){
+      response->result = "OK";
+      step = "step two slider move 10";
+    }
+  }
+  else if(step.compare("step two") == 0){
+    if(action.compare("slider ok") == 0){
+      response->result = "OK";
+      step = "step three cobotta Yes3.pcs";
+    }
+  }
+  else if(step.compare("step three") == 0){
+    if(action.compare("cobotta ok") == 0){
+      response->result = "OK";
+      step = "step four weighing close slider move 10";
+    }
+  }
+  else if(step.compare("step four") == 0){
+    if(action.compare("slider ok") == 0){
+      response->result = "OK";
+      step = "step five cobotta Yes3.pcs";
+    }
+  }
+  else if(step.compare("step five") == 0){
+    if(action.compare("cobotta ok") == 0){
+      response->result = "OK";
+      step = "Standby";
+    }
+  }
+  else if(step.compare("step six") == 0){
+    if(action.compare("cobotta ok") == 0){
+      response->result = "OK";
+      step = "Standby";
+    }
+  }
+  else{
+    response->result = action;
+    // step = "init";
+  }
+}
 
-  auto result = main_process->async_send_request(request);
-  // Wait for the result.
-  if (rclcpp::spin_until_future_complete(node, result) ==
-    rclcpp::FutureReturnCode::SUCCESS)
+struct MainPublisher : public rclcpp::Node
+{
+  MainPublisher(const std::string & name, const std::string & output)
+  : Node(name, rclcpp::NodeOptions().use_intra_process_comms(true))
   {
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "result: %s", result.get()->result.c_str());
-  } else {
-    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service add_two_ints");
+    // Create a publisher on the output topic.
+    pub_ = this->create_publisher<msg_format::msg::ProcessMsg>(output, 10);
+    std::weak_ptr<std::remove_pointer<decltype(pub_.get())>::type> captured_pub = pub_;
+    // Create a timer which publishes on the output topic at ~1Hz.
+    auto callback = [captured_pub]() -> void {
+        auto pub_ptr = captured_pub.lock();
+        if (!pub_ptr) {
+          return;
+        }
+        // static int32_t count = 0;
+        msg_format::msg::ProcessMsg::UniquePtr msg(new msg_format::msg::ProcessMsg());
+        msg->process = step.c_str();
+        // RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", msg.process.c_str());
+        // printf(
+        //   "Published message: %s, and address: 0x%" PRIXPTR "\n", msg->process.c_str(),
+        //   reinterpret_cast<std::uintptr_t>(msg.get()));
+        pub_ptr->publish(std::move(msg));
+      };
+    timer_ = this->create_wall_timer(1s, callback);
   }
 
-  rclcpp::shutdown();
-  return 0;
+  rclcpp::Publisher<msg_format::msg::ProcessMsg>::SharedPtr pub_;
+  rclcpp::TimerBase::SharedPtr timer_;
+};
+
+int main(int argc, char * argv[])
+{
+    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
+    rclcpp::init(argc, argv);
+//   rclcpp::spin(std::make_shared<MainPublisher>());
+    rclcpp::executors::SingleThreadedExecutor executor;
+
+    std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("main_server");
+
+    rclcpp::Service<msg_format::srv::ProcessService>::SharedPtr service =
+    node->create_service<msg_format::srv::ProcessService>("process_service", &process);
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start the process service");
+
+//   rclcpp::spin(node);
+    auto process = std::make_shared<MainPublisher>("main_process", "topic");
+    executor.add_node(process);
+    executor.add_node(node);
+    executor.spin();
+
+    rclcpp::shutdown();
+    return 0;
 }
