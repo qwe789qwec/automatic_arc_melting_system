@@ -69,23 +69,18 @@ class PlcSubscriber : public rclcpp::Node
       RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
       if(message.rfind("init", 0) == 0){
         message = message.substr(5);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        plc_client(message);
       }
       else if(message.rfind("keep", 0) == 0){
         message = message.substr(5);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        plc_client(message);
       }
       else if(message.rfind("first", 0) == 0){
         message = message.substr(7);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        plc_client(message);
       }
       else{
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        plc_client("0");
+        message = "0";
       }
+      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
+        plc_client(message);
     }
     rclcpp::Subscription<msg_format::msg::Process>::SharedPtr subscription_;
 };
