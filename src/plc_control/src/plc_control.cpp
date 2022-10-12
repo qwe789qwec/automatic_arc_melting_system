@@ -3,32 +3,23 @@
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-#include "msg_format/msg/process.hpp"
-#include "msg_format/srv/process_format.hpp"
+#include "msg_format/msg/process_msg.hpp"
+#include "msg_format/srv/process_service.hpp"
+#include "tcp_handle/tcp_socket.hpp"
+#include <unistd.h>
 
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
+std::string plc_ip = "192.168.0.4";
+int plc_port = 9527;
+
 int plc_client(std::string action){
     std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("plc_process");
-    int count = std::stoi(action);
-    rclcpp::Client<msg_format::srv::ProcessFormat>::SharedPtr plc_process =
-        node->create_client<msg_format::srv::ProcessFormat>("process_format");
-    
-    if(count > 60){
-        action = "three";
-    }
-    else if(count > 40){
-        action = "two";
-    }
-    else if(count > 20){
-        action = "one";
-    }
-    else{
-        action = "init";
-    }
+    rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr plc_process =
+        node->create_client<msg_format::srv::ProcessService>("process_service");
 
-    auto request = std::make_shared<msg_format::srv::ProcessFormat::Request>();
+    auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
 
     while (!plc_process->wait_for_service(1s)) {
@@ -58,31 +49,29 @@ class PlcSubscriber : public rclcpp::Node
     PlcSubscriber()
     : Node("plc_subscriber")
     {
-      subscription_ = this->create_subscription<msg_format::msg::Process>(
+      subscription_ = this->create_subscription<msg_format::msg::ProcessMsg>(
       "topic", 10, std::bind(&PlcSubscriber::topic_callback, this, _1));
     }
 
   private:
-    void topic_callback(const msg_format::msg::Process::SharedPtr msg) const
+    void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg) const
     {
       std::string message = msg->process;
-      RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-      if(message.rfind("init", 0) == 0){
-        message = message.substr(5);
-      }
-      else if(message.rfind("keep", 0) == 0){
-        message = message.substr(5);
-      }
-      else if(message.rfind("first", 0) == 0){
-        message = message.substr(7);
-      }
-      else{
-        message = "0";
+      // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
+      if(message.compare("step 100") == 0){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket plc_handler(plc_ip, plc_port);
+        plc_handler.create();
+        plc_handler.write("X5");
+        plc_handler.receive(receive_msg);
+        plc_handler.end();
+        plc_client("plc ok");
+        usleep(1500*1000);
       }
       RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        plc_client(message);
     }
-    rclcpp::Subscription<msg_format::msg::Process>::SharedPtr subscription_;
+    rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 };
 
 int main(int argc, char * argv[])

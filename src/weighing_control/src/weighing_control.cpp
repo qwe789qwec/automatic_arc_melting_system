@@ -59,7 +59,7 @@ class WeighingSubscriber : public rclcpp::Node
     void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg) const
     {
       std::string message = msg->process;
-      RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
+      // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
       if(message.compare("step one") == 0){
         // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
         char receive_msg[1024];
@@ -74,7 +74,7 @@ class WeighingSubscriber : public rclcpp::Node
         weiging_handler.receive(receive_msg);
         weiging_handler.end();
         weighing_client("weighing ok");
-        usleep(1000*1000);
+        usleep(1500*1000);
       }
     }
     rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;

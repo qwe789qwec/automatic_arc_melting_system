@@ -66,7 +66,7 @@ class SliderSubscriber : public rclcpp::Node
       std::string message;
       // int head, end;
       message = msg->process;
-      RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
+      // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
       // head = message.find("slider");
       // if(head > 0){
       //   end = message.find("slider", head+3)
@@ -95,7 +95,7 @@ class SliderSubscriber : public rclcpp::Node
         slider_handler.receive(receive_msg);
         slider_handler.end();
         slider_client("slider ok");
-        usleep(1000*1000);
+        usleep(1500*1000);
       }
       else if(message.compare("step two") == 0){
         // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
@@ -110,7 +110,7 @@ class SliderSubscriber : public rclcpp::Node
         slider_handler.receive(receive_msg);
         slider_handler.end();
         slider_client("slider ok");
-        usleep(1000*1000);
+        usleep(1500*1000);
       }
     }
     rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;

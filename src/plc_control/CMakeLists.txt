@@ -36,17 +36,12 @@ find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
 find_package(tcp_handle REQUIRED)
 
-add_executable(PlcServer src/plc_server.cpp)
-ament_target_dependencies(PlcServer
-rclcpp msg_format tcp_handle)
-
 add_executable(PlcControl src/plc_control.cpp)
 ament_target_dependencies(PlcControl
 rclcpp msg_format tcp_handle)
 
 install(
   TARGETS
-  PlcServer
   PlcControl
   DESTINATION lib/${PROJECT_NAME}
 )
