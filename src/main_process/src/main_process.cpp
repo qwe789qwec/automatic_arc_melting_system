@@ -8,14 +8,16 @@
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
 #include "msg_format/srv/process_service.hpp"
-#include <memory>
 
 using namespace std::chrono_literals;
 
 /* This example creates a subclass of Node and uses std::bind() to register a
 * member function as a callback from the timer. */
 
-std::string step = "init ";
+std::string step = "init";
+// step[1] = "slider 01 000186A0";
+// step[2] = "slider 02 000186A0";
+// step[3] = "slider 04 000186A0";
 // init
 // weighing open
 // slider move 10
@@ -32,31 +34,31 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
   if(step.compare("init") == 0){
     if(action.compare("slider ok") == 0){
       response->result = "OK";
-      step = "step one weighing open";
+      step = "step one";
     }
   }
   else if(step.compare("step one") == 0){
     if(action.compare("weighing ok") == 0){
       response->result = "OK";
-      step = "step two slider move 10";
+      step = "step two";
     }
   }
   else if(step.compare("step two") == 0){
     if(action.compare("slider ok") == 0){
       response->result = "OK";
-      step = "step three cobotta Yes3.pcs";
+      step = "step three";
     }
   }
   else if(step.compare("step three") == 0){
     if(action.compare("cobotta ok") == 0){
       response->result = "OK";
-      step = "step four weighing close slider move 10";
+      step = "step four";
     }
   }
   else if(step.compare("step four") == 0){
     if(action.compare("slider ok") == 0){
       response->result = "OK";
-      step = "step five cobotta Yes3.pcs";
+      step = "step five";
     }
   }
   else if(step.compare("step five") == 0){
@@ -73,6 +75,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
   }
   else{
     response->result = action;
+    response->result = "OK";
     // step = "init";
   }
 }
@@ -91,16 +94,22 @@ struct MainPublisher : public rclcpp::Node
         if (!pub_ptr) {
           return;
         }
-        // static int32_t count = 0;
+        static int count = 0;
         msg_format::msg::ProcessMsg::UniquePtr msg(new msg_format::msg::ProcessMsg());
+        if(count >= 4){
+          count = 0;
+        }
+        else{
+          count++;
+        }
         msg->process = step.c_str();
-        // RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", msg.process.c_str());
+        // RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", step.c_str());
         // printf(
         //   "Published message: %s, and address: 0x%" PRIXPTR "\n", msg->process.c_str(),
         //   reinterpret_cast<std::uintptr_t>(msg.get()));
         pub_ptr->publish(std::move(msg));
       };
-    timer_ = this->create_wall_timer(1s, callback);
+    timer_ = this->create_wall_timer(0.1s, callback);
   }
 
   rclcpp::Publisher<msg_format::msg::ProcessMsg>::SharedPtr pub_;

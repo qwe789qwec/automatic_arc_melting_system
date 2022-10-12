@@ -3,35 +3,33 @@
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-#include "msg_format/msg/process.hpp"
-#include "msg_format/srv/process_format.hpp"
+#include "msg_format/msg/process_msg.hpp"
+#include "msg_format/srv/process_service.hpp"
+#include "tcp_handle/tcp_socket.hpp"
+#include <unistd.h>
 
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
+std::string slider_ip = "192.168.0.3";
+int slider_port = 64511;
+
+std::string servo_onf(std::string station, std::string state){
+  return "!99232" + station + state + "@@\r\n";
+}
+std::string servo_move(std::string station, std::string position){
+  return "!99234" + station + "006400640064" + position + "@@\r\n";
+}
+
 int slider_client(std::string action){
     std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("slider_process");
-    int count = std::stoi(action);
-    rclcpp::Client<msg_format::srv::ProcessFormat>::SharedPtr plc_process =
-        node->create_client<msg_format::srv::ProcessFormat>("process_format");
-    
-    if(count > 60){
-        action = "three";
-    }
-    else if(count > 40){
-        action = "two";
-    }
-    else if(count > 20){
-        action = "one";
-    }
-    else{
-        action = "init";
-    }
+    rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr slider_process =
+        node->create_client<msg_format::srv::ProcessService>("process_service");
 
-    auto request = std::make_shared<msg_format::srv::ProcessFormat::Request>();
+    auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
 
-    while (!plc_process->wait_for_service(1s)) {
+    while (!slider_process->wait_for_service(1s)) {
         if (!rclcpp::ok()) {
         RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service. Exiting.");
         return -1;
@@ -39,7 +37,7 @@ int slider_client(std::string action){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service not available, waiting again...");
     }
 
-    auto result = plc_process->async_send_request(request);
+    auto result = slider_process->async_send_request(request);
     // Wait for the result.
     if (rclcpp::spin_until_future_complete(node, result) ==
         rclcpp::FutureReturnCode::SUCCESS)
@@ -58,36 +56,64 @@ class SliderSubscriber : public rclcpp::Node
     SliderSubscriber()
     : Node("Slider_subscriber")
     {
-      subscription_ = this->create_subscription<msg_format::msg::Process>(
+      subscription_ = this->create_subscription<msg_format::msg::ProcessMsg>(
       "topic", 10, std::bind(&SliderSubscriber::topic_callback, this, _1));
     }
 
   private:
-    void topic_callback(const msg_format::msg::Process::SharedPtr msg) const
+    void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg) const
     {
-      std::string message = msg->process;
+      std::string message;
+      // int head, end;
+      message = msg->process;
       RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-      if(message.rfind("init", 0) == 0){
-        message = message.substr(5);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        slider_client(message);
+      // head = message.find("slider");
+      // if(head > 0){
+      //   end = message.find("slider", head+3)
+      //   end = end - head;
+      //   action = message.substr(head + 7, end);
+      //   slider_client(message);
+      // }
+      if(message.compare("init") == 0){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket slider_handler(slider_ip, slider_port);
+        slider_handler.create();
+        slider_handler.write(servo_onf("01", "1"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_onf("02", "1"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_onf("04", "1"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_move("01", "000186A0"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_move("02", "000186A0"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_move("04", "000186A0"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_onf("07", "0"));
+        slider_handler.receive(receive_msg);
+        slider_handler.end();
+        slider_client("slider ok");
+        usleep(1000*1000);
       }
-      else if(message.rfind("keep", 0) == 0){
-        message = message.substr(5);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        slider_client(message);
-      }
-      else if(message.rfind("first", 0) == 0){
-        message = message.substr(7);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        slider_client(message);
-      }
-      else{
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
-        slider_client("0");
+      else if(message.compare("step two") == 0){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket slider_handler(slider_ip, slider_port);
+        slider_handler.create();
+        slider_handler.write(servo_onf("01", "1"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_move("01", "00086470"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_onf("01", "0"));
+        slider_handler.receive(receive_msg);
+        slider_handler.end();
+        slider_client("slider ok");
+        usleep(1000*1000);
       }
     }
-    rclcpp::Subscription<msg_format::msg::Process>::SharedPtr subscription_;
+    rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 };
 
 int main(int argc, char * argv[])
