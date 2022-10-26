@@ -8,6 +8,10 @@
 #include "tcp_handle/tcp_socket.hpp"
 #include <unistd.h>
 
+#define arc_pos "00000000"
+#define shelf_pos "000249F0"
+#define weighing_pos "0009C400"
+
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
@@ -74,7 +78,8 @@ class SliderSubscriber : public rclcpp::Node
       //   action = message.substr(head + 7, end);
       //   slider_client(message);
       // }
-      if(message.compare("init") == 0){
+      static int count = 0;
+      if(message.compare("init") == 0 && count == 0){
         // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
         char receive_msg[1024];
         tcp_socket slider_handler(slider_ip, slider_port);
@@ -85,32 +90,89 @@ class SliderSubscriber : public rclcpp::Node
         slider_handler.receive(receive_msg);
         slider_handler.write(servo_onf("04", "1"));
         slider_handler.receive(receive_msg);
-        slider_handler.write(servo_move("01", "000186A0"));
+        slider_handler.write(servo_move("01", arc_pos));
         slider_handler.receive(receive_msg);
-        slider_handler.write(servo_move("02", "000186A0"));
+        slider_handler.write(servo_move("02", arc_pos));
         slider_handler.receive(receive_msg);
-        slider_handler.write(servo_move("04", "000186A0"));
+        slider_handler.write(servo_move("04", arc_pos));
         slider_handler.receive(receive_msg);
         slider_handler.write(servo_onf("07", "0"));
         slider_handler.receive(receive_msg);
         slider_handler.end();
         slider_client("slider ok");
         usleep(1500*1000);
+        count++;
       }
-      else if(message.compare("step two") == 0){
+      else if(message.compare("step one") == 0 && count == 1){
         // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
         char receive_msg[1024];
         tcp_socket slider_handler(slider_ip, slider_port);
         slider_handler.create();
         slider_handler.write(servo_onf("01", "1"));
         slider_handler.receive(receive_msg);
-        slider_handler.write(servo_move("01", "00086470"));
+        slider_handler.write(servo_move("01", weighing_pos));
+        usleep(8000*1000);
         slider_handler.receive(receive_msg);
         slider_handler.write(servo_onf("01", "0"));
         slider_handler.receive(receive_msg);
         slider_handler.end();
         slider_client("slider ok");
         usleep(1500*1000);
+        count++;
+      }
+      else if(message.compare("step three") == 0 && count == 2){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket slider_handler(slider_ip, slider_port);
+        slider_handler.create();
+        slider_handler.write(servo_onf("01", "1"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_move("01", shelf_pos));
+        usleep(5000*1000);
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_onf("01", "0"));
+        slider_handler.receive(receive_msg);
+        slider_handler.end();
+        slider_client("slider ok");
+        usleep(1500*1000);
+        count++;
+      }
+      else if(message.compare("step six") == 0 && count == 3){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket slider_handler(slider_ip, slider_port);
+        slider_handler.create();
+        slider_handler.write(servo_onf("01", "1"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_move("01", weighing_pos));
+        usleep(5000*1000);
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_onf("01", "0"));
+        slider_handler.receive(receive_msg);
+        slider_handler.end();
+        slider_client("slider ok");
+        usleep(1500*1000);
+        count++;
+      }
+      else if(message.compare("step nine") == 0 && count == 4){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket slider_handler(slider_ip, slider_port);
+        slider_handler.create();
+        slider_handler.write(servo_onf("01", "1"));
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_move("01", arc_pos));
+        usleep(8000*1000);
+        slider_handler.receive(receive_msg);
+        slider_handler.write(servo_onf("01", "0"));
+        slider_handler.receive(receive_msg);
+        slider_handler.end();
+        slider_client("slider ok");
+        usleep(1500*1000);
+        count++;
+      }
+      else if(message.compare("Standby") == 0){
+        count = 0;
       }
     }
     rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;

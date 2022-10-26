@@ -39,11 +39,13 @@ def cobotta_task(task):
     mode = 1
     hr = m_bcapclient.task_start(HTask,mode,"")
 
+    print("into loop")
     while True:
         TaskStatus = m_bcapclient.task_execute(HTask,"GetStatus")
-        print("TaskStatus : ",TaskStatus)
+        # print("TaskStatus : ",TaskStatus)
         if(TaskStatus != 3):
             break
+    print("out loop")
 
     # Disconnect
     if(HTask != 0):
@@ -84,20 +86,86 @@ class CobottaSubscriber(Node):
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
-        self.get_logger().info('I heard: "%s"' % msg.process)
-        if msg.process.startswith("step three"):
-            cobotta_task("Yes3")
+        # self.get_logger().info('I heard: "%s"' % msg.process)
+        global count
+        if msg.process.startswith("init") and count == 0:
+            cobotta_task("init")
             cobotta_client = CobottaClient()
             message = "cobotta ok"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
             time.sleep(1.5)
+            count += 1
+            
+        elif msg.process.startswith("step two") and count == 1:
+            cobotta_task("take_dose")
+            cobotta_client = CobottaClient()
+            message = "cobotta ok"
+            response = cobotta_client.send_request(message)
+            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+            cobotta_client.destroy_node()
+            time.sleep(1.5)
+            count += 1
+
+        elif msg.process.startswith("step four") and count == 2:
+            cobotta_task("put_l")
+            cobotta_client = CobottaClient()
+            message = "cobotta ok"
+            response = cobotta_client.send_request(message)
+            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+            cobotta_client.destroy_node()
+            time.sleep(1.5)
+            count += 1
+
+        elif msg.process.startswith("step five") and count == 3:
+            cobotta_task("take_m")
+            cobotta_client = CobottaClient()
+            message = "cobotta ok"
+            response = cobotta_client.send_request(message)
+            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+            cobotta_client.destroy_node()
+            time.sleep(1.5)
+            count += 1
+
+        elif msg.process.startswith("step seven") and count == 4:
+            cobotta_task("put_dose")
+            cobotta_client = CobottaClient()
+            message = "cobotta ok"
+            response = cobotta_client.send_request(message)
+            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+            cobotta_client.destroy_node()
+            time.sleep(1.5)
+            count += 1
+        
+        elif msg.process.startswith("step eight") and count == 5:
+            cobotta_task("take_bowl")
+            cobotta_client = CobottaClient()
+            message = "cobotta ok"
+            response = cobotta_client.send_request(message)
+            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+            cobotta_client.destroy_node()
+            time.sleep(1.5)
+            count += 1
+        
+        elif msg.process.startswith("step ten") and count == 6:
+            cobotta_task("put_bowl")
+            cobotta_client = CobottaClient()
+            message = "cobotta ok"
+            response = cobotta_client.send_request(message)
+            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+            cobotta_client.destroy_node()
+            time.sleep(1.5)
+            count += 1
+        
+        elif msg.process.startswith("Standby"):
+            count = 0
 
 
 def main(args=None):
     rclpy.init(args=args)
-    
+    global count
+    count  = 0
 
     cobotta_subscriber = CobottaSubscriber()
 

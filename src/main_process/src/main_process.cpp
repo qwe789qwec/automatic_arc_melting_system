@@ -15,60 +15,102 @@ using namespace std::chrono_literals;
 * member function as a callback from the timer. */
 
 std::string step = "init";
-// step[1] = "slider 01 000186A0";
-// step[2] = "slider 02 000186A0";
-// step[3] = "slider 04 000186A0";
-// init
-// weighing open
-// slider move 10
-// cobotta Yes3.pcs
-// weighing close slider move 10
-// cobotta Yes3.pcs
 
 void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> request,
           std::shared_ptr<msg_format::srv::ProcessService::Response>      response)
 {
   std::string action = request->action;
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
+  static bool slider = false;
+  static bool weighing = false;
+  static bool cobotta = false;
+
+  if(action.compare("slider ok") == 0){
+    slider = true;
+  }
+  if(action.compare("weighing ok") == 0){
+    weighing = true;
+  }
+  if(action.compare("cobotta ok") == 0){
+    cobotta = true;
+  }
 
   if(step.compare("init") == 0){
-    if(action.compare("slider ok") == 0){
+    if(slider && weighing && cobotta){
       response->result = "OK";
       step = "step one";
+      slider = false;
+      weighing = false;
     }
   }
   else if(step.compare("step one") == 0){
-    if(action.compare("weighing ok") == 0){
+    if(slider && weighing && cobotta){
       response->result = "OK";
       step = "step two";
+      cobotta = false;
     }
   }
   else if(step.compare("step two") == 0){
-    if(action.compare("slider ok") == 0){
+    if(slider && weighing && cobotta){
       response->result = "OK";
       step = "step three";
+      slider = false;
+      weighing = false;
     }
   }
   else if(step.compare("step three") == 0){
-    if(action.compare("cobotta ok") == 0){
+    if(slider && weighing && cobotta){
       response->result = "OK";
       step = "step four";
+      cobotta = false;
     }
   }
   else if(step.compare("step four") == 0){
-    if(action.compare("slider ok") == 0){
+    if(slider && weighing && cobotta){
       response->result = "OK";
       step = "step five";
+      cobotta = false;
     }
   }
   else if(step.compare("step five") == 0){
-    if(action.compare("cobotta ok") == 0){
+    if(slider && weighing && cobotta){
       response->result = "OK";
-      step = "Standby";
+      step = "step six";
+      slider = false;
+      weighing = false;
     }
   }
   else if(step.compare("step six") == 0){
-    if(action.compare("cobotta ok") == 0){
+    if(slider && weighing && cobotta){
+      response->result = "OK";
+      step = "step seven";
+      cobotta = false;
+    }
+  }
+  else if(step.compare("step seven") == 0){
+    if(slider && weighing && cobotta){
+      response->result = "OK";
+      step = "step eight";
+      cobotta = false;
+    }
+  }
+  else if(step.compare("step eight") == 0){
+    if(slider && weighing && cobotta){
+      response->result = "OK";
+      step = "step nine";
+      slider = false;
+      weighing = false;
+    }
+  }
+  else if(step.compare("step nine") == 0){
+    if(slider && weighing && cobotta){
+      response->result = "OK";
+      step = "step ten";
+      cobotta = false;
+    }
+  }
+  else if(step.compare("step ten") == 0){
+    if(slider && weighing && cobotta){
       response->result = "OK";
       step = "Standby";
     }
@@ -78,6 +120,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     response->result = "OK";
     // step = "init";
   }
+  response->result = "OK";
 }
 
 struct MainPublisher : public rclcpp::Node
@@ -104,9 +147,9 @@ struct MainPublisher : public rclcpp::Node
         }
         msg->process = step.c_str();
         // RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", step.c_str());
-        // printf(
-        //   "Published message: %s, and address: 0x%" PRIXPTR "\n", msg->process.c_str(),
-        //   reinterpret_cast<std::uintptr_t>(msg.get()));
+        printf(
+          "Published message: %s, and address: 0x%" PRIXPTR "\n", msg->process.c_str(),
+          reinterpret_cast<std::uintptr_t>(msg.get()));
         pub_ptr->publish(std::move(msg));
       };
     timer_ = this->create_wall_timer(0.1s, callback);

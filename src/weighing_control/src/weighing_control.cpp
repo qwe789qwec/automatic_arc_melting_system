@@ -60,7 +60,20 @@ class WeighingSubscriber : public rclcpp::Node
     {
       std::string message = msg->process;
       // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-      if(message.compare("step one") == 0){
+      static int count = 0;
+      if(message.compare("init") == 0 && count == 0){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket weiging_handler(weighing_ip, weighing_port);
+        weiging_handler.create();
+        weiging_handler.write("QRA 60 7 2\r\n"); //close
+        weiging_handler.receive(receive_msg);
+        weiging_handler.end();
+        weighing_client("weighing ok");
+        usleep(1500*1000);
+        count++;
+      }
+      else if(message.compare("step one") == 0 && count == 1){
         // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
         char receive_msg[1024];
         tcp_socket weiging_handler(weighing_ip, weighing_port);
@@ -68,13 +81,48 @@ class WeighingSubscriber : public rclcpp::Node
         weiging_handler.write("QRA 60 7 3\r\n"); //open
         weiging_handler.receive(receive_msg);
         weiging_handler.end();
-        usleep(3000*1000);
+        weighing_client("weighing ok");
+        usleep(1500*1000);
+        count++;
+      }
+      else if(message.compare("step three") == 0 && count == 2){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket weiging_handler(weighing_ip, weighing_port);
         weiging_handler.create();
         weiging_handler.write("QRA 60 7 2\r\n"); //close
         weiging_handler.receive(receive_msg);
         weiging_handler.end();
         weighing_client("weighing ok");
         usleep(1500*1000);
+        count++;
+      }
+      else if(message.compare("step six") == 0 && count == 3){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket weiging_handler(weighing_ip, weighing_port);
+        weiging_handler.create();
+        weiging_handler.write("QRA 60 7 3\r\n"); //open
+        weiging_handler.receive(receive_msg);
+        weiging_handler.end();
+        weighing_client("weighing ok");
+        usleep(1500*1000);
+        count++;
+      }
+      else if(message.compare("step nine") == 0 && count == 4){
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
+        char receive_msg[1024];
+        tcp_socket weiging_handler(weighing_ip, weighing_port);
+        weiging_handler.create();
+        weiging_handler.write("QRA 60 7 2\r\n"); //close
+        weiging_handler.receive(receive_msg);
+        weiging_handler.end();
+        weighing_client("weighing ok");
+        usleep(1500*1000);
+        count++;
+      }
+      else if(message.compare("Standby") == 0){
+        count = 0;
       }
     }
     rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
