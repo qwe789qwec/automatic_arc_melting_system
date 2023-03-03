@@ -9,7 +9,9 @@
 #include <unistd.h>
 
 #define arc_pos "00000000"
-#define shelf_pos "000249F0"
+#define shelf_posA "000249F0"
+#define shelf_posB "00041EB0"
+#define shelf_posC "0005F370"
 #define weighing_pos "0009C400"
 
 using std::placeholders::_1;
@@ -127,7 +129,7 @@ class SliderSubscriber : public rclcpp::Node
         slider_handler.create();
         slider_handler.write(servo_onf("01", "1"));
         slider_handler.receive(receive_msg);
-        slider_handler.write(servo_move("01", shelf_pos));
+        slider_handler.write(servo_move("01", shelf_posA));
         usleep(5000*1000);
         slider_handler.receive(receive_msg);
         slider_handler.write(servo_onf("01", "0"));
