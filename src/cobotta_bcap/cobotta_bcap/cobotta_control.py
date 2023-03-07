@@ -96,9 +96,29 @@ class CobottaSubscriber(Node):
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
             time.sleep(1.5)
-            count += 1
+            count = 3
             
-        elif msg.process.startswith("step two") and count == 1:
+        elif msg.process.startswith("step 1") and count == 1:
+            cobotta_task("take_bowl")
+            cobotta_client = CobottaClient()
+            message = "cobotta ok"
+            response = cobotta_client.send_request(message)
+            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+            cobotta_client.destroy_node()
+            time.sleep(1.5)
+            count += 1
+
+        elif msg.process.startswith("step 3") and count == 2:
+            cobotta_task("put_bowl")
+            cobotta_client = CobottaClient()
+            message = "cobotta ok"
+            response = cobotta_client.send_request(message)
+            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+            cobotta_client.destroy_node()
+            time.sleep(1.5)
+            count += 1
+
+        elif msg.process.startswith("step 5") and count == 3:
             cobotta_task("take_dose")
             cobotta_client = CobottaClient()
             message = "cobotta ok"
@@ -108,7 +128,7 @@ class CobottaSubscriber(Node):
             time.sleep(1.5)
             count += 1
 
-        elif msg.process.startswith("step four") and count == 2:
+        elif msg.process.startswith("step 7") and count == 4:
             cobotta_task("put_l")
             cobotta_client = CobottaClient()
             message = "cobotta ok"
@@ -118,8 +138,8 @@ class CobottaSubscriber(Node):
             time.sleep(1.5)
             count += 1
 
-        elif msg.process.startswith("step five") and count == 3:
-            cobotta_task("take_m")
+        elif msg.process.startswith("step 9") and count == 5:
+            cobotta_task("take_l")
             cobotta_client = CobottaClient()
             message = "cobotta ok"
             response = cobotta_client.send_request(message)
@@ -127,8 +147,8 @@ class CobottaSubscriber(Node):
             cobotta_client.destroy_node()
             time.sleep(1.5)
             count += 1
-
-        elif msg.process.startswith("step seven") and count == 4:
+        
+        elif msg.process.startswith("step 11") and count == 6:
             cobotta_task("put_dose")
             cobotta_client = CobottaClient()
             message = "cobotta ok"
@@ -138,7 +158,7 @@ class CobottaSubscriber(Node):
             time.sleep(1.5)
             count += 1
         
-        elif msg.process.startswith("step eight") and count == 5:
+        elif msg.process.startswith("step 13") and count == 7:
             cobotta_task("take_bowl")
             cobotta_client = CobottaClient()
             message = "cobotta ok"
@@ -147,8 +167,8 @@ class CobottaSubscriber(Node):
             cobotta_client.destroy_node()
             time.sleep(1.5)
             count += 1
-        
-        elif msg.process.startswith("step ten") and count == 6:
+
+        elif msg.process.startswith("step 15") and count == 8:
             cobotta_task("put_bowl")
             cobotta_client = CobottaClient()
             message = "cobotta ok"
