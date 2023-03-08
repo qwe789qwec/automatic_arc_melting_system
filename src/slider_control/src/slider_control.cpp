@@ -14,6 +14,11 @@
 #define shelf_posC "0005F370"
 #define weighing_pos "0009C400"
 
+#define motor2take "000181F9"
+#define motor2put "00008C66"
+#define motor4take "00016F76"
+#define motor4put "00049E13"
+
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
@@ -70,12 +75,18 @@ void move_slider(std::string servo, std::string position)
 	tcp_socket slider_handler(slider_ip, slider_port);
 	slider_handler.create();
 	slider_handler.write(servo_onf(servo, "1"));
-	slider_handler.receive(receive_msg);
+	// slider_handler.receive("test\r\n",receive_msg);
+	slider_handler.receive("#992322C\r\n",receive_msg);
+	// RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "servo on: %s", receive_msg);
+	usleep(100 * 1000);
 	slider_handler.write(servo_move(servo, position));
 	usleep(8000 * 1000);
-	slider_handler.receive(receive_msg);
+	slider_handler.receive("test\r\n",receive_msg);
+	// RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "servo position: %s", receive_msg);
 	slider_handler.write(servo_onf(servo, "0"));
-	slider_handler.receive(receive_msg);
+	// slider_handler.receive("test\r\n",receive_msg);
+	slider_handler.receive("#992322C\r\n",receive_msg);
+	// RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "servo off: %s", receive_msg);
 	slider_handler.end();
 	usleep(1500 * 1000);
 }
@@ -108,8 +119,8 @@ private:
 		if (message.compare("init") == 0 && count == 0)
 		{
 			move_slider("01", arc_pos);
-			// move_slider("02", arc_pos);
-			// move_slider("04", arc_pos);
+			move_slider("02", arc_pos);
+			move_slider("04", arc_pos);
 			slider_client("slider ok");
 			count = 2;
 		}
@@ -146,6 +157,15 @@ private:
 		else if (message.compare("step 14") == 0 && count == 6)
 		{
 			move_slider("01", arc_pos);
+			slider_client("slider ok");
+			count++;
+		}
+		else if (message.compare("step 16") == 0 && count == 7)
+		{
+			move_slider("02", motor2take);
+			move_slider("04", motor2take);
+			move_slider("02", motor2put);
+			move_slider("04", motor2put);
 			slider_client("slider ok");
 			count++;
 		}

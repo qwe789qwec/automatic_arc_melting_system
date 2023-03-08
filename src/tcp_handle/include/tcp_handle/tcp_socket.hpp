@@ -16,7 +16,7 @@ class tcp_socket {
 		tcp_socket(std::string , int);
 		int create();
 		int write(std::string);
-		int receive(char*);
+		int receive(std::string , char*);
 		int end();
 		int socket_type(int);
 };

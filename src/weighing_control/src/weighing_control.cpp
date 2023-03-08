@@ -72,7 +72,7 @@ private:
             tcp_socket weiging_handler(weighing_ip, weighing_port);
             weiging_handler.create();
             weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
             weiging_handler.end();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
@@ -85,7 +85,7 @@ private:
             tcp_socket weiging_handler(weighing_ip, weighing_port);
             weiging_handler.create();
             weiging_handler.write("QRA 60 7 3\r\n"); // open
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
             weiging_handler.end();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
@@ -98,19 +98,19 @@ private:
             tcp_socket weiging_handler(weighing_ip, weighing_port);
             weiging_handler.create();
             weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
             weiging_handler.write("QRA 60 2 4\r\n"); // lock dosing head
-            weiging_handler.receive(receive_msg);
-            weiging_handler.write("QRD 1 1 5 5.00\r\n"); // set gram
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 2 A\r\n",receive_msg);
+            weiging_handler.write("QRD 1 1 5 8.00\r\n"); // set gram
+            weiging_handler.receive("test\r\n",receive_msg);
             weiging_handler.write("QRA 61 1\r\n"); // dosing
             usleep(50000 * 1000);
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("test\r\n",receive_msg);
             weiging_handler.write("QRA 60 2 3\r\n"); // unlock dosing head
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 2 A\r\n",receive_msg);
             usleep(1500 * 1000);
             weiging_handler.write("QRA 60 7 3\r\n"); // open
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
             weiging_handler.end();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
@@ -123,7 +123,7 @@ private:
             tcp_socket weiging_handler(weighing_ip, weighing_port);
             weiging_handler.create();
             weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("test\r\n",receive_msg);
             weiging_handler.end();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
@@ -136,7 +136,7 @@ private:
             tcp_socket weiging_handler(weighing_ip, weighing_port);
             weiging_handler.create();
             weiging_handler.write("QRA 60 7 3\r\n"); // open
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("test\r\n",receive_msg);
             weiging_handler.end();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
@@ -149,19 +149,19 @@ private:
             tcp_socket weiging_handler(weighing_ip, weighing_port);
             weiging_handler.create();
             weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
             weiging_handler.write("QRA 60 2 4\r\n"); // lock dosing head
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 2 A\r\n",receive_msg);
             weiging_handler.write("QRD 1 1 5 6.30\r\n"); // set gram
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("test\r\n",receive_msg);
             weiging_handler.write("QRA 61 1\r\n"); // dosing
             usleep(50000 * 1000);
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("test\r\n",receive_msg);
             weiging_handler.write("QRA 60 2 3\r\n"); // unlock dosing head
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 2 A\r\n",receive_msg);
             usleep(1500 * 1000);
             weiging_handler.write("QRA 60 7 3\r\n"); // open
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
             weiging_handler.end();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
@@ -174,7 +174,7 @@ private:
             tcp_socket weiging_handler(weighing_ip, weighing_port);
             weiging_handler.create();
             weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive(receive_msg);
+            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
             weiging_handler.end();
             weighing_client("weighing ok");
             usleep(1500 * 1000);

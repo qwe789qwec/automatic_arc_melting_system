@@ -18,7 +18,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-
+find_package(msg_format REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -40,10 +40,23 @@ add_library(tcp_socket src/tcp_socket.cpp)
 
 ament_export_targets(tcp_socket HAS_LIBRARY_TARGET)
 
+add_executable(tcpClient src/tcp_client.cpp)
+ament_target_dependencies(tcpClient
+  rclcpp msg_format)
+
+add_executable(tcpMessage src/message_test.cpp)
+ament_target_dependencies(tcpMessage
+  rclcpp msg_format)
+
 install(
   DIRECTORY include/
   DESTINATION include
 )
+
+install(TARGETS
+  tcpClient
+  tcpMessage
+  DESTINATION lib/${PROJECT_NAME})
 
 install(
   TARGETS tcp_socket

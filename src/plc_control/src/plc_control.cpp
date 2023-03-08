@@ -70,7 +70,7 @@ private:
             tcp_socket plc_handler(plc_ip, plc_port);
             plc_handler.create();
             plc_handler.write("X5");
-            plc_handler.receive(receive_msg);
+            plc_handler.receive("test\r\n",receive_msg);
             plc_handler.end();
             plc_client("plc ok");
             usleep(1500 * 1000);

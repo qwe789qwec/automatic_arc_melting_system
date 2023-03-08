@@ -184,10 +184,18 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
         {
             response->result = "OK";
             step = "step 16";
-            cobotta = false;
+            weighing = false;
         }
     }
     else if (step.compare("step 16") == 0)
+    {
+        if (slider && weighing && cobotta)
+        {
+            response->result = "OK";
+            step = "step 17";
+        }
+    }
+    else if (step.compare("step 17") == 0)
     {
         if (slider && weighing && cobotta)
         {
