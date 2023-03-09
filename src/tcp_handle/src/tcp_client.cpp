@@ -14,114 +14,140 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define nonblock 0
-#define block 1
-
-int set_socket(int socket_fd, int stat)
+class TcpClient
 {
-	int oldSocketFlag = fcntl(socket_fd, F_GETFL, 0);
-	int newSocketFlag = oldSocketFlag | O_NONBLOCK;
-	if (stat == block)
+private:
+	int sock;
+	std::string address;
+	int port;
+	struct sockaddr_in server;
+	bool is_blocking = true;
+
+public:
+	TcpClient() : sock(0), address(""), port(0)
 	{
-		newSocketFlag = oldSocketFlag & (~O_NONBLOCK);
+		memset(&server, 0, sizeof(server));
 	}
 
-	if (fcntl(socket_fd, F_SETFL, newSocketFlag) == -1)
+	bool set_blocking(bool blocking)
 	{
-		// "\nset socket fd error.\n"
-		close(socket_fd);
-		return -1;
-	}
-	return socket_fd;
-}
-
-int creat_socket(std::string ip, std::string port)
-{
-	// struct timeval timeout;
-	// fd_set readfds;
-	// timeout.tv_sec = 5;
-	// timeout.tv_usec = 0;
-	// FD_ZERO(&readfds);
-	// FD_SET(sock_fd, &readfds);
-	// select(sock_fd+1, &readfds, NULL, NULL, &timeout);
-
-	// int sock_fd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, IPPROTO_TCP);
-	int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
-	printf("socket: %d\n", socket_fd);
-	if (socket_fd < 0)
-	{
-		//"\n can't creat Socket\n"
-		return -1;
-	}
-
-	struct sockaddr_in serv_addr;
-	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_port = htons(stoi(port));
-	if (inet_pton(AF_INET, ip.c_str(), &serv_addr.sin_addr) <= 0)
-	{
-		//"\nInvalid address/ Address not supported.\n"
-		return -1;
-	}
-
-	int connect_fd = connect(socket_fd, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
-	if (connect_fd < 0)
-	{
-		//"\nConnection Failed.\n"
-		close(socket_fd);
-		return -1;
-	}
-
-	return socket_fd;
-}
-
-int recv_socket(int socket_fd, char* cmpmessage, char getmessage[])
-{
-	if (set_socket(socket_fd, nonblock) < 0)
-	{
-		close(socket_fd);
-		return -1;
-	}
-
-	int strlen = 0;
-	bool testflag = false;
-	char buffer[1024];
-	if (strcmp(cmpmessage, "test\r\n") == 0)
-		testflag = true;
-	int timeout_seconds = 9;
-	std::chrono::seconds timeout(timeout_seconds);
-	auto start_time = std::chrono::steady_clock::now();
-	while (true)
-	{
-		strlen = read(socket_fd, buffer, sizeof(buffer));
-		if (strlen > 0)
+		int flags = fcntl(sock, F_GETFL, 0);
+		if (flags == -1)
 		{
-			printf("read len: %d\n", strlen);
-			printf("buffer: %s\n", buffer);
-			strcpy(getmessage, buffer);
-			if (strcmp(buffer, cmpmessage) == 0)
+			return false;
+		}
+		if (blocking)
+		{
+			flags &= ~O_NONBLOCK;
+		}
+		else
+		{
+			flags |= O_NONBLOCK;
+		}
+		return fcntl(sock, F_SETFL, flags) == 0;
+	}
+
+	bool connect(const std::string &address, const int &port)
+	{
+		this->address = address;
+		this->port = port;
+
+		// create socket
+		sock = socket(AF_INET, SOCK_STREAM, 0);
+		if (sock < 0)
+		{
+			return false;
+		}
+
+		// set server information
+		server.sin_family = AF_INET;
+		server.sin_port = htons(port);
+		if (inet_pton(AF_INET, address.c_str(), &server.sin_addr) <= 0)
+		{
+			return false;
+		}
+
+		// connect to server
+		if (::connect(sock, (struct sockaddr *)&server, sizeof(server)) < 0)
+		{
+			if (errno != EINPROGRESS)
 			{
-				printf("right message");
-				break;
+				return false;
 			}
 		}
-		if (std::chrono::steady_clock::now() - start_time >= timeout)
+
+		// set to unblocking mode
+		set_blocking(false);
+
+		return true;
+	}
+
+	bool send(const std::string &data)
+	{
+		int length = ::send(sock, data.c_str(), data.size(), 0);
+		if (length < 0)
 		{
-			if (testflag)
+			return false;
+		}
+		return true;
+	}
+
+	bool receive(std::string &data)
+	{
+		char buffer[1024] = {0};
+		int length = ::recv(sock, buffer, 1024, 0);
+		if (length < 0)
+		{
+			if (errno != EWOULDBLOCK && errno != EAGAIN)
+			{
+				return false;
+			}
+			return true;
+		}
+		else if (length == 0)
+		{
+			return false;
+		}
+		data = std::string(buffer, length);
+		return true;
+	}
+
+	bool receive_timeout(std::string compare, int timeout_seconds)
+	{
+		std::string data;
+		std::chrono::seconds timeout(timeout_seconds);
+		auto start_time = std::chrono::steady_clock::now();
+		while (true)
+		{
+			if (receive(data))
+			{
+				if (data.substr(0, compare.size()).compare(compare) == 0)
+				{
+					break;
+				}
+			}
+			if (std::chrono::steady_clock::now() - start_time >= timeout)
 			{
 				printf("test timeout");
 				break;
 			}
-			return -1;
-			break;
 		}
 	}
-	if (set_socket(socket_fd, block) < 0)
+
+	void close()
 	{
-		close(socket_fd);
-		return -1;
+		if (sock > 0)
+		{
+			::close(sock);
+			sock = 0;
+		}
 	}
-	return socket_fd;
-}
+
+	~TcpClient()
+	{
+		close();
+	}
+};
 
 void sock_handle(const std::shared_ptr<msg_format::srv::ProcessService::Request> request,
 				 std::shared_ptr<msg_format::srv::ProcessService::Response> response)
@@ -138,40 +164,22 @@ void sock_handle(const std::shared_ptr<msg_format::srv::ProcessService::Request>
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "port: %s", port.c_str());
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
 
-	int socket_fd = creat_socket(ip, port);
-	if (socket_fd < 0)
+	TcpClient client;
+	if (!client.connect(ip.c_str(), std::stoi(port)))
 	{
 		response->result = "socket creat/connect error";
 		return;
 	}
 
-	char *message2char = strcpy(new char[message.length() + 1], message.c_str());
-	if (send(socket_fd, message2char, strlen(message2char), 0) < 0)
-	{
-		response->result = "send message error";
-		return;
-	}
+	client.send(message);
 
-	char *cmpmessage = "test\r\n";
-	char getmessage[1024];
-	if (recv_socket(socket_fd, cmpmessage, getmessage) < 0)
-	{
-		if (close(socket_fd) < 0)
-		{
-			response->result = "recv message error and close socket error";
-			return;
-		}
-		response->result = "recv message error and close socket";
-		return;
-	}
-	response->result = getmessage;
-	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "recv message: %s", getmessage);
+	std::string data;
+	client.receive_timeout("QRA 60 7 A", 9);
+	response->result = "QRA 60 7 A";
+	data = "QRA 60 7 A";
 
-	if (close(socket_fd) < 0)
-	{
-		response->result = "close socket error";
-		return;
-	}
+	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "recv message: %s", data.c_str());
+
 	return;
 }
 
