@@ -113,10 +113,10 @@ bool tcp_socket::check_receive(std::string compare, int timeout_seconds)
 				break;
 			}
 			else if(compare.compare("test") == 0){
-				printf("data: %s\n", data);
+				printf("data: %s\n", data.c_str());
 			}
 			if(compare.compare("skip") == 0){
-				printf("data: %s\n", data);
+				printf("data: %s\n", data.c_str());
 				break;
 			}
 		}

@@ -27,27 +27,30 @@ std::string slider::postion(std::string station)
 
 void slider::check_position(std::string servo)
 {
-	std::string message;
+	std::string message, compare;
+	compare = "#99212" + servo + "1";
 	std::chrono::seconds timeout(10);
 	auto start_time = std::chrono::steady_clock::now();
 	while (true)
 	{
 		slider_tcp.write(postion(servo));
 		slider_tcp.receive(message);
-		if (message.compare("test") == 0)
+		if (message.substr(0, compare.size()).compare(compare) == 0)
+		{
+			printf("compare");
+			break;
+		}
+		else if (message.compare("test") == 0)
 		{
 			printf("data: %s\n", message.c_str());
-		}
-		if (message.compare(action_check) == 0)
-		{
-			break;
 		}
 		if (std::chrono::steady_clock::now() - start_time >= timeout)
 		{
 			printf("test timeout");
 			break;
 		}
-		usleep(500 * 1000);
+		printf("cycle");
+		usleep(300 * 1000);
 	}
 }
 

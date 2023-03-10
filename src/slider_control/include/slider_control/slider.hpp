@@ -21,8 +21,6 @@
 #define motor4take "00016F76"
 #define motor4put "00049E13"
 
-#define action_check "#99212011"
-
 class slider
 {
 public:

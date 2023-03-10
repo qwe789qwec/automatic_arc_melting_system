@@ -36,14 +36,14 @@ void weighing_machine::setgram(std::string gram)
 {
     std::string message = "QRD 1 1 5 " + gram + "\r\n";
 	weiging_tcp.write(message); // set gram
-    weiging_tcp.check_receive("test", 6);
+    weiging_tcp.check_receive("QRD 1 1 5 A", 6);
 	return ;
 }
 
 void weighing_machine::startdosing()
 {
     weiging_tcp.write("QRA 61 1\r\n"); // dosing
-    weiging_tcp.check_receive("test", 60);
+    weiging_tcp.check_receive("QRA 61 1 A", 120);
 	return ;
 }
 
