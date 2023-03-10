@@ -35,9 +35,7 @@ if(BUILD_TESTING)
 endif()
 
 include_directories(include)
-
 add_library(tcp_socket src/tcp_socket.cpp)
-
 ament_export_targets(tcp_socket HAS_LIBRARY_TARGET)
 
 add_executable(tcpClient src/tcp_client.cpp)

@@ -14,13 +14,6 @@
 
 class tcp_socket
 {
-private:
-	int socket_fd;
-	std::string ip;
-	int port;
-	struct sockaddr_in server;
-	bool is_blocking = true;
-
 public:
 	tcp_socket();
 	bool set_blocking(bool);
@@ -30,6 +23,13 @@ public:
 	bool check_receive(std::string, int);
 	void close();
 	~tcp_socket();
+
+private:
+	int socket_fd;
+	std::string ip;
+	int port;
+	struct sockaddr_in server;
+	bool is_blocking = true;
 };
 
 #endif
