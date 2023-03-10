@@ -64,118 +64,96 @@ private:
     {
         std::string message = msg->process;
         // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
+        tcp_socket weiging_tcp;
         static int count = 0;
         if (message.compare("init") == 0 && count == 0)
         {
             // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            char receive_msg[1024];
-            tcp_socket weiging_handler(weighing_ip, weighing_port);
-            weiging_handler.create();
-            weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
-            weiging_handler.end();
+            weiging_tcp.connect(weighing_ip, weighing_port);
+            weiging_tcp.write("QRA 60 7 2\r\n"); // close
+            weiging_tcp.check_receive("QRA 60 7 A", 6);
+            weiging_tcp.close();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
             count = 2;
         }
         else if (message.compare("step 2") == 0 && count == 1)
         {
-            // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            char receive_msg[1024];
-            tcp_socket weiging_handler(weighing_ip, weighing_port);
-            weiging_handler.create();
-            weiging_handler.write("QRA 60 7 3\r\n"); // open
-            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
-            weiging_handler.end();
+            weiging_tcp.connect(weighing_ip, weighing_port);
+            weiging_tcp.write("QRA 60 7 3\r\n"); // open
+            weiging_tcp.check_receive("QRA 60 7 A", 6);
+            weiging_tcp.close();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
             count++;
         }
         else if (message.compare("step 4") == 0 && count == 2)
         {
-            // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            char receive_msg[1024];
-            tcp_socket weiging_handler(weighing_ip, weighing_port);
-            weiging_handler.create();
-            weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
-            weiging_handler.write("QRA 60 2 4\r\n"); // lock dosing head
-            weiging_handler.receive("QRA 60 2 A\r\n",receive_msg);
-            weiging_handler.write("QRD 1 1 5 8.00\r\n"); // set gram
-            weiging_handler.receive("test\r\n",receive_msg);
-            weiging_handler.write("QRA 61 1\r\n"); // dosing
-            usleep(50000 * 1000);
-            weiging_handler.receive("test\r\n",receive_msg);
-            weiging_handler.write("QRA 60 2 3\r\n"); // unlock dosing head
-            weiging_handler.receive("QRA 60 2 A\r\n",receive_msg);
+            weiging_tcp.connect(weighing_ip, weighing_port);
+            weiging_tcp.write("QRA 60 7 2\r\n"); // close
+            weiging_tcp.check_receive("QRA 60 7 A", 6);
+            weiging_tcp.write("QRA 60 2 4\r\n"); // lock dosing head
+            weiging_tcp.check_receive("QRA 60 2 A", 6);
+            weiging_tcp.write("QRD 1 1 5 8.00\r\n"); // set gram
+            weiging_tcp.check_receive("test", 6);
+            weiging_tcp.write("QRA 61 1\r\n"); // dosing
+            weiging_tcp.check_receive("test", 60);
+            weiging_tcp.write("QRA 60 2 3\r\n"); // unlock dosing head
+            weiging_tcp.check_receive("QRA 60 2 A", 6);
             usleep(1500 * 1000);
-            weiging_handler.write("QRA 60 7 3\r\n"); // open
-            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
-            weiging_handler.end();
+            weiging_tcp.write("QRA 60 7 3\r\n"); // open
+            weiging_tcp.check_receive("QRA 60 7 A", 6);
+            weiging_tcp.close();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
             count++;
         }
         else if (message.compare("step 6") == 0 && count == 3)
         {
-            // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            char receive_msg[1024];
-            tcp_socket weiging_handler(weighing_ip, weighing_port);
-            weiging_handler.create();
-            weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive("test\r\n",receive_msg);
-            weiging_handler.end();
+            weiging_tcp.connect(weighing_ip, weighing_port);
+            weiging_tcp.write("QRA 60 7 2\r\n"); // close
+            weiging_tcp.check_receive("QRA 60 7 A", 6);
+            weiging_tcp.close();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
             count++;
         }
         else if (message.compare("step 10") == 0 && count == 4)
         {
-            // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            char receive_msg[1024];
-            tcp_socket weiging_handler(weighing_ip, weighing_port);
-            weiging_handler.create();
-            weiging_handler.write("QRA 60 7 3\r\n"); // open
-            weiging_handler.receive("test\r\n",receive_msg);
-            weiging_handler.end();
+            weiging_tcp.connect(weighing_ip, weighing_port);
+            weiging_tcp.write("QRA 60 7 3\r\n"); // open
+            weiging_tcp.check_receive("QRA 60 7 A", 6);
+            weiging_tcp.close();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
             count++;
         }
         else if (message.compare("step 12") == 0 && count == 5)
         {
-            // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            char receive_msg[1024];
-            tcp_socket weiging_handler(weighing_ip, weighing_port);
-            weiging_handler.create();
-            weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
-            weiging_handler.write("QRA 60 2 4\r\n"); // lock dosing head
-            weiging_handler.receive("QRA 60 2 A\r\n",receive_msg);
-            weiging_handler.write("QRD 1 1 5 6.30\r\n"); // set gram
-            weiging_handler.receive("test\r\n",receive_msg);
-            weiging_handler.write("QRA 61 1\r\n"); // dosing
-            usleep(50000 * 1000);
-            weiging_handler.receive("test\r\n",receive_msg);
-            weiging_handler.write("QRA 60 2 3\r\n"); // unlock dosing head
-            weiging_handler.receive("QRA 60 2 A\r\n",receive_msg);
-            usleep(1500 * 1000);
-            weiging_handler.write("QRA 60 7 3\r\n"); // open
-            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
-            weiging_handler.end();
+            weiging_tcp.connect(weighing_ip, weighing_port);
+            weiging_tcp.write("QRA 60 7 2\r\n"); // close
+            weiging_tcp.check_receive("QRA 60 7 A", 6);
+            weiging_tcp.write("QRA 60 2 4\r\n"); // lock dosing head
+            weiging_tcp.check_receive("QRA 60 2 A", 6);
+            weiging_tcp.write("QRD 1 1 5 6.30\r\n"); // set gram
+            weiging_tcp.check_receive("test", 6);
+            weiging_tcp.write("QRA 61 1\r\n"); // dosing
+            weiging_tcp.check_receive("test", 60);
+            weiging_tcp.write("QRA 60 2 3\r\n"); // unlock dosing head
+            weiging_tcp.check_receive("QRA 60 2 A", 6);
+            weiging_tcp.write("QRA 60 7 3\r\n"); // open
+            weiging_tcp.check_receive("QRA 60 7 A", 6);
+            weiging_tcp.close();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
             count++;
         }
         else if (message.compare("step 14") == 0 && count == 6)
         {
-            // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            char receive_msg[1024];
-            tcp_socket weiging_handler(weighing_ip, weighing_port);
-            weiging_handler.create();
-            weiging_handler.write("QRA 60 7 2\r\n"); // close
-            weiging_handler.receive("QRA 60 7 A\r\n",receive_msg);
-            weiging_handler.end();
+            weiging_tcp.connect(weighing_ip, weighing_port);
+            weiging_tcp.write("QRA 60 7 2\r\n"); // close
+            weiging_tcp.check_receive("QRA 60 7 A\r\n", 6);
+            weiging_tcp.close();
             weighing_client("weighing ok");
             usleep(1500 * 1000);
             count++;

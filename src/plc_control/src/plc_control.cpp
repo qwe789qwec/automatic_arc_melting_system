@@ -63,15 +63,14 @@ private:
     {
         std::string message = msg->process;
         // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
+        tcp_socket plc_tcp;
         if (message.compare("step 100") == 0)
         {
             // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            char receive_msg[1024];
-            tcp_socket plc_handler(plc_ip, plc_port);
-            plc_handler.create();
-            plc_handler.write("X5");
-            plc_handler.receive("test\r\n",receive_msg);
-            plc_handler.end();
+            plc_tcp.connect(plc_ip, plc_port);
+            plc_tcp.write("X5");
+            plc_tcp.check_receive("test", 6);
+            plc_tcp.close();
             plc_client("plc ok");
             usleep(1500 * 1000);
         }

@@ -71,23 +71,16 @@ int slider_client(std::string action)
 void move_slider(std::string servo, std::string position)
 {
 	// std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-	char receive_msg[1024];
-	tcp_socket slider_handler(slider_ip, slider_port);
-	slider_handler.create();
-	slider_handler.write(servo_onf(servo, "1"));
-	// slider_handler.receive("test\r\n",receive_msg);
-	slider_handler.receive("#992322C\r\n",receive_msg);
-	// RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "servo on: %s", receive_msg);
+	tcp_socket slider_tcp;
+	slider_tcp.connect(slider_ip, slider_port);
+	slider_tcp.write(servo_onf(servo, "1"));
+	slider_tcp.check_receive("#992322C", 3);
 	usleep(100 * 1000);
-	slider_handler.write(servo_move(servo, position));
-	usleep(8000 * 1000);
-	slider_handler.receive("test\r\n",receive_msg);
-	// RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "servo position: %s", receive_msg);
-	slider_handler.write(servo_onf(servo, "0"));
-	// slider_handler.receive("test\r\n",receive_msg);
-	slider_handler.receive("#992322C\r\n",receive_msg);
-	// RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "servo off: %s", receive_msg);
-	slider_handler.end();
+	slider_tcp.write(servo_move(servo, position));
+	slider_tcp.check_receive("test", 10);
+	slider_tcp.write(servo_onf(servo, "0"));
+	slider_tcp.check_receive("#992322C", 3);
+	slider_tcp.close();
 	usleep(1500 * 1000);
 }
 

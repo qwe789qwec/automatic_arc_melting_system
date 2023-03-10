@@ -132,6 +132,7 @@ public:
 				break;
 			}
 		}
+		return true;
 	}
 
 	void close()
@@ -141,6 +142,7 @@ public:
 			::close(sock);
 			sock = 0;
 		}
+		return;
 	}
 
 	~TcpClient()
