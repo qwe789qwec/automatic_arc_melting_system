@@ -115,6 +115,10 @@ bool tcp_socket::check_receive(std::string compare, int timeout_seconds)
 			else if(compare.compare("test") == 0){
 				printf("data: %s\n", data);
 			}
+			if(compare.compare("skip") == 0){
+				printf("data: %s\n", data);
+				break;
+			}
 		}
 		if (std::chrono::steady_clock::now() - start_time >= timeout)
 		{

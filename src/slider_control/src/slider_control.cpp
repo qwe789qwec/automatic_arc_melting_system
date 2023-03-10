@@ -5,34 +5,15 @@
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
 #include "msg_format/srv/process_service.hpp"
+#include "slider_control/slider.hpp"
 #include "tcp_handle/tcp_socket.hpp"
 #include <unistd.h>
-
-#define arc_pos "00000000"
-#define shelf_posA "000249F0"
-#define shelf_posB "00041EB0"
-#define shelf_posC "0005F370"
-#define weighing_pos "0009C400"
-
-#define motor2take "000181F9"
-#define motor2put "00008C66"
-#define motor4take "00016F76"
-#define motor4put "00049E13"
 
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
 std::string slider_ip = "192.168.0.3";
 int slider_port = 64511;
-
-std::string servo_onf(std::string station, std::string state)
-{
-	return "!99232" + station + state + "@@\r\n";
-}
-std::string servo_move(std::string station, std::string position)
-{
-	return "!99234" + station + "006400640064" + position + "@@\r\n";
-}
 
 int slider_client(std::string action)
 {
@@ -68,22 +49,6 @@ int slider_client(std::string action)
 	return 0;
 }
 
-void move_slider(std::string servo, std::string position)
-{
-	// std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-	tcp_socket slider_tcp;
-	slider_tcp.connect(slider_ip, slider_port);
-	slider_tcp.write(servo_onf(servo, "1"));
-	slider_tcp.check_receive("#992322C", 3);
-	usleep(100 * 1000);
-	slider_tcp.write(servo_move(servo, position));
-	slider_tcp.check_receive("test", 10);
-	slider_tcp.write(servo_onf(servo, "0"));
-	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.close();
-	usleep(1500 * 1000);
-}
-
 class SliderSubscriber : public rclcpp::Node
 {
 public:
@@ -98,67 +63,60 @@ private:
 	void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg) const
 	{
 		std::string message;
-		// int head, end;
 		message = msg->process;
-		// RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-		// head = message.find("slider");
-		// if(head > 0){
-		//   end = message.find("slider", head+3)
-		//   end = end - head;
-		//   action = message.substr(head + 7, end);
-		//   slider_client(message);
-		// }
 		static int count = 0;
+		slider slider(slider_ip, slider_port);
+
 		if (message.compare("init") == 0 && count == 0)
 		{
-			move_slider("01", arc_pos);
-			move_slider("02", arc_pos);
-			move_slider("04", arc_pos);
+			slider.move("01", arc_pos);
+			slider.move("02", arc_pos);
+			slider.move("04", arc_pos);
 			slider_client("slider ok");
 			count = 2;
 		}
 		else if (message.compare("step 2") == 0 && count == 1)
 		{
-			move_slider("01", weighing_pos);
+			slider.move("01", weighing_pos);
 			slider_client("slider ok");
 			count++;
 		}
 		else if (message.compare("step 4") == 0 && count == 2)
 		{
-			move_slider("01", weighing_pos);
+			slider.move("01", weighing_pos);
 			slider_client("slider ok");
 			count++;
 		}
 		else if (message.compare("step 6") == 0 && count == 3)
 		{
-			move_slider("01", shelf_posA);
+			slider.move("01", shelf_posA);
 			slider_client("slider ok");
 			count++;
 		}
 		else if (message.compare("step 8") == 0 && count == 4)
 		{
-			move_slider("01", shelf_posB);
+			slider.move("01", shelf_posB);
 			slider_client("slider ok");
 			count++;
 		}
 		else if (message.compare("step 10") == 0 && count == 5)
 		{
-			move_slider("01", weighing_pos);
+			slider.move("01", weighing_pos);
 			slider_client("slider ok");
 			count++;
 		}
 		else if (message.compare("step 14") == 0 && count == 6)
 		{
-			move_slider("01", arc_pos);
+			slider.move("01", arc_pos);
 			slider_client("slider ok");
 			count++;
 		}
 		else if (message.compare("step 16") == 0 && count == 7)
 		{
-			move_slider("02", motor2take);
-			move_slider("04", motor2take);
-			move_slider("02", motor2put);
-			move_slider("04", motor2put);
+			slider.move("02", motor2take);
+			slider.move("04", motor4take);
+			slider.move("02", motor2put);
+			slider.move("04", motor4put);
 			slider_client("slider ok");
 			count++;
 		}

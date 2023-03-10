@@ -19,10 +19,10 @@
 class weighing_machine
 {
 public:
-	weighing_machine(std::string, int);
-    void frontdoor(bool);
-    void dosinghead(bool);
-    void setgram(std::string);
+	weighing_machine(std::string ip, int port);
+    void frontdoor(bool state);
+    void dosinghead(bool state);
+    void setgram(std::string gram);
     void startdosing();
 	~weighing_machine();
 
