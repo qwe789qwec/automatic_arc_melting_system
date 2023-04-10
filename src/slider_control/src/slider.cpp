@@ -15,7 +15,8 @@ slider::slider(std::string ip, int port)
 std::string slider::checksum(std::string input) {
 	// calculate checksum
 	uint8_t sum = 0;
-    for (int i = 0; i < input.size(); i++) {
+	std::string::size_type i;
+    for (i = 0; i < input.size(); i++) {
         sum += input[i];
     }
     
