@@ -21,13 +21,18 @@
 #define motor4take "00016F76"
 #define motor4put "00049E13"
 
+#define on "01"
+#define off "00"
+
 class slider
 {
 public:
 	slider(std::string, int);
+    std::string checksum(std::string input);
+    std::string command(std::string command);
     std::string servo_onf(std::string station, std::string state);
     std::string servo_move(std::string station, std::string position);
-    std::string postion(std::string station);
+    std::string status(std::string station);
     void move(std::string servo, std::string position);
     void check_position(std::string servo);
 	~slider();

@@ -12,17 +12,37 @@ slider::slider(std::string ip, int port)
 	slider_tcp.connect(ip, port);
 }
 
-std::string slider::servo_onf(std::string station, std::string state)
-{
-	return "!99232" + station + state + "@@\r\n";
+std::string slider::checksum(std::string input) {
+	// calculate checksum
+	uint8_t sum = 0;
+    for (int i = 0; i < input.size(); i++) {
+        sum += input[i];
+    }
+    
+	// change uint8_t to hex string and keep 2 digits
+	char checksum[3];
+	sprintf(checksum, "%02X", sum);
+
+    return checksum;
 }
+
+std::string slider::command(std::string command)
+{
+	return command + checksum(command) +"\r\n";
+}
+
+std::string slider::servo_onf(std::string station, std::string state)
+{	
+	return command("!99232" + station + state);
+}
+
 std::string slider::servo_move(std::string station, std::string position)
 {
-	return "!99234" + station + "006400640064" + position + "@@\r\n";
+	return command("!99234" + station + "006400640064" + position);
 }
-std::string slider::postion(std::string station)
+std::string slider::status(std::string station)
 {
-	return "!99212" + station + "@@\r\n";
+	return command("!99212" + station);
 }
 
 void slider::check_position(std::string servo)
@@ -33,7 +53,7 @@ void slider::check_position(std::string servo)
 	auto start_time = std::chrono::steady_clock::now();
 	while (true)
 	{
-		slider_tcp.write(postion(servo));
+		slider_tcp.write(status(servo));
 		slider_tcp.receive(message);
 		if (message.substr(0, compare.size()).compare(compare) == 0)
 		{
@@ -56,13 +76,13 @@ void slider::check_position(std::string servo)
 
 void slider::move(std::string servo, std::string position)
 {
-	slider_tcp.write(servo_onf(servo, "1"));
+	slider_tcp.write(servo_onf(servo, on));
 	slider_tcp.check_receive("#992322C", 3);
 	usleep(100 * 1000);
 	slider_tcp.write(servo_move(servo, position));
 	slider_tcp.check_receive("#99234", 3);
 	check_position(servo);
-	slider_tcp.write(servo_onf(servo, "0"));
+	slider_tcp.write(servo_onf(servo, off));
 	slider_tcp.check_receive("#992322C", 3);
 	usleep(100 * 1000);
 }
