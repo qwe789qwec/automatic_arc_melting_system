@@ -6,8 +6,24 @@
 
 #include "main_process/process_state.hpp"
 
+
+
+void state::addDevice(std::string device);
+void state::removeDevice(std::string device);
+bool state::getDeviceStatus(std::string device);
+void state::updateDeviceStatus(std::string device, bool status);
+
+
+// make array with 3 elements
+
+
 state::state()
 {
+	static bool slider1 = false;
+	static bool slider2 = false;
+	static bool slider3 = false;
+    static bool weighing = false;
+    static bool cobotta = false;
 }
 
 std::string state::slider(std::string action)
