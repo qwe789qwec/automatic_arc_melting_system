@@ -10,7 +10,7 @@
 #include <vector>
 
 struct Device {
-   std::string name;
+   Devices name;
    DeviceStatus status;
 };
 
@@ -22,13 +22,23 @@ enum class DeviceStatus {
    ERROR
 };
 
-class state
+enum class Devices {
+   SLIDER1,
+   SLIDER2,
+   SLIDER3,
+   WEIGHING,
+   COBOTTA
+};
+
+class deviceState
 {
     public:
-        void addDevice(std::string device);
-        void removeDevice(std::string device);
-        DeviceStatus getDeviceStatus(std::string device);
-        bool checkDevices();
+        void addDevice(Devices device);
+        void removeDevice(Devices device);
+        DeviceStatus getDeviceStatus(Devices device);
+        Devices stringToDevice(std::string device);
+        bool checkDevices(DeviceStatus status);
+        bool checkDevicesList(std::vector<Devices> deviceslist, DeviceStatus status);
         void updateDeviceStatus(std::string message);
     private:
         std::vector<Device> devices;

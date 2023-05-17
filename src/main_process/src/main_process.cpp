@@ -8,7 +8,6 @@
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
 #include "msg_format/srv/process_service.hpp"
-#include "devices_state.hpp"
 #include "sequence.hpp"
 
 using namespace std::chrono_literals;
@@ -23,18 +22,8 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 {
     std::string action = request->action;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
-    state Devices;
-    Devices.addDevice("slider");
-    Devices.addDevice("weighing");
-    Devices.addDevice("cobotta");
-    Devices.updateDeviceStatus(action);
-
-    Sequence seq;
-    seq.process();     // 输出 "State A"
-    seq.setState(new weighing());
-    seq.process();     // 输出 "State B"
-    seq.setState(new outWeighingSample());
-    seq.process();     // 输出 "State C"
+    Sequence sequence;
+    sequence.devices.updateDeviceStatus(action);
 
     if (step.compare("init") == 0)
     {

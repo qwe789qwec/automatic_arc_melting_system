@@ -7,60 +7,50 @@
 #include <vector>
 
 #include <iostream>
+#include "devices_state.hpp"
 
 class SequenceState {
 public:
-    virtual void process() = 0;
+    virtual bool check(deviceState devices) = 0;
+    virtual std::vector<std::string> process() = 0;
+    virtual bool end(deviceState devices) = 0;
 };
 
-class init : public SequenceState {
+class Init : public SequenceState {
 public:
-    void process();
+    bool check(deviceState devices) override ;
+    std::vector<std::string> process() override ;
+    bool end(deviceState devices) override ;
 };
 
-class outDosingHead : public SequenceState {
+class OutDosingHead : public SequenceState {
 public:
-    void process();
+    bool check(deviceState devices) override ;
+    std::vector<std::string> process() override ;
+    bool end(deviceState devices) override ;
 };
 
-class inDosingHead : public SequenceState {
+class InDosingHead : public SequenceState {
 public:
-    void process();
+    bool check(deviceState devices) override ;
+    std::vector<std::string> process() override ;
+    bool end(deviceState devices) override ;
 };
-
-class outWeighingSample : public SequenceState {
-public:
-    void process();
-};
-
-class inWeighingSample : public SequenceState {
-public:
-    void process();
-};
-
-class outBufferSample : public SequenceState {
-public:
-    void process();
-};
-
-class inBufferSample : public SequenceState {
-public:
-    void process();
-};
-
-class weighing : public SequenceState {
-public:
-    void process();
-};
-
 
 class Sequence {
-private:
-    SequenceState* state;
 
 public:
+    deviceState devices;
+    SequenceState* state;
+
     Sequence() {
-        state = new init();
+        devices.addDevice(Devices::SLIDER1);
+        devices.addDevice(Devices::SLIDER2);
+        devices.addDevice(Devices::SLIDER3);
+        devices.addDevice(Devices::WEIGHING);
+        devices.addDevice(Devices::COBOTTA);
+
+        state = new Init();
     }
 
     void setState(SequenceState* newState) {
@@ -68,7 +58,7 @@ public:
         state = newState;
     }
 
-    void process() {
-        state->process();
+    void end() {
+        state->end(devices);
     }
 };
