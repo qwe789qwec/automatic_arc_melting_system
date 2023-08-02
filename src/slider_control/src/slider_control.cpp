@@ -69,9 +69,9 @@ private:
 
 		if (message.compare("init") == 0 && count == 0)
 		{
-			slider.move("01", arc_pos);
-			slider.move("02", arc_pos);
-			slider.move("04", arc_pos);
+			slider.move("01", slider1_init);
+			slider.move("04", slider3_init);
+			slider.move("02", slider2_init);
 			slider_client("slider ok");
 			count = 2;
 		}
@@ -113,10 +113,11 @@ private:
 		}
 		else if (message.compare("step 16") == 0 && count == 7)
 		{
-			slider.move("02", motor2take);
-			slider.move("04", motor4take);
-			slider.move("02", motor2put);
-			slider.move("04", motor4put);
+			slider.move("02", slider2_liftcup);
+			slider.move("04", slider3_into_arc);
+			slider.move("02", slider2_putcup_arc);
+			slider.move("04", slider3_outarc);
+			slider.move("02", slider2_init);
 			slider_client("slider ok");
 			count++;
 		}

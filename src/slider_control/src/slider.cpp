@@ -35,15 +35,18 @@ std::string slider::command(std::string command)
 std::string slider::servo_onf(std::string station, std::string state)
 {	
 	return command("!99232" + station + state);
+	// !992320101@@\r\n
 }
 
 std::string slider::servo_move(std::string station, std::string position)
 {
 	return command("!99234" + station + "006400640064" + position);
+	// !992340100640064006400000000@@\r\n
 }
 std::string slider::status(std::string station)
 {
 	return command("!99212" + station);
+	// !9921201@@\r\n
 }
 
 void slider::check_position(std::string servo)
