@@ -3,8 +3,8 @@ import rclpy
 import time
 from rclpy.node import Node
 
-from msg_format.msg import ProcessMsg
 from msg_format.srv import ProcessService
+from msg_format.msg import ProcessMsg
 
 from .pybcapclient.bcapclient import BCAPClient
 
@@ -169,7 +169,7 @@ class CobottaSubscriber(Node):
             count += 1
 
         elif msg.process.startswith("step 15") and count == 8:
-            cobotta_task("put_bowl")
+            cobotta_task("put_bowl_intoarc_20230727")
             cobotta_client = CobottaClient()
             message = "cobotta ok"
             response = cobotta_client.send_request(message)

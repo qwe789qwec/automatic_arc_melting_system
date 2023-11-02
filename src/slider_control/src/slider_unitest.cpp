@@ -64,67 +64,8 @@ private:
 	{
 		std::string message;
 		message = msg->process;
-		static int count = 0;
-		slider slider(slider_ip, slider_port);
-
-		if (message.compare("init") == 0 && count == 0)
-		{
-			slider.move(motor1, slider1_init);
-			slider.move(motor3, slider3_init);
-			slider.move(motor2, slider2_init);
-			slider_client("slider ok");
-			count = 2;
-		}
-		else if (message.compare("step 2") == 0 && count == 1)
-		{
-			slider.move(motor1, weighing_pos);
-			slider_client("slider ok");
-			count++;
-		}
-		else if (message.compare("step 4") == 0 && count == 2)
-		{
-			slider.move(motor1, weighing_pos);
-			slider_client("slider ok");
-			count++;
-		}
-		else if (message.compare("step 6") == 0 && count == 3)
-		{
-			slider.move(motor1, shelf_posA);
-			slider_client("slider ok");
-			count++;
-		}
-		else if (message.compare("step 8") == 0 && count == 4)
-		{
-			slider.move(motor1, shelf_posB);
-			slider_client("slider ok");
-			count++;
-		}
-		else if (message.compare("step 10") == 0 && count == 5)
-		{
-			slider.move(motor1, weighing_pos);
-			slider_client("slider ok");
-			count++;
-		}
-		else if (message.compare("step 14") == 0 && count == 6)
-		{
-			slider.move(motor1, arc_pos);
-			slider_client("slider ok");
-			count++;
-		}
-		else if (message.compare("step 16") == 0 && count == 7)
-		{
-			slider.move(motor2, slider2_liftcup);
-			slider.move(motor3, slider3_into_arc);
-			slider.move(motor2, slider2_putcup_arc);
-			slider.move(motor3, slider3_outarc);
-			slider.move(motor2, slider2_init);
-			slider_client("slider ok");
-			count++;
-		}
-		else if (message.compare("Standby") == 0)
-		{
-			count = 0;
-		}
+        
+        slider_client("slider ok");
 	}
 	rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 };
@@ -132,6 +73,25 @@ private:
 int main(int argc, char *argv[])
 {
 	rclcpp::init(argc, argv);
+	
+	slider slider(slider_ip, slider_port);
+	std::string center = "0000C3500000C350";
+	std::string zero = "0000000000000000";
+	slider.curve_move(motor4, motor5, "0000C3500000C350");
+	std::string radius = slider.relative_position("0000C350", "00004E20", "-");
+	std::string radius2 = slider.relative_position("0000C350", "00004E20", "+");
+	std::string root2 = slider.relative_position("0000C350", "0000373E", "-");
+	std::string root22 = slider.relative_position("0000C350", "0000373E", "+");
+	slider.curve_move(motor4, motor5, "0000C350" + radius);
+	slider.curve_move(motor4, motor5, root2 + root2);
+	slider.curve_move(motor4, motor5, radius + "0000C350");
+	slider.curve_move(motor4, motor5, root2 + root22);
+	slider.curve_move(motor4, motor5, "0000C350" + radius2);
+	slider.curve_move(motor4, motor5, root22 + root22);
+	slider.curve_move(motor4, motor5, radius2 + "0000C350");
+	slider.curve_move(motor4, motor5, root22 + root2);
+	slider.curve_move(motor4, motor5, "0000C3500000C350");
+
 	rclcpp::spin(std::make_shared<SliderSubscriber>());
 
 	rclcpp::shutdown();

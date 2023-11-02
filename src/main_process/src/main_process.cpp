@@ -8,6 +8,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
 #include "msg_format/srv/process_service.hpp"
+#include "sequence.hpp"
 
 using namespace std::chrono_literals;
 
@@ -21,175 +22,161 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 {
     std::string action = request->action;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
-    static bool slider = false;
-    static bool weighing = false;
-    static bool cobotta = false;
-
-    if (action.compare("slider ok") == 0)
-    {
-        slider = true;
-    }
-    if (action.compare("weighing ok") == 0)
-    {
-        weighing = true;
-    }
-    if (action.compare("cobotta ok") == 0)
-    {
-        cobotta = true;
-    }
+    Sequence sequence;
+    sequence.devices.updateDeviceStatus(action);
 
     if (step.compare("init") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 4";
-            slider = false;
-            weighing = false;
+            Devices.updateDeviceStatus("slider action");
+            Devices.updateDeviceStatus("weighing action");
         }
     }
     else if (step.compare("step 1") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 2";
-            cobotta = false;
+            Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 2") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 3";
-            slider = false;
-            weighing = false;
+            Devices.updateDeviceStatus("slider action");
+            Devices.updateDeviceStatus("weighing action");
         }
     }
     else if (step.compare("step 3") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 4";
-            cobotta = false;
+            Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 4") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 5";
-            cobotta = false;
+            Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 5") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 6";
-            slider = false;
-            weighing = false;
+            Devices.updateDeviceStatus("slider action");
+            Devices.updateDeviceStatus("weighing action");
         }
     }
     else if (step.compare("step 6") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 7";
-            cobotta = false;
+            Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 7") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 8";
-            slider = false;
+            Devices.updateDeviceStatus("slider action");
         }
     }
     else if (step.compare("step 8") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 9";
-            cobotta = false;
+            Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 9") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 10";
-            slider = false;
-            weighing = false;
+            Devices.updateDeviceStatus("slider action");
+            Devices.updateDeviceStatus("weighing action");
         }
     }
     else if (step.compare("step 10") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 11";
-            cobotta = false;
+            Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 11") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 12";
-            weighing = false;
+            Devices.updateDeviceStatus("weighing action");
         }
     }
     else if (step.compare("step 12") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 13";
-            cobotta = false;
+            Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 13") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 14";
-            slider = false;
-            weighing = false;
+            Devices.updateDeviceStatus("slider action");
+            Devices.updateDeviceStatus("weighing action");
         }
     }
     else if (step.compare("step 14") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 15";
-            cobotta = false;
+            Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 15") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 16";
-            weighing = false;
+            Devices.updateDeviceStatus("weighing action");
         }
     }
     else if (step.compare("step 16") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "step 17";
@@ -197,7 +184,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 17") == 0)
     {
-        if (slider && weighing && cobotta)
+        if (Devices.checkDevices())
         {
             response->result = "OK";
             step = "Standby";
