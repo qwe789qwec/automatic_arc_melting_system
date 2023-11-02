@@ -52,6 +52,7 @@ public:
     std::string length2string(int number);
     std::string compute_string(std::string number1, std::string number2, std::string sign = "+");
     std::string relative_position(std::string number1, std::string number2, std::string sign = "+");
+    std::string count_circle(double radius, double unmber, double index, std::string center);
     void move(std::string servo, std::string position, std::string speed = "32");
     void curve_move(std::string servo1, std::string servo2, std::string position, std::string speed = "32");
     void check_position(std::string servo);

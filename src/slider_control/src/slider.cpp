@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <math.h>
 
 #include <sstream>
 #include <iomanip>
@@ -74,7 +75,7 @@ std::string slider::status(std::string station)
 std::string slider::length2string(int number)
 {
 	std::ostringstream ss;
-    ss << std::hex << number;
+    ss << std::setfill('0') << std::setw(8) << std::hex << number;
     std::string result = ss.str();
 
 	return result;
@@ -110,6 +111,15 @@ std::string slider::relative_position(std::string number1, std::string number2, 
 	return addzero;
 }
 
+std::string slider::count_circle(double radius, double unmber, double index, std::string center)
+{
+	int sinValue = static_cast<int>(sin((M_PI/unmber)*index) * radius);
+	int yvalue = strtol(center.c_str(), NULL, 16) + sinValue;
+	int cosValue = static_cast<int>(cos((M_PI/unmber)*index) * radius);
+    int xvalue = strtol(center.c_str(), NULL, 16) + cosValue;
+	return length2string(xvalue) + length2string(yvalue);
+}
+
 void slider::check_position(std::string servo)
 {
 	std::string message, compare;
@@ -136,7 +146,7 @@ void slider::check_position(std::string servo)
 		}
 		printf("cycle");
 		// std::cout << message;
-		usleep(300 * 1000);
+		usleep(100 * 500);
 	}
 }
 
