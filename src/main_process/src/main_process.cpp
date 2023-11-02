@@ -8,7 +8,8 @@
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
 #include "msg_format/srv/process_service.hpp"
-#include "sequence.hpp"
+#include "main_process/sequence.hpp"
+#include "main_process/devices_state.hpp"
 
 using namespace std::chrono_literals;
 
@@ -24,10 +25,11 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
     Sequence sequence;
     sequence.devices.updateDeviceStatus(action);
+    deviceState Devices;
 
     if (step.compare("init") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 4";
@@ -37,7 +39,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 1") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 2";
@@ -46,7 +48,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 2") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 3";
@@ -56,7 +58,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 3") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 4";
@@ -65,7 +67,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 4") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 5";
@@ -74,7 +76,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 5") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 6";
@@ -84,7 +86,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 6") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 7";
@@ -93,7 +95,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 7") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 8";
@@ -102,7 +104,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 8") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 9";
@@ -111,7 +113,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 9") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 10";
@@ -121,7 +123,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 10") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 11";
@@ -130,7 +132,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 11") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 12";
@@ -139,7 +141,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 12") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 13";
@@ -148,7 +150,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 13") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 14";
@@ -158,7 +160,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 14") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 15";
@@ -167,7 +169,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 15") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 16";
@@ -176,7 +178,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 16") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "step 17";
@@ -184,7 +186,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 17") == 0)
     {
-        if (Devices.checkDevices())
+        if (Devices.checkDevices(DeviceStatus::ACTION))
         {
             response->result = "OK";
             step = "Standby";

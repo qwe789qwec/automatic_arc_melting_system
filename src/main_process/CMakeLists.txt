@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+ cmake_minimum_required(VERSION 3.5)
 project(main_process)
 
 # Default to C99
@@ -21,10 +21,13 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
+include_directories(include)
+
 find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
 
-add_executable(MainProcess src/main_process.cpp)
+add_executable(MainProcess src/main_process.cpp src/sequence.cpp src/devices_state.cpp)
+
 ament_target_dependencies(MainProcess
 rclcpp msg_format)
 
