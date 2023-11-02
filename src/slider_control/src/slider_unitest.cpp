@@ -75,9 +75,22 @@ int main(int argc, char *argv[])
 	rclcpp::init(argc, argv);
 	
 	slider slider(slider_ip, slider_port);
-	slider.move("01", slider1_init);
-	slider.move("04", slider3_init);
-	slider.move("02", slider2_init);
+	std::string center = "0000C3500000C350";
+	std::string zero = "0000000000000000";
+	slider.curve_move(motor4, motor5, "0000C3500000C350");
+	std::string radius = slider.relative_position("0000C350", "00004E20", "-");
+	std::string radius2 = slider.relative_position("0000C350", "00004E20", "+");
+	std::string root2 = slider.relative_position("0000C350", "0000373E", "-");
+	std::string root22 = slider.relative_position("0000C350", "0000373E", "+");
+	slider.curve_move(motor4, motor5, "0000C350" + radius);
+	slider.curve_move(motor4, motor5, root2 + root2);
+	slider.curve_move(motor4, motor5, radius + "0000C350");
+	slider.curve_move(motor4, motor5, root2 + root22);
+	slider.curve_move(motor4, motor5, "0000C350" + radius2);
+	slider.curve_move(motor4, motor5, root22 + root22);
+	slider.curve_move(motor4, motor5, radius2 + "0000C350");
+	slider.curve_move(motor4, motor5, root22 + root2);
+	slider.curve_move(motor4, motor5, "0000C3500000C350");
 
 	rclcpp::spin(std::make_shared<SliderSubscriber>());
 
