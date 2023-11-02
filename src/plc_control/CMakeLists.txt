@@ -32,11 +32,13 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+include_directories(include)
+
 find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
 find_package(tcp_handle REQUIRED)
 
-add_executable(PlcControl src/plc_control.cpp)
+add_executable(PlcControl src/plc_control.cpp src/plc.cpp)
 ament_target_dependencies(PlcControl
 rclcpp msg_format tcp_handle)
 

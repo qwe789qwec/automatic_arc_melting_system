@@ -68,33 +68,33 @@ private:
         if (message.compare("step 100") == 0)
         {
             // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            if(plc.status(presure).compare("ok") == 0)
+            if(plc.status(presurepin).compare("ok") == 0)
             {
-                plc.pump(close);
-                plc.valve(transfer, open);
-                plc.valve(transfer,close);
-                plc.pump(open);
-                plc.valve(pumpSmall, open);
-                while(plc.checkPresure() > 100){
+                plc.pump(off);
+                plc.valve(transferpin, on);
+                plc.valve(transferpin,off);
+                plc.pump(on);
+                plc.valve(pumpSmallpin, on);
+                while(plc.checkPresure("presure") > 100){
                     usleep(1500 * 1000);
                 }
-                plc.valve(pumpBig, open);
-                plc.valve(pumpSmall, close);
-                while(plc.checkPresure() > 50){
+                plc.valve(pumpBigpin, on);
+                plc.valve(pumpSmallpin, off);
+                while(plc.checkPresure("presure") > 50){
                     usleep(1500 * 1000);
                 }
-                plc.pump(close);
+                plc.pump(off);
                 plc.airFlow("400");
-                while(plc.checkPresure() < 50){
+                while(plc.checkPresure("presure") < 50){
                     usleep(1500 * 1000);
                 }
                 plc.airFlow("800");
-                while(plc.checkPresure() < 100){
+                while(plc.checkPresure("presure") < 100){
                     usleep(1500 * 1000);
                 }
                 plc.airFlow("0");
-                plc.valve(transfer, open);
-                plc.valve(transfer, close);
+                plc.valve(transferpin, on);
+                plc.valve(transferpin, off);
             }
             usleep(1500 * 1000);
         }

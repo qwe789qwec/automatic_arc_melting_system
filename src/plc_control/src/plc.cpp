@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "slider_control/slider.hpp"
+#include "plc_control/plc.hpp"
 #include "tcp_handle/tcp_socket.hpp"
 
 plc::plc(std::string ip, int port)
@@ -12,40 +12,47 @@ plc::plc(std::string ip, int port)
 	plc_tcp.connect(ip, port);
 }
 
-std::string plc::checkPresure()
-{
-    slider_tcp.write(input);
-    slider_tcp.receive(message);
-    std::string presure = message.substr(0, compare.size());
+int plc::checkPresure(std::string input)
+{   
+    std::string message;
+    plc_tcp.write(input);
+    plc_tcp.receive(message);
+    std::string number = message.substr(0, message.size());
+    int presure = strtol(number.c_str(), NULL, 10);
     return presure;
 }
 
 std::string plc::status(std::string component)
 {
-    slider_tcp.write(component);
-    slider_tcp.receive(message);
+    std::string message;
+    plc_tcp.write(component);
+    plc_tcp.receive(message);
+    return message;
 }
 
 void plc::pump(std::string input) 
 {
-    slider_tcp.write(input);
-    slider_tcp.receive(message);
+    std::string message;
+    plc_tcp.write(input);
+    plc_tcp.receive(message);
 }
 
 
 void plc::valve(std::string type, std::string state)
 {	
-    slider_tcp.write(type + state);
-    slider_tcp.receive(message);
+    std::string message;
+    plc_tcp.write(type + state);
+    plc_tcp.receive(message);
 }
 
 void plc::airFlow(std::string flux)
 {
-    slider_tcp.write(flux);
-    slider_tcp.receive(message);
+    std::string message;
+    plc_tcp.write(flux);
+    plc_tcp.receive(message);
 }
 
-slider::~plc()
+plc::~plc()
 {
 	plc_tcp.close();
 }
