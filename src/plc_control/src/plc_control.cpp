@@ -5,6 +5,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
 #include "msg_format/srv/process_service.hpp"
+#include "plc_control/plc.hpp"
 #include "tcp_handle/tcp_socket.hpp"
 #include <unistd.h>
 
@@ -63,15 +64,38 @@ private:
     {
         std::string message = msg->process;
         // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-        tcp_socket plc_tcp;
+        plc plc(plc_ip, plc_port);
         if (message.compare("step 100") == 0)
         {
             // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            plc_tcp.connect(plc_ip, plc_port);
-            plc_tcp.write("X5");
-            plc_tcp.check_receive("test", 6);
-            plc_tcp.close();
-            plc_client("plc ok");
+            if(plc.status(presure).compare("ok") == 0)
+            {
+                plc.pump(close);
+                plc.valve(transfer, open);
+                plc.valve(transfer,close);
+                plc.pump(open);
+                plc.valve(pumpSmall, open);
+                while(plc.checkPresure() > 100){
+                    usleep(1500 * 1000);
+                }
+                plc.valve(pumpBig, open);
+                plc.valve(pumpSmall, close);
+                while(plc.checkPresure() > 50){
+                    usleep(1500 * 1000);
+                }
+                plc.pump(close);
+                plc.airFlow("400");
+                while(plc.checkPresure() < 50){
+                    usleep(1500 * 1000);
+                }
+                plc.airFlow("800");
+                while(plc.checkPresure() < 100){
+                    usleep(1500 * 1000);
+                }
+                plc.airFlow("0");
+                plc.valve(transfer, open);
+                plc.valve(transfer, close);
+            }
             usleep(1500 * 1000);
         }
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
