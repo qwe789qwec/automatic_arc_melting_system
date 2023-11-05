@@ -91,7 +91,7 @@ class CobottaSubscriber(Node):
         if msg.process.startswith("init") and count == 0:
             cobotta_task("init")
             cobotta_client = CobottaClient()
-            message = "cobotta ok"
+            message = "cobotta standby"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
@@ -101,7 +101,7 @@ class CobottaSubscriber(Node):
         elif msg.process.startswith("step 1") and count == 1:
             cobotta_task("take_bowl")
             cobotta_client = CobottaClient()
-            message = "cobotta ok"
+            message = "cobotta standby"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
@@ -111,7 +111,7 @@ class CobottaSubscriber(Node):
         elif msg.process.startswith("step 3") and count == 2:
             cobotta_task("put_bowl")
             cobotta_client = CobottaClient()
-            message = "cobotta ok"
+            message = "cobotta standby"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
@@ -121,7 +121,7 @@ class CobottaSubscriber(Node):
         elif msg.process.startswith("step 5") and count == 3:
             cobotta_task("take_dose")
             cobotta_client = CobottaClient()
-            message = "cobotta ok"
+            message = "cobotta standby"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
@@ -131,7 +131,7 @@ class CobottaSubscriber(Node):
         elif msg.process.startswith("step 7") and count == 4:
             cobotta_task("put_l")
             cobotta_client = CobottaClient()
-            message = "cobotta ok"
+            message = "cobotta standby"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
@@ -141,7 +141,7 @@ class CobottaSubscriber(Node):
         elif msg.process.startswith("step 9") and count == 5:
             cobotta_task("take_l")
             cobotta_client = CobottaClient()
-            message = "cobotta ok"
+            message = "cobotta standby"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
@@ -151,7 +151,7 @@ class CobottaSubscriber(Node):
         elif msg.process.startswith("step 11") and count == 6:
             cobotta_task("put_dose")
             cobotta_client = CobottaClient()
-            message = "cobotta ok"
+            message = "cobotta standby"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
@@ -161,7 +161,7 @@ class CobottaSubscriber(Node):
         elif msg.process.startswith("step 13") and count == 7:
             cobotta_task("take_bowl")
             cobotta_client = CobottaClient()
-            message = "cobotta ok"
+            message = "cobotta standby"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()
@@ -171,7 +171,7 @@ class CobottaSubscriber(Node):
         elif msg.process.startswith("step 15") and count == 8:
             cobotta_task("put_bowl_intoarc_20230727")
             cobotta_client = CobottaClient()
-            message = "cobotta ok"
+            message = "cobotta standby"
             response = cobotta_client.send_request(message)
             cobotta_client.get_logger().info('I heard: "%s"' % response.result)
             cobotta_client.destroy_node()

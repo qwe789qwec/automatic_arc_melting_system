@@ -43,7 +43,7 @@ void weighing_machine::setgram(std::string gram)
 void weighing_machine::startdosing()
 {
     weiging_tcp.write("QRA 61 1\r\n"); // dosing
-    weiging_tcp.check_receive("QRA 61 1 A", 120);
+    weiging_tcp.check_receive("QRA 61 1 A", 200);
 	return ;
 }
 

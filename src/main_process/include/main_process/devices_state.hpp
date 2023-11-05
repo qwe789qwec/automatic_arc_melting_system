@@ -18,11 +18,13 @@ enum class DeviceStatus {
 };
 
 enum class Devices {
+   SLIDER,
    SLIDER1,
    SLIDER2,
    SLIDER3,
    WEIGHING,
-   COBOTTA
+   COBOTTA,
+   PLC
 };
 
 struct Device {

@@ -14,6 +14,7 @@ using namespace std::chrono_literals;
 
 std::string weighing_ip = "192.168.0.2";
 int weighing_port = 8001;
+weighing_machine weighing(weighing_ip, weighing_port);
 
 int weighing_client(std::string action)
 {
@@ -24,7 +25,7 @@ int weighing_client(std::string action)
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
 
-    while (!weighing_process->wait_for_service(1s))
+    while (!weighing_process->wait_for_service(3s))
     {
         if (!rclcpp::ok())
         {
@@ -64,20 +65,20 @@ private:
     {
         std::string message = msg->process;
         // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-        weighing_machine weighing(weighing_ip, weighing_port);
         static int count = 0;
+
         if (message.compare("init") == 0 && count == 0)
         {
             // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
             weighing.frontdoor(closedoor);
-            weighing_client("weighing ok");
+            weighing_client("weighing standby");
             usleep(1000 * 1000);
             count = 2;
         }
         else if (message.compare("step 2") == 0 && count == 1)
         {
             weighing.frontdoor(opendoor);
-            weighing_client("weighing ok");
+            weighing_client("weighing standby");
             usleep(1000 * 1000);
             count++;
         }
@@ -85,25 +86,25 @@ private:
         {
             weighing.frontdoor(closedoor);
             weighing.dosinghead(lock);
-            weighing.setgram("8.00");
+            weighing.setgram("7.50");
             weighing.startdosing();
             weighing.dosinghead(unlock);
             weighing.frontdoor(opendoor);
-            weighing_client("weighing ok");
+            weighing_client("weighing standby");
             usleep(1000 * 1000);
             count++;
         }
         else if (message.compare("step 6") == 0 && count == 3)
         {
             weighing.frontdoor(closedoor);
-            weighing_client("weighing ok");
+            weighing_client("weighing standby");
             usleep(1000 * 1000);
             count++;
         }
         else if (message.compare("step 10") == 0 && count == 4)
         {
             weighing.frontdoor(opendoor);
-            weighing_client("weighing ok");
+            weighing_client("weighing standby");
             usleep(1000 * 1000);
             count++;
         }
@@ -115,14 +116,14 @@ private:
             weighing.startdosing();
             weighing.dosinghead(unlock);
             weighing.frontdoor(opendoor);
-            weighing_client("weighing ok");
+            weighing_client("weighing standby");
             usleep(1000 * 1000);
             count++;
         }
         else if (message.compare("step 14") == 0 && count == 6)
         {
             weighing.frontdoor(closedoor);
-            weighing_client("weighing ok");
+            weighing_client("weighing standby");
             usleep(1000 * 1000);
             count++;
         }

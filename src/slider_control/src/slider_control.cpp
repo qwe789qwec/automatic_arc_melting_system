@@ -14,6 +14,7 @@ using namespace std::chrono_literals;
 
 std::string slider_ip = "192.168.0.3";
 int slider_port = 64511;
+slider slider(slider_ip, slider_port);
 
 int slider_client(std::string action)
 {
@@ -24,7 +25,7 @@ int slider_client(std::string action)
 	auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
 	request->action = action;
 
-	while (!slider_process->wait_for_service(1s))
+	while (!slider_process->wait_for_service(3s))
 	{
 		if (!rclcpp::ok())
 		{
@@ -62,53 +63,51 @@ public:
 private:
 	void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg) const
 	{
-		std::string message;
-		message = msg->process;
+		std::string message = msg->process;
 		static int count = 0;
-		slider slider(slider_ip, slider_port);
 
 		if (message.compare("init") == 0 && count == 0)
 		{
 			slider.move(motor1, slider1_init);
 			slider.move(motor3, slider3_init);
 			slider.move(motor2, slider2_init);
-			slider_client("slider ok");
+			slider_client("slider standby");
 			count = 2;
 		}
 		else if (message.compare("step 2") == 0 && count == 1)
 		{
 			slider.move(motor1, weighing_pos);
-			slider_client("slider ok");
+			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 4") == 0 && count == 2)
 		{
 			slider.move(motor1, weighing_pos);
-			slider_client("slider ok");
+			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 6") == 0 && count == 3)
 		{
 			slider.move(motor1, shelf_posA);
-			slider_client("slider ok");
+			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 8") == 0 && count == 4)
 		{
 			slider.move(motor1, shelf_posB);
-			slider_client("slider ok");
+			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 10") == 0 && count == 5)
 		{
 			slider.move(motor1, weighing_pos);
-			slider_client("slider ok");
+			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 14") == 0 && count == 6)
 		{
 			slider.move(motor1, arc_pos);
-			slider_client("slider ok");
+			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 16") == 0 && count == 7)
@@ -118,10 +117,10 @@ private:
 			slider.move(motor2, slider2_putcup_arc);
 			slider.move(motor3, slider3_outarc);
 			slider.move(motor2, slider2_init);
-			slider_client("slider ok");
+			slider_client("slider standby");
 			count++;
 		}
-		else if (message.compare("Standby") == 0)
+		else if (message.compare("finish") == 0)
 		{
 			count = 0;
 		}

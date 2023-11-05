@@ -124,7 +124,7 @@ void slider::check_position(std::string servo)
 {
 	std::string message, compare;
 	compare = "#99212" + servo + "1";
-	std::chrono::seconds timeout(10);
+	std::chrono::seconds timeout(30);
 	auto start_time = std::chrono::steady_clock::now();
 	while (true)
 	{
@@ -144,7 +144,7 @@ void slider::check_position(std::string servo)
 			printf("test timeout");
 			break;
 		}
-		printf("cycle");
+		// printf("cycle");
 		// std::cout << message;
 		usleep(100 * 500);
 	}

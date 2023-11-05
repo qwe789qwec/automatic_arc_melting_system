@@ -8,7 +8,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
 #include "msg_format/srv/process_service.hpp"
-#include "main_process/sequence.hpp"
+// #include "main_process/sequence.hpp"
 #include "main_process/devices_state.hpp"
 
 using namespace std::chrono_literals;
@@ -17,29 +17,48 @@ using namespace std::chrono_literals;
  * member function as a callback from the timer. */
 
 std::string step = "init";
+// std::string step = "set";
+bool initial = true;
+deviceState Devices;
 
 void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> request,
              std::shared_ptr<msg_format::srv::ProcessService::Response> response)
 {
     std::string action = request->action;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "action: %s", action.c_str());
-    Sequence sequence;
-    sequence.devices.updateDeviceStatus(action);
-    deviceState Devices;
+    // Sequence sequence;
+    // sequence.devices.updateDeviceStatus(action);
+
+    if(initial){
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "init state");
+        Devices.addDevice(Devices::SLIDER);
+        Devices.addDevice(Devices::WEIGHING);
+        Devices.addDevice(Devices::COBOTTA);
+        Devices.addDevice(Devices::PLC);
+        Devices.updateDeviceStatus("PLC standby");
+        initial = false;
+    }
+    Devices.updateDeviceStatus(action);
+    if (Devices.checkDevices(DeviceStatus::STANDBY)){
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "true");
+    }
 
     if (step.compare("init") == 0)
-    {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+    {   
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step here: %s", step.c_str());
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "next step");
             response->result = "OK";
             step = "step 4";
+            // step = "finish";
             Devices.updateDeviceStatus("slider action");
             Devices.updateDeviceStatus("weighing action");
         }
     }
     else if (step.compare("step 1") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 2";
@@ -48,7 +67,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 2") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 3";
@@ -58,7 +77,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 3") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 4";
@@ -67,35 +86,38 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 4") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 5";
+            // step = "finish";
             Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 5") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 6";
+            // step = "finish";
             Devices.updateDeviceStatus("slider action");
             Devices.updateDeviceStatus("weighing action");
         }
     }
     else if (step.compare("step 6") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 7";
+            // step = "finish";
             Devices.updateDeviceStatus("cobotta action");
         }
     }
     else if (step.compare("step 7") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 8";
@@ -104,7 +126,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 8") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 9";
@@ -113,7 +135,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 9") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 10";
@@ -123,7 +145,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 10") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 11";
@@ -132,7 +154,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 11") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 12";
@@ -141,7 +163,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 12") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 13";
@@ -150,7 +172,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 13") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 14";
@@ -160,7 +182,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 14") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 15";
@@ -169,27 +191,28 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
     else if (step.compare("step 15") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 16";
-            Devices.updateDeviceStatus("weighing action");
+            Devices.updateDeviceStatus("slider action");
         }
     }
     else if (step.compare("step 16") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 17";
+            Devices.updateDeviceStatus("PLC action");
         }
     }
     else if (step.compare("step 17") == 0)
     {
-        if (Devices.checkDevices(DeviceStatus::ACTION))
+        if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
-            step = "Standby";
+            step = "finish";
         }
     }
     else

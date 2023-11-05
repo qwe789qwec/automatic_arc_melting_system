@@ -54,7 +54,7 @@ public:
     }
 
     void setState(SequenceState* newState) {
-        delete state;
+        // delete state;
         state = newState;
     }
 
