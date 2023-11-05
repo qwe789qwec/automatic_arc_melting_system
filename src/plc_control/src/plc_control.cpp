@@ -14,6 +14,7 @@ using namespace std::chrono_literals;
 
 std::string plc_ip = "192.168.0.4";
 int plc_port = 9527;
+plc plc(plc_ip, plc_port);
 
 int plc_client(std::string action)
 {
@@ -64,26 +65,25 @@ private:
     {
         std::string message = msg->process;
         // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-        plc plc(plc_ip, plc_port);
         if (message.compare("step 100") == 0)
         {
             // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            if(plc.status(presurepin).compare("ok") == 0)
+            if(plc.status(presure).compare("ok") == 0)
             {
-                plc.pump(off);
-                plc.valve(transferpin, on);
-                plc.valve(transferpin,off);
-                plc.pump(on);
-                plc.valve(pumpSmallpin, on);
+                plc.ioOnOff(pump, off);
+                plc.ioOnOff(transfer, on);
+                plc.ioOnOff(transfer,off);
+                plc.ioOnOff(pump, on);
+                plc.ioOnOff(pumpValveSmall, on);
                 while(plc.checkPresure("presure") > 100){
                     usleep(1500 * 1000);
                 }
-                plc.valve(pumpBigpin, on);
-                plc.valve(pumpSmallpin, off);
+                plc.ioOnOff(pumpValveBig, on);
+                plc.ioOnOff(pumpValveSmall, off);
                 while(plc.checkPresure("presure") > 50){
                     usleep(1500 * 1000);
                 }
-                plc.pump(off);
+                plc.ioOnOff(pump, off);
                 plc.airFlow("400");
                 while(plc.checkPresure("presure") < 50){
                     usleep(1500 * 1000);
@@ -93,8 +93,8 @@ private:
                     usleep(1500 * 1000);
                 }
                 plc.airFlow("0");
-                plc.valve(transferpin, on);
-                plc.valve(transferpin, off);
+                plc.ioOnOff(transfer, on);
+                plc.ioOnOff(transfer, off);
             }
             usleep(1500 * 1000);
         }

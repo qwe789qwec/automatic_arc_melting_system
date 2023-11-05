@@ -13,19 +13,28 @@
 #define on "1"
 #define off "0"
 
-#define transferpin "X1"
-#define pumpBigpin "X2"
-#define pumpSmallpin "X3"
-#define presurepin "D1"
+#define transfer "X1"
+#define pumpBig "X2"
+#define pumpSmall "X3"
+#define presure "D1"
+
+#define waterSupply "Y4"
+#define pumpValveSmall "Y5"
+#define pumpValveBig "Y6"
+#define pump "Y7"
+#define openValve "Y10"
+#define closeValve "Y11"
+#define arc "Y12"
 
 class plc
 {
 public:
 	plc(std::string, int);
+    std::string ioOnOff(std::string io,std::string state);
     std::string status(std::string component);
+    std::string read(std::string output);
     int checkPresure(std::string input);
-    void pump(std::string input);
-    void valve(std::string type, std::string state);
+    void write(std::string input);
     void airFlow(std::string flux);
 	~plc();
 
