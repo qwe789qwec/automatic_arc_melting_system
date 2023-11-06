@@ -77,7 +77,10 @@ void plc::pump(std::string input)
         usleep(1000 * 1500);
         ioOnOff(startPump, off);
 
-        usleep(1000 * 1000 * 60 * 3);
+        // usleep(1000 * 1000 * 60 * 3); //one times pump
+        // usleep(1000 * 1000 * 60 * 5); //two times pump
+        usleep(1000 * 1000 * 60 * 8); //three times pump
+
     }
     else if(input.compare(off) == 0){
         ioOnOff(startVent, on);

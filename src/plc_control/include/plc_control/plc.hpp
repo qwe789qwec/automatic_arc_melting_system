@@ -27,6 +27,7 @@
 #define openGateValve "YA"  // 20sec
 #define closeGateValve "YB"  // 20sec
 #define arc "YC"
+#define buzz "YD"
 
 #define startPump "M0"
 #define startVent "M5"

@@ -74,13 +74,17 @@ int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
 
-    plc.pump(on);
-    usleep(1000 * 1000 * 2);
-    plc.ioOnOff(arc, on);
+    // plc.gateValve(off);
+    // plc.pump(on);
+    plc.ioOnOff(buzz, on);
     usleep(1000 * 1000 * 3);
+    plc.ioOnOff(buzz, off);
+    usleep(1000 * 1000);
+    plc.ioOnOff(arc, on);
+    usleep(1000 * 1000 * 5);
     plc.ioOnOff(arc, off);
     usleep(1000 * 1000 * 2);
-    plc.pump(off);
+    // plc.pump(off);
 
 
 
