@@ -70,10 +70,10 @@ private:
             // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
             if(plc.status(presure).compare("ok") == 0)
             {
-                plc.ioOnOff(pump, off);
+                plc.ioOnOff(pumpMachine, off);
                 plc.ioOnOff(transfer, on);
                 plc.ioOnOff(transfer,off);
-                plc.ioOnOff(pump, on);
+                plc.ioOnOff(pumpMachine, on);
                 plc.ioOnOff(pumpValveSmall, on);
                 while(plc.checkPresure("presure") > 100){
                     usleep(1500 * 1000);
@@ -83,7 +83,7 @@ private:
                 while(plc.checkPresure("presure") > 50){
                     usleep(1500 * 1000);
                 }
-                plc.ioOnOff(pump, off);
+                plc.ioOnOff(pumpMachine, off);
                 plc.airFlow("400");
                 while(plc.checkPresure("presure") < 50){
                     usleep(1500 * 1000);

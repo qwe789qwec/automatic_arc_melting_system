@@ -74,15 +74,15 @@ int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
 
-    plc.ioOnOff("Y1", on);
-    usleep(1000 * 5000);
-    plc.ioOnOff("Y1", off);
+    plc.pump(on);
+    usleep(1000 * 1000 * 2);
+    plc.ioOnOff(arc, on);
+    usleep(1000 * 1000 * 3);
+    plc.ioOnOff(arc, off);
+    usleep(1000 * 1000 * 2);
+    plc.pump(off);
 
-    usleep(1000 * 1000);
 
-    plc.ioOnOff("Y2", on);
-    usleep(1000 * 5000);
-    plc.ioOnOff("Y2", off);
 
     rclcpp::spin(std::make_shared<PlcSubscriber>());
 

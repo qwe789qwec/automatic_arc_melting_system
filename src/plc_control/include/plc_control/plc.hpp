@@ -12,6 +12,8 @@
 
 #define on "1"
 #define off "0"
+#define open "1"
+// #define close "0"
 
 #define transfer "X1"
 #define pumpBig "X2"
@@ -21,10 +23,13 @@
 #define waterSupply "Y4"
 #define pumpValveSmall "Y5"
 #define pumpValveBig "Y6"
-#define pump "Y7"
-#define openValve "Y10"
-#define closeValve "Y11"
-#define arc "Y12"
+#define pumpMachine "Y7"
+#define openGateValve "YA"  // 20sec
+#define closeGateValve "YB"  // 20sec
+#define arc "YC"
+
+#define startPump "M0"
+#define startVent "M5"
 
 class plc
 {
@@ -35,6 +40,8 @@ public:
     std::string read(std::string output);
     int checkPresure(std::string input);
     void write(std::string input);
+    void gateValve(std::string input);
+    void pump(std::string input);
     void airFlow(std::string flux);
 	~plc();
 
