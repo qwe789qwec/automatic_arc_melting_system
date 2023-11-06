@@ -35,7 +35,6 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
         Devices.addDevice(Devices::WEIGHING);
         Devices.addDevice(Devices::COBOTTA);
         Devices.addDevice(Devices::PLC);
-        Devices.updateDeviceStatus("PLC standby");
         initial = false;
     }
     Devices.updateDeviceStatus(action);
@@ -50,6 +49,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
         {
             RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "next step");
             response->result = "OK";
+            // step = "step 16"; plc test
             step = "step 4";
             // step = "finish";
             Devices.updateDeviceStatus("slider action");
@@ -199,12 +199,12 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
         }
     }
     else if (step.compare("step 16") == 0)
-    {
+    {   
         if (Devices.checkDevices(DeviceStatus::STANDBY))
         {
             response->result = "OK";
             step = "step 17";
-            Devices.updateDeviceStatus("PLC action");
+            Devices.updateDeviceStatus("plc action");
         }
     }
     else if (step.compare("step 17") == 0)

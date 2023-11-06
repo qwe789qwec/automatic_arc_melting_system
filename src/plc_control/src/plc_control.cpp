@@ -65,39 +65,37 @@ private:
     {
         std::string message = msg->process;
         // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-        if (message.compare("step 100") == 0)
-        {
-            // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            if(plc.status(presure).compare("ok") == 0)
-            {
-                plc.ioOnOff(pumpMachine, off);
-                plc.ioOnOff(transfer, on);
-                plc.ioOnOff(transfer,off);
-                plc.ioOnOff(pumpMachine, on);
-                plc.ioOnOff(pumpValveSmall, on);
-                while(plc.checkPresure("presure") > 100){
-                    usleep(1500 * 1000);
-                }
-                plc.ioOnOff(pumpValveBig, on);
-                plc.ioOnOff(pumpValveSmall, off);
-                while(plc.checkPresure("presure") > 50){
-                    usleep(1500 * 1000);
-                }
-                plc.ioOnOff(pumpMachine, off);
-                plc.airFlow("400");
-                while(plc.checkPresure("presure") < 50){
-                    usleep(1500 * 1000);
-                }
-                plc.airFlow("800");
-                while(plc.checkPresure("presure") < 100){
-                    usleep(1500 * 1000);
-                }
-                plc.airFlow("0");
-                plc.ioOnOff(transfer, on);
-                plc.ioOnOff(transfer, off);
-            }
-            usleep(1500 * 1000);
-        }
+        static int count = 0;
+        
+        if (message.compare("init") == 0 && count == 0)
+		{
+			plc.gateValve(on);
+			plc_client("plc standby");
+            plc.ioOnOff(pumpValveBig, off);
+            plc.ioOnOff(pumpValveSmall, off);
+            plc_client("plc standby");
+			count = 1;
+		}
+		else if (message.compare("step 17") == 0 && count == 1)
+		{
+            plc.gateValve(off);
+            usleep(1000 * 1000);
+			plc.pump(on);
+            usleep(1000 * 1000 * 2);
+            plc.ioOnOff(arc, on);
+            usleep(1000 * 1000 * 3);
+            plc.ioOnOff(arc, off);
+            usleep(1000 * 1000 * 2);
+            plc.pump(off);
+            plc.gateValve(on);
+			plc_client("plc standby");
+			count++;
+		}
+		else if (message.compare("finish") == 0)
+		{
+			count = 0;
+		}
+
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
     }
     rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;

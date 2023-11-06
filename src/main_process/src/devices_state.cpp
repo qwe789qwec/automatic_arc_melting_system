@@ -56,7 +56,7 @@ Devices deviceState::stringToDevice(std::string device){
 	else if (device.compare("cobotta") == 0){
 		return Devices::COBOTTA;
 	}
-	else if (device.compare("PLC") == 0){
+	else if (device.compare("plc") == 0){
 		return Devices::PLC;
 	}
 	else{

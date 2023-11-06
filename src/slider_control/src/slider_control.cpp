@@ -105,7 +105,7 @@ private:
 			count++;
 		}
 		else if (message.compare("step 14") == 0 && count == 6)
-		{
+		{	
 			slider.move(motor1, arc_pos);
 			slider_client("slider standby");
 			count++;
