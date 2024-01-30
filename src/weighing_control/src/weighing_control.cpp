@@ -16,6 +16,9 @@ std::string weighing_ip = "192.168.0.2";
 int weighing_port = 8001;
 weighing_machine weighing(weighing_ip, weighing_port);
 
+std::string first_material = "396.7";
+std::string second_material = "103.3";
+
 int weighing_client(std::string action)
 {
     std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("weighing_process");
@@ -86,7 +89,7 @@ private:
         {
             weighing.frontdoor(closedoor);
             weighing.dosinghead(lock);
-            weighing.setgram("7.50");
+            weighing.setgram(first_material);
             weighing.startdosing();
             weighing.dosinghead(unlock);
             weighing.frontdoor(opendoor);
@@ -112,7 +115,7 @@ private:
         {
             weighing.frontdoor(closedoor);
             weighing.dosinghead(lock);
-            weighing.setgram("6.30");
+            weighing.setgram(second_material);
             weighing.startdosing();
             weighing.dosinghead(unlock);
             weighing.frontdoor(opendoor);
