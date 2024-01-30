@@ -68,55 +68,55 @@ private:
 
 		if (message.compare("init") == 0 && count == 0)
 		{
-			slider.move(motor1, slider1_init);
-			slider.move(motor3, slider3_init);
-			slider.move(motor2, slider2_init);
+			slider.move(motor_1, slider1_init);
+			slider.move(motor_3, slider3_init);
+			slider.move(motor_2, slider2_init);
 			slider_client("slider standby");
 			count = 2;
 		}
 		else if (message.compare("step 2") == 0 && count == 1)
 		{
-			slider.move(motor1, weighing_pos);
+			slider.move(motor_1, weighing_pos);
 			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 4") == 0 && count == 2)
 		{
-			slider.move(motor1, weighing_pos);
+			slider.move(motor_1, weighing_pos);
 			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 6") == 0 && count == 3)
 		{
-			slider.move(motor1, shelf_posA);
+			slider.move(motor_1, shelf_posA);
 			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 8") == 0 && count == 4)
 		{
-			slider.move(motor1, shelf_posB);
+			slider.move(motor_1, shelf_posB);
 			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 10") == 0 && count == 5)
 		{
-			slider.move(motor1, weighing_pos);
+			slider.move(motor_1, weighing_pos);
 			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 14") == 0 && count == 6)
 		{	
-			slider.move(motor1, arc_pos);
+			slider.move(motor_1, arc_pos);
 			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 16") == 0 && count == 7)
 		{
-			slider.move(motor2, slider2_liftcup);
-			slider.move(motor3, slider3_into_arc);
-			slider.move(motor2, slider2_putcup_arc);
-			slider.move(motor3, slider3_outarc);
-			slider.move(motor2, slider2_init);
+			slider.move(motor_2, slider2_liftcup);
+			slider.move(motor_3, slider3_into_arc);
+			slider.move(motor_2, slider2_putcup_arc);
+			slider.move(motor_3, slider3_outarc);
+			slider.move(motor_2, slider2_init);
 			slider_client("slider standby");
 			count++;
 		}

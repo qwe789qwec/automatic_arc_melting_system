@@ -28,14 +28,14 @@
 #define slider2_outarc "00006582"// vertical, when it gets out without cup
 #define slider3_outarc "00000001"// horizontal, when it gets out without cup
 
-#define motor1 "01"
-#define motor2 "02"
-#define motor3 "04"
-#define motor4 "08"
-#define motor5 "10"
-#define motor6 "20"
-#define motor7 "40"
-#define motor8 "80"
+#define motor_1 "01"
+#define motor_2 "02"
+#define motor_3 "04"
+#define motor_x "08"
+#define motor_y "10"
+#define motor_z "20"
+#define motor_7 "40"
+#define motor_8 "80"
 
 #define on "1"
 #define off "0"
@@ -54,7 +54,7 @@ public:
     std::string relative_position(std::string number1, std::string number2, std::string sign = "+");
     std::string count_circle(double radius, double unmber, double index, std::string center);
     void move(std::string servo, std::string position, std::string speed = "32");
-    void curve_move(std::string servo1, std::string servo2, std::string position, std::string speed = "32");
+    void curve_move(std::string servo1, std::string servo2, std::string position, std::string speed = "08");
     void check_position(std::string servo);
 	~slider();
 

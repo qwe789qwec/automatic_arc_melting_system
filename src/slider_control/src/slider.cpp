@@ -15,17 +15,17 @@
 slider::slider(std::string ip, int port)
 {
 	slider_tcp.connect(ip, port);
-	slider_tcp.write(servo_onf(motor1, on));
+	slider_tcp.write(servo_onf(motor_1, on));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor2, on));
+	slider_tcp.write(servo_onf(motor_2, on));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor3, on));
+	slider_tcp.write(servo_onf(motor_3, on));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor4, on));
+	slider_tcp.write(servo_onf(motor_x, on));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor5, on));
+	slider_tcp.write(servo_onf(motor_y, on));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor6, on));
+	slider_tcp.write(servo_onf(motor_z, on));
 	slider_tcp.check_receive("#992322C", 3);
 	// slider_tcp.write(servo_onf(motor7, on));
 	// slider_tcp.write(servo_onf(motor8, on));
@@ -66,6 +66,7 @@ std::string slider::servo_move(std::string station, std::string position, std::s
 	return command("!99234" + station + speedaddzero + speedaddzero + speedaddzero + position);
 	// !992340100640064006400000000@@\r\n
 }
+
 std::string slider::status(std::string station)
 {
 	return command("!99212" + station);
@@ -113,10 +114,13 @@ std::string slider::relative_position(std::string number1, std::string number2, 
 
 std::string slider::count_circle(double radius, double unmber, double index, std::string center)
 {
-	int sinValue = static_cast<int>(sin((M_PI/unmber)*index) * radius);
-	int yvalue = strtol(center.c_str(), NULL, 16) + sinValue;
-	int cosValue = static_cast<int>(cos((M_PI/unmber)*index) * radius);
-    int xvalue = strtol(center.c_str(), NULL, 16) + cosValue;
+	std::string centerx = center.substr(0, 8);
+	std::string centery = center.substr(8, 15);
+	std::cout << "x:" << centerx << "  y:" << centery << std::endl;
+	int sinValue = static_cast<int>(sin((M_PI/(unmber/2))*index) * radius);
+	int yvalue = strtol(centery.c_str(), NULL, 16) + sinValue;
+	int cosValue = static_cast<int>(cos((M_PI/(unmber/2))*index) * radius);
+    int xvalue = strtol(centerx.c_str(), NULL, 16) + cosValue;
 	return length2string(xvalue) + length2string(yvalue);
 }
 
@@ -170,17 +174,17 @@ void slider::curve_move(std::string servo1, std::string servo2, std::string posi
 
 slider::~slider()
 {
-	slider_tcp.write(servo_onf(motor1, off));
+	slider_tcp.write(servo_onf(motor_1, off));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor2, off));
+	slider_tcp.write(servo_onf(motor_2, off));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor3, off));
+	slider_tcp.write(servo_onf(motor_3, off));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor4, off));
+	slider_tcp.write(servo_onf(motor_x, off));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor5, off));
+	slider_tcp.write(servo_onf(motor_y, off));
 	slider_tcp.check_receive("#992322C", 3);
-	slider_tcp.write(servo_onf(motor6, off));
+	slider_tcp.write(servo_onf(motor_z, off));
 	slider_tcp.check_receive("#992322C", 3);
 	// slider_tcp.write(servo_onf(motor7, off));
 	// slider_tcp.write(servo_onf(motor8, off));

@@ -76,14 +76,38 @@ int main(int argc, char *argv[])
 	rclcpp::init(argc, argv);
 	
 	slider slider(slider_ip, slider_port);
-	std::string center = "0000C3500000C350";
+	std::string center_x = slider.length2string(57*1000);
+	std::string center_xy = slider.length2string(57*1000) + slider.length2string(30*1000);
+	std::string center_yz = slider.length2string(30*1000) + slider.length2string(74.5*1000);// y 30 z 74.5
+	// std::string center_yz = "0000753000012304";// y 30 z 74.5
 	std::string zero = "0000000000000000";
-	slider.curve_move(motor4, motor5, "0000C3500000C350");
-	int sep = 32;
+	std::string home = "0001117000013880";// y 70 and z 80
+	std::string route_1 = "0000EA60000124F8";// y 60 z 75
+	std::string route_2 = "0000C35000011D28";// y 50 z 73
+	std::string route_3 = "00009C4000011940";// y 40 z 72
+
+
+	slider.move(motor_x, center_x, "08");// x 57
+	slider.curve_move(motor_y, motor_z, home);// x 57 y 70 z 80
+	usleep(1000 * 5000);
+	slider.curve_move(motor_y, motor_z, route_1);// x 57 y 60 z 75
+	slider.curve_move(motor_y, motor_z, route_2);// x 57 y 50 z 73
+	slider.curve_move(motor_y, motor_z, route_3);// x 57 y 40 z 72
+	slider.curve_move(motor_y, motor_z, center_yz);// x 57 y 30 z 74.5
+	
+
+	int sep = 16;
 	for(int i = 0; i < sep; i++){
-		slider.curve_move(motor4, motor5, slider.count_circle(20000, sep/2, i, "0000C350"));
+		slider.curve_move(motor_x, motor_y, slider.count_circle(7000, sep, i, center_xy));
 	}
-	slider.curve_move(motor4, motor5, "0000C350000130B0");
+	slider.move(motor_x, center_x, "08");// x 57
+	slider.curve_move(motor_y, motor_z, center_yz);// x 57 y 30 z 74.5
+	slider.curve_move(motor_y, motor_z, route_3);// x 57 y 40 z 72
+	slider.curve_move(motor_y, motor_z, route_2);// x 57 y 50 z 73
+	slider.curve_move(motor_y, motor_z, route_1);// x 57 y 60 z 75
+	slider.curve_move(motor_y, motor_z, home);// x 57 y 70 z 80
+	// slider.move(motor_x, "0000EA60");
+
 
 	rclcpp::spin(std::make_shared<SliderSubscriber>());
 
