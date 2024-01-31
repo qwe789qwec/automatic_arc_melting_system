@@ -79,6 +79,16 @@ bool tcp_socket::write(const std::string &data)
 	return true;
 }
 
+bool tcp_socket::write_raw(const void* data, int size)
+{
+	int length = ::send(socket_fd, data, size, 0);
+	if (length < 0)
+	{
+		return false;
+	}
+	return true;
+}
+
 bool tcp_socket::receive(std::string &data)
 {
 	char buffer[1024] = {0};
@@ -96,6 +106,26 @@ bool tcp_socket::receive(std::string &data)
 		return false;
 	}
 	data = std::string(buffer, length);
+	return true;
+}
+
+bool tcp_socket::receive_raw(char* &data, int &size)
+{
+	int length = ::recv(socket_fd, data, 1024, 0);
+	size = length;
+	if (length < 0)
+	{
+		if (errno != EWOULDBLOCK && errno != EAGAIN)
+		{
+			return false;
+		}
+		return true;
+	}
+	else if (length == 0)
+	{
+		return false;
+	}
+
 	return true;
 }
 
