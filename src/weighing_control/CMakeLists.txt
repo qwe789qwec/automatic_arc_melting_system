@@ -40,7 +40,14 @@ find_package(tcp_handle REQUIRED)
 
 add_executable(WeighingControl
 src/weighing_control.cpp src/weighing_machine.cpp)
+
 ament_target_dependencies(WeighingControl
+rclcpp msg_format tcp_handle)
+
+add_executable(WeighingTest
+src/weighing_unitest.cpp src/weighing_machine.cpp)
+
+ament_target_dependencies(WeighingTest
 rclcpp msg_format tcp_handle)
 
 install(
@@ -51,6 +58,7 @@ install(
 install(
   TARGETS
   WeighingControl
+  WeighingTest
   DESTINATION lib/${PROJECT_NAME}
 )
 
