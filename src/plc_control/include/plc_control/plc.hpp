@@ -39,8 +39,9 @@ public:
     std::string ioOnOff(std::string io,std::string state);
     std::string status(std::string component);
     std::string read(std::string output);
+    std::string write(std::string input);
+    char* write_raw(const void* input, int &size);
     int checkPresure(std::string input);
-    void write(std::string input);
     void gateValve(std::string input);
     void pump(std::string input);
     void airFlow(std::string flux);

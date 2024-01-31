@@ -10,7 +10,7 @@
 plc::plc(std::string ip, int port)
 {
 	plc_tcp.connect(ip, port);
-    ioOnOff(waterSupply, on);
+    // ioOnOff(waterSupply, on);
     usleep(1000 * 1000);
 }
 
@@ -93,11 +93,22 @@ void plc::pump(std::string input)
     usleep(1000 * 1000 * 30);
 }
 
-void plc::write(std::string input) 
+std::string plc::write(std::string input) 
 {
     std::string message;
     plc_tcp.write(input);
     plc_tcp.receive(message);
+    
+    return message;
+}
+
+char* plc::write_raw(const void* input, int &size) 
+{
+    char* message;
+    plc_tcp.write_raw(input, size);
+    usleep(1000 * 500);
+    plc_tcp.receive_raw(message, size);
+    return message;
 }
 
 void plc::airFlow(std::string flux)
@@ -109,6 +120,6 @@ void plc::airFlow(std::string flux)
 
 plc::~plc()
 {
-    ioOnOff(waterSupply, off);
+    // ioOnOff(waterSupply, off);
 	plc_tcp.close();
 }
