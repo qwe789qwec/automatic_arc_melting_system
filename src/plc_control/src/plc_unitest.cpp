@@ -1,6 +1,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <memory>
+#include <iomanip>
 
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
@@ -13,7 +14,7 @@ using std::placeholders::_1;
 using namespace std::chrono_literals;
 
 std::string plc_ip = "192.168.0.4";
-int plc_port = 9527;
+int plc_port = 9528;
 plc plc(plc_ip, plc_port);
 
 int plc_client(std::string action)
@@ -74,16 +75,71 @@ int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
 
-    // plc.gateValve(off);
-    // plc.pump(on);
-    plc.ioOnOff(buzz, on);
+    // [00 01 00 00 00 06 00 05 00 0B FF 00] //turn buzz on
+    // [00 01 00 00 00 06 00 05 00 0B 00 00] //turn buzz off
+
+    // const char* buzz_on = "\x00\x01\x00\x00\x00\x06\x00\x05\x00\x0B\xFF\x00";
+    // const char* buzz_off = "\x00\x01\x00\x00\x00\x06\x00\x05\x00\x0B\x00\x00";
+    // sd0 start from 20480 sd1 equal to 20481 sd6180 equal to 26660
+    const char* water_on = "\x00\x01\x00\x00\x00\x06\x00\x05\x00\x04\xFF\x00";
+    const char* water_off = "\x00\x01\x00\x00\x00\x06\x00\x05\x00\x04\x00\x00";
+
+    // const char* read_X = "\x00\x01\x00\x00\x00\x06\x00\x02\x00\x03\x00\x01";
+    const char* read_SD = "\x00\x01\x00\x00\x00\x06\x00\x03\x68\x24\x00\x01";
+    // const char* read_D = "\x00\x01\x00\x00\x00\x06\x00\x02\x00\x03\x00\x01";
+    const char* write_SD500 = "\x00\x01\x00\x00\x00\x06\x00\x06\x68\x24\x01\xF4";
+    const char* write_SD0 = "\x00\x01\x00\x00\x00\x06\x00\x06\x68\x24\x00\x00";
+    
+    char* return_message;
+    std::cout << "write" << std::endl;
+    int message_size = 12;
+    return_message = plc.write_raw(water_on, message_size);
+    std::cout << message_size << std::endl;
+    for (int i = 0; i < message_size; i++) {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
+    }
+    std::cout << std::endl;
     usleep(1000 * 1000 * 3);
-    plc.ioOnOff(buzz, off);
-    usleep(1000 * 1000);
-    plc.ioOnOff(arc, on);
-    usleep(1000 * 1000 * 5);
-    plc.ioOnOff(arc, off);
-    usleep(1000 * 1000 * 2);
+    message_size = 12;
+    return_message = plc.write_raw(water_off, message_size);
+    std::cout << message_size << std::endl;
+    for (int i = 0; i < message_size; i++) {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
+    }
+    std::cout << std::endl;
+
+    message_size = 12;
+    return_message = plc.write_raw(write_SD500, message_size);
+    std::cout << message_size << std::endl;
+    for (int i = 0; i < message_size; i++) {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
+    }
+
+    message_size = 12;
+    return_message = plc.write_raw(read_SD, message_size);
+    std::cout << message_size << std::endl;
+    for (int i = 0; i < message_size; i++) {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
+    }
+    usleep(1000 * 1000 * 3);
+
+    message_size = 12;
+    return_message = plc.write_raw(write_SD0, message_size);
+    std::cout << message_size << std::endl;
+    for (int i = 0; i < message_size; i++) {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
+    }
+    std::cout << "finish test" << std::endl;
+
+    // plc.pump(on);
+    // plc.ioOnOff(buzz, on);
+    // usleep(1000 * 1000 * 3);
+    // plc.ioOnOff(buzz, off);
+    // usleep(1000 * 1000);
+    // plc.ioOnOff(arc, on);
+    // usleep(1000 * 1000 * 5);
+    // plc.ioOnOff(arc, off);
+    // usleep(1000 * 1000 * 2);
     // plc.pump(off);
 
 
