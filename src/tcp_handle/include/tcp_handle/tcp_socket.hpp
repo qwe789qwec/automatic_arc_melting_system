@@ -19,9 +19,9 @@ public:
 	bool set_blocking(bool);
 	bool connect(const std::string &, const int &);
 	bool write(const std::string &);
-	bool write_raw(const void*, int);
+	bool writeRaw(const void*, int);
 	bool receive(std::string &);
-	bool receive_raw(char* &, int &);
+	bool receiveRaw(char* &, int &);
 	bool check_receive(std::string, int);
 	void close();
 	~tcp_socket();
