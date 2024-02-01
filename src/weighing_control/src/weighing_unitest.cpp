@@ -14,16 +14,18 @@ std::string weighing_ip = "192.168.0.2";
 int weighing_port = 8001;
 weighing_machine weighing(weighing_ip, weighing_port);
 
-std::string first_material = "396.7";
-std::string second_material = "103.3";
-
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
 
+    if(argv[1] == NULL){
+        std::cout << "Please enter the weight" << std::endl;
+        return 0;
+    }
+
     weighing.frontdoor(closedoor);
     weighing.dosinghead(lock);
-    weighing.setgram(first_material);
+    weighing.setgram(argv[1]);
     weighing.startdosing();
     weighing.dosinghead(unlock);
     weighing.frontdoor(opendoor);
