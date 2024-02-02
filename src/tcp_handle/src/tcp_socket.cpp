@@ -1,5 +1,7 @@
 #include <chrono>
 #include <thread>
+#include <cstring>
+#include <cerrno>
 
 #include <arpa/inet.h>
 #include <stdio.h>
@@ -111,8 +113,8 @@ bool tcp_socket::receive(std::string &data)
 
 bool tcp_socket::receiveRaw(char* &data, int &size)
 {
-	int length = ::recv(socket_fd, data, 1024, 0);
-	size = length;
+	char buffer[1024] = {0};
+	int length = ::recv(socket_fd, buffer, 1024, 0);
 	if (length < 0)
 	{
 		if (errno != EWOULDBLOCK && errno != EAGAIN)
@@ -125,6 +127,10 @@ bool tcp_socket::receiveRaw(char* &data, int &size)
 	{
 		return false;
 	}
+
+	size = length;
+	data = new char[length];
+    std::memcpy(data, buffer, length);
 
 	return true;
 }
