@@ -71,64 +71,79 @@ private:
     rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 };
 
+void printchar(const char *message, int size)
+{   
+    std::cout << "size:" << std::dec << size << " message:";
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(message[i])) << " ";
+    }
+    std::cout << std::endl;
+}
+
+char* modbus(const char* function,const char* component,const char* data)
+{
+    // Allocate memory for the message
+    static char message[] = "\x00\x01\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00";
+    message[7] = function[0];
+    message[8] = component[0];
+    message[9] = component[1];
+    message[10] = data[0];
+    message[11] = data[1];
+
+    return message;
+}
+
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
 
     // [00 01 00 00 00 06 00 05 00 0B FF 00] //turn buzz on
     // [00 01 00 00 00 06 00 05 00 0B 00 00] //turn buzz off
-
     // const char* buzz_on = "\x00\x01\x00\x00\x00\x06\x00\x05\x00\x0B\xFF\x00";
     // const char* buzz_off = "\x00\x01\x00\x00\x00\x06\x00\x05\x00\x0B\x00\x00";
-    // sd0 start from 20480 sd1 equal to 20481 sd6180 equal to 26660
-    const char* water_on = "\x00\x01\x00\x00\x00\x06\x00\x05\x00\x04\xFF\x00";
-    const char* water_off = "\x00\x01\x00\x00\x00\x06\x00\x05\x00\x04\x00\x00";
+
+    // sd0 start from 20480 sd1 equal to 20481 sd6180 equal to 26660 sd6180 for analog
 
     // const char* read_X = "\x00\x01\x00\x00\x00\x06\x00\x02\x00\x03\x00\x01";
-    const char* read_SD = "\x00\x01\x00\x00\x00\x06\x00\x03\x68\x24\x00\x01";
+    // const char* read_SD = "\x00\x01\x00\x00\x00\x06\x00\x03\x03\x18\x00\x01";
     // const char* read_D = "\x00\x01\x00\x00\x00\x06\x00\x02\x00\x03\x00\x01";
-    const char* write_SD500 = "\x00\x01\x00\x00\x00\x06\x00\x06\x68\x24\x01\xF4";
-    const char* write_SD0 = "\x00\x01\x00\x00\x00\x06\x00\x06\x68\x24\x00\x00";
+    // const char* write_SD500 = "\x00\x01\x00\x00\x00\x06\x00\x06\x03\x18\x01\xF4";
+    // const char* write_SD0 = "\x00\x01\x00\x00\x00\x06\x00\x06\x03\x18\x00\x00";
+
+    //std::string = "\x00\x01\x00\x00\x00\x06\x00\x06\x03\x18\x00\x00";
     
     char* return_message;
+
     std::cout << "write" << std::endl;
+
+    std::cout << "water on" << std::endl;
+    return_message = plc.ioWrite(water0x, coilOn);
+
+    usleep(1000 * 1000 * 6);
+    std::cout << "water off" << std::endl;
+    return_message = plc.ioWrite(water0x, coilOff);
+
     int message_size = 12;
-    return_message = plc.write_raw(water_on, message_size);
-    std::cout << message_size << std::endl;
-    for (int i = 0; i < message_size; i++) {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
-    }
-    std::cout << std::endl;
-    usleep(1000 * 1000 * 3);
-    message_size = 12;
-    return_message = plc.write_raw(water_off, message_size);
-    std::cout << message_size << std::endl;
-    for (int i = 0; i < message_size; i++) {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
-    }
-    std::cout << std::endl;
+    std::cout << "analog on" << std::endl;
+    // return_message = plc.writeRaw(modbus("\x06", sd61800x, "\x01\xF4"), message_size);
+    return_message = plc.registerWrite(sd61800x, 500);
 
     message_size = 12;
-    return_message = plc.write_raw(write_SD500, message_size);
-    std::cout << message_size << std::endl;
-    for (int i = 0; i < message_size; i++) {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
+    std::cout << "analog read" << std::endl;
+    usleep(1000 * 500);
+    // return_message = plc.writeRaw(modbus("\x03", sd61800x, "\x00\x01"), message_size);
+    if(plc.registerRead(sd61800x, 500)){
+        std::cout << "read success" << std::endl;
     }
+    else{
+        std::cout << "read fail" << std::endl;
+    }
+    usleep(1000 * 1000 * 6);
 
-    message_size = 12;
-    return_message = plc.write_raw(read_SD, message_size);
-    std::cout << message_size << std::endl;
-    for (int i = 0; i < message_size; i++) {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
-    }
-    usleep(1000 * 1000 * 3);
+    std::cout << "analog off" << std::endl;
+    return_message = plc.registerWrite(sd61800x, 0);
 
-    message_size = 12;
-    return_message = plc.write_raw(write_SD0, message_size);
-    std::cout << message_size << std::endl;
-    for (int i = 0; i < message_size; i++) {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(return_message[i])) << " ";
-    }
     std::cout << "finish test" << std::endl;
 
     // plc.pump(on);

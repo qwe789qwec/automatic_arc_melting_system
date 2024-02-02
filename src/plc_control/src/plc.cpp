@@ -1,9 +1,14 @@
 #include <chrono>
 #include <thread>
 
+#include <cstdlib>
+#include <memory>
+#include <iomanip>
+
 #include <stdio.h>
 #include <unistd.h>
 
+#include "rclcpp/rclcpp.hpp"
 #include "plc_control/plc.hpp"
 #include "tcp_handle/tcp_socket.hpp"
 
@@ -12,6 +17,28 @@ plc::plc(std::string ip, int port)
 	plc_tcp.connect(ip, port);
     // ioOnOff(waterSupply, on);
     usleep(1000 * 1000);
+}
+
+char* plc::dec2hex(int value) 
+{
+    static char hex_string[2];
+    hex_string[0] = (char)(value / 256);
+    hex_string[1] = (char)(value % 256);
+
+    return hex_string;
+}
+
+char* plc::modbus(const char* function,const char* component,const char* data)
+{
+    // Allocate memory for the message
+    static char message[] = "\x00\x01\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00";
+    message[7] = function[0];
+    message[8] = component[0];
+    message[9] = component[1];
+    message[10] = data[0];
+    message[11] = data[1];
+
+    return message;
 }
 
 std::string plc::ioOnOff(std::string io, std::string state)
@@ -28,6 +55,8 @@ std::string plc::ioOnOff(std::string io, std::string state)
     return message;
 }
 
+
+
 int plc::checkPresure(std::string input)
 {   
     std::string message;
@@ -36,22 +65,6 @@ int plc::checkPresure(std::string input)
     std::string number = message.substr(0, message.size());
     int presureValue = strtol(number.c_str(), NULL, 10);
     return presureValue;
-}
-
-std::string plc::status(std::string component)
-{   
-    std::string message;
-    plc_tcp.write(component);
-    plc_tcp.receive(message);
-    return message;
-}
-
-std::string plc::read(std::string output)
-{
-    std::string message;
-    plc_tcp.write(output);
-    plc_tcp.receive(message);
-    return message;
 }
 
 void plc::gateValve(std::string input)
@@ -102,13 +115,63 @@ std::string plc::write(std::string input)
     return message;
 }
 
-char* plc::write_raw(const void* input, int &size) 
+char* plc::writeRaw(const void* input,int &size) 
 {
     char* message;
-    plc_tcp.write_raw(input, size);
-    usleep(1000 * 500);
-    plc_tcp.receive_raw(message, size);
+    plc_tcp.writeRaw(input, size);
+    usleep(1000 * 300);
+    plc_tcp.receiveRaw(message, size);
+    // std::cout << "size:" << std::dec << size << " message:";
+    // for (int i = 0; i < size; i++)
+    // {
+    //     std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(message[i])) << " ";
+    // }
+    // std::cout << std::endl;
     return message;
+}
+
+char* plc::ioWrite(const char* component,const char* data)
+{
+    int message_size = 12;
+    char* return_message = writeRaw(modbus(writeCoil, component, data), message_size);
+    return return_message;
+}
+
+bool plc::ioRead(const char* component)
+{
+    int message_size = 12;
+    char* return_message = writeRaw(modbus(readInput, component, "\x00\x01"), message_size);
+    if (return_message[message_size] == 0x01)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+char* plc::registerWrite(const char* component,int data)
+{
+    int message_size = 12;
+    char* return_message = writeRaw(modbus(writeRegister, component, dec2hex(data)), message_size);
+    return return_message;
+}
+
+bool plc::registerRead(const char* component,int data)
+{
+    int message_size = 12;
+    char* checkdata = dec2hex(data);
+    char* return_message = writeRaw(modbus(readRegister, component, "\x00\x01"), message_size);
+    if(checkdata[0] == return_message[message_size - 2] && checkdata[1] == return_message[message_size-1])
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    return return_message;
 }
 
 void plc::airFlow(std::string flux)
