@@ -45,7 +45,11 @@
 
 #define sd61800x "\x68\x24" //for analog
 #define water0x "\x00\x04"
+#define openGateValve0x "\x00\x08"
+#define closeGateValve0x "\x00\x09"
 #define buzz0x "\x00\x0B"
+#define M10 "\x20\x0A"
+#define M15 "\x20\x0F"
 
 class plc
 {

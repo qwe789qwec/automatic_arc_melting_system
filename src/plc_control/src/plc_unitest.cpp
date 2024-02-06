@@ -98,6 +98,63 @@ int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
 
+    if(argv[1] == NULL){
+        std::cout << "Please enter the weight" << std::endl;
+        return 0;
+    }
+
+    std::string action = argv[1];
+    char* return_message;
+
+    if (action == "pump"){
+        std::cout << "pump start" << std::endl;
+        return_message = plc.ioWrite(M10, coilOn);
+        usleep(1000 * 1000);
+        return_message = plc.ioWrite(M10, coilOff);
+    }
+    else if(action == "vent"){
+        std::cout << "vent start" << std::endl;
+        return_message = plc.ioWrite(M15, coilOn);
+        usleep(1000 * 1000);
+        return_message = plc.ioWrite(M15, coilOff);
+    }
+    else if(action == "waterOn"){
+        std::cout << "water start" << std::endl;
+        return_message = plc.ioWrite(water0x, coilOn);
+    }
+    else if(action == "waterOff"){
+        std::cout << "water off" << std::endl;
+        return_message = plc.ioWrite(water0x, coilOff);
+    }
+    else if(action == "buzz"){
+        std::cout << "buzz start" << std::endl;
+        return_message = plc.ioWrite(buzz0x, coilOn);
+        usleep(1000 * 1000 * 3);
+        return_message = plc.ioWrite(buzz0x, coilOff);
+    }
+    else if(action == "gateOpen"){
+        std::cout << "gate start" << std::endl;
+        return_message = plc.ioWrite(openGateValve0x, coilOn);
+        usleep(1000 * 1000);
+        return_message = plc.ioWrite(openGateValve0x, coilOff);
+    }
+    else if(action == "gateClose"){
+        std::cout << "gate start" << std::endl;
+        return_message = plc.ioWrite(closeGateValve0x, coilOn);
+        usleep(1000 * 1000);
+        return_message = plc.ioWrite(closeGateValve0x, coilOff);
+    }
+    else if(action == "airOn"){
+        std::cout << "air start" << std::endl;
+        return_message = plc.registerWrite(sd61800x, 500);
+    }
+    else if(action == "airOff"){
+        std::cout << "air off" << std::endl;
+        return_message = plc.registerWrite(sd61800x, 0);
+    }
+
+    printchar(return_message, 12);
+
     // [00 01 00 00 00 06 00 05 00 0B FF 00] //turn buzz on
     // [00 01 00 00 00 06 00 05 00 0B 00 00] //turn buzz off
     // const char* buzz_on = "\x00\x01\x00\x00\x00\x06\x00\x05\x00\x0B\xFF\x00";
@@ -111,53 +168,27 @@ int main(int argc, char *argv[])
     // const char* write_SD500 = "\x00\x01\x00\x00\x00\x06\x00\x06\x03\x18\x01\xF4";
     // const char* write_SD0 = "\x00\x01\x00\x00\x00\x06\x00\x06\x03\x18\x00\x00";
 
-    //std::string = "\x00\x01\x00\x00\x00\x06\x00\x06\x03\x18\x00\x00";
-    
-    char* return_message;
-
-    std::cout << "write" << std::endl;
-
-    std::cout << "water on" << std::endl;
-    return_message = plc.ioWrite(water0x, coilOn);
-
-    usleep(1000 * 1000 * 6);
-    std::cout << "water off" << std::endl;
-    return_message = plc.ioWrite(water0x, coilOff);
-
-    int message_size = 12;
-    std::cout << "analog on" << std::endl;
+    // int message_size = 12;
+    // std::cout << "analog on" << std::endl;
     // return_message = plc.writeRaw(modbus("\x06", sd61800x, "\x01\xF4"), message_size);
-    return_message = plc.registerWrite(sd61800x, 500);
+    // return_message = plc.registerWrite(sd61800x, 500);
 
-    message_size = 12;
-    std::cout << "analog read" << std::endl;
-    usleep(1000 * 500);
+    // message_size = 12;
+    // std::cout << "analog read" << std::endl;
+    // usleep(1000 * 500);
     // return_message = plc.writeRaw(modbus("\x03", sd61800x, "\x00\x01"), message_size);
-    if(plc.registerRead(sd61800x, 500)){
-        std::cout << "read success" << std::endl;
-    }
-    else{
-        std::cout << "read fail" << std::endl;
-    }
-    usleep(1000 * 1000 * 6);
+    // if(plc.registerRead(sd61800x, 500)){
+    //     std::cout << "read success" << std::endl;
+    // }
+    // else{
+    //     std::cout << "read fail" << std::endl;
+    // }
+    // usleep(1000 * 1000 * 6);
 
-    std::cout << "analog off" << std::endl;
-    return_message = plc.registerWrite(sd61800x, 0);
+    // std::cout << "analog off" << std::endl;
+    // return_message = plc.registerWrite(sd61800x, 0);
 
-    std::cout << "finish test" << std::endl;
-
-    // plc.pump(on);
-    // plc.ioOnOff(buzz, on);
-    // usleep(1000 * 1000 * 3);
-    // plc.ioOnOff(buzz, off);
-    // usleep(1000 * 1000);
-    // plc.ioOnOff(arc, on);
-    // usleep(1000 * 1000 * 5);
-    // plc.ioOnOff(arc, off);
-    // usleep(1000 * 1000 * 2);
-    // plc.pump(off);
-
-
+    // std::cout << "finish test" << std::endl;
 
     rclcpp::spin(std::make_shared<PlcSubscriber>());
 
