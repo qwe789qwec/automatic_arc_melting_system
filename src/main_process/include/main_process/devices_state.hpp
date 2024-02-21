@@ -24,7 +24,8 @@ enum class Devices {
    SLIDER3,
    WEIGHING,
    COBOTTA,
-   PLC
+   PLC,
+   error
 };
 
 struct Device {
@@ -35,6 +36,8 @@ struct Device {
 class deviceState
 {
     public:
+        deviceState();
+        bool initialized;
         void addDevice(Devices device);
         void removeDevice(Devices device);
         DeviceStatus getDeviceStatus(Devices device);

@@ -7,12 +7,19 @@
 
 #include "main_process/devices_state.hpp"
 
+deviceState::deviceState(){
+	// initialize the device state
+	initialized = false;
+}
+
 void deviceState::addDevice(Devices device){
 	// add the device to the list
-	Device newDevice;
-	newDevice.name = device;
-	newDevice.status = DeviceStatus::ACTION;
-	devices.push_back(newDevice);
+	if(initialized == false){
+		Device newDevice;
+		newDevice.name = device;
+		newDevice.status = DeviceStatus::ACTION;
+		devices.push_back(newDevice);
+	}
 }
 
 void deviceState::removeDevice(Devices device){
@@ -60,7 +67,7 @@ Devices deviceState::stringToDevice(std::string device){
 		return Devices::PLC;
 	}
 	else{
-		return Devices::SLIDER1;
+		return Devices::error;
 	}
 }
 
@@ -97,6 +104,9 @@ void deviceState::updateDeviceStatus(std::string message){
 	// update the status of the device
 	std::string device = message.substr(0, message.find(" "));
 	Devices deviceEnum = stringToDevice(device);
+	if(deviceEnum == Devices::error){
+		return;
+	}
 	std::string status = message.substr(message.find(" ") + 1, message.length());
 	long unsigned int i;
 	for (i = 0; i < devices.size(); i++){
