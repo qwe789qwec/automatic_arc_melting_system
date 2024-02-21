@@ -207,6 +207,60 @@ void slider::arc_path()
 	// slider.move(motor_x, "0000EA60");
 }
 
+bool slider::make_action(std::string step)
+{	
+	std::string action = slider_tcp.get_action(step, "slider");
+	if(action.compare("error") == 0){
+		action = slider_tcp.get_action(step, "slider1");
+	}
+	if(action.compare("error") == 0){
+		action = slider_tcp.get_action(step, "slider2");
+	}
+	if(action.compare("error") == 0){
+		action = slider_tcp.get_action(step, "slider3");
+	}
+	if(action.compare("error") == 0 && step.compare("init") != 0){
+		return false;
+	}
+	else if (step.compare("init") == 0){
+		action = "init";
+	}
+
+	printf("action: %s\n", action.c_str());
+	printf("step: %s\n", step.c_str());
+
+	if(action.compare("init") == 0){
+		printf("start init in sub process");
+		move(motor_1, slider1_init);
+		move(motor_3, slider3_init);
+		move(motor_2, slider2_init);
+	}
+	else if(action.compare("pos1") == 0){
+		printf("start move to pos1 in sub process");
+		move(motor_1, slider1_init);
+	}
+	else if(action.compare("pos2") == 0){
+		move(motor_1, shelf_posA);
+	}
+	else if(action.compare("pos3") == 0){
+		move(motor_1, shelf_posB);
+	}
+	else if(action.compare("pos4") == 0){
+		move(motor_1, shelf_posC);
+	}
+	else if(action.compare("pos5") == 0){
+		move(motor_1, weighing_pos);
+	}
+	else if(action.compare("arc") == 0){
+		arc_path();
+	}
+	else{
+		return false;
+	}
+
+	return true;
+}
+
 slider::~slider()
 {
 	slider_tcp.write(servo_onf(motor_1, off));
