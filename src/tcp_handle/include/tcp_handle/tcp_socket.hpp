@@ -23,6 +23,7 @@ public:
 	bool receive(std::string &);
 	bool receiveRaw(char* &, int &);
 	bool check_receive(std::string, int);
+	std::string get_action(std::string, std::string);
 	void close();
 	~tcp_socket();
 
