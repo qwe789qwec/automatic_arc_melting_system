@@ -27,8 +27,12 @@ find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
 
 add_executable(MainProcess src/main_process.cpp src/sequence.cpp src/devices_state.cpp)
+add_executable(TestProcess src/test_process.cpp src/sequence.cpp src/devices_state.cpp)
 
 ament_target_dependencies(MainProcess
+rclcpp msg_format)
+
+ament_target_dependencies(TestProcess
 rclcpp msg_format)
 
 if(BUILD_TESTING)
@@ -44,6 +48,7 @@ endif()
 
 install(TARGETS
   MainProcess
+  TestProcess
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY
