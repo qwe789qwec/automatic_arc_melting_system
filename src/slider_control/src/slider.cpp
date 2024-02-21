@@ -172,6 +172,41 @@ void slider::curve_move(std::string servo1, std::string servo2, std::string posi
 	usleep(100 * 200);
 }
 
+void slider::arc_path()
+{
+	std::string center_x = length2string(57*1000);
+	std::string center_xy = length2string(57*1000) + length2string(30*1000);
+	std::string center_yz = length2string(30*1000) + length2string(74.5*1000);// y 30 z 74.5
+	// std::string center_yz = "0000753000012304";// y 30 z 74.5
+	std::string zero = "0000000000000000";
+	std::string home = "0001117000013880";// y 70 and z 80
+	std::string route_1 = "0000EA60000124F8";// y 60 z 75
+	std::string route_2 = "0000C35000011D28";// y 50 z 73
+	std::string route_3 = "00009C4000011940";// y 40 z 72
+
+
+	move(motor_x, center_x, "08");// x 57
+	curve_move(motor_y, motor_z, home);// x 57 y 70 z 80
+	usleep(1000 * 5000);
+	curve_move(motor_y, motor_z, route_1);// x 57 y 60 z 75
+	curve_move(motor_y, motor_z, route_2);// x 57 y 50 z 73
+	curve_move(motor_y, motor_z, route_3);// x 57 y 40 z 72
+	curve_move(motor_y, motor_z, center_yz);// x 57 y 30 z 74.5
+	
+
+	int sep = 16;
+	for(int i = 0; i < sep; i++){
+		curve_move(motor_x, motor_y, count_circle(7000, sep, i, center_xy));
+	}
+	move(motor_x, center_x, "08");// x 57
+	curve_move(motor_y, motor_z, center_yz);// x 57 y 30 z 74.5
+	curve_move(motor_y, motor_z, route_3);// x 57 y 40 z 72
+	curve_move(motor_y, motor_z, route_2);// x 57 y 50 z 73
+	curve_move(motor_y, motor_z, route_1);// x 57 y 60 z 75
+	curve_move(motor_y, motor_z, home);// x 57 y 70 z 80
+	// slider.move(motor_x, "0000EA60");
+}
+
 slider::~slider()
 {
 	slider_tcp.write(servo_onf(motor_1, off));

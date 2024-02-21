@@ -56,6 +56,7 @@ public:
     void move(std::string servo, std::string position, std::string speed = "32");
     void curve_move(std::string servo1, std::string servo2, std::string position, std::string speed = "08");
     void check_position(std::string servo);
+    void arc_path();
 	~slider();
 
 private:
