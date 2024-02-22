@@ -10,10 +10,11 @@
 #include "msg_format/srv/process_service.hpp"
 // #include "main_process/sequence.hpp"
 #include "main_process/devices_state.hpp"
+#include "std_msgs/msg/string.hpp"
 
-#define TTY_PATH            "/dev/tty"
-#define STTY_US             "stty raw -echo -F "
-#define STTY_DEF            "stty -raw echo -F "
+#define TTY_PATH "/dev/tty"
+#define STTY_US "stty raw -echo -F "
+#define STTY_DEF "stty -raw echo -F "
 
 using namespace std::chrono_literals;
 
@@ -21,16 +22,20 @@ using namespace std::chrono_literals;
  * member function as a callback from the timer. */
 
 std::string step = "init";
+bool enter_pressed = false;
 
 std::string checkProcess(std::string currentstep, size_t index)
 {
     std::vector<std::string> devices = {"weighing", "slider", "slider1", "plc", "cobotta"};
 
     size_t foundIndex = 0;
-    for (std::string device : devices) {
+    for (std::string device : devices)
+    {
         size_t found = currentstep.find(device);
-        if (found != std::string::npos) {
-            if (foundIndex == index) {
+        if (found != std::string::npos)
+        {
+            if (foundIndex == index)
+            {
                 return device + " action";
             }
             foundIndex++;
@@ -87,17 +92,20 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     Devices.addDevice(Devices::PLC);
     Devices.updateDeviceStatus(action);
 
-    if (Devices.checkDevices(DeviceStatus::STANDBY)){
+    if (Devices.checkDevices(DeviceStatus::STANDBY))
+    {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Press Enter to continue...");
     }
 
-    static bool enter_pressed = false;
-
-    if(Devices.checkDevices(DeviceStatus::STANDBY)){
-        for(int i = 0; i < testSize; i++){
-            if(step.compare(testArray[i]) == 0){
-                if((i+1)<testSize){
-                    step = testArray[i+1];
+    if (enter_pressed && Devices.checkDevices(DeviceStatus::STANDBY))
+    {
+        for (int i = 0; i < testSize; i++)
+        {
+            if (step.compare(testArray[i]) == 0)
+            {
+                if ((i + 1) < testSize)
+                {
+                    step = testArray[i + 1];
                 }
                 response->result = "OK";
                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step here: %s", step.c_str());
@@ -144,18 +152,47 @@ struct MainPublisher : public rclcpp::Node
                 reinterpret_cast<std::uintptr_t>(msg.get()));
             pub_ptr->publish(std::move(msg));
         };
-        timer_ = this->create_wall_timer(0.1s, callback);
+        timer_ = this->create_wall_timer(0.5s, callback);
     }
 
     rclcpp::Publisher<msg_format::msg::ProcessMsg>::SharedPtr pub_;
     rclcpp::TimerBase::SharedPtr timer_;
 };
 
+class KeyPublisher : public rclcpp::Node
+{
+public:
+    KeyPublisher()
+        : Node("key_publisher"), count_(0)
+    {
+        publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
+        timer_ = this->create_wall_timer(
+            500ms, std::bind(&KeyPublisher::timer_callback, this));
+    }
+
+private:
+    void timer_callback()
+    {
+        auto message = std_msgs::msg::String();
+        //check if the enter key is pressed
+        if (getchar() == '\n')
+        {
+            enter_pressed = true;
+        }
+        message.data = "Key press time: " + std::to_string(count_++);
+        RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+
+        publisher_->publish(message);
+    }
+    rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+    size_t count_;
+};
+
 int main(int argc, char *argv[])
 {
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
     rclcpp::init(argc, argv);
-    //   rclcpp::spin(std::make_shared<MainPublisher>());
     rclcpp::executors::SingleThreadedExecutor executor;
 
     std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("main_server");
@@ -164,11 +201,13 @@ int main(int argc, char *argv[])
         node->create_service<msg_format::srv::ProcessService>("process_service", &process);
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start the process service");
+    executor.add_node(node);
 
-    //   rclcpp::spin(node);
     auto process = std::make_shared<MainPublisher>("main_process", "topic");
     executor.add_node(process);
-    executor.add_node(node);
+
+    auto keyinput = std::make_shared<KeyPublisher>();
+    executor.add_node(keyinput);
     executor.spin();
 
     rclcpp::shutdown();
