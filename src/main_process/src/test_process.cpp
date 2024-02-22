@@ -56,7 +56,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     const int stepSize = 19;
     std::vector<std::string> stepArray(stepSize);
     stepArray[0] = "init";
-    stepArray[1] = "weighing 6.7 slider1 Pos4";
+    stepArray[1] = "weighing gram6.7 slider1 Pos4";
     stepArray[2] = "cobotta TakeWeightDose";
     stepArray[3] = "weighing Close slider1 Pos2";
     stepArray[4] = "cobotta PutStoreDose";
@@ -64,7 +64,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     stepArray[6] = "cobotta TakeStoreDose";
     stepArray[7] = "weighing Open slider1 Pos4";
     stepArray[8] = "cobotta PutWeightDose";
-    stepArray[9] = "weighing 8.8";
+    stepArray[9] = "weighing gram8.8";
     stepArray[10] = "cobotta TakeWeightHolder";
     stepArray[11] = "weighing Close slider1 Pos1";
     stepArray[12] = "cobotta PutStandbyHolder";
@@ -79,15 +79,15 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     std::vector<std::string> testArray(testSize);
     testArray[0] = "init";
     testArray[1] = "slider1 pos2";
-    testArray[2] = "slider1 pos3";
-    testArray[3] = "slider1 pos4";
-    testArray[4] = "slider1 pos5";
+    testArray[2] = "weighing open";
+    testArray[3] = "slider1 pos1";
+    testArray[4] = "weighing close";
     testArray[5] = "standby";
 
     static deviceState Devices;
     Devices.addDevice(Devices::SLIDER);
-    Devices.initialized = true;
     Devices.addDevice(Devices::WEIGHING);
+    Devices.initialized = true;
     Devices.addDevice(Devices::COBOTTA);
     Devices.addDevice(Devices::PLC);
     Devices.updateDeviceStatus(action);
