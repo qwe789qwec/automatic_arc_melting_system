@@ -12,6 +12,32 @@ host = "192.168.0.1"
 port = 5007
 timeout = 2000
 
+"""
+cobotta_position
+Vp10 init
+Vp11 take dosing on shelf
+p12 take dosing on mid shelf
+p13 p10 to p12 mid
+Vp14 weighing dosing position
+Vp15 weighing bowl position
+VP16 into weighing
+
+P20 p1 to arc standby
+P21 p2 to arc standby
+P22 arc standby
+
+cobotta_task
+init
+weighing_take_bowl
+weighing_put_bowl
+weighing_take_dose
+weighing_put_dose
+arc_put_bowl
+arc_take_bowl
+shelf_take_dose
+shelf_put_dose
+"""
+
 def cobotta_task(task):
     ### Connection processing of tcp communication
     m_bcapclient = BCAPClient(host,port,timeout)
@@ -119,7 +145,7 @@ class CobottaSubscriber(Node):
             count += 1
 
         elif msg.process.startswith("step 5") and count == 3:
-            cobotta_task("take_dose")
+            cobotta_task("weighing_take_dose")
             cobotta_client = CobottaClient()
             message = "cobotta standby"
             response = cobotta_client.send_request(message)
@@ -149,7 +175,7 @@ class CobottaSubscriber(Node):
             count += 1
         
         elif msg.process.startswith("step 11") and count == 6:
-            cobotta_task("put_dose")
+            cobotta_task("weighing_put_dose")
             cobotta_client = CobottaClient()
             message = "cobotta standby"
             response = cobotta_client.send_request(message)
@@ -159,7 +185,7 @@ class CobottaSubscriber(Node):
             count += 1
         
         elif msg.process.startswith("step 13") and count == 7:
-            cobotta_task("take_bowl")
+            cobotta_task("weighing_take_bowl")
             cobotta_client = CobottaClient()
             message = "cobotta standby"
             response = cobotta_client.send_request(message)
