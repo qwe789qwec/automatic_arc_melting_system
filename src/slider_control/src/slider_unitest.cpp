@@ -83,10 +83,23 @@ private:
 };
 
 int main(int argc, char *argv[])
-{
+{	
+	bool test = false;
+	if (argc == 2)
+	{
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
+		test = true;
+	}
+	
+	if (test){
+		test = false;
+		std::string test_action = "slider " + std::string(argv[1]);
+		printf("test action: %s\n", test_action.c_str());
+		slider.make_action(test_action);
+	}
+
 	rclcpp::init(argc, argv);
 	rclcpp::spin(std::make_shared<SliderSubscriber>());
-
 	rclcpp::shutdown();
 	return 0;
 }
