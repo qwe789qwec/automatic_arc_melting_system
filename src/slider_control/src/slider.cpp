@@ -239,16 +239,22 @@ bool slider::make_action(std::string step)
 		printf("start move to pos1 in sub process");
 		move(motor_1, slider1_init);
 	}
-	else if(action.compare("pos2") == 0){
-		move(motor_1, shelf_posA);
+	else if(action.compare("self1") == 0){
+		move(motor_1, shelf_pos1);
 	}
-	else if(action.compare("pos3") == 0){
-		move(motor_1, shelf_posB);
+	else if(action.compare("self2") == 0){
+		move(motor_1, shelf_pos2);
 	}
-	else if(action.compare("pos4") == 0){
-		move(motor_1, shelf_posC);
+	else if(action.compare("self3") == 0){
+		move(motor_1, shelf_pos3);
 	}
-	else if(action.compare("pos5") == 0){
+	else if(action.compare("self4") == 0){
+		move(motor_1, shelf_pos4);
+	}
+	else if(action.compare("self5") == 0){
+		move(motor_1, shelf_pos5);
+	}
+	else if(action.compare("weight_pos") == 0){
 		move(motor_1, weighing_pos);
 	}
 	else if(action.compare("arc") == 0){

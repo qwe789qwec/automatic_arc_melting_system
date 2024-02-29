@@ -14,9 +14,11 @@
 #define slider1_init "00000001"// slider for cobotta  0.000 mm
 #define slider2_init "0001869F"// slider for vertical 100.000 mm
 #define slider3_init "00000001"// slider for horizontal 3.000 mm
-#define shelf_posA "000249F0"
-#define shelf_posB "00041EB0"
-#define shelf_posC "0005F370"
+#define shelf_pos1 "000249F0"
+#define shelf_pos2 "00033450"
+#define shelf_pos3 "00041EB0"
+#define shelf_pos4 "00050910"
+#define shelf_pos5 "0005F370"
 #define weighing_pos "0009C400"
 
 #define slider2_liftcup "00004533"// vertical slider position to lift cup

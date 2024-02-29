@@ -88,13 +88,13 @@ private:
 		}
 		else if (message.compare("step 6") == 0 && count == 3)
 		{
-			slider.move(motor_1, shelf_posA);
+			slider.move(motor_1, shelf_pos1);
 			slider_client("slider standby");
 			count++;
 		}
 		else if (message.compare("step 8") == 0 && count == 4)
 		{
-			slider.move(motor_1, shelf_posB);
+			slider.move(motor_1, shelf_pos2);
 			slider_client("slider standby");
 			count++;
 		}
