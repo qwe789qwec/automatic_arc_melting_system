@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 	
 	if (test){
         test = false;
-		std::string test_action = "slider " + std::string(argv[1]);
+		std::string test_action = "weighing " + std::string(argv[1]);
 		printf("test action: %s\n", test_action.c_str());
 		weighing.make_action(test_action);
 	}

@@ -70,9 +70,19 @@ bool weighing_machine::make_action(std::string step)
 	else if(action.compare("close") == 0){
 		frontdoor(closedoor);
 	}
-    else if(action.find("gram") == 0){
+    else if(action.find("mgram") == 0){
         //remove the "gram" from the string
-        action = action.substr(4);
+        action = action.substr(5);
+		frontdoor(closedoor);
+        dosinghead(lock);
+        setgram(action);
+        startdosing();
+        dosinghead(unlock);
+		frontdoor(opendoor);
+    }
+	else if(action.find("Tmgram") == 0){
+        //remove the "gram" from the string
+        action = action.substr(5);
         dosinghead(lock);
         setgram(action);
         startdosing();
