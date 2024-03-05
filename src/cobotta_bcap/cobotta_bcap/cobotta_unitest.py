@@ -30,10 +30,10 @@ P22 arc standby
 
 cobotta_task
 init
-weighing_take_bowl
-weighing_put_bowl
-weighing_take_dose
-weighing_put_dose
+weight_take_bowl
+weight_put_bowl
+weight_take_dose
+weight_put_dose
 arc_put_bowl
 arc_take_bowl
 shelf_take_dose
@@ -99,6 +99,8 @@ def get_action(compare, target):
     else:
         space = compare[pos + len(target) + 1:]
         pos = space.find(" ")
+        if pos == -1:
+            return space
         return_string = space[:pos]
         if len(return_string) <= 2:
             return "error"
@@ -133,7 +135,10 @@ class CobottaSubscriber(Node):
 
     def listener_callback(self, msg):
         # self.get_logger().info('I heard: "%s"' % msg.process)
-        action = get_action(msg.process, "cobotta")
+        if msg.process.startswith("init"):
+            action = "init"
+        else:
+            action = get_action(msg.process, "cobotta")
         
         if msg.process != self.last_process:
             self.last_process = msg.process
@@ -141,11 +146,15 @@ class CobottaSubscriber(Node):
                 print("error cannot make action")
             else:
                 print(f"action: {action}")
-                cobotta_task(action)
-                cobotta_client = CobottaClient()
-                response = cobotta_client.send_request("cobotta standby")
-                cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-                cobotta_client.destroy_node()
+                try:
+                    cobotta_task(action)
+                    cobotta_client = CobottaClient()
+                    response = cobotta_client.send_request("cobotta standby")
+                    cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+                    cobotta_client.destroy_node()
+                except Exception as e:
+                    print(f"An error occurred: {e}")
+                    print("Trying to reconnect to cobotta, maybe no this name")
                 time.sleep(1.5)
 
 def main(args=None):
@@ -156,7 +165,7 @@ def main(args=None):
     parser.add_argument('--test', type=str, default='default_topic', help='Specify the ROS topic name')
     parsed_args = parser.parse_args(args)
 
-    if parsed_args:
+    if parsed_args.test != 'default_topic':
         print(f"get parsed: {parsed_args.test}")
         cobotta_task(str(parsed_args.test))
     time.sleep(1.5)
