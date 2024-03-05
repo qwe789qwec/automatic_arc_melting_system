@@ -53,42 +53,45 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     // Sequence sequence;
     // sequence.devices.updateDeviceStatus(action);
 
-    const int stepSize = 19;
+    // Nb3Al Nb = 455.8 Al = 44.2
+
+    const int stepSize = 20;
     std::vector<std::string> stepArray(stepSize);
     stepArray[0] = "init";
-    stepArray[1] = "weighing gram6.7 slider1 Pos4";
-    stepArray[2] = "cobotta TakeWeightDose";
-    stepArray[3] = "weighing Close slider1 Pos2";
-    stepArray[4] = "cobotta PutStoreDose";
-    stepArray[5] = "slider1 Pos3";
-    stepArray[6] = "cobotta TakeStoreDose";
-    stepArray[7] = "weighing Open slider1 Pos4";
-    stepArray[8] = "cobotta PutWeightDose";
-    stepArray[9] = "weighing gram8.8";
-    stepArray[10] = "cobotta TakeWeightHolder";
-    stepArray[11] = "weighing Close slider1 Pos1";
-    stepArray[12] = "cobotta PutStandbyHolder";
-    stepArray[13] = "slider PutChamberHolder";
-    stepArray[14] = "PLC CloseChamber";
-    stepArray[15] = "PLC Pump";
-    stepArray[16] = "PLC arc Slider arc";
-    stepArray[17] = "PLC Vent";
-    stepArray[18] = "PLC OpenChamber";
+    stepArray[1] = "slider1 shelf1";
+    stepArray[2] = "cobotta shelf_take_dose";
+    stepArray[3] = "weighing open slider1 weight_pos";
+    stepArray[4] = "cobotta weight_put_dose";
+    stepArray[5] = "weighing mgram44.2";
+    stepArray[6] = "cobotta weight_take_dose";
+    stepArray[7] = "weighing close slider1 shelf1";
+    stepArray[8] = "cobotta self_put_dose";
+    stepArray[9] = "slider1 shelf3";
+    stepArray[10] = "cobotta self_take_dose";
+    stepArray[11] = "weighing open slider1 pos5";
+    stepArray[12] = "cobotta weight_put_dose";
+    stepArray[13] = "weighing mgram455.8";
+    stepArray[14] = "cobotta weight_take_bowl";
+    stepArray[15] = "weighing close slider1 pos1";
+    stepArray[16] = "cobotta arc_put_bowl";
+    stepArray[17] = "slider arc";
+    stepArray[18] = "PLC CloseChamber";
+    stepArray[19] = "PLC Pump";
 
     const int testSize = 6;
     std::vector<std::string> testArray(testSize);
     testArray[0] = "init";
-    testArray[1] = "slider1 pos2";
-    testArray[2] = "weighing open";
-    testArray[3] = "slider1 pos1";
-    testArray[4] = "weighing close";
-    testArray[5] = "standby";
+    testArray[1] = "slider1 shelf1";
+    testArray[2] = "cobotta shelf_take_dose";
+    testArray[3] = "slider1 weight_pos weighing open";
+    testArray[4] = "cobotta weight_put_dose";
+    testArray[5] = "weighing mgram100";
 
     static deviceState Devices;
     Devices.addDevice(Devices::SLIDER);
     Devices.addDevice(Devices::WEIGHING);
-    Devices.initialized = true;
     Devices.addDevice(Devices::COBOTTA);
+    Devices.initialized = true;
     Devices.addDevice(Devices::PLC);
     Devices.updateDeviceStatus(action);
 
