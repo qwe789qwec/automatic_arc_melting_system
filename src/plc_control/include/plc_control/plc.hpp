@@ -35,6 +35,7 @@
 #define startVent "M5"
 
 //for plc modbus tcp
+#define readCoil "\x01"
 #define readInput "\x02"
 #define readRegister "\x03"
 #define writeCoil "\x05"
@@ -43,11 +44,21 @@
 #define coilOn "\xFF\x00"
 #define coilOff "\x00\x00"
 
+#define EMG "\x00\x03"
+#define waterLeak "\x00\x04"
+#define waterflow "\x00\x05"
+#define presure50 "\x00\x06"
+#define presure90 "\x00\x07"
+#define s12coil "\xB0\x0C"
+//S0 = 45056 S1 = 45057 S12 = 45068
+
 #define sd61800x "\x68\x24" //for analog
 #define water0x "\x00\x04"
 #define openGateValve0x "\x00\x08"
 #define closeGateValve0x "\x00\x09"
-#define buzz0x "\x00\x0B"
+#define airFlow0x "\x00\x0A"
+#define arc0x "\x00\x0B"
+#define buzz0x "\x00\x0F"
 #define M10 "\x20\x0A"
 #define M15 "\x20\x0F"
 
@@ -60,8 +71,9 @@ public:
     std::string ioOnOff(std::string io,std::string state);
     std::string write(std::string input);
     char* writeRaw(const void* input,int &size);
-    char* ioWrite(const char* component,const char* data);
-    bool ioRead(const char* component);
+    char* coilWrite(const char* component,const char* data);
+    bool coilRead(const char* component);
+    bool inputRead(const char* component);
     char* registerWrite(const char* component,int data);
     bool registerRead(const char* component,int data);
     int checkPresure(std::string input);

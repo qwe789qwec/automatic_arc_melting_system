@@ -108,41 +108,41 @@ int main(int argc, char *argv[])
 
     if (action == "pump"){
         std::cout << "pump start" << std::endl;
-        return_message = plc.ioWrite(M10, coilOn);
+        return_message = plc.coilWrite(M10, coilOn);
         usleep(1000 * 1000);
-        return_message = plc.ioWrite(M10, coilOff);
+        return_message = plc.coilWrite(M10, coilOff);
     }
     else if(action == "vent"){
         std::cout << "vent start" << std::endl;
-        return_message = plc.ioWrite(M15, coilOn);
+        return_message = plc.coilWrite(M15, coilOn);
         usleep(1000 * 1000);
-        return_message = plc.ioWrite(M15, coilOff);
+        return_message = plc.coilWrite(M15, coilOff);
     }
     else if(action == "waterOn"){
         std::cout << "water start" << std::endl;
-        return_message = plc.ioWrite(water0x, coilOn);
+        return_message = plc.coilWrite(water0x, coilOn);
     }
     else if(action == "waterOff"){
         std::cout << "water off" << std::endl;
-        return_message = plc.ioWrite(water0x, coilOff);
+        return_message = plc.coilWrite(water0x, coilOff);
     }
     else if(action == "buzz"){
         std::cout << "buzz start" << std::endl;
-        return_message = plc.ioWrite(buzz0x, coilOn);
+        return_message = plc.coilWrite(buzz0x, coilOn);
         usleep(1000 * 1000 * 3);
-        return_message = plc.ioWrite(buzz0x, coilOff);
+        return_message = plc.coilWrite(buzz0x, coilOff);
     }
     else if(action == "gateOpen"){
         std::cout << "gate start" << std::endl;
-        return_message = plc.ioWrite(openGateValve0x, coilOn);
+        return_message = plc.coilWrite(openGateValve0x, coilOn);
         usleep(1000 * 1000);
-        return_message = plc.ioWrite(openGateValve0x, coilOff);
+        return_message = plc.coilWrite(openGateValve0x, coilOff);
     }
     else if(action == "gateClose"){
         std::cout << "gate start" << std::endl;
-        return_message = plc.ioWrite(closeGateValve0x, coilOn);
+        return_message = plc.coilWrite(closeGateValve0x, coilOn);
         usleep(1000 * 1000);
-        return_message = plc.ioWrite(closeGateValve0x, coilOff);
+        return_message = plc.coilWrite(closeGateValve0x, coilOff);
     }
     else if(action == "airOn"){
         std::cout << "air start" << std::endl;
@@ -151,6 +151,24 @@ int main(int argc, char *argv[])
     else if(action == "airOff"){
         std::cout << "air off" << std::endl;
         return_message = plc.registerWrite(sd61800x, 0);
+    }
+    else if(action == "checkEMG"){
+        std::cout << "check EMG" << std::endl;
+        if(plc.inputRead(EMG)){
+            std::cout << "EMG on" << std::endl;
+        }
+        else{
+            std::cout << "EMG off" << std::endl;
+        }
+    }
+    else if(action == "checkPresure"){
+        std::cout << "check presure" << std::endl;
+        if(plc.coilRead(s12coil)){
+            std::cout << "In s11" << std::endl;
+        }
+        else{
+            std::cout << "not in S11" << std::endl;
+        }
     }
 
     printchar(return_message, 12);

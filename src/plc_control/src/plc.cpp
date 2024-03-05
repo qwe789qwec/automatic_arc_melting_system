@@ -12,6 +12,16 @@
 #include "plc_control/plc.hpp"
 #include "tcp_handle/tcp_socket.hpp"
 
+void printcharm(const char *message, int size)
+{   
+    std::cout << "size:" << std::dec << size << " message:";
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(message[i])) << " ";
+    }
+    std::cout << std::endl;
+}
+
 plc::plc(std::string ip, int port)
 {
 	plc_tcp.connect(ip, port);
@@ -130,23 +140,41 @@ char* plc::writeRaw(const void* input,int &size)
     return message;
 }
 
-char* plc::ioWrite(const char* component,const char* data)
+char* plc::coilWrite(const char* component,const char* data)
 {
     int message_size = 12;
     char* return_message = writeRaw(modbus(writeCoil, component, data), message_size);
     return return_message;
 }
 
-bool plc::ioRead(const char* component)
+bool plc::coilRead(const char* component)
 {
     int message_size = 12;
-    char* return_message = writeRaw(modbus(readInput, component, "\x00\x01"), message_size);
-    if (return_message[message_size] == 0x01)
+    char* return_message = writeRaw(modbus(readCoil, component, "\x00\x01"), message_size);
+    if (return_message[message_size-1] == 0x01)
     {
         return true;
     }
     else
     {
+        printcharm(return_message, message_size);
+        printf("message_size: %d\n", message_size);
+        return false;
+    }
+}
+
+bool plc::inputRead(const char* component)
+{
+    int message_size = 12;
+    char* return_message = writeRaw(modbus(readInput, component, "\x00\x01"), message_size);
+    if (return_message[message_size-1] == 0x01)
+    {
+        return true;
+    }
+    else
+    {   
+        printcharm(return_message, message_size);
+        printf("message_size: %d\n", message_size);
         return false;
     }
 }
