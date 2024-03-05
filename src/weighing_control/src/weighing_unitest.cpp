@@ -79,7 +79,9 @@ private:
 			if(!action_result){
 				RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error cannot make action");
 			}
-			weighing_client("weighing standby");
+            else{
+                weighing_client("weighing standby");
+            }
 		}
     }
     rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;

@@ -76,7 +76,9 @@ private:
 			if(!action_result){
 				RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error cannot make action");
 			}
-			slider_client("slider standby");
+			else{
+				slider_client("slider standby");
+			}
 		}
 	}
 	rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
