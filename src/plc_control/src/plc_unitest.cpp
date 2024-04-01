@@ -146,11 +146,11 @@ int main(int argc, char *argv[])
     }
     else if(action == "airOn"){
         std::cout << "air start" << std::endl;
-        return_message = plc.registerWrite(sd61800x, 500);
+        return_message = plc.coilWrite(airFlow0x, coilOn);
     }
     else if(action == "airOff"){
         std::cout << "air off" << std::endl;
-        return_message = plc.registerWrite(sd61800x, 0);
+        return_message = plc.coilWrite(airFlow0x, coilOff);
     }
     else if(action == "checkEMG"){
         std::cout << "check EMG" << std::endl;
@@ -164,10 +164,10 @@ int main(int argc, char *argv[])
     else if(action == "checkPresure"){
         std::cout << "check presure" << std::endl;
         if(plc.coilRead(s12coil)){
-            std::cout << "In s11" << std::endl;
+            std::cout << "In s12" << std::endl;
         }
         else{
-            std::cout << "not in S11" << std::endl;
+            std::cout << "not in S12" << std::endl;
         }
     }
 
