@@ -82,7 +82,7 @@ bool weighing_machine::make_action(std::string step)
     }
 	else if(action.find("Tmgram") == 0){
         //remove the "gram" from the string
-        action = action.substr(5);
+        action = action.substr(6);
         dosinghead(lock);
         setgram(action);
         startdosing();
