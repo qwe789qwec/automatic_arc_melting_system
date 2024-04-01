@@ -68,15 +68,15 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     stepArray[8] = "cobotta self_put_dose";
     stepArray[9] = "slider1 shelf3";
     stepArray[10] = "cobotta self_take_dose";
-    stepArray[11] = "weighing open slider1 pos5";
+    stepArray[11] = "weighing open slider1 weight_pos";
     stepArray[12] = "cobotta weight_put_dose";
     stepArray[13] = "weighing mgram455.8";
     stepArray[14] = "cobotta weight_take_bowl";
     stepArray[15] = "weighing close slider1 pos1";
     stepArray[16] = "cobotta arc_put_bowl";
-    stepArray[17] = "slider arc";
-    stepArray[18] = "PLC CloseChamber";
-    stepArray[19] = "PLC Pump";
+    stepArray[17] = "PLC CloseChamber";
+    stepArray[18] = "PLC Pump ";
+    stepArray[19] = "slider arc";
 
     const int testSize = 6;
     std::vector<std::string> testArray(testSize);
