@@ -116,10 +116,10 @@ std::string slider::count_circle(double radius, double unmber, double index, std
 {
 	std::string centerx = center.substr(0, 8);
 	std::string centery = center.substr(8, 15);
-	std::cout << "x:" << centerx << "  y:" << centery << std::endl;
-	int sinValue = static_cast<int>(sin((M_PI/(unmber/2))*index) * radius);
+	// std::cout << "x:" << centerx << "  y:" << centery << std::endl;
+	int sinValue = static_cast<int>(sin((M_PI/(unmber/2))*index + M_PI/2) * radius);
 	int yvalue = strtol(centery.c_str(), NULL, 16) + sinValue;
-	int cosValue = static_cast<int>(cos((M_PI/(unmber/2))*index) * radius);
+	int cosValue = static_cast<int>(cos((M_PI/(unmber/2))*index + M_PI/2) * radius);
     int xvalue = strtol(centerx.c_str(), NULL, 16) + cosValue;
 	return length2string(xvalue) + length2string(yvalue);
 }
@@ -136,7 +136,7 @@ void slider::check_position(std::string servo)
 		slider_tcp.receive(message);
 		if (message.substr(0, compare.size()).compare(compare) == 0)
 		{
-			printf("compare");
+			// printf("compare");
 			break;
 		}
 		else if (message.compare("test") == 0)
@@ -191,13 +191,20 @@ void slider::arc_path()
 	curve_move(motor_y, motor_z, route_1);// x 57 y 60 z 75
 	curve_move(motor_y, motor_z, route_2);// x 57 y 50 z 73
 	curve_move(motor_y, motor_z, route_3);// x 57 y 40 z 72
-	curve_move(motor_y, motor_z, center_yz);// x 57 y 30 z 74.5
+	// curve_move(motor_y, motor_z, center_yz);// x 57 y 30 z 74.5
 	
 
 	int sep = 16;
 	for(int i = 0; i < sep; i++){
 		curve_move(motor_x, motor_y, count_circle(7000, sep, i, center_xy));
+		if(i == 0){
+			move(motor_z, length2string(74.5*1000), "08");
+		}
 	}
+	for(int i = 0; i < sep; i++){
+		curve_move(motor_x, motor_y, count_circle(4000, sep, i, center_xy));
+	}
+
 	move(motor_x, center_x, "08");// x 57
 	curve_move(motor_y, motor_z, center_yz);// x 57 y 30 z 74.5
 	curve_move(motor_y, motor_z, route_3);// x 57 y 40 z 72
