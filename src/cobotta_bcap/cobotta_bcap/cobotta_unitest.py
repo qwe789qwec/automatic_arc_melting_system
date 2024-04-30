@@ -161,14 +161,14 @@ def main(args=None):
 
     rclpy.init(args=args)
 
-    parser = argparse.ArgumentParser(description='Cobotta Subscriber Node')
-    parser.add_argument('--test', type=str, default='default_topic', help='Specify the ROS topic name')
-    parsed_args = parser.parse_args(args)
+    # parser = argparse.ArgumentParser(description='Cobotta Subscriber Node')
+    # parser.add_argument('--test', type=str, default='default_topic', help='Specify the ROS topic name')
+    # parsed_args = parser.parse_args(args)
 
-    if parsed_args.test != 'default_topic':
-        print(f"get parsed: {parsed_args.test}")
-        cobotta_task(str(parsed_args.test))
-    time.sleep(1.5)
+    # if parsed_args.test != 'default_topic':
+    #     print(f"get parsed: {parsed_args.test}")
+    #     cobotta_task(str(parsed_args.test))
+    # time.sleep(1.5)
     
     cobotta_subscriber = CobottaSubscriber()
 
