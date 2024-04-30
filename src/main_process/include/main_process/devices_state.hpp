@@ -9,11 +9,6 @@
 #include <string.h>
 #include <vector>
 
-struct Device {
-   Devices name;
-   DeviceStatus status;
-};
-
 enum class DeviceStatus {
    ONLINE,
    OFFLINE,
@@ -23,16 +18,26 @@ enum class DeviceStatus {
 };
 
 enum class Devices {
+   SLIDER,
    SLIDER1,
    SLIDER2,
    SLIDER3,
    WEIGHING,
-   COBOTTA
+   COBOTTA,
+   PLC,
+   error
+};
+
+struct Device {
+   Devices name;
+   DeviceStatus status;
 };
 
 class deviceState
 {
     public:
+        deviceState();
+        bool initialized;
         void addDevice(Devices device);
         void removeDevice(Devices device);
         DeviceStatus getDeviceStatus(Devices device);

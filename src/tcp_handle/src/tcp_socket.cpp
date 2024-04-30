@@ -1,5 +1,7 @@
 #include <chrono>
 #include <thread>
+#include <cstring>
+#include <cerrno>
 
 #include <arpa/inet.h>
 #include <stdio.h>
@@ -79,6 +81,16 @@ bool tcp_socket::write(const std::string &data)
 	return true;
 }
 
+bool tcp_socket::writeRaw(const void* data, int size)
+{
+	int length = ::send(socket_fd, data, size, 0);
+	if (length < 0)
+	{
+		return false;
+	}
+	return true;
+}
+
 bool tcp_socket::receive(std::string &data)
 {
 	char buffer[1024] = {0};
@@ -96,6 +108,30 @@ bool tcp_socket::receive(std::string &data)
 		return false;
 	}
 	data = std::string(buffer, length);
+	return true;
+}
+
+bool tcp_socket::receiveRaw(char* &data, int &size)
+{
+	char buffer[1024] = {0};
+	int length = ::recv(socket_fd, buffer, 1024, 0);
+	if (length < 0)
+	{
+		if (errno != EWOULDBLOCK && errno != EAGAIN)
+		{
+			return false;
+		}
+		return true;
+	}
+	else if (length == 0)
+	{
+		return false;
+	}
+
+	size = length;
+	data = new char[length];
+    std::memcpy(data, buffer, length);
+
 	return true;
 }
 
@@ -127,6 +163,29 @@ bool tcp_socket::check_receive(std::string compare, int timeout_seconds)
 		}
 	}
 	return true;
+}
+
+std::string tcp_socket::get_action(std::string compare, std::string target)
+{	
+	//find the target string in compare string
+	int pos = compare.find(target);
+	if (pos == std::string::npos) {
+		return "error";
+	}
+
+	//find the space after the target string
+	if((pos + target.length() + 1)>= compare.length()){
+		return "error";
+	}
+	else{
+		std::string space = compare.substr(pos + target.length() + 1);
+		pos = space.find(" ");
+		std::string return_string = space.substr(0, pos);
+		if (return_string.length() <= 2){
+			return "error";
+		}
+		return space.substr(0, pos);
+	}
 }
 
 void tcp_socket::close()

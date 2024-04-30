@@ -22,6 +22,7 @@ setup(
     entry_points={
         'console_scripts': [
             'CobottaControl = cobotta_bcap.cobotta_control:main',
+            'CobottaTest = cobotta_bcap.cobotta_unitest:main',
             'service = cobotta_bcap.io_control_service:main',
             'client = cobotta_bcap.cobotta_client:main',
         ],

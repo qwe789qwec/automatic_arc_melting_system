@@ -24,6 +24,7 @@ public:
     void dosinghead(bool state);
     void setgram(std::string gram);
     void startdosing();
+    bool make_action(std::string step);
 	~weighing_machine();
 
 private:

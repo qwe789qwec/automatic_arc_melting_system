@@ -67,82 +67,44 @@ private:
     void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg) const
     {
         std::string message = msg->process;
-        // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-        static int count = 0;
+        static std::string step = "weighing init";
 
-        if (message.compare("init") == 0 && count == 0)
-        {
-            // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1s
-            weighing.frontdoor(closedoor);
-            weighing_client("weighing standby");
-            usleep(1000 * 1000);
-            count = 2;
-        }
-        else if (message.compare("step 2") == 0 && count == 1)
-        {
-            weighing.frontdoor(opendoor);
-            weighing_client("weighing standby");
-            usleep(1000 * 1000);
-            count++;
-        }
-        else if (message.compare("step 4") == 0 && count == 2)
-        {
-            weighing.frontdoor(closedoor);
-            weighing.dosinghead(lock);
-            weighing.setgram(first_material);
-            weighing.startdosing();
-            weighing.dosinghead(unlock);
-            weighing.frontdoor(opendoor);
-            weighing_client("weighing standby");
-            usleep(1000 * 1000);
-            count++;
-        }
-        else if (message.compare("step 6") == 0 && count == 3)
-        {
-            weighing.frontdoor(closedoor);
-            weighing_client("weighing standby");
-            usleep(1000 * 1000);
-            count++;
-        }
-        else if (message.compare("step 10") == 0 && count == 4)
-        {
-            weighing.frontdoor(opendoor);
-            weighing_client("weighing standby");
-            usleep(1000 * 1000);
-            count++;
-        }
-        else if (message.compare("step 12") == 0 && count == 5)
-        {
-            weighing.frontdoor(closedoor);
-            weighing.dosinghead(lock);
-            weighing.setgram(second_material);
-            weighing.startdosing();
-            weighing.dosinghead(unlock);
-            weighing.frontdoor(opendoor);
-            weighing_client("weighing standby");
-            usleep(1000 * 1000);
-            count++;
-        }
-        else if (message.compare("step 14") == 0 && count == 6)
-        {
-            weighing.frontdoor(closedoor);
-            weighing_client("weighing standby");
-            usleep(1000 * 1000);
-            count++;
-        }
-        else if (message.compare("Standby") == 0)
-        {
-            count = 0;
-        }
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step: %s", step.c_str());
+		
+		if(message.compare(step) != 0){
+			step = message;
+			RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step message: %s", message.c_str());
+			bool action_result = weighing.make_action(message);
+			if(!action_result){
+				RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error cannot make action");
+			}
+            else{
+                weighing_client("weighing standby");
+            }
+		}
     }
     rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 };
 
 int main(int argc, char *argv[])
 {
+    bool test = false;
+	if (argc == 2)
+	{
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
+		test = true;
+	}
+	
+	if (test){
+        test = false;
+		std::string test_action = "weighing " + std::string(argv[1]);
+		printf("test action: %s\n", test_action.c_str());
+		weighing.make_action(test_action);
+	}
+
     rclcpp::init(argc, argv);
     rclcpp::spin(std::make_shared<WeighingSubscriber>());
-
     rclcpp::shutdown();
     return 0;
 }

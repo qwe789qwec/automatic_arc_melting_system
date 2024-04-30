@@ -14,6 +14,7 @@ using namespace std::chrono_literals;
 
 std::string slider_ip = "192.168.0.3";
 int slider_port = 64511;
+slider slider(slider_ip, slider_port);
 
 int slider_client(std::string action)
 {
@@ -24,7 +25,7 @@ int slider_client(std::string action)
 	auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
 	request->action = action;
 
-	while (!slider_process->wait_for_service(1s))
+	while (!slider_process->wait_for_service(3s))
 	{
 		if (!rclcpp::ok())
 		{
@@ -62,38 +63,45 @@ public:
 private:
 	void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg) const
 	{
-		std::string message;
-		message = msg->process;
-        
-        slider_client("slider ok");
+		std::string message = msg->process;
+		static std::string step = "slider init";
+
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step: %s", step.c_str());
+		
+		if(message.compare(step) != 0){
+			step = message;
+			RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step message: %s", message.c_str());
+			bool action_result = slider.make_action(message);
+			if(!action_result){
+				RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error cannot make action");
+			}
+			else{
+				slider_client("slider standby");
+			}
+		}
 	}
 	rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 };
 
 int main(int argc, char *argv[])
-{
-	rclcpp::init(argc, argv);
+{	
+	bool test = false;
+	if (argc == 2)
+	{
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
+		test = true;
+	}
 	
-	slider slider(slider_ip, slider_port);
-	std::string center = "0000C3500000C350";
-	std::string zero = "0000000000000000";
-	slider.curve_move(motor4, motor5, "0000C3500000C350");
-	std::string radius = slider.relative_position("0000C350", "00004E20", "-");
-	std::string radius2 = slider.relative_position("0000C350", "00004E20", "+");
-	std::string root2 = slider.relative_position("0000C350", "0000373E", "-");
-	std::string root22 = slider.relative_position("0000C350", "0000373E", "+");
-	slider.curve_move(motor4, motor5, "0000C350" + radius);
-	slider.curve_move(motor4, motor5, root2 + root2);
-	slider.curve_move(motor4, motor5, radius + "0000C350");
-	slider.curve_move(motor4, motor5, root2 + root22);
-	slider.curve_move(motor4, motor5, "0000C350" + radius2);
-	slider.curve_move(motor4, motor5, root22 + root22);
-	slider.curve_move(motor4, motor5, radius2 + "0000C350");
-	slider.curve_move(motor4, motor5, root22 + root2);
-	slider.curve_move(motor4, motor5, "0000C3500000C350");
+	if (test){
+		test = false;
+		std::string test_action = "slider " + std::string(argv[1]);
+		printf("test action: %s\n", test_action.c_str());
+		slider.make_action(test_action);
+	}
 
+	rclcpp::init(argc, argv);
 	rclcpp::spin(std::make_shared<SliderSubscriber>());
-
 	rclcpp::shutdown();
 	return 0;
 }
