@@ -50,10 +50,12 @@
 #define presure50 "\x00\x06"
 #define presure90 "\x00\x07"
 #define s12coil "\xB0\x0C"
+#define s13coil "\xB0\x0D"
 //S0 = 45056 S1 = 45057 S12 = 45068
 
 #define sd61800x "\x68\x24" //for analog
 #define water0x "\x00\x04"
+#define pumpValveBig0x "\x00\x06"
 #define openGateValve0x "\x00\x08"
 #define closeGateValve0x "\x00\x09"
 #define airFlow0x "\x00\x0A"
@@ -80,6 +82,7 @@ public:
     void gateValve(std::string input);
     void pump(std::string input);
     void airFlow(std::string flux);
+    bool make_action(std::string action);
 	~plc();
 
 private:
