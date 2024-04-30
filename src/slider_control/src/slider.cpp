@@ -128,7 +128,7 @@ void slider::check_position(std::string servo)
 {
 	std::string message, compare;
 	compare = "#99212" + servo + "1";
-	std::chrono::seconds timeout(30);
+	std::chrono::seconds timeout(100);
 	auto start_time = std::chrono::steady_clock::now();
 	while (true)
 	{
@@ -172,6 +172,8 @@ void slider::curve_move(std::string servo1, std::string servo2, std::string posi
 	usleep(100 * 200);
 }
 
+
+
 void slider::arc_path()
 {
 	std::string center_x = length2string(57*1000);
@@ -212,6 +214,34 @@ void slider::arc_path()
 	curve_move(motor_y, motor_z, route_1);// x 57 y 60 z 75
 	curve_move(motor_y, motor_z, home);// x 57 y 70 z 80
 	// slider.move(motor_x, "0000EA60");
+}
+
+void slider::put_cup_arc()
+{
+	std::string putSpeed = "16";
+	move(motor_3, slider3_init, putSpeed);
+	move(motor_2, slider2_init, putSpeed);
+	move(motor_2, slider2_liftcup, putSpeed);
+	move(motor_3, slider3_into_arc, putSpeed);
+	move(motor_2, slider2_putcup_arc, putSpeed);
+	move(motor_3, slider3_offcup_arc, putSpeed);
+	move(motor_2, slider2_beforecup_arc, putSpeed);
+	move(motor_3, slider3_init, putSpeed);
+	move(motor_2, slider2_init, putSpeed);
+}
+
+void slider::take_cup_arc()
+{
+	std::string putSpeed = "16";
+	move(motor_3, slider3_init, putSpeed);
+	move(motor_2, slider2_init, putSpeed);
+	move(motor_2, slider2_liftcup, putSpeed);
+	move(motor_3, slider3_beforecup_arc, putSpeed);
+	move(motor_2, slider2_offcup_arc, putSpeed);
+	move(motor_3, slider3_putcup_arc, putSpeed);
+	move(motor_2, slider2_into_arc, putSpeed);
+	move(motor_3, slider3_init, putSpeed);
+	move(motor_2, slider2_init, putSpeed);
 }
 
 bool slider::make_action(std::string step)
@@ -266,6 +296,12 @@ bool slider::make_action(std::string step)
 	}
 	else if(action.compare("arc") == 0){
 		arc_path();
+	}
+	else if(action.compare("put_cup_arc") == 0){
+		put_cup_arc();
+	}
+	else if(action.compare("take_cup_arc") == 0){
+		take_cup_arc();
 	}
 	else{
 		return false;

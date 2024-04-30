@@ -21,13 +21,17 @@
 #define shelf_pos5 "0005F370"
 #define weighing_pos "0009C400"
 
-#define slider2_liftcup "00004533"// vertical slider position to lift cup
+#define slider2_liftcup "000055F0"// vertical slider position to lift cup
 #define slider3_liftcup "00000001"// horizontal slider position to lift cup, same as init
-#define slider2_into_arc "00004533"// vertical slider position when slider brings cup into arc furnace, same as lift position
-#define slider3_into_arc "0004BD77"// horizontal slider position when slider brings cup right on top of cupholder
-#define slider2_putcup_arc "00006582"// vertical slider position when slider puts cup in holder inarc
-#define slider3_putcup_arc "0004BD77"// horizontal slider position when slider puts cup in holder inarc
-#define slider2_outarc "00006582"// vertical, when it gets out without cup
+#define slider2_into_arc "000055F0"// vertical slider position when slider brings cup into arc furnace, same as lift position
+#define slider3_into_arc "0004A768"// horizontal slider position when slider brings cup right on top of cupholder
+#define slider2_putcup_arc "00009858"// vertical slider position when slider puts cup in holder inarc
+#define slider3_putcup_arc "0004A768"// horizontal slider position when slider puts cup in holder inarc
+#define slider2_offcup_arc "00009858"// vertical slider position when slider remove from cup in arc
+#define slider3_offcup_arc "0003D090"// horizontal slider position when slider remove from cup in arc
+#define slider2_beforecup_arc "000055F0"// vertical slider position when slider is away from cup, high position to cup holder
+#define slider3_beforecup_arc "0003D090"// horizontal slider position when slider is away from cup, high position to cup holder
+#define slider2_outarc "000055F0"// vertical, when it gets out without cup
 #define slider3_outarc "00000001"// horizontal, when it gets out without cup
 
 #define motor_1 "01"
@@ -59,6 +63,8 @@ public:
     void curve_move(std::string servo1, std::string servo2, std::string position, std::string speed = "08");
     void check_position(std::string servo);
     void arc_path();
+    void put_cup_arc();
+    void take_cup_arc();
     bool make_action(std::string action);
 	~slider();
 
