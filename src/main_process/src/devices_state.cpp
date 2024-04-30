@@ -77,10 +77,11 @@ bool deviceState::checkDevices(DeviceStatus status){
 	for (i = 0; i < devices.size(); i++){
 		printf("count:%ld \n", i);
 		if (devices[i].status != status){
+			printf("false\n");
 			return false;
 		}
 	}
-	printf("\n");
+	printf("all true\n");
 	return true;
 }
 

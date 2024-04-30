@@ -55,7 +55,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 
     // Nb3Al Nb = 455.8 Al = 44.2
 
-    const int stepSize = 20;
+    const int stepSize = 25;
     std::vector<std::string> stepArray(stepSize);
     stepArray[0] = "init";
     stepArray[1] = "slider1 shelf1";
@@ -65,18 +65,24 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     stepArray[5] = "weighing mgram44.2";
     stepArray[6] = "cobotta weight_take_dose";
     stepArray[7] = "weighing close slider1 shelf1";
-    stepArray[8] = "cobotta self_put_dose";
+    stepArray[8] = "cobotta shelf_put_dose";
     stepArray[9] = "slider1 shelf3";
-    stepArray[10] = "cobotta self_take_dose";
+    stepArray[10] = "cobotta shelf_take_dose";
     stepArray[11] = "weighing open slider1 weight_pos";
     stepArray[12] = "cobotta weight_put_dose";
     stepArray[13] = "weighing mgram455.8";
     stepArray[14] = "cobotta weight_take_bowl";
     stepArray[15] = "weighing close slider1 pos1";
-    stepArray[16] = "cobotta arc_put_bowl";
-    stepArray[17] = "PLC CloseChamber";
-    stepArray[18] = "PLC Pump ";
-    stepArray[19] = "slider arc";
+    stepArray[16] = "cobotta arc_put_bowl plc gateOpen";
+    stepArray[17] = "slider put_cup_arc";
+    stepArray[18] = "plc gateClose";
+    stepArray[19] = "plc pump ";
+    stepArray[20] = "slider arc";
+    stepArray[21] = "plc vent";
+    stepArray[22] = "plc gateOpen";
+    stepArray[23] = "slider take_cup_arc";
+    stepArray[24] = "plc gateClose";
+
 
     const int testSize = 6;
     std::vector<std::string> testArray(testSize);
@@ -91,9 +97,11 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     Devices.addDevice(Devices::SLIDER);
     Devices.addDevice(Devices::WEIGHING);
     Devices.addDevice(Devices::COBOTTA);
-    Devices.initialized = true;
     Devices.addDevice(Devices::PLC);
+    Devices.initialized = true;
     Devices.updateDeviceStatus(action);
+
+    static int stepNumber = 0;
 
     if (Devices.checkDevices(DeviceStatus::STANDBY))
     {
@@ -102,13 +110,17 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 
     if (enter_pressed && Devices.checkDevices(DeviceStatus::STANDBY))
     {
-        for (int i = 0; i < testSize; i++)
+        for (int i = 0; i < stepSize; i++)
         {
-            if (step.compare(testArray[i]) == 0)
-            {
-                if ((i + 1) < testSize)
-                {
-                    step = testArray[i + 1];
+            if (step.compare(stepArray[i]) == 0 && i >= stepNumber)
+            {   
+                if (step.compare(stepArray[0]) == 0){
+                    stepNumber = 0;
+                    step = stepArray[0 + 1];
+                }
+                else if ((i + 1) < stepSize)
+                {   stepNumber = i;
+                    step = stepArray[i + 1];
                 }
                 response->result = "OK";
                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step here: %s", step.c_str());
