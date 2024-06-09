@@ -161,6 +161,7 @@ def main(args=None):
 
     rclpy.init(args=args)
 
+    # the following 7 lines are uncommented since it conflicts with launch file
     # parser = argparse.ArgumentParser(description='Cobotta Subscriber Node')
     # parser.add_argument('--test', type=str, default='default_topic', help='Specify the ROS topic name')
     # parsed_args = parser.parse_args(args)

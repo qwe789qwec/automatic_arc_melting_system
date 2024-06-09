@@ -26,16 +26,36 @@ P20 p1 to arc standby
 P21 p2 to arc standby
 P22 arc standby
 
+P23 mid between P10 and P24, take dosing on shelf 2nd row
+P24 take dosing on shelf 2nd row
+P25 mid between P10 and P26, take dosing on shelf 4th row
+P26 take dosing on shelf 4th row
+P27 mid between P10 and P28, take dosing on shelf top row
+P28 take dosing on shelf top row
+
+P30 mid betweeen p10 and p31, take cup from cupstock bottom
+p31 take cup from cupstock bottom
+
+p40 mid between p10 and p41, put cup in product stock
+p41 put cup in product stock
+
 cobotta_task
 init
 weighing_take_bowl
 weighing_put_bowl
 weighing_take_dose
 weighing_put_dose
-arc_put_bowl
-arc_take_bowl
-shelf_take_dose
-shelf_put_dose
+arc_put_bowl      /// not used now
+arc_take_bowl     /// not used now
+shelf_take_dose   /// for rawmaterial stock in thirdtop row
+shelf_put_dose    /// for rawmaterial stock in thirdtop row
+shelf_take_dose_2 /// for rawmaterial stock in secondtop row
+shelf_put_dose_2  /// for rawmaterial stock in secondtop row
+intoarc_take_bowl_20230727   /// take bowl from arcposition
+put_bowl_20230727 /// put bowl at arcposition
+cupstock_take_bowl /// take cup from cupstock bottom
+product_put_bowl  /// put cup at productstock bottom
+
 """
 
 def cobotta_task(task):
