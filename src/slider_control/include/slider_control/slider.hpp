@@ -11,15 +11,18 @@
 #include "tcp_handle/tcp_socket.hpp"
 
 #define arc_pos "00000001"
-#define slider1_init "00000001"// slider for cobotta  0.000 mm
+#define slider1_init "00000001"// slider for cobotta  0.000 mm, as well as place to take cup from cupstock (left), slider1
 #define slider2_init "0001869F"// slider for vertical 100.000 mm
 #define slider3_init "00000001"// slider for horizontal 3.000 mm
+#define cup_stock_r "0000EA60"// place to take cup from cupstock (right), slider1 60.000 mm
 #define shelf_pos1 "000249F0"
 #define shelf_pos2 "00033450"
 #define shelf_pos3 "00041EB0"
 #define shelf_pos4 "00050910"
 #define shelf_pos5 "0005F370"
-#define weighing_pos "0009C400"
+#define weighing_pos "0009C400"// weighing_position, slider1 640.000 mm
+#define product_stock_r "000AAA78"// place to put arc product (right), slider1 699.000 mm
+
 
 #define slider2_liftcup "000055F0"// vertical slider position to lift cup
 #define slider3_liftcup "00000001"// horizontal slider position to lift cup, same as init

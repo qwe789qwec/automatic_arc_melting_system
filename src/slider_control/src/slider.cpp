@@ -303,6 +303,12 @@ bool slider::make_action(std::string step)
 	else if(action.compare("take_cup_arc") == 0){
 		take_cup_arc();
 	}
+	else if(action.compare("cup_stock_r") == 0){
+		move(motor_1, cup_stock_r);
+	}
+	else if(action.compare("product_stock_r") == 0){
+		move(motor_1, product_stock_r);
+	}
 	else{
 		return false;
 	}
