@@ -13,7 +13,7 @@
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
-std::string plc_ip = "192.168.0.4";
+std::string plc_ip = "192.168.0.5";
 int plc_port = 9528;
 plc plc(plc_ip, plc_port);
 
@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
-		test = true;
+		test = false;
 	}
 	
 	if (test){
