@@ -63,6 +63,8 @@
 #define buzz0x "\x00\x0F"
 #define M10 "\x20\x0A"
 #define M15 "\x20\x0F"
+#define M20 "\x20\x14"
+#define M21 "\x20\x15"
 
 class plc
 {

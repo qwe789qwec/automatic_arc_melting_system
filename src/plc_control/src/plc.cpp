@@ -255,6 +255,19 @@ bool plc::make_action(std::string step)
         return_message = coilWrite(buzz0x, coilOn);
         usleep(1000 * 1000 * 3);
         return_message = coilWrite(buzz0x, coilOff);
+    
+    }
+    else if(action == "arcOn"){
+        std::cout << "arc on" << std::endl;
+        return_message = coilWrite(M20, coilOn);
+        usleep(1000 * 1000 * 3);
+        return_message = coilWrite(M20, coilOff);
+    }
+    else if(action == "arcOff"){
+        std::cout << "arc off" << std::endl;
+        return_message = coilWrite(M21, coilOn);
+        usleep(1000 * 1000 * 3);
+        return_message = coilWrite(M21, coilOff);
     }
     else if(action == "waterOn"){
         std::cout << "water start" << std::endl;
