@@ -27,10 +27,10 @@
 #define slider2_liftcup "000055F0"// vertical slider position to lift cup
 #define slider3_liftcup "00000001"// horizontal slider position to lift cup, same as init
 #define slider2_into_arc "000055F0"// vertical slider position when slider brings cup into arc furnace, same as lift position
-#define slider3_into_arc "0004A768"// horizontal slider position when slider brings cup right on top of cupholder
-#define slider2_putcup_arc "00009858"// vertical slider position when slider puts cup in holder inarc
-#define slider3_putcup_arc "0004A768"// horizontal slider position when slider puts cup in holder inarc
-#define slider2_offcup_arc "00009858"// vertical slider position when slider remove from cup in arc
+#define slider3_into_arc "0004A8F8"// horizontal slider position when slider brings cup right on top of cupholder
+#define slider2_putcup_arc "0000A21C"// vertical slider position when slider puts cup in holder inarc
+#define slider3_putcup_arc "0004A8F8"// horizontal slider position when slider puts cup in holder inarc
+#define slider2_offcup_arc "0000A21C"// vertical slider position when slider remove from cup in arc
 #define slider3_offcup_arc "0003D090"// horizontal slider position when slider remove from cup in arc
 #define slider2_beforecup_arc "000055F0"// vertical slider position when slider is away from cup, high position to cup holder
 #define slider3_beforecup_arc "0003D090"// horizontal slider position when slider is away from cup, high position to cup holder

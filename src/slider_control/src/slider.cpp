@@ -62,8 +62,9 @@ std::string slider::servo_move(std::string station, std::string position, std::s
 {	
 	std::ostringstream oss;
 	oss << std::setfill('0') << std::setw(4) << speed;
+	std::string acc = "0001";
 	std::string speedaddzero = oss.str();
-	return command("!99234" + station + speedaddzero + speedaddzero + speedaddzero + position);
+	return command("!99234" + station + acc + acc + speedaddzero + position);
 	// !992340100640064006400000000@@\r\n
 }
 
@@ -186,7 +187,6 @@ void slider::arc_path()
 	std::string route_2 = "0000C35000011D28";// y 50 z 73
 	std::string route_3 = "00009C4000011940";// y 40 z 72
 
-
 	move(motor_x, center_x, "08");// x 57
 	curve_move(motor_y, motor_z, home);// x 57 y 70 z 80
 	usleep(1000 * 5000);
@@ -195,7 +195,6 @@ void slider::arc_path()
 	curve_move(motor_y, motor_z, route_3);// x 57 y 40 z 72
 	// curve_move(motor_y, motor_z, center_yz);// x 57 y 30 z 74.5
 	
-
 	int sep = 16;
 	for(int i = 0; i < sep; i++){
 		curve_move(motor_x, motor_y, count_circle(7000, sep, i, center_xy));
@@ -218,30 +217,32 @@ void slider::arc_path()
 
 void slider::put_cup_arc()
 {
-	std::string putSpeed = "16";
-	move(motor_3, slider3_init, putSpeed);
-	move(motor_2, slider2_init, putSpeed);
-	move(motor_2, slider2_liftcup, putSpeed);
+	std::string putSpeed = "4";
+	move(motor_3, slider3_init);
+	move(motor_2, slider2_init);
+	move(motor_2, slider2_liftcup);
+	move(motor_3, slider3_offcup_arc);
 	move(motor_3, slider3_into_arc, putSpeed);
 	move(motor_2, slider2_putcup_arc, putSpeed);
 	move(motor_3, slider3_offcup_arc, putSpeed);
 	move(motor_2, slider2_beforecup_arc, putSpeed);
-	move(motor_3, slider3_init, putSpeed);
-	move(motor_2, slider2_init, putSpeed);
+	move(motor_3, slider3_init);
+	move(motor_2, slider2_init);
 }
 
 void slider::take_cup_arc()
 {
-	std::string putSpeed = "16";
-	move(motor_3, slider3_init, putSpeed);
-	move(motor_2, slider2_init, putSpeed);
-	move(motor_2, slider2_liftcup, putSpeed);
-	move(motor_3, slider3_beforecup_arc, putSpeed);
-	move(motor_2, slider2_offcup_arc, putSpeed);
+	std::string putSpeed = "4";
+	move(motor_3, slider3_init);
+	move(motor_2, slider2_init);
+	move(motor_2, slider2_liftcup);
+	move(motor_3, slider3_beforecup_arc);
+	move(motor_2, slider2_offcup_arc);
 	move(motor_3, slider3_putcup_arc, putSpeed);
 	move(motor_2, slider2_into_arc, putSpeed);
-	move(motor_3, slider3_init, putSpeed);
-	move(motor_2, slider2_init, putSpeed);
+	move(motor_3, slider3_beforecup_arc, putSpeed);
+	move(motor_3, slider3_init);
+	move(motor_2, slider2_init);
 }
 
 bool slider::make_action(std::string step)
@@ -271,28 +272,31 @@ bool slider::make_action(std::string step)
 		move(motor_1, slider1_init);
 		move(motor_3, slider3_init);
 		move(motor_2, slider2_init);
+		move(motor_z, length2string(80*1000), "08");
+		move(motor_x, length2string(57*1000), "08");
+		move(motor_y, length2string(70*1000), "08");
 	}
 	else if(action.compare("pos1") == 0){
 		printf("start move to pos1 in sub process");
-		move(motor_1, slider1_init);
+		move(motor_1, slider1_init, "64");
 	}
 	else if(action.compare("shelf1") == 0){
-		move(motor_1, shelf_pos1);
+		move(motor_1, shelf_pos1, "64");
 	}
 	else if(action.compare("shelf2") == 0){
-		move(motor_1, shelf_pos2);
+		move(motor_1, shelf_pos2, "64");
 	}
 	else if(action.compare("shelf3") == 0){
-		move(motor_1, shelf_pos3);
+		move(motor_1, shelf_pos3, "64");
 	}
 	else if(action.compare("shelf4") == 0){
-		move(motor_1, shelf_pos4);
+		move(motor_1, shelf_pos4, "64");
 	}
 	else if(action.compare("shelf5") == 0){
-		move(motor_1, shelf_pos5);
+		move(motor_1, shelf_pos5, "64");
 	}
 	else if(action.compare("weight_pos") == 0){
-		move(motor_1, weighing_pos);
+		move(motor_1, weighing_pos, "64");
 	}
 	else if(action.compare("arc") == 0){
 		arc_path();
@@ -304,10 +308,10 @@ bool slider::make_action(std::string step)
 		take_cup_arc();
 	}
 	else if(action.compare("cup_stock_r") == 0){
-		move(motor_1, cup_stock_r);
+		move(motor_1, cup_stock_r, "64");
 	}
 	else if(action.compare("product_stock_r") == 0){
-		move(motor_1, product_stock_r);
+		move(motor_1, product_stock_r, "64");
 	}
 	else{
 		return false;
