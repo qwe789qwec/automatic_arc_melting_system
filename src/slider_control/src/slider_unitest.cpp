@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
-		test = false;
+		test = false;// change this to true when you want to do a single run for slidertest
 	}
 	
 	if (test){

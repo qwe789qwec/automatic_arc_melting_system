@@ -272,31 +272,38 @@ bool slider::make_action(std::string step)
 		move(motor_1, slider1_init);
 		move(motor_3, slider3_init);
 		move(motor_2, slider2_init);
+		move(motor_z, length2string(70*1000), "08");
+		move(motor_x, length2string(57*1000), "08");
+		move(motor_y, length2string(70*1000), "08");
+		move(motor_z, length2string(80*1000), "08");
+	}
+	else if(action.compare("arcinit") == 0){
+		printf("arc init in sub process");
 		move(motor_z, length2string(80*1000), "08");
 		move(motor_x, length2string(57*1000), "08");
 		move(motor_y, length2string(70*1000), "08");
 	}
 	else if(action.compare("pos1") == 0){
 		printf("start move to pos1 in sub process");
-		move(motor_1, slider1_init, "64");
+		move(motor_1, slider1_init, "100");
 	}
 	else if(action.compare("shelf1") == 0){
-		move(motor_1, shelf_pos1, "64");
+		move(motor_1, shelf_pos1, "100");
 	}
 	else if(action.compare("shelf2") == 0){
-		move(motor_1, shelf_pos2, "64");
+		move(motor_1, shelf_pos2, "100");
 	}
 	else if(action.compare("shelf3") == 0){
-		move(motor_1, shelf_pos3, "64");
+		move(motor_1, shelf_pos3, "100");
 	}
 	else if(action.compare("shelf4") == 0){
-		move(motor_1, shelf_pos4, "64");
+		move(motor_1, shelf_pos4, "100");
 	}
 	else if(action.compare("shelf5") == 0){
-		move(motor_1, shelf_pos5, "64");
+		move(motor_1, shelf_pos5, "100");
 	}
 	else if(action.compare("weight_pos") == 0){
-		move(motor_1, weighing_pos, "64");
+		move(motor_1, weighing_pos, "100");
 	}
 	else if(action.compare("arc") == 0){
 		arc_path();
@@ -308,10 +315,10 @@ bool slider::make_action(std::string step)
 		take_cup_arc();
 	}
 	else if(action.compare("cup_stock_r") == 0){
-		move(motor_1, cup_stock_r, "64");
+		move(motor_1, cup_stock_r, "100");
 	}
 	else if(action.compare("product_stock_r") == 0){
-		move(motor_1, product_stock_r, "64");
+		move(motor_1, product_stock_r, "100");
 	}
 	else{
 		return false;
