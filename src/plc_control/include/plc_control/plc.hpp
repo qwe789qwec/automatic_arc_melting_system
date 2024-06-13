@@ -60,7 +60,7 @@
 #define closeGateValve0x "\x00\x09"
 #define airFlow0x "\x00\x0A"
 #define arc0x "\x00\x0B"
-#define buzz0x "\x00\x0F"
+#define buzz0x "\x00\x17"
 #define M10 "\x20\x0A"
 #define M15 "\x20\x0F"
 #define M20 "\x20\x14"
