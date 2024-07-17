@@ -41,19 +41,12 @@ find_package(tcp_handle REQUIRED)
 add_executable(SliderControl
 src/slider_control.cpp src/slider.cpp)
 
-add_executable(SliderTest
-src/slider_unitest.cpp src/slider.cpp)
-
 ament_target_dependencies(SliderControl
-rclcpp msg_format tcp_handle)
-
-ament_target_dependencies(SliderTest
 rclcpp msg_format tcp_handle)
 
 install(
   TARGETS
   SliderControl
-  SliderTest
   DESTINATION lib/${PROJECT_NAME}
 )
 
