@@ -308,6 +308,14 @@ bool plc::make_action(std::string step)
             std::cout << "not in S12" << std::endl;
         }
     }
+    else if(action == "autoFlip"){
+        return_message = coilWrite(M30, coilOn);
+        usleep(1000 * 1000);
+        return_message = coilWrite(M30, coilOff);
+        while (!coilRead(s33coil))
+        {   usleep(1000 * 1000);
+        }        
+    }
     else{
         return false;
     }

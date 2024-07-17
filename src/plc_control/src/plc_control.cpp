@@ -12,8 +12,8 @@
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
-std::string plc_ip = "192.168.0.4";
-int plc_port = 9527;
+std::string plc_ip = "192.168.0.5";
+int plc_port = 9528;
 plc plc(plc_ip, plc_port);
 
 int plc_client(std::string action)
