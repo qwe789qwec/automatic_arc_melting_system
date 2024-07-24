@@ -48,6 +48,9 @@
 
 #define on "1"
 #define off "0"
+#define cw 1
+#define ccw -1
+
 
 class slider
 {
@@ -65,7 +68,7 @@ public:
     void move(std::string servo, std::string position, std::string speed = "32");
     void curve_move(std::string servo1, std::string servo2, std::string position, std::string speed = "08");
     void check_position(std::string servo);
-    void arc_path();
+    void arc_path(int direction);
     void put_cup_arc();
     void take_cup_arc();
     bool make_action(std::string action);

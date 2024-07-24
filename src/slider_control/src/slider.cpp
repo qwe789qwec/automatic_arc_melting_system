@@ -175,7 +175,7 @@ void slider::curve_move(std::string servo1, std::string servo2, std::string posi
 
 
 
-void slider::arc_path()
+void slider::arc_path(int direction)
 {
 	std::string center_x = length2string(57*1000);
 	std::string center_xy = length2string(57*1000) + length2string(30*1000);
@@ -197,13 +197,13 @@ void slider::arc_path()
 	
 	int sep = 16;
 	for(int i = 0; i < sep; i++){
-		curve_move(motor_x, motor_y, count_circle(7000, sep, i, center_xy));
+		curve_move(motor_x, motor_y, count_circle(7000, sep, i * direction, center_xy));
 		if(i == 0){
 			move(motor_z, length2string(74.5*1000), "08");
 		}
 	}
 	for(int i = 0; i < sep; i++){
-		curve_move(motor_x, motor_y, count_circle(4000, sep, i, center_xy));
+		curve_move(motor_x, motor_y, count_circle(4000, sep, i * direction, center_xy));
 	}
 
 	move(motor_x, center_x, "08");// x 57
@@ -305,8 +305,11 @@ bool slider::make_action(std::string step)
 	else if(action.compare("weight_pos") == 0){
 		move(motor_1, weighing_pos, "100");
 	}
-	else if(action.compare("arc") == 0){
-		arc_path();
+	else if(action.compare("arc_cw") == 0){
+		arc_path(cw);
+	}
+	else if(action.compare("arc_ccw") == 0){
+		arc_path(ccw);
 	}
 	else if(action.compare("put_cup_arc") == 0){
 		put_cup_arc();
