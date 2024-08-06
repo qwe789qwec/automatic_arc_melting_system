@@ -44,12 +44,6 @@ src/weighing_control.cpp src/weighing_machine.cpp)
 ament_target_dependencies(WeighingControl
 rclcpp msg_format tcp_handle)
 
-add_executable(WeighingTest
-src/weighing_unitest.cpp src/weighing_machine.cpp)
-
-ament_target_dependencies(WeighingTest
-rclcpp msg_format tcp_handle)
-
 install(
   DIRECTORY include/
   DESTINATION include
@@ -58,7 +52,6 @@ install(
 install(
   TARGETS
   WeighingControl
-  WeighingTest
   DESTINATION lib/${PROJECT_NAME}
 )
 

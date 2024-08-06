@@ -6,25 +6,25 @@ def generate_launch_description():
         Node(
             package='plc_control',
             # namespace='plc',
-            executable='PlcTest',
+            executable='PlcControl',
             # name='plc'
         ),
         Node(
             package='slider_control',
             # namespace='slider',
-            executable='SliderTest',
+            executable='SliderControl',
             # name='slider'
         ),
         Node(
             package='weighing_control',
             # namespace='weighing',
-            executable='WeighingTest',
+            executable='WeighingControl',
             # name='weighing'
         ),
         Node(
             package='cobotta_bcap',
             # namespace='cobotta',
-            executable='CobottaTest',
+            executable='CobottaControl',
             # name='cobotta',
             # arguments=['--test', 'default_topic']
         ),

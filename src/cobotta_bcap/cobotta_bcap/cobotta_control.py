@@ -8,54 +8,36 @@ from msg_format.msg import ProcessMsg
 
 from .pybcapclient.bcapclient import BCAPClient
 
+import argparse
+
 host = "192.168.0.1"
 port = 5007
 timeout = 2000
 
 """
 cobotta_position
-Vp10 init
-Vp11 take dosing on shelf
-p12 take dosing on mid shelf
-p13 p10 to p12 mid
-Vp14 weighing dosing position
-Vp15 weighing bowl position
-VP16 into weighing
+p10 init
+p11 take dosing on shelf
+xp12 take dosing on mid shelf
+xp13 p10 to p12 mid
+p14 weighing dosing position
+p15 weighing bowl position
+P16 into weighing
 
 P20 p1 to arc standby
 P21 p2 to arc standby
 P22 arc standby
 
-P23 mid between P10 and P24, take dosing on shelf 2nd row
-P24 take dosing on shelf 2nd row
-P25 mid between P10 and P26, take dosing on shelf 4th row
-P26 take dosing on shelf 4th row
-P27 mid between P10 and P28, take dosing on shelf top row
-P28 take dosing on shelf top row
-
-P30 mid betweeen p10 and p31, take cup from cupstock bottom
-p31 take cup from cupstock bottom
-
-p40 mid between p10 and p41, put cup in product stock
-p41 put cup in product stock
-
 cobotta_task
 init
-weighing_take_bowl
-weighing_put_bowl
-weighing_take_dose
-weighing_put_dose
-arc_put_bowl      /// not used now
-arc_take_bowl     /// not used now
-shelf_take_dose   /// for rawmaterial stock in thirdtop row
-shelf_put_dose    /// for rawmaterial stock in thirdtop row
-shelf_take_dose_2 /// for rawmaterial stock in secondtop row
-shelf_put_dose_2  /// for rawmaterial stock in secondtop row
-intoarc_take_bowl_20230727   /// take bowl from arcposition
-put_bowl_20230727 /// put bowl at arcposition
-cupstock_take_bowl /// take cup from cupstock bottom
-product_put_bowl  /// put cup at productstock bottom
-
+weight_take_bowl
+weight_put_bowl
+weight_take_dose
+weight_put_dose
+arc_put_bowl
+arc_take_bowl
+shelf_take_dose
+shelf_put_dose
 """
 
 def cobotta_task(task):
@@ -105,6 +87,25 @@ def cobotta_task(task):
     m_bcapclient.service_stop()
     print("B-CAP service Stop")
 
+def get_action(compare, target):
+    # Find the target string in compare string
+    pos = compare.find(target)
+    if pos == -1:
+        return "error"
+
+    # Find the space after the target string
+    if (pos + len(target) + 1) >= len(compare):
+        return "error"
+    else:
+        space = compare[pos + len(target) + 1:]
+        pos = space.find(" ")
+        if pos == -1:
+            return space
+        return_string = space[:pos]
+        if len(return_string) <= 2:
+            return "error"
+        return space[:pos]
+
 class CobottaClient(Node):
 
     def __init__(self):
@@ -130,109 +131,46 @@ class CobottaSubscriber(Node):
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning
+        self.last_process = "cobotta init"
 
     def listener_callback(self, msg):
         # self.get_logger().info('I heard: "%s"' % msg.process)
-        global count
-        if msg.process.startswith("init") and count == 0:
-            cobotta_task("init")
-            cobotta_client = CobottaClient()
-            message = "cobotta standby"
-            response = cobotta_client.send_request(message)
-            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-            cobotta_client.destroy_node()
-            time.sleep(1.5)
-            count = 3
-            
-        elif msg.process.startswith("step 1") and count == 1:
-            cobotta_task("take_bowl")
-            cobotta_client = CobottaClient()
-            message = "cobotta standby"
-            response = cobotta_client.send_request(message)
-            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-            cobotta_client.destroy_node()
-            time.sleep(1.5)
-            count += 1
-
-        elif msg.process.startswith("step 3") and count == 2:
-            cobotta_task("put_bowl")
-            cobotta_client = CobottaClient()
-            message = "cobotta standby"
-            response = cobotta_client.send_request(message)
-            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-            cobotta_client.destroy_node()
-            time.sleep(1.5)
-            count += 1
-
-        elif msg.process.startswith("step 5") and count == 3:
-            cobotta_task("weighing_take_dose")
-            cobotta_client = CobottaClient()
-            message = "cobotta standby"
-            response = cobotta_client.send_request(message)
-            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-            cobotta_client.destroy_node()
-            time.sleep(1.5)
-            count += 1
-
-        elif msg.process.startswith("step 7") and count == 4:
-            cobotta_task("put_l")
-            cobotta_client = CobottaClient()
-            message = "cobotta standby"
-            response = cobotta_client.send_request(message)
-            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-            cobotta_client.destroy_node()
-            time.sleep(1.5)
-            count += 1
-
-        elif msg.process.startswith("step 9") and count == 5:
-            cobotta_task("take_l")
-            cobotta_client = CobottaClient()
-            message = "cobotta standby"
-            response = cobotta_client.send_request(message)
-            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-            cobotta_client.destroy_node()
-            time.sleep(1.5)
-            count += 1
+        if msg.process.startswith("init"):
+            action = "init"
+        else:
+            action = get_action(msg.process, "cobotta")
         
-        elif msg.process.startswith("step 11") and count == 6:
-            cobotta_task("weighing_put_dose")
-            cobotta_client = CobottaClient()
-            message = "cobotta standby"
-            response = cobotta_client.send_request(message)
-            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-            cobotta_client.destroy_node()
-            time.sleep(1.5)
-            count += 1
-        
-        elif msg.process.startswith("step 13") and count == 7:
-            cobotta_task("weighing_take_bowl")
-            cobotta_client = CobottaClient()
-            message = "cobotta standby"
-            response = cobotta_client.send_request(message)
-            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-            cobotta_client.destroy_node()
-            time.sleep(1.5)
-            count += 1
-
-        elif msg.process.startswith("step 15") and count == 8:
-            cobotta_task("put_bowl_intoarc_20230727")
-            cobotta_client = CobottaClient()
-            message = "cobotta standby"
-            response = cobotta_client.send_request(message)
-            cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-            cobotta_client.destroy_node()
-            time.sleep(1.5)
-            count += 1
-        
-        elif msg.process.startswith("Standby"):
-            count = 0
-
+        if msg.process != self.last_process:
+            self.last_process = msg.process
+            if action == "error":
+                print("error cannot make action")
+            else:
+                print(f"action: {action}")
+                try:
+                    cobotta_task(action)
+                    cobotta_client = CobottaClient()
+                    response = cobotta_client.send_request("cobotta standby")
+                    cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+                    cobotta_client.destroy_node()
+                except Exception as e:
+                    print(f"An error occurred: {e}")
+                    print("Trying to reconnect to cobotta, maybe no this name")
+                time.sleep(1.5)
 
 def main(args=None):
-    rclpy.init(args=args)
-    global count
-    count  = 0
 
+    rclpy.init(args=args)
+
+    # the following 7 lines are uncommented since it conflicts with launch file
+    # parser = argparse.ArgumentParser(description='Cobotta Subscriber Node')
+    # parser.add_argument('--test', type=str, default='default_topic', help='Specify the ROS topic name')
+    # parsed_args = parser.parse_args(args)
+
+    # if parsed_args.test != 'default_topic':
+    #     print(f"get parsed: {parsed_args.test}")
+    #     cobotta_task(str(parsed_args.test))
+    # time.sleep(1.5)
+    
     cobotta_subscriber = CobottaSubscriber()
 
     rclpy.spin(cobotta_subscriber)
