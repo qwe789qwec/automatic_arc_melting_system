@@ -230,31 +230,31 @@ bool plc::make_action(std::string step)
     }
 	else if (action == "pump"){
         return_message = coilWrite(M10, coilOn);
-        return_message = coilWrite(buzz0x, coilOn);
-        usleep(1000 * 1000 * 3);
-        return_message = coilWrite(buzz0x, coilOff);
         usleep(1000 * 1000);
         return_message = coilWrite(M10, coilOff);
         while (!coilRead(s12coil))
         {   usleep(1000 * 1000);
         }
-        return_message = coilWrite(buzz0x, coilOn);
-        usleep(1000 * 1000 * 3);
-        return_message = coilWrite(buzz0x, coilOff);
     }
     else if(action == "vent"){
         return_message = coilWrite(M15, coilOn);
-        return_message = coilWrite(buzz0x, coilOn);
-        usleep(1000 * 1000 * 3);
-        return_message = coilWrite(buzz0x, coilOff);
         usleep(1000 * 1000);
         return_message = coilWrite(M15, coilOff);
         while (coilRead(s13coil))
         {   usleep(1000 * 1000);
         }
-        return_message = coilWrite(buzz0x, coilOn);
+    }
+    else if(action == "arcOn"){
+        std::cout << "arc on" << std::endl;
+        return_message = coilWrite(M20, coilOn);
         usleep(1000 * 1000 * 3);
-        return_message = coilWrite(buzz0x, coilOff);
+        return_message = coilWrite(M20, coilOff);
+    }
+    else if(action == "arcOff"){
+        std::cout << "arc off" << std::endl;
+        return_message = coilWrite(M21, coilOn);
+        usleep(1000 * 1000 * 3);
+        return_message = coilWrite(M21, coilOff);
     }
     else if(action == "waterOn"){
         std::cout << "water start" << std::endl;
@@ -307,6 +307,14 @@ bool plc::make_action(std::string step)
         else{
             std::cout << "not in S12" << std::endl;
         }
+    }
+    else if(action == "autoFlip"){
+        return_message = coilWrite(M30, coilOn);
+        usleep(1000 * 1000);
+        return_message = coilWrite(M30, coilOff);
+        while (!coilRead(s33coil))
+        {   usleep(1000 * 1000);
+        }        
     }
     else{
         return false;

@@ -64,75 +64,44 @@ private:
 	void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg) const
 	{
 		std::string message = msg->process;
-		static int count = 0;
+		static std::string step = "slider init";
 
-		if (message.compare("init") == 0 && count == 0)
-		{
-			slider.move(motor_1, slider1_init);
-			slider.move(motor_3, slider3_init);
-			slider.move(motor_2, slider2_init);
-			slider_client("slider standby");
-			count = 2;
-		}
-		else if (message.compare("step 2") == 0 && count == 1)
-		{
-			slider.move(motor_1, weighing_pos);
-			slider_client("slider standby");
-			count++;
-		}
-		else if (message.compare("step 4") == 0 && count == 2)
-		{
-			slider.move(motor_1, weighing_pos);
-			slider_client("slider standby");
-			count++;
-		}
-		else if (message.compare("step 6") == 0 && count == 3)
-		{
-			slider.move(motor_1, shelf_pos1);
-			slider_client("slider standby");
-			count++;
-		}
-		else if (message.compare("step 8") == 0 && count == 4)
-		{
-			slider.move(motor_1, shelf_pos2);
-			slider_client("slider standby");
-			count++;
-		}
-		else if (message.compare("step 10") == 0 && count == 5)
-		{
-			slider.move(motor_1, weighing_pos);
-			slider_client("slider standby");
-			count++;
-		}
-		else if (message.compare("step 14") == 0 && count == 6)
-		{	
-			slider.move(motor_1, arc_pos);
-			slider_client("slider standby");
-			count++;
-		}
-		else if (message.compare("step 16") == 0 && count == 7)
-		{
-			slider.move(motor_2, slider2_liftcup);
-			slider.move(motor_3, slider3_into_arc);
-			slider.move(motor_2, slider2_putcup_arc);
-			slider.move(motor_3, slider3_outarc);
-			slider.move(motor_2, slider2_init);
-			slider_client("slider standby");
-			count++;
-		}
-		else if (message.compare("finish") == 0)
-		{
-			count = 0;
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step: %s", step.c_str());
+		
+		if(message.compare(step) != 0){
+			step = message;
+			RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step message: %s", message.c_str());
+			bool action_result = slider.make_action(message);
+			if(!action_result){
+				RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error cannot make action");
+			}
+			else{
+				slider_client("slider standby");
+			}
 		}
 	}
 	rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 };
 
 int main(int argc, char *argv[])
-{
+{	
+	bool test = false;
+	if (argc == 2)
+	{
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
+		test = false;// change this to true when you want to do a single run for slidertest
+	}
+	
+	if (test){
+		test = false;
+		std::string test_action = "slider " + std::string(argv[1]);
+		printf("test action: %s\n", test_action.c_str());
+		slider.make_action(test_action);
+	}
+
 	rclcpp::init(argc, argv);
 	rclcpp::spin(std::make_shared<SliderSubscriber>());
-
 	rclcpp::shutdown();
 	return 0;
 }

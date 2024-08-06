@@ -42,15 +42,9 @@ add_executable(PlcControl src/plc_control.cpp src/plc.cpp)
 ament_target_dependencies(PlcControl
 rclcpp msg_format tcp_handle)
 
-add_executable(PlcTest src/plc_unitest.cpp src/plc.cpp)
-ament_target_dependencies(PlcTest
-rclcpp msg_format tcp_handle)
-
-
 install(
   TARGETS
   PlcControl
-  PlcTest
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -1,6 +1,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <memory>
+#include <iomanip>
 
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
@@ -12,8 +13,8 @@
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
-std::string plc_ip = "192.168.0.4";
-int plc_port = 9527;
+std::string plc_ip = "192.168.0.5";
+int plc_port = 9528;
 plc plc(plc_ip, plc_port);
 
 int plc_client(std::string action)
@@ -64,48 +65,67 @@ private:
     void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg) const
     {
         std::string message = msg->process;
-        // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", message.c_str());
-        static int count = 0;
-        
-        if (message.compare("init") == 0 && count == 0)
-		{
-			plc.gateValve(on);
-			plc_client("plc standby");
-            plc.ioOnOff(pumpValveBig, off);
-            plc.ioOnOff(pumpValveSmall, off);
-            plc_client("plc standby");
-			count = 1;
-		}
-		else if (message.compare("step 17") == 0 && count == 1)
-		{
-            plc.gateValve(off);
-            usleep(1000 * 1000);
-			plc.pump(on);
-            plc.ioOnOff(buzz, on);
-            usleep(1000 * 1000 * 3);
-            plc.ioOnOff(buzz, off);
-            usleep(1000 * 1000);
-            plc.ioOnOff(arc, on);
-            usleep(1000 * 1000 * 5);
-            plc.ioOnOff(arc, off);
-            usleep(1000 * 1000 * 2);
-            plc.pump(off);
-            plc.gateValve(on);
-			plc_client("plc standby");
-			count++;
-		}
-		else if (message.compare("finish") == 0)
-		{
-			count = 0;
-		}
+		static std::string step = "plc init";
 
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "message: %s", message.c_str());
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step: %s", step.c_str());
+		
+		if(message.compare(step) != 0){
+			step = message;
+			RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step message: %s", message.c_str());
+			bool action_result = plc.make_action(message);
+			if(!action_result){
+				RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error cannot make action");
+			}
+			else{
+				plc_client("plc standby");
+			}
+		}
     }
     rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 };
 
+void printchar(const char *message, int size)
+{   
+    std::cout << "size:" << std::dec << size << " message:";
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(message[i])) << " ";
+    }
+    std::cout << std::endl;
+}
+
+char* modbus(const char* function,const char* component,const char* data)
+{
+    // Allocate memory for the message
+    static char message[] = "\x00\x01\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00";
+    message[7] = function[0];
+    message[8] = component[0];
+    message[9] = component[1];
+    message[10] = data[0];
+    message[11] = data[1];
+
+    return message;
+}
+
 int main(int argc, char *argv[])
 {
+    bool test = false;
+	if (argc == 2)
+	{
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
+		test = false;
+	}
+	
+	if (test){
+		test = false;
+		std::string test_action = "plc " + std::string(argv[1]);
+		printf("test action: %s\n", test_action.c_str());
+		plc.make_action(test_action);
+	}
+
+    // printchar(return_message, 12);
+
     rclcpp::init(argc, argv);
     rclcpp::spin(std::make_shared<PlcSubscriber>());
 

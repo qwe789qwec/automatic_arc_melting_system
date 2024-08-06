@@ -5,30 +5,27 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='plc_control',
-            namespace='plc',
+            # namespace='plc',
             executable='PlcControl',
-            name='plc',
-            output='screen'
+            # name='plc'
         ),
         Node(
             package='slider_control',
-            namespace='slider',
+            # namespace='slider',
             executable='SliderControl',
-            name='slider',
-            output='screen'
+            # name='slider'
         ),
         Node(
             package='weighing_control',
-            namespace='weighing',
+            # namespace='weighing',
             executable='WeighingControl',
-            name='weighing',
-            output='screen'
+            # name='weighing'
         ),
         Node(
             package='cobotta_bcap',
-            namespace='cobotta',
+            # namespace='cobotta',
             executable='CobottaControl',
-            name='cobotta',
-            output='screen'
+            # name='cobotta',
+            # arguments=['--test', 'default_topic']
         ),
     ])

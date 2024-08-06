@@ -51,6 +51,7 @@
 #define presure90 "\x00\x07"
 #define s12coil "\xB0\x0C"
 #define s13coil "\xB0\x0D"
+#define s33coil "\xB0\x21"
 //S0 = 45056 S1 = 45057 S12 = 45068
 
 #define sd61800x "\x68\x24" //for analog
@@ -60,9 +61,12 @@
 #define closeGateValve0x "\x00\x09"
 #define airFlow0x "\x00\x0A"
 #define arc0x "\x00\x0B"
-#define buzz0x "\x00\x0F"
+#define buzz0x "\x00\x17"
 #define M10 "\x20\x0A"
 #define M15 "\x20\x0F"
+#define M20 "\x20\x14"
+#define M21 "\x20\x15"
+#define M30 "\x20\x1E"
 
 class plc
 {
