@@ -26,10 +26,12 @@ find_package(rosidl_default_generators REQUIRED)
 
 set(msg_files
   "msg/ProcessMsg.msg"
+  "msg/TestMsg.msg"
 )
 
 set(srv_files
   "srv/ProcessService.srv"
+  "srv/TestSrv.srv"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
