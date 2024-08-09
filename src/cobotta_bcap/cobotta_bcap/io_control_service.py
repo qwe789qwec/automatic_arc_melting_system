@@ -3,10 +3,7 @@ from .pybcapclient.bcapclient import BCAPClient
 
 import rclpy
 from rclpy.node import Node
-
-host = "192.168.0.11"
-port = 5007
-timeout = 2000
+from .cobotta.cobotta import cobotta
 
 class CobottaActionService(Node):
 
@@ -18,55 +15,13 @@ class CobottaActionService(Node):
         self.get_logger().info('Incoming request\nactionOne: %s actionTwo: %s' % (request.action_1, request.action_2))
         response.result = 'init status'
 
-        # Connection processing of tcp communication
-        m_bcapclient = BCAPClient(host, port, timeout)
-        print("Open Connection")
-
-        # start b_cap Service
-        m_bcapclient.service_start("")
-        print("Send SERVICE_START packet")
-
-        # set Parameter
-        Name = ""
-        Provider = "CaoProv.DENSO.VRC"
-        Machine = "localhost"
-        Option = ""
-
-        # Connect to RC8 (RC8(VRC)provider)
-        hCtrl = m_bcapclient.controller_connect(Name, Provider, Machine, Option)
-        print("Connect RC8")
-
-        ioNum = request.action_1
+        cobotta_client = cobotta("192.168.0.11", 5007, 2000)
         
-        # get I[1] Object Handl
-        IHandl = 0
-        IHandl = m_bcapclient.controller_getvariable(hCtrl, ioNum, "")
-        # read value of I[1]
-        retI = m_bcapclient.variable_getvalue(IHandl)
-        print("Read Variable" + ioNum + "= %d" % retI)
-        # Generate random value
-        newval = int(request.action_2)
-        # write value of I[1]
-        m_bcapclient.variable_putvalue(IHandl, newval)
-        print("Write Variable :newval = %d" % newval)
-        # read value of I[1]
-        retI = m_bcapclient.variable_getvalue(IHandl)
-        print("Read Variable I[1] = %d" % retI)
+        cobotta_client.changeValue(request.action_1, request.action_2)
+        
+        value = cobotta_client.readValue(request.action_1)
 
-        # Disconnect
-        if(IHandl != 0):
-            m_bcapclient.variable_release(IHandl)
-            print("Release IHandl")
-
-        # End If
-        if(hCtrl != 0):
-            m_bcapclient.controller_disconnect(hCtrl)
-            print("Release Controller")
-        # End If
-        m_bcapclient.service_stop()
-        print("B-CAP service Stop")
-
-        response.result = "Read Variable I[1] = %d" % retI
+        response.result = "Read Variable" + request.action_1 + " = %d" % value
         return response
 
 
