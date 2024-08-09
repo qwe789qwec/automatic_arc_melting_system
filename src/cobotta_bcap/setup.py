@@ -2,11 +2,12 @@ from setuptools import setup
 
 package_name = 'cobotta_bcap'
 pybcapclient = 'cobotta_bcap/pybcapclient'
+cobotta = 'cobotta_bcap/cobotta'
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name, pybcapclient],
+    packages=[package_name, pybcapclient, cobotta],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
