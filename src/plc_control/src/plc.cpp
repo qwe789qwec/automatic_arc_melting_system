@@ -236,6 +236,14 @@ bool plc::make_action(std::string step)
         {   usleep(1000 * 1000);
         }
     }
+    else if (action == "singlePump"){
+        return_message = coilWrite(M11, coilOn);
+        usleep(1000 * 1000);
+        return_message = coilWrite(M11, coilOff);
+        while (!coilRead(s14coil))
+        {   usleep(1000 * 1000);
+        }
+    }
     else if(action == "vent"){
         return_message = coilWrite(M15, coilOn);
         usleep(1000 * 1000);
@@ -315,6 +323,12 @@ bool plc::make_action(std::string step)
         while (!coilRead(s33coil))
         {   usleep(1000 * 1000);
         }        
+    }
+    else if(action == "wait15s"){
+        usleep(15 * 1000 * 1000);
+    }
+    else if(action == "wait10s"){
+        usleep(10 * 1000 * 1000);
     }
     else{
         return false;
