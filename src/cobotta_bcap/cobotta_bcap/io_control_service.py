@@ -17,11 +17,9 @@ class CobottaActionService(Node):
 
         cobotta_client = cobotta("192.168.0.11", 5007, 2000)
         
-        cobotta_client.changeValue(request.action_1, request.action_2)
-        
-        value = cobotta_client.readValue(request.action_1)
+        value = cobotta_client.changeValue(request.action_1, request.action_2)
 
-        response.result = "Read Variable" + request.action_1 + " = %d" % value
+        response.result = "Read Variable" + request.action_1 + " = " + str(value)
         return response
 
 
