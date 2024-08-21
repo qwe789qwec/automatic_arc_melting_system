@@ -15,9 +15,9 @@ weighing_machine::weighing_machine(std::string ip, int port)
 void weighing_machine::frontdoor(bool state)
 {
 	if(state == opendoor)
-        weiging_tcp.write("QRA 60 7 3\r\n"); // close
+        weiging_tcp.write("QRA 60 7 3\r\n"); // open
     else if(state == closedoor)
-        weiging_tcp.write("QRA 60 7 2\r\n"); // open
+        weiging_tcp.write("QRA 60 7 2\r\n"); // close
     weiging_tcp.check_receive("QRA 60 7 A", 6);
 	return ;
 }
@@ -44,6 +44,7 @@ void weighing_machine::startdosing()
 {
     weiging_tcp.write("QRA 61 1\r\n"); // dosing
     weiging_tcp.check_receive("QRA 61 1 A", 200);
+    // <Content Unit="mg">0.000000</Content>
 	return ;
 }
 
