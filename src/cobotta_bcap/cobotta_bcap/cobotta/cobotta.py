@@ -49,6 +49,8 @@ class cobotta:
 
         # start b_cap Service send SERVICE_START packet
         self.bcap.service_start("")
+        self.valueHandle = 0
+        self.taskHandle = 0
 
         # set Parameter
         Name = ""
@@ -59,53 +61,58 @@ class cobotta:
         # Connect to RC8 (RC8(VRC)provider)
         self.hCtrl = self.bcap.controller_connect(Name, Provider, Machine, Option)
 
-    def makeTask(self, task):
-        ### get task(pro1) Object Handl
-        self.handle = 0
-        self.handle = self.bcap.controller_gettask(self.hCtrl,task,"")
+    def runTask(self, task):
+        ### get task Object Handl
+        if(self.taskHandle == 0):
+            self.taskHandle = self.bcap.controller_gettask(self.hCtrl,task,"")
 
         #Start pro1
         #mode  1:One cycle execution, 2:Continuous execution, 3:Step forward
         mode = 1
-        taskHandle = self.bcap.task_start(self.hCtrl, mode, "")
-
-        print("into loop")
+        taskStatus = self.bcap.task_start(self.taskHandle, mode, "")
+        
+        status = False
         while True:
-            TaskStatus = self.bcap.task_execute(self.handle,"GetStatus")
-            # print("TaskStatus : ",TaskStatus)
-            if(TaskStatus != 3):
+            taskStatus = self.bcap.task_execute(self.taskHandle,"GetStatus")
+            if(taskStatus != 3):
+                status = True
                 break
-        print("out loop")
-        return TaskStatus
+        
+        return status
 
     def changeValue(self, ioNum, value):
         # get I[1] Object Handl
-        self.handle = 0
-        self.handle = self.bcap.controller_getvariable(self.hCtrl, ioNum, "")
+        if(self.valueHandle == 0):
+            self.valueHandle = self.bcap.controller_getvariable(self.hCtrl, ioNum, "")
         # write value
-        self.bcap.variable_putvalue(self.handle, int(value))
+        self.bcap.variable_putvalue(self.valueHandle, int(value))
         # read value of I[1]
-        retI = self.bcap.variable_getvalue(self.handle)
+        retI = self.bcap.variable_getvalue(self.valueHandle)
         return retI
     
     def readValue(self, ioNum):
         # get I[1] Object Handl
-        self.handle = 0
-        self.handle = self.bcap.controller_getvariable(self.hCtrl, ioNum, "")
+        if(self.valueHandle == 0):
+            self.valueHandle = self.bcap.controller_getvariable(self.hCtrl, ioNum, "")
         # read value
-        value = self.bcap.variable_getvalue(self.handle)
+        value = self.bcap.variable_getvalue(self.valueHandle)
         return value
 
     def __del__(self):
         # Disconnect
-        if(self.handle != 0):
-            self.bcap.variable_release(self.handle)
-            print("Release IHandl")
+        if self.valueHandle :
+            self.bcap.variable_release(self.valueHandle)
+            self.valueHandle = 0
+
+        if self.taskHandle :
+            self.bcap.variable_release(self.taskHandle)
+            self.taskHandle = 0
 
         # End If
-        if(self.hCtrl != 0):
+        if self.hCtrl :
             self.bcap.controller_disconnect(self.hCtrl)
-            print("Release Controller")
+            self.hCtrl = 0
+            
         # End If
         self.bcap.service_stop()
         print("B-CAP service Stop")

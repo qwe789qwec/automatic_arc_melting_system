@@ -16,10 +16,20 @@ class CobottaActionService(Node):
         response.result = 'init status'
 
         cobotta_client = cobotta("192.168.0.11", 5007, 2000)
-        
-        value = cobotta_client.changeValue(request.action_1, request.action_2)
 
-        response.result = "Read Variable" + request.action_1 + " = " + str(value)
+        if request.action_1.startswith("run"):
+            action = request.action_1.replace("run", "")
+            status = cobotta_client.runTask(action)
+            self.get_logger().info('run: %s get: %s' % (action, str(status)))
+            response.result = "run " + action + " = " + str(status)
+
+        elif request.action_1.startswith("change"):
+            # remove action_1 change
+            action = request.action_1.replace("change", "")
+            value = cobotta_client.changeValue(action, request.action_2)
+            self.get_logger().info('value: %s get: %s' % (action, str(value)))
+            response.result = "Read Variable" + action + " = " + str(value)
+
         return response
 
 
