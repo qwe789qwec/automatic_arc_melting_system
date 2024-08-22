@@ -23,7 +23,8 @@ public:
     void frontdoor(bool state);
     void dosinghead(bool state);
     void setgram(std::string gram);
-    void startdosing();
+    std::string startdosing();
+    std::string getgramvalue(const std::string& xml_data) ;
     bool make_action(std::string step);
 	~weighing_machine();
 
