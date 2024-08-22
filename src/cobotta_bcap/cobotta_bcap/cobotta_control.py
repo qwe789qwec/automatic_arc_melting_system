@@ -7,6 +7,7 @@ from msg_format.srv import ProcessService
 from msg_format.msg import ProcessMsg
 
 from .pybcapclient.bcapclient import BCAPClient
+from .cobotta.cobotta import cobotta
 
 import argparse
 
@@ -40,72 +41,6 @@ shelf_take_dose
 shelf_put_dose
 """
 
-def cobotta_task(task):
-    ### Connection processing of tcp communication
-    m_bcapclient = BCAPClient(host,port,timeout)
-    print("Open Connection")
-
-    ### start b_cap Service
-    m_bcapclient.service_start("")
-    print("Send SERVICE_START packet")
-
-    ### set Parameter
-    Name = ""
-    Provider="CaoProv.DENSO.VRC"
-    Machine = ("localhost")
-    Option = ("")
-
-    ### Connect to RC8 (RC8(VRC)provider)
-    hCtrl = m_bcapclient.controller_connect(Name,Provider,Machine,Option)
-    print("Connect RC8")
-    ### get task(pro1) Object Handl
-    HTask = 0
-    HTask = m_bcapclient.controller_gettask(hCtrl,task,"")
-
-    #Start pro1
-    #mode  1:One cycle execution, 2:Continuous execution, 3:Step forward
-    mode = 1
-    hr = m_bcapclient.task_start(HTask,mode,"")
-
-    print("into loop")
-    while True:
-        TaskStatus = m_bcapclient.task_execute(HTask,"GetStatus")
-        # print("TaskStatus : ",TaskStatus)
-        if(TaskStatus != 3):
-            break
-    print("out loop")
-
-    # Disconnect
-    if(HTask != 0):
-        m_bcapclient.task_release(HTask)
-        print("Release Pro1")
-    #End If
-    if(hCtrl != 0):
-        m_bcapclient.controller_disconnect(hCtrl)
-        print("Release Controller")
-    #End If
-    m_bcapclient.service_stop()
-    print("B-CAP service Stop")
-
-def get_action(compare, target):
-    # Find the target string in compare string
-    pos = compare.find(target)
-    if pos == -1:
-        return "error"
-
-    # Find the space after the target string
-    if (pos + len(target) + 1) >= len(compare):
-        return "error"
-    else:
-        space = compare[pos + len(target) + 1:]
-        pos = space.find(" ")
-        if pos == -1:
-            return space
-        return_string = space[:pos]
-        if len(return_string) <= 2:
-            return "error"
-        return space[:pos]
-
 class CobottaClient(Node):
 
     def __init__(self):
@@ -135,10 +70,8 @@ class CobottaSubscriber(Node):
 
     def listener_callback(self, msg):
         # self.get_logger().info('I heard: "%s"' % msg.process)
-        if msg.process.startswith("init"):
-            action = "init"
-        else:
-            action = get_action(msg.process, "cobotta")
+        cobotta_handle = cobotta(host,port,timeout)
+        action = cobotta_handle.get_action(msg.process, "cobotta")
         
         if msg.process != self.last_process:
             self.last_process = msg.process
@@ -147,7 +80,8 @@ class CobottaSubscriber(Node):
             else:
                 print(f"action: {action}")
                 try:
-                    cobotta_task(action)
+                    # cobotta_task(action)
+                    cobotta_handle.runTask(action)
                     cobotta_client = CobottaClient()
                     response = cobotta_client.send_request("cobotta standby")
                     cobotta_client.get_logger().info('I heard: "%s"' % response.result)

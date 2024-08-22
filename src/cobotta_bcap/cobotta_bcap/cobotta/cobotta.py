@@ -125,6 +125,25 @@ class cobotta:
         # read value
         value = self.bcap.variable_getvalue(self.valueHandle)
         return value
+    
+    def get_action(self, compare, target):
+        # Find the target string in compare string
+        pos = compare.find(target)
+        if pos == -1:
+            return "error"
+
+        # Find the space after the target string
+        if (pos + len(target) + 1) >= len(compare):
+            return "error"
+        else:
+            space = compare[pos + len(target) + 1:]
+            pos = space.find(" ")
+            if pos == -1:
+                return space
+            return_string = space[:pos]
+            if len(return_string) <= 2:
+                return "error"
+            return space[:pos]
 
     def __del__(self):
 
