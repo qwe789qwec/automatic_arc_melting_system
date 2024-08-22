@@ -30,6 +30,13 @@ class CobottaActionService(Node):
             self.get_logger().info('value: %s get: %s' % (action, str(value)))
             response.result = "Read Variable" + action + " = " + str(value)
 
+        elif request.action_1.startswith("goto"):
+            # remove action_1 change
+            action = request.action_1.replace("goto", "")
+            cobotta_client.gotoPoint(int(request.action_2))
+            self.get_logger().info('end')
+            response.result = "goto P" + str(request.action_2)
+
         return response
 
 

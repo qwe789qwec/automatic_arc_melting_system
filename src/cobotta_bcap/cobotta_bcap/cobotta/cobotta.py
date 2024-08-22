@@ -61,6 +61,34 @@ class cobotta:
         # Connect to RC8 (RC8(VRC)provider)
         self.hCtrl = self.bcap.controller_connect(Name, Provider, Machine, Option)
 
+        self.robotHandle = 0
+        self.robotHandle = self.bcap.controller_getrobot(self.hCtrl,"Arm","")
+
+        # set ExtSpeed Speed,Accel,Decel
+        Command = "ExtSpeed"
+        Speed = 50
+        Accel = 50
+        Decel = 50
+        Param = [Speed,Accel,Decel]
+        self.bcap.robot_execute(self.robotHandle,Command,Param)
+
+    def gotoPoint(self, point):
+        
+        # Take Arm
+        Command = "TakeArm"
+        Param = [0,0]
+        self.bcap.robot_execute(self.robotHandle,Command,Param)
+
+        # motor on
+        Command = "Motor"
+        Param = [1,0]
+        self.bcap.robot_execute(self.robotHandle,Command,Param)
+
+        Comp = 1
+        Pose = [point,"P","@0"]
+        self.bcap.robot_move(self.robotHandle,Comp,Pose,"")
+        # Move P,@0 P[point]
+
     def runTask(self, task):
         ### get task Object Handl
         if(self.taskHandle == 0):
@@ -99,6 +127,17 @@ class cobotta:
         return value
 
     def __del__(self):
+
+        # motor off
+        Command = "Motor"
+        Param = [0,0]
+        self.bcap.robot_execute(self.robotHandle,Command,Param)
+
+        # Give Arm
+        Command = "GiveArm"
+        Param = None
+        self.bcap.robot_execute(self.robotHandle,Command,Param)
+
         # Disconnect
         if self.valueHandle :
             self.bcap.variable_release(self.valueHandle)
@@ -107,6 +146,10 @@ class cobotta:
         if self.taskHandle :
             self.bcap.variable_release(self.taskHandle)
             self.taskHandle = 0
+
+        if self.robotHandle :
+            self.bcap.robot_release(self.robotHandle)
+            HRobot = 0
 
         # End If
         if self.hCtrl :
