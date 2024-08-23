@@ -19,11 +19,45 @@ weighing_machine weighing(weighing_ip, weighing_port);
 std::string first_material = "396.7";
 std::string second_material = "103.3";
 
-int weighing_client(std::string action)
+int process_client(std::string action)
 {
     std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("weighing_process");
     rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr weighing_process =
         node->create_client<msg_format::srv::ProcessService>("process_service");
+
+    auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
+    request->action = action;
+
+    while (!weighing_process->wait_for_service(3s))
+    {
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service. Exiting.");
+            return -1;
+        }
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service not available, waiting again...");
+    }
+
+    auto result = weighing_process->async_send_request(request);
+    // Wait for the result.
+    if (rclcpp::spin_until_future_complete(node, result) ==
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "result: %s", result.get()->result.c_str());
+    }
+    else
+    {
+        RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service add_two_ints");
+        return -1;
+    }
+    return 0;
+}
+
+int data_client(std::string action)
+{
+    std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("weighing_process");
+    rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr weighing_process =
+        node->create_client<msg_format::srv::ProcessService>("write_data");
 
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
@@ -80,7 +114,13 @@ private:
 				RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error cannot make action");
 			}
             else{
-                weighing_client("weighing standby");
+                process_client("weighing standby");
+                if (weighing.data_flag)
+                {   
+                    std::string gramdata = weighing.getsampledata();
+                    data_client(gramdata + " mg");
+                }
+                
             }
 		}
     }
