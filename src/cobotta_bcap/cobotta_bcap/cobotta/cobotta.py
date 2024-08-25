@@ -198,13 +198,13 @@ class cobotta:
                 self.gotoPoint(21)
                 self.gotoPoint(20)
                 self.gotoPoint(10)
-            elif action == "takecufromarc":
+            elif action == "takecupfromarc":
                 self.gotoPoint(10)
                 self.gotoPoint(20)
                 self.gotoPoint(21)
                 time.sleep(0.5)
                 self.changeValue("I10", 22)
-                self.runTask("test1/take_bowl")
+                self.runTask("test1/take_cup")
                 self.gotoPoint(21)
                 self.gotoPoint(20)
                 self.gotoPoint(10)
