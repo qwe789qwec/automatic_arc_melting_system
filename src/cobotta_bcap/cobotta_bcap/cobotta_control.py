@@ -70,39 +70,33 @@ class CobottaSubscriber(Node):
 
     def listener_callback(self, msg):
         # self.get_logger().info('I heard: "%s"' % msg.process)
-        cobotta_handle = cobotta(host,port,timeout)
-        action = cobotta_handle.get_action(msg.process, "cobotta")
         
         if msg.process != self.last_process:
             self.last_process = msg.process
-            if action == "error":
-                print("error cannot make action")
+            cobotta_handle = cobotta(host,port,timeout)
+            action = cobotta_handle.make_action(msg.process)
+            cobotta_client = CobottaClient()
+            if action != "error":
+                response = cobotta_client.send_request("cobotta standby")
+                cobotta_client.get_logger().info('I heard: "%s"' % response.result)
+                cobotta_client.destroy_node()
             else:
-                print(f"action: {action}")
-                try:
-                    # cobotta_task(action)
-                    cobotta_handle.runTask(action)
-                    cobotta_client = CobottaClient()
-                    response = cobotta_client.send_request("cobotta standby")
-                    cobotta_client.get_logger().info('I heard: "%s"' % response.result)
-                    cobotta_client.destroy_node()
-                except Exception as e:
-                    print(f"An error occurred: {e}")
-                    print("Trying to reconnect to cobotta, maybe no this name")
-                time.sleep(1.5)
+                self.get_logger().info('error cannot make action')
+            time.sleep(1.5)
 
 def main(args=None):
 
     rclpy.init(args=args)
 
-    # the following 7 lines are uncommented since it conflicts with launch file
+    # the following test code is conflicts with launch file
     # parser = argparse.ArgumentParser(description='Cobotta Subscriber Node')
     # parser.add_argument('--test', type=str, default='default_topic', help='Specify the ROS topic name')
     # parsed_args = parser.parse_args(args)
 
     # if parsed_args.test != 'default_topic':
     #     print(f"get parsed: {parsed_args.test}")
-    #     cobotta_task(str(parsed_args.test))
+    #     cobotta_test = cobotta(host,port,timeout)
+    #     cobotta_test.make_action("cobotta " + parsed_args.test)
     # time.sleep(1.5)
     
     cobotta_subscriber = CobottaSubscriber()

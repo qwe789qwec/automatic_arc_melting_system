@@ -25,6 +25,9 @@ P20 p1 to arc standby
 P21 p2 to arc standby
 P22 arc standby
 
+I10 take
+I11 put
+
 cobotta_task
 init
 weight_take_bowl
@@ -89,6 +92,11 @@ class cobotta:
         self.bcap.robot_move(self.robotHandle,Comp,Pose,"")
         # Move P,@0 P[point]
 
+        # Give Arm
+        Command = "GiveArm"
+        Param = None
+        self.bcap.robot_execute(self.robotHandle,Command,Param)
+
     def runTask(self, task):
         ### get task Object Handl
         if(self.taskHandle == 0):
@@ -144,7 +152,70 @@ class cobotta:
             if len(return_string) <= 2:
                 return "error"
             return space[:pos]
-
+    def take2point(self, point1, point2, function):
+        self.gotoPoint(10)
+        self.gotoPoint(point1)
+        time.sleep(0.5)
+        if function.find("take") != -1:
+            variable = "I10"
+        else:
+            variable = "I11"
+        self.changeValue(variable, point2)
+        self.runTask(function)
+        self.gotoPoint(point1)
+        self.gotoPoint(10)
+    
+    def make_action(self, step):
+        action = self.get_action(step, "cobotta")
+        try:
+            if action == "init":
+                self.runTask("test1/init")
+            elif action == "takecupfromstuck":
+                self.take2point(30, 31, "test1/take_cup")
+            elif action == "putcuptoweight":
+                self.take2point(16, 15, "test1/put_cup")
+            elif action == "takecupfromweight":
+                self.take2point(16, 15, "test1/take_cup")
+            elif action == "putdosetoweight":
+                self.take2point(16, 14, "test1/put_dose")
+            elif action == "takedosefromweight":
+                self.take2point(16, 14, "test1/take_dose")
+            elif action == "putdosetoshelf":
+                self.take2point(10, 11, "test1/put_dose")
+            elif action == "takedosefromshelf":
+                self.take2point(10, 11, "test1/take_dose")
+            elif action == "putdosetoshelf2":
+                self.take2point(23, 24, "test1/put_dose")
+            elif action == "takedosefromshelf2":
+                self.take2point(23, 24, "test1/take_dose")
+            elif action == "putcuptoarc":
+                self.gotoPoint(10)
+                self.gotoPoint(20)
+                self.gotoPoint(21)
+                time.sleep(0.5)
+                self.changeValue("I10", 22)
+                self.runTask("test1/put_cup")
+                self.gotoPoint(21)
+                self.gotoPoint(20)
+                self.gotoPoint(10)
+            elif action == "takecufromarc":
+                self.gotoPoint(10)
+                self.gotoPoint(20)
+                self.gotoPoint(21)
+                time.sleep(0.5)
+                self.changeValue("I10", 22)
+                self.runTask("test1/take_bowl")
+                self.gotoPoint(21)
+                self.gotoPoint(20)
+                self.gotoPoint(10)
+            else:
+                return "error"
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            print("Trying to reconnect to cobotta, maybe no this name")
+            return "error"  
+        
+        return "standby"
     def __del__(self):
 
         # motor off
