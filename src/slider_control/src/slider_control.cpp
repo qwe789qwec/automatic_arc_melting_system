@@ -86,11 +86,10 @@ private:
 
 int main(int argc, char *argv[])
 {	
-	bool test = false;
-	if (argc == 2)
+	bool test = true;
+	if (argc == 2 && test == true)
 	{
 		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
-		test = false;// change this to true when you want to do a single run for slidertest
 	}
 	
 	if (test){
