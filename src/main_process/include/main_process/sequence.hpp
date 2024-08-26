@@ -44,11 +44,11 @@ public:
     SequenceState* state;
 
     Sequence() {
-        devices.addDevice(Devices::SLIDER1);
-        devices.addDevice(Devices::SLIDER2);
-        devices.addDevice(Devices::SLIDER3);
-        devices.addDevice(Devices::WEIGHING);
-        devices.addDevice(Devices::COBOTTA);
+        devices.addDevice(Instrument::SLIDER1);
+        devices.addDevice(Instrument::SLIDER2);
+        devices.addDevice(Instrument::SLIDER3);
+        devices.addDevice(Instrument::WEIGHING);
+        devices.addDevice(Instrument::COBOTTA);
 
         state = new Init();
     }

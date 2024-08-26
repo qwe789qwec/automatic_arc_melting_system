@@ -20,7 +20,7 @@ bool enter_pressed = true;
 std::string checkProcess(std::string currentstep, size_t index)
 {
     std::vector<std::string> devices = {"weighing", "slider", "slider1", "plc", "cobotta"};
-
+    
     size_t foundIndex = 0;
     for (std::string device : devices)
     {
@@ -158,17 +158,17 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     }
 
     static deviceState Devices;
-    Devices.addDevice(Devices::WEIGHING);
-    Devices.addDevice(Devices::COBOTTA);
-    Devices.addDevice(Devices::SLIDER);
-    Devices.addDevice(Devices::PLC);
+    Devices.addDevice(Instrument::WEIGHING);
+    Devices.addDevice(Instrument::COBOTTA);
+    Devices.addDevice(Instrument::SLIDER);
+    Devices.addDevice(Instrument::PLC);
     Devices.initialized = true;
     Devices.updateDeviceStatus(action);
 
     static long unsigned int stepNumber = 0;
 
     // if (enter_pressed && Devices.checkDevices(DeviceStatus::STANDBY))
-    if (Devices.checkDevices(DeviceStatus::STANDBY))
+    if (Devices.checkDevices(Situation::STANDBY))
     {
         if (step.compare((*processArray)[stepNumber]) == 0)
         {

@@ -12,17 +12,17 @@ deviceState::deviceState(){
 	initialized = false;
 }
 
-void deviceState::addDevice(Devices device){
+void deviceState::addDevice(Instrument device){
 	// add the device to the list
 	if(initialized == false){
 		Device newDevice;
 		newDevice.name = device;
-		newDevice.status = DeviceStatus::ACTION;
+		newDevice.status = Situation::ACTION;
 		devices.push_back(newDevice);
 	}
 }
 
-void deviceState::removeDevice(Devices device){
+void deviceState::removeDevice(Instrument device){
 	// remove the device from the list
 	long unsigned int i;
 	for (i = 0; i < devices.size(); i++){
@@ -32,7 +32,7 @@ void deviceState::removeDevice(Devices device){
 	}
 }
 
-DeviceStatus deviceState::getDeviceStatus(Devices device){
+Situation deviceState::getDeviceStatus(Instrument device){
 	// return the status of the device
 	long unsigned int i;
 	for (i = 0; i < devices.size(); i++){
@@ -40,38 +40,38 @@ DeviceStatus deviceState::getDeviceStatus(Devices device){
 			return devices[i].status;
 		}
 	}
-	return DeviceStatus::ERROR;
+	return Situation::ERROR;
 }
 
-Devices deviceState::stringToDevice(std::string device){
+Instrument deviceState::stringToDevice(std::string device){
 	// convert string to device
 	if (device.compare("slider") == 0){
-		return Devices::SLIDER;
+		return Instrument::SLIDER;
 	}
 	else if (device.compare("slider1") == 0){
-		return Devices::SLIDER1;
+		return Instrument::SLIDER1;
 	}
 	else if (device.compare("slider2") == 0){
-		return Devices::SLIDER2;
+		return Instrument::SLIDER2;
 	}
 	else if (device.compare("slider3") == 0){
-		return Devices::SLIDER3;
+		return Instrument::SLIDER3;
 	}
 	else if (device.compare("weighing") == 0){
-		return Devices::WEIGHING;
+		return Instrument::WEIGHING;
 	}
 	else if (device.compare("cobotta") == 0){
-		return Devices::COBOTTA;
+		return Instrument::COBOTTA;
 	}
 	else if (device.compare("plc") == 0){
-		return Devices::PLC;
+		return Instrument::PLC;
 	}
 	else{
-		return Devices::error;
+		return Instrument::error;
 	}
 }
 
-bool deviceState::checkDevices(DeviceStatus status){
+bool deviceState::checkDevices(Situation status){
 	// if all devices are standby, return true
 	long unsigned int i;
 	for (i = 0; i < devices.size(); i++){
@@ -85,7 +85,7 @@ bool deviceState::checkDevices(DeviceStatus status){
 	return true;
 }
 
-bool deviceState::checkDevicesList(std::vector<Devices> devicesList, DeviceStatus status){
+bool deviceState::checkDevicesList(std::vector<Instrument> devicesList, Situation status){
 	// check if all device on the devicesList in the devices are standby
 	// if all devices are standby, return true
 	long unsigned int i,j;
@@ -104,8 +104,8 @@ bool deviceState::checkDevicesList(std::vector<Devices> devicesList, DeviceStatu
 void deviceState::updateDeviceStatus(std::string message){
 	// update the status of the device
 	std::string device = message.substr(0, message.find(" "));
-	Devices deviceEnum = stringToDevice(device);
-	if(deviceEnum == Devices::error){
+	Instrument deviceEnum = stringToDevice(device);
+	if(deviceEnum == Instrument::error){
 		return;
 	}
 	std::string status = message.substr(message.find(" ") + 1, message.length());
@@ -113,19 +113,19 @@ void deviceState::updateDeviceStatus(std::string message){
 	for (i = 0; i < devices.size(); i++){
 		if (devices[i].name == deviceEnum){
 			if (status.compare("online") == 0){
-				devices[i].status = DeviceStatus::ONLINE;
+				devices[i].status = Situation::ONLINE;
 			}
 			else if (status.compare("offline") == 0){
-				devices[i].status = DeviceStatus::OFFLINE;
+				devices[i].status = Situation::OFFLINE;
 			}
 			else if (status.compare("action") == 0){
-				devices[i].status = DeviceStatus::ACTION;
+				devices[i].status = Situation::ACTION;
 			}
 			else if (status.compare("standby") == 0){
-				devices[i].status = DeviceStatus::STANDBY;
+				devices[i].status = Situation::STANDBY;
 			}
 			else if (status.compare("error") == 0){
-				devices[i].status = DeviceStatus::ERROR;
+				devices[i].status = Situation::ERROR;
 			}
 		}
 	}

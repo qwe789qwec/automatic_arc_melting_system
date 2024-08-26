@@ -9,7 +9,7 @@
 #include <string.h>
 #include <vector>
 
-enum class DeviceStatus {
+enum class Situation {
    ONLINE,
    OFFLINE,
    ACTION,
@@ -17,7 +17,7 @@ enum class DeviceStatus {
    ERROR
 };
 
-enum class Devices {
+enum class Instrument {
    SLIDER,
    SLIDER1,
    SLIDER2,
@@ -29,8 +29,8 @@ enum class Devices {
 };
 
 struct Device {
-   Devices name;
-   DeviceStatus status;
+   Instrument name;
+   Situation status;
 };
 
 class deviceState
@@ -38,12 +38,12 @@ class deviceState
     public:
         deviceState();
         bool initialized;
-        void addDevice(Devices device);
-        void removeDevice(Devices device);
-        DeviceStatus getDeviceStatus(Devices device);
-        Devices stringToDevice(std::string device);
-        bool checkDevices(DeviceStatus status);
-        bool checkDevicesList(std::vector<Devices> deviceslist, DeviceStatus status);
+        void addDevice(Instrument device);
+        void removeDevice(Instrument device);
+        Situation getDeviceStatus(Instrument device);
+        Instrument stringToDevice(std::string device);
+        bool checkDevices(Situation status);
+        bool checkDevicesList(std::vector<Instrument> deviceslist, Situation status);
         void updateDeviceStatus(std::string message);
     private:
         std::vector<Device> devices;

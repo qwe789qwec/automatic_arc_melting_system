@@ -10,14 +10,14 @@
 #include "main_process/sequence.hpp"
 
 bool Init::check(deviceState devices){
-    std::vector<Devices> deviceslist = 
-    {   Devices::SLIDER1, 
-        Devices::SLIDER2, 
-        Devices::SLIDER3, 
-        Devices::WEIGHING, 
-        Devices::COBOTTA 
+    std::vector<Instrument> deviceslist = 
+    {   Instrument::SLIDER1, 
+        Instrument::SLIDER2, 
+        Instrument::SLIDER3, 
+        Instrument::WEIGHING, 
+        Instrument::COBOTTA 
     };
-    return devices.checkDevicesList(deviceslist, DeviceStatus::STANDBY);
+    return devices.checkDevicesList(deviceslist, Situation::STANDBY);
 }
 
 std::vector<std::string> Init::process(){
@@ -32,12 +32,12 @@ std::vector<std::string> Init::process(){
 }
 
 bool Init::end(deviceState devices){
-    std::vector<Devices> deviceslist = 
-    {   Devices::SLIDER1, 
-        Devices::SLIDER2, 
-        Devices::SLIDER3, 
-        Devices::WEIGHING, 
-        Devices::COBOTTA 
+    std::vector<Instrument> deviceslist = 
+    {   Instrument::SLIDER1, 
+        Instrument::SLIDER2, 
+        Instrument::SLIDER3, 
+        Instrument::WEIGHING, 
+        Instrument::COBOTTA 
     };
-    return devices.checkDevicesList(deviceslist, DeviceStatus::STANDBY);
+    return devices.checkDevicesList(deviceslist, Situation::STANDBY);
 }
