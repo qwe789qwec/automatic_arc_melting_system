@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
 
   auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
 
+  // input "192.168.1.100 8080 Hello, World!"
   std::string getstring = argv[1];
   request->action = getstring;
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "get string: %s", getstring.c_str());

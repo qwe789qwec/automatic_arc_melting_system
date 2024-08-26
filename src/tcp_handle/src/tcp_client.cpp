@@ -155,6 +155,7 @@ void sock_handle(const std::shared_ptr<msg_format::srv::ProcessService::Request>
 				 std::shared_ptr<msg_format::srv::ProcessService::Response> response)
 {
 	std::string ip, port, message;
+	// input "192.168.1.100 8080 Hello, World!"
 	std::stringstream ss(request->action);
 	response->result = "init status";
 	ss >> ip;

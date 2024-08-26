@@ -159,7 +159,7 @@ bool tcp_socket::check_receive(std::string compare, int timeout_seconds)
 		if (std::chrono::steady_clock::now() - start_time >= timeout)
 		{
 			printf("test timeout");
-			break;
+			return false;
 		}
 	}
 	return true;
@@ -168,24 +168,28 @@ bool tcp_socket::check_receive(std::string compare, int timeout_seconds)
 std::string tcp_socket::get_action(std::string compare, std::string target)
 {	
 	//find the target string in compare string
-	int pos = compare.find(target);
+	std::string::size_type pos = compare.find(target);
 	if (pos == std::string::npos) {
 		return "error";
 	}
 
-	//find the space after the target string
-	if((pos + target.length() + 1)>= compare.length()){
+	// find the space after the target string
+	std::string::size_type posAfterTarget = pos + target.length() + 1;
+	if(posAfterTarget >= compare.length()){
 		return "error";
 	}
-	else{
-		std::string space = compare.substr(pos + target.length() + 1);
-		pos = space.find(" ");
-		std::string return_string = space.substr(0, pos);
-		if (return_string.length() <= 2){
-			return "error";
-		}
-		return space.substr(0, pos);
+
+	std::string substringAfterTarget = compare.substr(posAfterTarget);
+	pos = substringAfterTarget.find(" ");
+
+	// no space after the target string
+	std::string return_string = (pos == std::string::npos) ? substringAfterTarget : substringAfterTarget.substr(0, pos);
+
+	if (return_string.length() <= 2) {
+		return "error";
 	}
+	
+	return return_string;
 }
 
 void tcp_socket::close()
