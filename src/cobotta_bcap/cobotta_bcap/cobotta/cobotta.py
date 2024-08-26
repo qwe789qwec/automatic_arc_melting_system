@@ -193,7 +193,7 @@ class cobotta:
                 self.gotoPoint(20)
                 self.gotoPoint(21)
                 time.sleep(0.5)
-                self.changeValue("I10", 22)
+                self.changeValue("I11", 22)
                 self.runTask("test1/put_cup")
                 self.gotoPoint(21)
                 self.gotoPoint(20)
@@ -209,7 +209,7 @@ class cobotta:
                 self.gotoPoint(20)
                 self.gotoPoint(10)
             else:
-                return "error"
+                return "standby"
         except Exception as e:
             print(f"An error occurred: {e}")
             print("Trying to reconnect to cobotta, maybe no this name")
