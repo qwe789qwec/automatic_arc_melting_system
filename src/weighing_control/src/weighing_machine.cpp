@@ -13,40 +13,48 @@ weighing_machine::weighing_machine(std::string ip, int port)
     data_flag = false;
 }
 
-void weighing_machine::frontdoor(bool state)
+bool weighing_machine::frontdoor(bool state)
 {
-	if(state == opendoor)
+	if(state == opendoor){
         weiging_tcp.write("QRA 60 7 3\r\n"); // open
-    else if(state == closedoor)
+    }
+    else if(state == closedoor){
         weiging_tcp.write("QRA 60 7 2\r\n"); // close
-    weiging_tcp.check_receive("QRA 60 7 A", 6);
-	return ;
+    }
+
+	return weiging_tcp.check_receive("QRA 60 7 A", 6);
 }
 
-void weighing_machine::dosinghead(bool state)
+bool weighing_machine::dosinghead(bool state)
 {
-	if(state == lock)
+	if(state == lock){
         weiging_tcp.write("QRA 60 2 4\r\n"); // lock dosing head
-    else if(state == unlock)
+    }
+    else if(state == unlock){
         weiging_tcp.write("QRA 60 2 3\r\n"); // unlock dosing head
-    weiging_tcp.check_receive("QRA 60 2 A", 6);
-	return ;
+    }
+
+	return weiging_tcp.check_receive("QRA 60 2 A", 6);
 }
 
-void weighing_machine::setgram(std::string gram)
+bool weighing_machine::setgram(std::string gram)
 {
     std::string message = "QRD 1 1 5 " + gram + "\r\n";
 	weiging_tcp.write(message); // set gram
-    weiging_tcp.check_receive("QRD 1 1 5 A", 6);
-	return ;
+	return weiging_tcp.check_receive("QRD 1 1 5 A", 6);
 }
 
-void weighing_machine::startdosing()
+bool weighing_machine::startdosing()
 {
     weiging_tcp.write("QRA 61 1\r\n"); // dosing
-    weiging_tcp.check_receive("QRA 61 1 A", 200);
-    data_flag = true;
-	return;
+    if (weiging_tcp.check_receive("QRA 61 1 A", 200)){
+        data_flag = true;
+        return true;
+    }
+    else{
+        data_flag = false;
+        return false;
+    }
 }
 
 std::string weighing_machine::getsampledata()
@@ -59,18 +67,22 @@ std::string weighing_machine::getsampledata()
         if (weiging_tcp.receive(receivemessage))
         {   receivemessage = takedata(receivemessage, "<Content Unit=\"mg\">", "</Content>");
             if(receivemessage.compare("none") != 0){
-                break;
+                return "none";
             }
         }
         if (std::chrono::steady_clock::now() - start_time >= std::chrono::seconds(9))
         {
             printf("test timeout");
-            break;
+            return "error";
         }
     }
-    weiging_tcp.check_receive("QRD 2 4 12 A", 5);
-    data_flag = false;
-    return receivemessage;
+    if (weiging_tcp.check_receive("QRD 2 4 12 A", 5)){
+        data_flag = false;
+        return receivemessage;
+    }
+    else{
+        return "error";
+    }
 }
 
 std::string weighing_machine::takedata(const std::string& xml_data,  std::string start, std::string end) {
@@ -85,6 +97,7 @@ std::string weighing_machine::takedata(const std::string& xml_data,  std::string
             return xml_data.substr(start_pos, end_pos - start_pos);
         }
     }
+    
     return "none";
 }
 

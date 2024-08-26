@@ -20,10 +20,10 @@ class weighing_machine
 {
 public:
 	weighing_machine(std::string ip, int port);
-    void frontdoor(bool state);
-    void dosinghead(bool state);
-    void setgram(std::string gram);
-    void startdosing();
+    bool frontdoor(bool state);
+    bool dosinghead(bool state);
+    bool setgram(std::string gram);
+    bool startdosing();
     std::string getsampledata();
     std::string takedata(const std::string& xml_data, std::string start, std::string end) ;
     bool make_action(std::string step);
