@@ -12,14 +12,7 @@
 #include "main_process/devices_state.hpp"
 #include "std_msgs/msg/string.hpp"
 
-#define TTY_PATH "/dev/tty"
-#define STTY_US "stty raw -echo -F "
-#define STTY_DEF "stty -raw echo -F "
-
 using namespace std::chrono_literals;
-
-/* This example creates a subclass of Node and uses std::bind() to register a
- * member function as a callback from the timer. */
 
 std::string step = "slider init cobotta init weighing init plc init";
 bool enter_pressed = true;
@@ -152,7 +145,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
         "cobotta putdosetoshelf2 weighing close",
         "plc buzz",
         "slider1 pos1",
-        "cobotta takecuptoarc",
+        "cobotta takecupfromarc",
     };
 
     const std::vector<std::string>* processArray = nullptr;
@@ -173,11 +166,6 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     Devices.updateDeviceStatus(action);
 
     static long unsigned int stepNumber = 0;
-
-    if (Devices.checkDevices(DeviceStatus::STANDBY))
-    {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Press Enter to continue...");
-    }
 
     // if (enter_pressed && Devices.checkDevices(DeviceStatus::STANDBY))
     if (Devices.checkDevices(DeviceStatus::STANDBY))

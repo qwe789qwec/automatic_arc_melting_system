@@ -110,17 +110,16 @@ private:
 			step = message;
 			RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "step message: %s", message.c_str());
 			bool action_result = weighing.make_action(message);
-			if(!action_result){
-				RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error cannot make action");
-			}
-            else{
+			if(action_result){
                 process_client("weighing standby");
                 if (weighing.data_flag)
                 {   
                     std::string gramdata = weighing.getsampledata();
                     data_client(gramdata + " mg");
                 }
-                
+			}
+            else{
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "error cannot make action");
             }
 		}
     }

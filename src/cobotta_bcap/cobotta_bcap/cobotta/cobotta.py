@@ -209,7 +209,7 @@ class cobotta:
                 self.gotoPoint(20)
                 self.gotoPoint(10)
             else:
-                return "standby"
+                return "error"
         except Exception as e:
             print(f"An error occurred: {e}")
             print("Trying to reconnect to cobotta, maybe no this name")
