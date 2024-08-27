@@ -170,25 +170,25 @@ class cobotta:
         try:
             if action == "init":
                 self.runTask("test1/init")
-            elif action == "takecupfromstuck":
+            elif action == "take_cup_from_stock":
                 self.take2point(30, 31, "test1/take_cup")
-            elif action == "putcuptoweight":
+            elif action == "put_cup_to_weight":
                 self.take2point(16, 15, "test1/put_cup")
-            elif action == "takecupfromweight":
+            elif action == "take_cup_from_weight":
                 self.take2point(16, 15, "test1/take_cup")
-            elif action == "putdosetoweight":
+            elif action == "put_dose_to_weight":
                 self.take2point(16, 14, "test1/put_dose")
-            elif action == "takedosefromweight":
+            elif action == "take_dose_from_weight":
                 self.take2point(16, 14, "test1/take_dose")
-            elif action == "putdosetoshelf":
+            elif action == "put_dose_to_shelf":
                 self.take2point(10, 11, "test1/put_dose")
-            elif action == "takedosefromshelf":
+            elif action == "take_dose_from_shelf":
                 self.take2point(10, 11, "test1/take_dose")
-            elif action == "putdosetoshelf2":
+            elif action == "put_dose_to_shelf2":
                 self.take2point(23, 24, "test1/put_dose")
-            elif action == "takedosefromshelf2":
+            elif action == "take_dose_from_shelf2":
                 self.take2point(23, 24, "test1/take_dose")
-            elif action == "putcuptoarc":
+            elif action == "put_cup_to_arc":
                 self.gotoPoint(10)
                 self.gotoPoint(20)
                 self.gotoPoint(21)
@@ -198,7 +198,7 @@ class cobotta:
                 self.gotoPoint(21)
                 self.gotoPoint(20)
                 self.gotoPoint(10)
-            elif action == "takecupfromarc":
+            elif action == "take_cup_from_arc":
                 self.gotoPoint(10)
                 self.gotoPoint(20)
                 self.gotoPoint(21)

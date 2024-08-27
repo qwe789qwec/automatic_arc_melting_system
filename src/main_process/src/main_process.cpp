@@ -51,29 +51,29 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     const std::vector<std::string> stepArray = {
         "slider init cobotta init weighing init plc init",
         "slider1 cup_stock_r",
-        "cobotta cupstock_take_bowl_5",
+        "cobotta take_cup_from_stock",
         "weighing open slider1 weight_pos",
-        "cobotta weight_put_bowl",
+        "cobotta put_cup_to_weight",
         "slider1 shelf1 weighing close",
-        "cobotta shelf_take_dose",
+        "cobotta take_dose_from_shelf",
         "weighing open slider1 weight_pos",
-        "cobotta weight_put_dose",
+        "cobotta put_dose_to_weight",
         "weighing mgram44.2",
-        "cobotta weight_take_dose",
+        "cobotta take_dose_from_weight",
         "weighing close slider1 shelf1",
-        "cobotta shelf_put_dose",
+        "cobotta put_dose_to_shelf",
         "slider1 shelf3",
-        "cobotta shelf_take_dose_2",
+        "cobotta take_dose_from_shelf2",
         "weighing open slider1 weight_pos",
-        "cobotta weight_put_dose",
+        "cobotta put_dose_to_weight",
         "weighing mgram455.8",
-        "cobotta weight_take_bowl plc vent",
+        "cobotta take_cup_from_weight plc vent",
         "weighing close slider1 pos1",
-        "cobotta put_bowl_intoarc_20230727 plc gateOpen",
+        "cobotta put_cup_to_arc plc gateOpen",
         "slider weight_pos weighing open",
-        "slider put_cup_arc cobotta weight_take_dose",
+        "slider put_cup_arc cobotta take_dose_from_weight",
         "plc gateClose slider1 shelf3",
-        "plc pump cobotta shelf_put_dose_2 weighing close",
+        "plc pump cobotta put_dose_to_shelf2 weighing close",
         "slider arcinit",
 
         "plc buzz",
@@ -106,9 +106,9 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
         "plc vent slider pos1",
         "plc gateOpen",
         "slider take_cup_arc",
-        "plc gateClose cobotta intoarc_take_bowl_20230727",
+        "plc gateClose cobotta take_cup_from_arc",
         "slider1 weight_pos weighing open",
-        "plc singlePump cobotta weight_put_bowl",
+        "plc singlePump cobotta put_cup_to_weight",
         "weighing close"
     };
 
@@ -151,7 +151,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     const std::vector<std::string>* processArray = nullptr;
     bool test = false;
 
-    if (test) {
+    if (!test) {
         processArray = &stepArray;
     } else {
         processArray = &testArray;
