@@ -67,13 +67,13 @@ std::string weighing_machine::getsampledata()
         if (weiging_tcp.receive(receivemessage))
         {   receivemessage = takedata(receivemessage, "<Content Unit=\"mg\">", "</Content>");
             if(receivemessage.compare("none") != 0){
-                return "none";
+                return receivemessage;
             }
         }
         if (std::chrono::steady_clock::now() - start_time >= std::chrono::seconds(9))
         {
-            printf("test timeout");
-            return "error";
+            printf("take data timeout");
+            return "take data timeout";
         }
     }
     if (weiging_tcp.check_receive("QRD 2 4 12 A", 5)){
