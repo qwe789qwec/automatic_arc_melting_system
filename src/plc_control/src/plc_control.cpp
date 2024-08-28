@@ -111,10 +111,9 @@ char* modbus(const char* function,const char* component,const char* data)
 int main(int argc, char *argv[])
 {
     bool test = false;
-	if (argc == 2)
+	if (argc == 2 && test == true)
 	{
 		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
-		test = false;
 	}
 	
 	if (test){

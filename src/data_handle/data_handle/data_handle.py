@@ -26,11 +26,11 @@ def main(args=None):
     rclpy.init(args=args)
 
     # argvからファイル名の接頭辞を取得
-    if len(sys.argv) > 1:
-        file_prefix = sys.argv[1]
-    else:
-        # file_prefix = 'default_prefix'
-        file_prefix = "Expt_" + datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # if len(sys.argv) > 1:
+    #     file_prefix = sys.argv[1]
+    # else:
+    #     # file_prefix = 'default_prefix'
+    file_prefix = "Expt_" + datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     data_service = data_Service(file_prefix)
 

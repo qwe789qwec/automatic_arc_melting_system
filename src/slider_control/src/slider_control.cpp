@@ -86,7 +86,7 @@ private:
 
 int main(int argc, char *argv[])
 {	
-	bool test = true;
+	bool test = false;
 	if (argc == 2 && test == true)
 	{
 		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "start test");
