@@ -3,5 +3,7 @@
 /install
 /log
 /datalog
-
+/tera311
+/launch/__pycache__/
+*.DS_Store
 # git remote update origin --prune
