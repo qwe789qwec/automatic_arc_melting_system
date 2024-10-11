@@ -327,8 +327,8 @@ bool plc::make_action(std::string step)
     else if(action == "wait15s"){
         usleep(15 * 1000 * 1000);
     }
-    else if(action == "wait10s"){
-        usleep(10 * 1000 * 1000);
+    else if(action == "wait20s"){
+        usleep(20 * 1000 * 1000);
     }
     else{
         return false;
