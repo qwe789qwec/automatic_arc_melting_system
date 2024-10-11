@@ -58,15 +58,15 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
         "cobotta take_dose_from_shelf",
         "weighing open slider1 weight_pos",
         "cobotta put_dose_to_weight",
-        "weighing mgram44.2",
+        "weighing mgram161.1",
         "cobotta take_dose_from_weight",
         "weighing close slider1 shelf1",
         "cobotta put_dose_to_shelf",
         "slider1 shelf3",
         "cobotta take_dose_from_shelf2",
-        "weighing open slider1 weight_pos",
+        "weighing open slider weight_pos",
         "cobotta put_dose_to_weight",
-        "weighing mgram455.8",
+        "weighing mgram338.9",
         "cobotta take_cup_from_weight plc vent",
         "weighing close slider1 pos1",
         "cobotta put_cup_to_arc plc gateOpen",
@@ -78,31 +78,31 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 
         "plc buzz",
         "plc arcOn",
-        "slider arc_cw",
+        "slider arc_cw_3",
         "plc arcOff",
-        "plc wait15s",
+        "plc wait20s",
         "plc autoFlip",
 
         "plc buzz",
         "plc arcOn",
-        "slider arc_ccw",
+        "slider arc_ccw_3",
         "plc arcOff",
-        "plc wait15s",
+        "plc wait20s",
         "plc autoFlip",
 
         "plc buzz",
         "plc arcOn",
-        "slider arc_cw",
+        "slider arc_cw_3",
         "plc arcOff",
-        "plc wait15s",
+        "plc wait20s",
         "plc autoFlip",
 
         "plc buzz",
         "plc arcOn",
-        "slider arc_ccw",
+        "slider arc_ccw_3",
         "plc arcOff",        
 
-        "plc wait15s",
+        "plc wait20s",
         "plc vent slider pos1",
         "plc gateOpen",
         "slider take_cup_arc",
@@ -114,42 +114,13 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 
     const std::vector<std::string> testArray = {
         "slider init cobotta init weighing init plc init",
-        "plc buzz",
-        "slider1 cup_stock_r",
-        "cobotta takecupfromstuck",
-        "weighing open slider1 weight_pos",
-        "cobotta putcuptoweight",
-        "slider1 shelf1 weighing close",
-        "cobotta takedosefromshelf",
-        "weighing open slider1 weight_pos",
-        "cobotta putdosetoweight",
-        "weighing close",
-        "plc buzz",
-        "weighing open",
-        "cobotta takedosefromweight",
-        "weighing close slider1 shelf1",
-        "cobotta putdosetoshelf",
-        "slider1 shelf3",
-        "cobotta takedosefromshelf2",
-        "weighing open slider1 weight_pos",
-        "cobotta putdosetoweight",
-        "weighing close",
-        "plc buzz",
-        "weighing open",
-        "cobotta takecupfromweight",
-        "weighing close slider1 pos1",
-        "cobotta putcuptoarc",
-        "slider weight_pos weighing open",
-        "cobotta takedosefromweight",
-        "slider1 shelf3",
-        "cobotta putdosetoshelf2 weighing close",
-        "plc buzz",
-        "slider1 pos1",
-        "cobotta takecupfromarc",
+
+        "plc pump"
+
     };
 
     const std::vector<std::string>* processArray = nullptr;
-    bool test = false;
+    bool test = true;
 
     if (!test) {
         processArray = &stepArray;
