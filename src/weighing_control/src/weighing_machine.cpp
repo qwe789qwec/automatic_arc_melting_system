@@ -127,6 +127,7 @@ bool weighing_machine::make_action(std::string step)
     else if(action.find("mgram") == 0){
         //remove the "mgram" from the string
         action = action.substr(5);
+        usleep(1000 * 1000 * 3);
 		frontdoor(closedoor);
         dosinghead(lock);
         setgram(action);
