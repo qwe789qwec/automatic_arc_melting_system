@@ -69,6 +69,8 @@ public:
     void curve_move(std::string servo1, std::string servo2, std::string position, std::string speed = "08");
     void check_position(std::string servo);
     void arc_path(int direction);
+    void arc_path_2(int direction);
+    void arc_path_3(int direction);
     void put_cup_arc();
     void take_cup_arc();
     bool make_action(std::string action);
