@@ -233,9 +233,12 @@ class cobotta:
             self.bcap.variable_release(self.valueHandle)
             self.valueHandle = 0
 
-        if self.taskHandle :
-            self.bcap.variable_release(self.taskHandle)
-            self.taskHandle = 0
+        try:
+            if self.taskHandle :
+                self.bcap.variable_release(self.taskHandle)
+                self.taskHandle = 0
+        except:
+            pass
 
         if self.robotHandle :
             self.bcap.robot_release(self.robotHandle)

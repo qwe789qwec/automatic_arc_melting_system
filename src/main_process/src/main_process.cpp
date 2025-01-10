@@ -14,7 +14,7 @@
 
 using namespace std::chrono_literals;
 
-std::string step = "slider init cobotta init weighing init plc init";
+std::string step = "slider init cobotta init weighing init plc init camera init";
 bool enter_pressed = true;
 
 std::string checkProcess(std::string currentstep, size_t index)
@@ -113,9 +113,12 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     };
 
     const std::vector<std::string> testArray = {
-        "slider init cobotta init weighing init plc init",
-
-        "plc pump"
+        "slider init cobotta init weighing init plc init camera init",
+        "camera start",
+        "plc buzz",
+        "slider arc_cw",
+        "plc buzz",
+        "camera stop",
 
     };
 

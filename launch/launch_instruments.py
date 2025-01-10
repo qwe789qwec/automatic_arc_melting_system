@@ -35,4 +35,11 @@ def generate_launch_description():
             # name='data_handle',
             # arguments=['--test', 'default_topic']
         ),
+        # Node(
+        #     package='camera_control',
+        #     # namespace='data_handle',
+        #     executable='CameraControl',
+        #     # name='data_handle',
+        #     # arguments=['--test', 'default_topic']
+        # ),
     ])
