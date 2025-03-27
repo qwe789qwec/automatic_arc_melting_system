@@ -50,7 +50,6 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 
     const std::vector<std::string> stepArray = {
         "slider init cobotta init weighing init plc init",
-        "slider1 cup_stock_r",
         "cobotta take_cup_from_stock",
         "weighing open slider1 weight_pos",
         "cobotta put_cup_to_weight",
@@ -58,7 +57,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
         "cobotta take_dose_from_shelf",
         "weighing open slider1 weight_pos",
         "cobotta put_dose_to_weight",
-        "weighing mgram161.1",
+        "weighing mgram180.2",
         "cobotta take_dose_from_weight",
         "weighing close slider1 shelf1",
         "cobotta put_dose_to_shelf",
@@ -66,7 +65,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
         "cobotta take_dose_from_shelf2",
         "weighing open slider weight_pos",
         "cobotta put_dose_to_weight",
-        "weighing mgram338.9",
+        "weighing mgram319.8",
         "cobotta take_cup_from_weight plc vent",
         "weighing close slider1 pos1",
         "cobotta put_cup_to_arc plc gateOpen",
@@ -120,7 +119,7 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
     };
 
     const std::vector<std::string>* processArray = nullptr;
-    bool test = true;
+    bool test = false;
 
     if (!test) {
         processArray = &stepArray;
