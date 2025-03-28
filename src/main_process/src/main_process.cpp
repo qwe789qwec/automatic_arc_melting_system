@@ -113,8 +113,9 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 
     const std::vector<std::string> testArray = {
         "slider init cobotta init weighing init plc init",
-
-        "plc pump"
+        "plc gateOpen",
+        "plc wait20s",
+        "plc gateClose",
 
     };
 

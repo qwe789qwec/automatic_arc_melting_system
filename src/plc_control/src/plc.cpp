@@ -26,7 +26,7 @@ plc::plc(std::string ip, int port)
 {
 	plc_tcp.connect(ip, port);
     // ioOnOff(waterSupply, on);
-    coilWrite(water0x, coilOn);
+    coilWrite(waterY4, coilOn);
     usleep(1000 * 1000);
 }
 
@@ -76,45 +76,6 @@ int plc::checkPresure(std::string input)
     std::string number = message.substr(0, message.size());
     int presureValue = strtol(number.c_str(), NULL, 10);
     return presureValue;
-}
-
-void plc::gateValve(std::string input)
-{
-    if(input.compare(on) == 0){
-        ioOnOff(openGateValve, on);
-        usleep(1000 * 1500);
-        ioOnOff(openGateValve, off);
-    }
-    else if(input.compare(off) == 0){
-        ioOnOff(closeGateValve, on);
-        usleep(1000 * 1500);
-        ioOnOff(closeGateValve, off);
-    }
-
-    usleep(1000 * 1000 * 20);
-}
-
-void plc::pump(std::string input)
-{
-    if(input.compare(on) == 0){
-        ioOnOff(startPump, on);
-        usleep(1000 * 1500);
-        ioOnOff(startPump, off);
-
-        // usleep(1000 * 1000 * 60 * 3); //one times pump
-        // usleep(1000 * 1000 * 60 * 5); //two times pump
-        usleep(1000 * 1000 * 60 * 8); //three times pump
-
-    }
-    else if(input.compare(off) == 0){
-        ioOnOff(startVent, on);
-        usleep(1000 * 1500);
-        ioOnOff(startVent, off);
-
-        usleep(1000 * 1000 * 60 * 2);
-    }
-
-    usleep(1000 * 1000 * 30);
 }
 
 std::string plc::write(std::string input) 
@@ -229,78 +190,78 @@ bool plc::make_action(std::string step)
         usleep(1000 * 1000);
     }
 	else if (action == "pump"){
-        return_message = coilWrite(M10, coilOn);
+        return_message = coilWrite(pumpM10, coilOn);
         usleep(1000 * 1000);
-        return_message = coilWrite(M10, coilOff);
-        while (!coilRead(s12coil))
+        return_message = coilWrite(pumpM10, coilOff);
+        while (!coilRead(presureS12))
         {   usleep(1000 * 1000);
         }
     }
     else if (action == "singlePump"){
-        return_message = coilWrite(M11, coilOn);
+        return_message = coilWrite(spumpM11, coilOn);
         usleep(1000 * 1000);
-        return_message = coilWrite(M11, coilOff);
+        return_message = coilWrite(spumpM11, coilOff);
         while (!coilRead(s14coil))
         {   usleep(1000 * 1000);
         }
     }
     else if(action == "vent"){
-        return_message = coilWrite(M15, coilOn);
+        return_message = coilWrite(ventM15, coilOn);
         usleep(1000 * 1000);
-        return_message = coilWrite(M15, coilOff);
+        return_message = coilWrite(ventM15, coilOff);
         while (coilRead(s13coil))
         {   usleep(1000 * 1000);
         }
     }
     else if(action == "arcOn"){
         std::cout << "arc on" << std::endl;
-        return_message = coilWrite(M20, coilOn);
+        return_message = coilWrite(arcOnM20, coilOn);
         usleep(1000 * 1000 * 3);
-        return_message = coilWrite(M20, coilOff);
+        return_message = coilWrite(arcOnM20, coilOff);
     }
     else if(action == "arcOff"){
         std::cout << "arc off" << std::endl;
-        return_message = coilWrite(M21, coilOn);
+        return_message = coilWrite(arcOffM21, coilOn);
         usleep(1000 * 1000 * 3);
-        return_message = coilWrite(M21, coilOff);
+        return_message = coilWrite(arcOffM21, coilOff);
     }
     else if(action == "waterOn"){
         std::cout << "water start" << std::endl;
-        return_message = coilWrite(water0x, coilOn);
+        return_message = coilWrite(waterY4, coilOn);
     }
     else if(action == "waterOff"){
         std::cout << "water off" << std::endl;
-        return_message = coilWrite(water0x, coilOff);
+        return_message = coilWrite(waterY4, coilOff);
     }
     else if(action == "buzz"){
         std::cout << "buzz start" << std::endl;
-        return_message = coilWrite(buzz0x, coilOn);
+        return_message = coilWrite(buzzY17, coilOn);
         usleep(1000 * 1000 * 3);
-        return_message = coilWrite(buzz0x, coilOff);
+        return_message = coilWrite(buzzY17, coilOff);
     }
     else if(action == "gateOpen"){
         std::cout << "gate start" << std::endl;//20sec
-        return_message = coilWrite(openGateValve0x, coilOn);
+        return_message = coilWrite(openGateValveM17, coilOn);
         usleep(20 * 1000 * 1000);
-        return_message = coilWrite(openGateValve0x, coilOff);
+        return_message = coilWrite(openGateValveM17, coilOff);
     }
     else if(action == "gateClose"){
         std::cout << "gate start" << std::endl;//15sec
-        return_message = coilWrite(closeGateValve0x, coilOn);
+        return_message = coilWrite(closeGateValveM19, coilOn);
         usleep(20 * 1000 * 1000);
-        return_message = coilWrite(closeGateValve0x, coilOff);
+        return_message = coilWrite(closeGateValveM19, coilOff);
     }
     else if(action == "airOn"){
         std::cout << "air start" << std::endl;
-        return_message = coilWrite(airFlow0x, coilOn);
+        return_message = coilWrite(airFlowY12, coilOn);
     }
     else if(action == "airOff"){
         std::cout << "air off" << std::endl;
-        return_message = coilWrite(airFlow0x, coilOff);
+        return_message = coilWrite(airFlowY12, coilOff);
     }
     else if(action == "checkEMG"){
         std::cout << "check EMG" << std::endl;
-        if(inputRead(EMG)){
+        if(inputRead(EMGX3)){
             std::cout << "EMG on" << std::endl;
         }
         else{
@@ -309,7 +270,7 @@ bool plc::make_action(std::string step)
     }
     else if(action == "checkPresure"){
         std::cout << "check presure" << std::endl;
-        if(coilRead(s12coil)){
+        if(coilRead(presureS12)){
             std::cout << "In s12" << std::endl;
         }
         else{
@@ -317,10 +278,10 @@ bool plc::make_action(std::string step)
         }
     }
     else if(action == "autoFlip"){
-        return_message = coilWrite(M30, coilOn);
+        return_message = coilWrite(flipM30, coilOn);
         usleep(1000 * 1000);
-        return_message = coilWrite(M30, coilOff);
-        while (!coilRead(s33coil))
+        return_message = coilWrite(flipM30, coilOff);
+        while (!coilRead(flipS33))
         {   usleep(1000 * 1000);
         }        
     }
@@ -341,6 +302,6 @@ bool plc::make_action(std::string step)
 plc::~plc()
 {
     // ioOnOff(waterSupply, off);
-    coilWrite(water0x, coilOff);
+    coilWrite(waterY4, coilOff);
 	plc_tcp.close();
 }

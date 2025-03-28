@@ -25,6 +25,9 @@ P20 p1 to arc standby
 P21 p2 to arc standby
 P22 arc standby
 
+P30 stock pass position
+P31 stock take position
+
 I10 take
 I11 put
 
