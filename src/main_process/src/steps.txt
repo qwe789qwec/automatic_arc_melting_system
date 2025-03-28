@@ -1,0 +1,4 @@
+slider init cobotta init weighing init plc init
+plc buzz
+slider shelf3
+plc buzz
