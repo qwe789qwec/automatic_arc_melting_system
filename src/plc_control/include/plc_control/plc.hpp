@@ -10,29 +10,9 @@
 
 #include "tcp_handle/tcp_socket.hpp"
 
-//for plc tcp string
-
 #define on "1"
 #define off "0"
 #define open "1"
-// #define close "0"
-
-#define transfer "X1"
-#define pumpBig "X2"
-#define pumpSmall "X3"
-#define presure "D1"
-
-#define waterSupply "Y4"
-#define pumpValveSmall "Y5"
-#define pumpValveBig "Y6"
-#define pumpMachine "Y7"
-#define openGateValve "YA"  // 20sec
-#define closeGateValve "YB"  // 20sec
-#define arc "YC"
-#define buzz "YD"
-
-#define startPump "M0"
-#define startVent "M5"
 
 //for plc modbus tcp
 #define readCoil "\x01"
@@ -44,31 +24,38 @@
 #define coilOn "\xFF\x00"
 #define coilOff "\x00\x00"
 
-#define EMG "\x00\x03"
-#define waterLeak "\x00\x04"
-#define waterflow "\x00\x05"
-#define presure50 "\x00\x06"
-#define presure90 "\x00\x07"
-#define s12coil "\xB0\x0C"
+//input
+#define EMGX3 "\x00\x03"
+#define waterLeakX4 "\x00\x04"
+#define waterflowX5 "\x00\x05"
+#define presure50X6 "\x00\x06"
+#define presure90X7 "\x00\x07"
+
+//output
+#define waterY4 "\x00\x04"
+#define airFlowY12 "\x00\x0A"
+#define buzzY17 "\x00\x17"
+
+//register
+#define pumpM10 "\x20\x0A"
+#define spumpM11 "\x20\x0B"
+#define ventM15 "\x20\x0F"
+#define openGateValveM17 "\x20\x11"
+#define closeGateValveM19 "\x20\x13"
+#define arcOnM20 "\x20\x14"
+#define arcOffM21 "\x20\x15"
+#define flipM30 "\x20\x1E"
+#define flipS33 "\xB0\x21"
+
+#define presureS12 "\xB0\x0C"
 #define s13coil "\xB0\x0D"
 #define s14coil "\xB0\x0E"
-#define s33coil "\xB0\x21"
+
 //S0 = 45056 S1 = 45057 S12 = 45068
 
 #define sd61800x "\x68\x24" //for analog
-#define water0x "\x00\x04"
 #define pumpValveBig0x "\x00\x06"
-#define openGateValve0x "\x00\x08"
-#define closeGateValve0x "\x00\x09"
-#define airFlow0x "\x00\x0A"
 #define arc0x "\x00\x0B"
-#define buzz0x "\x00\x17"
-#define M10 "\x20\x0A"
-#define M15 "\x20\x0F"
-#define M20 "\x20\x14"
-#define M21 "\x20\x15"
-#define M30 "\x20\x1E"
-#define M11 "\x20\x0B"
 
 class plc
 {
@@ -85,8 +72,6 @@ public:
     char* registerWrite(const char* component,int data);
     bool registerRead(const char* component,int data);
     int checkPresure(std::string input);
-    void gateValve(std::string input);
-    void pump(std::string input);
     void airFlow(std::string flux);
     bool make_action(std::string action);
 	~plc();
