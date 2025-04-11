@@ -3,10 +3,10 @@
 
 #include <chrono>
 #include <thread>
+#include <string>
 
 #include <arpa/inet.h>
 #include <stdio.h>
-#include <string.h>
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <fcntl.h>
