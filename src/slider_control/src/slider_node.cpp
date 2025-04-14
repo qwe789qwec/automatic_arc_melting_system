@@ -38,28 +38,29 @@ void SliderNode::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg
 
 bool SliderNode::send_slider_client_request(const std::string& action)
 {
-    // check if the client is ready
+    // 檢查client是否已連接到服務
     if (!client_->wait_for_service(3s)) {
         RCLCPP_ERROR(this->get_logger(), "Service not available");
         return false;
     }
     
+    // 創建請求
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
     
-    // send the request
+    // 發送異步請求，但不使用 spin_until_future_complete
+    // 以下是修改部分
     auto result_future = client_->async_send_request(request);
     
-    // wait for the result
-    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) ==
-        rclcpp::FutureReturnCode::SUCCESS)
-    {
-        RCLCPP_INFO(this->get_logger(), "result: %s", result_future.get()->result.c_str());
+    // 使用更安全的等待方式
+    auto future_status = result_future.wait_for(std::chrono::seconds(5));
+    
+    if (future_status == std::future_status::ready) {
+        auto result = result_future.get();
+        RCLCPP_INFO(this->get_logger(), "result: %s", result->result.c_str());
         return true;
-    }
-    else
-    {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call service");
+    } else {
+        RCLCPP_ERROR(this->get_logger(), "Failed to call service within timeout");
         return false;
     }
 }

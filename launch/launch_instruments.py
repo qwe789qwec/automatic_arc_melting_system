@@ -12,7 +12,7 @@ def generate_launch_description():
         Node(
             package='slider_control',
             # namespace='slider',
-            executable='SliderControl',
+            executable='SliderMain',
             # name='slider'
         ),
         Node(

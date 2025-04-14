@@ -113,14 +113,11 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 
     const std::vector<std::string> testArray = {
         "slider init cobotta init weighing init plc init",
-        "plc gateOpen",
-        "plc wait20s",
-        "plc gateClose",
-
+        "slider1 weight_pos"
     };
 
     const std::vector<std::string>* processArray = nullptr;
-    bool test = false;
+    bool test = true;
 
     if (!test) {
         processArray = &stepArray;
