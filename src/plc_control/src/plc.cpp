@@ -324,6 +324,16 @@ bool plc::make_action(std::string step)
         {   usleep(1000 * 1000);
         }        
     }
+    else if(action == "checkValve"){
+        std::cout << "Checking vateValve(S16) state..." <<std::endl;
+
+        if(coilRead(s16coil)){
+            std::cout << "OK: valve is open." << std::endl;
+        } else {
+            std::cout << "ERROR: valve is closed." << std::endl;
+            return false;
+        }
+    }
     else if(action == "wait15s"){
         usleep(15 * 1000 * 1000);
     }

@@ -2,3 +2,4 @@ slider init cobotta init weighing init plc init
         slider1 cup_stock_r
         plc buzz
         slider1 pos1
+        

@@ -52,6 +52,7 @@
 #define s12coil "\xB0\x0C"
 #define s13coil "\xB0\x0D"
 #define s14coil "\xB0\x0E"
+#define s16coil "\xB0\x10"
 #define s33coil "\xB0\x21"
 //S0 = 45056 S1 = 45057 S12 = 45068
 
