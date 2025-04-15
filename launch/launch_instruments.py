@@ -18,7 +18,7 @@ def generate_launch_description():
         Node(
             package='weighing_control',
             # namespace='weighing',
-            executable='WeighingControl',
+            executable='WeighingMain',
             # name='weighing'
         ),
         Node(

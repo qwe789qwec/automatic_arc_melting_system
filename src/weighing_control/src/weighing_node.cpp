@@ -65,14 +65,16 @@ bool WeighingSystem::call_process_service(const std::string& action)
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
     
-    auto future_result = process_client_->async_send_request(request);
+    auto result_future = process_client_->async_send_request(request);
     
-    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), future_result) ==
-        rclcpp::FutureReturnCode::SUCCESS) {
-        RCLCPP_INFO(this->get_logger(), "Result: %s", future_result.get()->result.c_str());
+    auto future_status = result_future.wait_for(std::chrono::seconds(5));
+    
+    if (future_status == std::future_status::ready) {
+        auto result = result_future.get();
+        RCLCPP_INFO(this->get_logger(), "result: %s", result->result.c_str());
         return true;
     } else {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call process service");
+        RCLCPP_ERROR(this->get_logger(), "Failed to call service within timeout");
         return false;
     }
 }

@@ -21,7 +21,7 @@ SliderSystem::SliderSystem() : Node("slider_system")
     subscription_ = this->create_subscription<msg_format::msg::ProcessMsg>(
         "topic", 10, std::bind(&SliderSystem::topic_callback, this, _1));
         
-        RCLCPP_INFO(this->get_logger(), "SliderSystem initialized");
+    RCLCPP_INFO(this->get_logger(), "SliderSystem initialized");
 }
     
 bool SliderSystem::test_slider_action(const std::string& action_param)
