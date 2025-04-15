@@ -87,14 +87,17 @@ bool WeighingSystem::call_data_service(const std::string& action)
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
     
-    auto future_result = data_client_->async_send_request(request);
+    auto result_future = data_client_->async_send_request(request);
+
+    // wait for the result
+    auto future_status = result_future.wait_for(std::chrono::seconds(5));
     
-    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), future_result) ==
-        rclcpp::FutureReturnCode::SUCCESS) {
-        RCLCPP_INFO(this->get_logger(), "Result: %s", future_result.get()->result.c_str());
+    if (future_status == std::future_status::ready) {
+        auto result = result_future.get();
+        RCLCPP_INFO(this->get_logger(), "result: %s", result->result.c_str());
         return true;
     } else {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call data service");
+        RCLCPP_ERROR(this->get_logger(), "Failed to call service within timeout");
         return false;
     }
 }
