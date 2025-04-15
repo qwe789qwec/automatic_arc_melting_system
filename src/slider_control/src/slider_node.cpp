@@ -4,55 +4,70 @@
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
-SliderNode::SliderNode(slider& slider_controller)
-    : Node("slider_node"), slider_(slider_controller)
+SliderSystem::SliderSystem() : Node("slider_system")
 {
-    // initialize the subscriber
+    // 初始化参数
+    slider_ip_ = "192.168.0.3";
+    slider_port_ = 64511;
+    current_step_ = "slider init";
+    
+    // 初始化滑块控制器
+    slider_ = std::make_unique<slider>(slider_ip_, slider_port_);
+    
+    // 创建客户端
+    process_client_ = this->create_client<msg_format::srv::ProcessService>("process_service");
+    
+    // 创建订阅者
     subscription_ = this->create_subscription<msg_format::msg::ProcessMsg>(
-        "topic", 10, std::bind(&SliderNode::topic_callback, this, _1));
+        "topic", 10, std::bind(&SliderSystem::topic_callback, this, _1));
         
-    // initialize the client
-    client_ = this->create_client<msg_format::srv::ProcessService>("process_service");
+        RCLCPP_INFO(this->get_logger(), "SliderSystem initialized");
+}
+    
+bool SliderSystem::test_slider_action(const std::string& action_param)
+{
+    slider test_slider("192.168.0.3", 64511);
+    std::string test_action = "slider " + action_param;
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Test action: %s", test_action.c_str());
+    return test_slider.make_action(test_action);
 }
 
-void SliderNode::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg)
+void SliderSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg)
 {
     std::string message = msg->process;
-    static std::string step = "slider init";
-
-    RCLCPP_INFO(this->get_logger(), "message: %s", message.c_str());
-    RCLCPP_INFO(this->get_logger(), "step: %s", step.c_str());
     
-    if(message.compare(step) != 0){
-        step = message;
-        RCLCPP_INFO(this->get_logger(), "step message: %s", message.c_str());
-        bool action_result = slider_.make_action(message);
-        if(!action_result){
-            RCLCPP_INFO(this->get_logger(), "error cannot make action");
-        }
-        else{
-            send_slider_client_request("slider standby");
+    RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
+    RCLCPP_INFO(this->get_logger(), "Step: %s", current_step_.c_str());
+    
+    if (message.compare(current_step_) != 0) {
+        current_step_ = message;
+        RCLCPP_INFO(this->get_logger(), "Step message: %s", message.c_str());
+        
+        bool action_result = slider_->make_action(message);
+        if (action_result) {
+            call_process_service("slider standby");
+        } else {
+            RCLCPP_ERROR(this->get_logger(), "Error cannot make action");
         }
     }
 }
 
-bool SliderNode::send_slider_client_request(const std::string& action)
+bool SliderSystem::call_process_service(const std::string& action)
 {
-    // 檢查client是否已連接到服務
-    if (!client_->wait_for_service(3s)) {
+    // check if the client is ready
+    if (!process_client_->wait_for_service(3s)) {
         RCLCPP_ERROR(this->get_logger(), "Service not available");
         return false;
     }
     
-    // 創建請求
+    // make a request
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
     
-    // 發送異步請求，但不使用 spin_until_future_complete
-    // 以下是修改部分
-    auto result_future = client_->async_send_request(request);
+    // send the request asynchronously
+    auto result_future = process_client_->async_send_request(request);
     
-    // 使用更安全的等待方式
+    // wait for the result
     auto future_status = result_future.wait_for(std::chrono::seconds(5));
     
     if (future_status == std::future_status::ready) {
