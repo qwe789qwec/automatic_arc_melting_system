@@ -6,7 +6,7 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/build",
                 "${workspaceFolder}/install",
-                "/opt/ros/rolling/include",
+                "/opt/ros/rolling/include/**",
                 "${workspaceFolder}/install/msg_format/include",
                 "${workspaceFolder}/src/plc_control/include"
             ],
