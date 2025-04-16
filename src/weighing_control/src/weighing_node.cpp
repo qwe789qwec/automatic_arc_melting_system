@@ -35,12 +35,12 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
 {
     std::string message = msg->process;
     
-    RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
-    RCLCPP_INFO(this->get_logger(), "Step: %s", current_step_.c_str());
+    if (message != current_step_){
+        RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
+    }
     
     if (message.compare(current_step_) != 0) {
         current_step_ = message;
-        RCLCPP_INFO(this->get_logger(), "Step message: %s", message.c_str());
         
         bool action_result = weighing_->make_action(message);
         if (action_result) {

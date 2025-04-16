@@ -6,18 +6,18 @@ using namespace std::chrono_literals;
 
 SliderSystem::SliderSystem() : Node("slider_system")
 {
-    // 初始化参数
+    // initialize parameters
     slider_ip_ = "192.168.0.3";
     slider_port_ = 64511;
     current_step_ = "slider init";
     
-    // 初始化滑块控制器
+    // initialize slider
     slider_ = std::make_unique<slider>(slider_ip_, slider_port_);
     
-    // 创建客户端
+    // create a client for the process service
     process_client_ = this->create_client<msg_format::srv::ProcessService>("process_service");
     
-    // 创建订阅者
+    // create a subscription for the process message
     subscription_ = this->create_subscription<msg_format::msg::ProcessMsg>(
         "topic", 10, std::bind(&SliderSystem::topic_callback, this, _1));
         
@@ -36,12 +36,12 @@ void SliderSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr m
 {
     std::string message = msg->process;
     
-    RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
-    RCLCPP_INFO(this->get_logger(), "Step: %s", current_step_.c_str());
+    if (message != current_step_){
+        RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
+    }
     
     if (message.compare(current_step_) != 0) {
         current_step_ = message;
-        RCLCPP_INFO(this->get_logger(), "Step message: %s", message.c_str());
         
         bool action_result = slider_->make_action(message);
         if (action_result) {

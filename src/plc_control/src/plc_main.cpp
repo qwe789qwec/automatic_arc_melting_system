@@ -5,7 +5,7 @@ int main(int argc, char* argv[])
 {
     rclcpp::init(argc, argv);
     
-    // 处理测试参数
+    // test plc action
     bool test = false;
     if (argc == 2 && test) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Start test");
@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
         test = false;
     }
     
-    // 创建并运行节点
+    // create node
     auto node = std::make_shared<PlcSystem>();
     rclcpp::spin(node);
     rclcpp::shutdown();
