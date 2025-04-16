@@ -67,29 +67,26 @@ bool SliderSystem::call_process_service(const std::string& action)
     // create a request
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
-    auto future = process_client_->async_send_request(request).share();
+    
+    // send the request asynchronously
+    auto future = process_client_->async_send_request(request);
     
     // wait for the result
-    auto status = rclcpp::spin_until_future_complete(
-        this->get_node_base_interface(),
-        future,
-        timeout);
+    std::future_status status = future.wait_for(timeout);
     
-    // handle the result
-    if (status == rclcpp::FutureReturnCode::SUCCESS)
-    {
-        RCLCPP_INFO(this->get_logger(), "Service result: %s", future.get()->result.c_str());
-        return true;
+    if (status == std::future_status::ready) {
+        try {
+            auto result = future.get();
+            RCLCPP_INFO(this->get_logger(), "Service result: %s", result->result.c_str());
+            return true;
+        }
+        catch (const std::exception& e) {
+            RCLCPP_ERROR(this->get_logger(), "Exception getting result: %s", e.what());
+            return false;
+        }
     }
-    else if (status == rclcpp::FutureReturnCode::TIMEOUT)
-    {
+    else {
         RCLCPP_ERROR(this->get_logger(), "Service call timed out");
-        return false;
-    }
-    else
-    {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call service (error code: %d)", 
-                    static_cast<int>(status));
         return false;
     }
 }
