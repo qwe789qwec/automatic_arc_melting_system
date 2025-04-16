@@ -59,25 +59,25 @@
 
 class plc
 {
-public:
-	plc(std::string, int);
-    char* modbus(const char* function,const char* component,const char* data);
-    char* dec2hex(int value);
-    std::string ioOnOff(std::string io,std::string state);
-    std::string write(std::string input);
-    char* writeRaw(const void* input,int &size);
-    char* coilWrite(const char* component,const char* data);
-    bool coilRead(const char* component);
-    bool inputRead(const char* component);
-    char* registerWrite(const char* component,int data);
-    bool registerRead(const char* component,int data);
-    int checkPresure(std::string input);
-    void airFlow(std::string flux);
-    bool make_action(std::string action);
-	~plc();
+    public:
+        plc(std::string, int);
+        char* modbus(const char* function,const char* component,const char* data);
+        char* dec2hex(int value);
+        std::string ioOnOff(std::string io,std::string state);
+        std::string write(std::string input);
+        char* writeRaw(const void* input,int &size);
+        char* coilWrite(const char* component,const char* data);
+        bool coilRead(const char* component);
+        bool inputRead(const char* component);
+        char* registerWrite(const char* component,int data);
+        bool registerRead(const char* component,int data);
+        int checkPresure(std::string input);
+        void airFlow(std::string flux);
+        bool make_action(std::string action);
+        ~plc();
 
-private:
-    tcp_socket plc_tcp;
+    private:
+        tcp_socket plc_tcp;
 };
 
 #endif // RECTANGLE_HPP
