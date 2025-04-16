@@ -35,7 +35,6 @@ private:
 
     // callback functions
     void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg);
-    std::shared_future<bool> call_process_service(const std::string& action);
 };
 
 #endif // SLIDER_NODE_Hs

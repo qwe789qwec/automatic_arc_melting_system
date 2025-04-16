@@ -1,4 +1,5 @@
 #include "slider_control/slider_node.hpp"
+#include "ros2_utils/service_utils.hpp"
 #include <string>
 #include <future>
 #include <thread>
@@ -47,60 +48,12 @@ void SliderSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr m
         
         bool action_result = slider_->make_action(message);
         if (action_result) {
-            auto future = call_process_service("slider standby");
+            // call process service
+            auto future = service_utils::call_service_async(
+                process_client_, this->get_logger(), "slider standby", "Process");
             
-            std::thread([this, future]() {
-                auto status = future.wait_for(std::chrono::seconds(5));
-                if (status != std::future_status::ready) {
-                    RCLCPP_WARN(this->get_logger(), "Service call timeout after waiting in background");
-                }
-                else if (!future.get()) {
-                    RCLCPP_WARN(this->get_logger(), "Service call failed (reported in background)");
-                }
-            }).detach();
         } else {
             RCLCPP_ERROR(this->get_logger(), "Error cannot make action");
         }
     }
-}
-
-std::shared_future<bool> SliderSystem::call_process_service(const std::string& action)
-{
-    auto promise = std::make_shared<std::promise<bool>>();
-    auto future = promise->get_future().share();
-    
-    // set timeout
-    if (!process_client_->service_is_ready()) {
-        const std::chrono::milliseconds short_timeout(100);
-        if (!process_client_->wait_for_service(short_timeout)) {
-            RCLCPP_ERROR(this->get_logger(), "Process service not available");
-            promise->set_value(false);
-            return future;
-        }
-    }
-    
-    // create a request
-    auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
-    request->action = action;
-    
-    // create a callback for the response
-    auto response_callback = [this, promise, action](
-        rclcpp::Client<msg_format::srv::ProcessService>::SharedFuture future) {
-        try {
-            auto result = future.get();
-            RCLCPP_INFO(this->get_logger(), "Service result for '%s': %s", 
-                       action.c_str(), result->result.c_str());
-            promise->set_value(true);
-        } catch (const std::exception& e) {
-            RCLCPP_ERROR(this->get_logger(), "Exception in service call '%s': %s", 
-                        action.c_str(), e.what());
-            promise->set_value(false);
-        }
-    };
-    
-    // send the request asynchronously
-    process_client_->async_send_request(request, response_callback);
-    
-    RCLCPP_DEBUG(this->get_logger(), "Service request '%s' sent asynchronously", action.c_str());
-    return future;
 }
