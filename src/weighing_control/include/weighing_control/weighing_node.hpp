@@ -38,8 +38,6 @@ class WeighingSystem : public rclcpp::Node
 
         // callback functions
         void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg);
-        bool call_process_service(const std::string& action);
-        bool call_data_service(const std::string& action);
 };
 
 #endif // WEIGHING_NODE_H

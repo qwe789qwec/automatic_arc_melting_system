@@ -55,15 +55,3 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
         }
     }
 }
-
-bool WeighingSystem::call_process_service(const std::string& action)
-{
-    return service_utils::call_service(
-        process_client_, this->get_logger(), action, "Process");
-}
-
-bool WeighingSystem::call_data_service(const std::string& action)
-{
-    return service_utils::call_service(
-        data_client_, this->get_logger(), action, "Data");
-}
