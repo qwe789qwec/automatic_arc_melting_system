@@ -1,4 +1,5 @@
 #include "weighing_control/weighing_node.hpp"
+#include "ros2_utils/service_utils.hpp"
 
 WeighingSystem::WeighingSystem() : Node("weighing_system")
 {
@@ -35,19 +36,19 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
 {
     std::string message = msg->process;
     
-    if (message != current_step_){
-        RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
-    }
-    
     if (message.compare(current_step_) != 0) {
         current_step_ = message;
         
         bool action_result = weighing_->make_action(message);
         if (action_result) {
-            call_process_service("weighing standby");
+            // call process service
+            auto future = service_utils::call_service_async(
+                process_client_, this->get_logger(), "weighing standby", "Process");
+                
             if (weighing_->data_flag) {
                 std::string gramdata = weighing_->getsampledata();
-                call_data_service(gramdata + " mg");
+                service_utils::call_service_async(
+                    data_client_, this->get_logger(), gramdata + " mg", "Data");
             }
         } else {
             RCLCPP_ERROR(this->get_logger(), "Error cannot make action");
@@ -57,74 +58,12 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
 
 bool WeighingSystem::call_process_service(const std::string& action)
 {
-    // set timeout
-    const std::chrono::seconds timeout(3);
-    
-    // wait for the service to be available
-    if (!process_client_->wait_for_service(timeout))
-    {
-        RCLCPP_ERROR(this->get_logger(), "Process service not available after timeout");
-        return false;
-    }
-    
-    // create a request
-    auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
-    request->action = action;
-    
-    // send the request asynchronously
-    auto future = process_client_->async_send_request(request);
-    
-    // wait for the result
-    std::future_status status = future.wait_for(timeout);
-    
-    if (status == std::future_status::ready) {
-        try {
-            auto result = future.get();
-            RCLCPP_INFO(this->get_logger(), "Service result: %s", result->result.c_str());
-            return true;
-        }
-        catch (const std::exception& e) {
-            RCLCPP_ERROR(this->get_logger(), "Exception getting result: %s", e.what());
-            return false;
-        }
-    }
-    else {
-        RCLCPP_ERROR(this->get_logger(), "Service call timed out");
-        return false;
-    }
+    return service_utils::call_service(
+        process_client_, this->get_logger(), action, "Process");
 }
 
 bool WeighingSystem::call_data_service(const std::string& action)
-{   
-    // set timeout
-    const std::chrono::seconds timeout(3);
-
-    if (!data_client_->wait_for_service(3s)) {
-        RCLCPP_ERROR(this->get_logger(), "Data service not available");
-        return false;
-    }
-    
-    auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
-    request->action = action;
-    
-    auto future = data_client_->async_send_request(request);
-    
-    // wait for the result
-    std::future_status status = future.wait_for(timeout);
-    
-    if (status == std::future_status::ready) {
-        try {
-            auto result = future.get();
-            RCLCPP_INFO(this->get_logger(), "Service result: %s", result->result.c_str());
-            return true;
-        }
-        catch (const std::exception& e) {
-            RCLCPP_ERROR(this->get_logger(), "Exception getting result: %s", e.what());
-            return false;
-        }
-    }
-    else {
-        RCLCPP_ERROR(this->get_logger(), "Service call timed out");
-        return false;
-    }
+{
+    return service_utils::call_service(
+        data_client_, this->get_logger(), action, "Data");
 }
