@@ -57,30 +57,51 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
 
 bool WeighingSystem::call_process_service(const std::string& action)
 {
-    if (!process_client_->wait_for_service(3s)) {
-        RCLCPP_ERROR(this->get_logger(), "Process service not available");
+    // set timeout
+    const std::chrono::seconds timeout(3);
+    
+    // wait for the service to be available
+    if (!process_client_->wait_for_service(timeout))
+    {
+        RCLCPP_ERROR(this->get_logger(), "Process service not available after timeout");
         return false;
     }
     
+    // create a request
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
+    auto future = process_client_->async_send_request(request).share();
     
-    auto result_future = process_client_->async_send_request(request);
+    // wait for the result
+    auto status = rclcpp::spin_until_future_complete(
+        this->get_node_base_interface(),
+        future,
+        timeout);
     
-    auto future_status = result_future.wait_for(std::chrono::seconds(5));
-    
-    if (future_status == std::future_status::ready) {
-        auto result = result_future.get();
-        RCLCPP_INFO(this->get_logger(), "result: %s", result->result.c_str());
+    // handle the result
+    if (status == rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_INFO(this->get_logger(), "Service result: %s", future.get()->result.c_str());
         return true;
-    } else {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call service within timeout");
+    }
+    else if (status == rclcpp::FutureReturnCode::TIMEOUT)
+    {
+        RCLCPP_ERROR(this->get_logger(), "Service call timed out");
+        return false;
+    }
+    else
+    {
+        RCLCPP_ERROR(this->get_logger(), "Failed to call service (error code: %d)", 
+                    static_cast<int>(status));
         return false;
     }
 }
 
 bool WeighingSystem::call_data_service(const std::string& action)
-{
+{   
+    // set timeout
+    const std::chrono::seconds timeout(3);
+
     if (!data_client_->wait_for_service(3s)) {
         RCLCPP_ERROR(this->get_logger(), "Data service not available");
         return false;
@@ -89,17 +110,29 @@ bool WeighingSystem::call_data_service(const std::string& action)
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
     
-    auto result_future = data_client_->async_send_request(request);
+    auto future = data_client_->async_send_request(request);
 
     // wait for the result
-    auto future_status = result_future.wait_for(std::chrono::seconds(5));
+    auto status = rclcpp::spin_until_future_complete(
+        this->get_node_base_interface(),
+        future,
+        timeout);
     
-    if (future_status == std::future_status::ready) {
-        auto result = result_future.get();
-        RCLCPP_INFO(this->get_logger(), "result: %s", result->result.c_str());
+    // handle the result
+    if (status == rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_INFO(this->get_logger(), "Service result: %s", future.get()->result.c_str());
         return true;
-    } else {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call service within timeout");
+    }
+    else if (status == rclcpp::FutureReturnCode::TIMEOUT)
+    {
+        RCLCPP_ERROR(this->get_logger(), "Service call timed out");
+        return false;
+    }
+    else
+    {
+        RCLCPP_ERROR(this->get_logger(), "Failed to call service (error code: %d)", 
+                    static_cast<int>(status));
         return false;
     }
 }

@@ -54,28 +54,42 @@ void SliderSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr m
 
 bool SliderSystem::call_process_service(const std::string& action)
 {
-    // check if the client is ready
-    if (!process_client_->wait_for_service(3s)) {
-        RCLCPP_ERROR(this->get_logger(), "Service not available");
+    // set timeout
+    const std::chrono::seconds timeout(3);
+    
+    // wait for the service to be available
+    if (!process_client_->wait_for_service(timeout))
+    {
+        RCLCPP_ERROR(this->get_logger(), "Process service not available after timeout");
         return false;
     }
     
-    // make a request
+    // create a request
     auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
     request->action = action;
-    
-    // send the request asynchronously
-    auto result_future = process_client_->async_send_request(request);
+    auto future = process_client_->async_send_request(request).share();
     
     // wait for the result
-    auto future_status = result_future.wait_for(std::chrono::seconds(5));
+    auto status = rclcpp::spin_until_future_complete(
+        this->get_node_base_interface(),
+        future,
+        timeout);
     
-    if (future_status == std::future_status::ready) {
-        auto result = result_future.get();
-        RCLCPP_INFO(this->get_logger(), "result: %s", result->result.c_str());
+    // handle the result
+    if (status == rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_INFO(this->get_logger(), "Service result: %s", future.get()->result.c_str());
         return true;
-    } else {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call service within timeout");
+    }
+    else if (status == rclcpp::FutureReturnCode::TIMEOUT)
+    {
+        RCLCPP_ERROR(this->get_logger(), "Service call timed out");
+        return false;
+    }
+    else
+    {
+        RCLCPP_ERROR(this->get_logger(), "Failed to call service (error code: %d)", 
+                    static_cast<int>(status));
         return false;
     }
 }

@@ -235,20 +235,20 @@ class cobotta:
         self.bcap.robot_execute(self.robotHandle,Command,Param)
 
         # Disconnect
-        if self.valueHandle :
+        if self.valueHandle != 0:
             self.bcap.variable_release(self.valueHandle)
             self.valueHandle = 0
 
-        if self.taskHandle :
+        if self.taskHandle != 0:
             self.bcap.variable_release(self.taskHandle)
             self.taskHandle = 0
 
-        if self.robotHandle :
+        if self.robotHandle != 0:
             self.bcap.robot_release(self.robotHandle)
             HRobot = 0
 
         # End If
-        if self.hCtrl :
+        if self.hCtrl != 0:
             self.bcap.controller_disconnect(self.hCtrl)
             self.hCtrl = 0
             
