@@ -42,7 +42,7 @@ class deviceState
         void removeDevice(Instrument device);
         Situation getDeviceStatus(Instrument device);
         Instrument stringToDevice(std::string device);
-        bool checkDevices(Situation status);
+        bool checkDevices(Situation status) const;
         bool checkDevicesList(std::vector<Instrument> deviceslist, Situation status);
         void updateDeviceStatus(std::string message);
     private:

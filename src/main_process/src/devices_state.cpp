@@ -71,7 +71,7 @@ Instrument deviceState::stringToDevice(std::string device){
 	}
 }
 
-bool deviceState::checkDevices(Situation status){
+bool deviceState::checkDevices(Situation status) const{
 	// if all devices are standby, return true
 	long unsigned int i;
 	for (i = 0; i < devices.size(); i++){
