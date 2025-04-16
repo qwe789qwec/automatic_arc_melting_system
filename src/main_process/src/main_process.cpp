@@ -197,9 +197,14 @@ struct MainPublisher : public rclcpp::Node
             }
             msg->process = step.c_str();
             // RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", step.c_str());
-            printf(
-                "Published message: %s, and address: 0x%" PRIXPTR "\n", msg->process.c_str(),
-                reinterpret_cast<std::uintptr_t>(msg.get()));
+            // printf(
+            //     "Published message: %s, and address: 0x%" PRIXPTR "\n", msg->process.c_str(),
+            //     reinterpret_cast<std::uintptr_t>(msg.get()));
+            static std::string last_message = "";
+            if (msg->process != last_message) {
+                printf("Message changed: %s\n", msg->process.c_str());
+                last_message = msg->process;
+            }
             pub_ptr->publish(std::move(msg));
         };
         timer_ = this->create_wall_timer(1s, callback);
