@@ -1,4 +1,3 @@
-// 在 common/src/service_utils.cpp
 #include "ros2_utils/service_utils.hpp"
 
 namespace service_utils {

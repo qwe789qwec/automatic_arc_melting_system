@@ -10,7 +10,7 @@
 
 namespace service_utils {
 
-// 阻塞式服务调用
+// non-blocking service call
 bool call_service(
         rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr client,
         rclcpp::Logger logger,
@@ -18,12 +18,11 @@ bool call_service(
         const std::string& service_name,
         const std::chrono::seconds& timeout = std::chrono::seconds(3));
 
-    // 非阻塞式服务调用（返回future）
-    std::shared_future<bool> call_service_async(
-        rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr client,
-        rclcpp::Logger logger,
-        const std::string& action,
-        const std::string& service_name);
+std::shared_future<bool> call_service_async(
+    rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr client,
+    rclcpp::Logger logger,
+    const std::string& action,
+    const std::string& service_name);
 
 } // namespace service_utils
 
