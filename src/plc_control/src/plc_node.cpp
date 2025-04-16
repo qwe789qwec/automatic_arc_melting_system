@@ -43,7 +43,7 @@ void PlcSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg)
         if (action_result) {
             // call process service
             auto future = service_utils::call_service_async(
-                process_client_, this->get_logger(), "slider standby", "Process");
+                process_client_, this->get_logger(), "plc standby", "Process");
         } else {
             RCLCPP_ERROR(this->get_logger(), "Error executing action: %s", message.c_str());
         }
