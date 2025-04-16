@@ -12,37 +12,29 @@ class ProcessController {
 public:
     explicit ProcessController(bool is_test_mode = true);
     std::string getCurrentStep() const;
-    void updateDeviceStatus(const std::string& action);
+    std::string processDeviceAction(const std::string& action);
+    bool areAllDevicesStandby() const;
     std::string extractDeviceAction(const std::string& step, size_t index) const;
-    std::string processRequest(const std::string& action);
-    bool areDevicesReady() const;
+    bool isSequenceCompleted() const;
+    bool isTestMode() const;
+    std::string moveToNextStep();
     
 private:
-    // Current process step
-    std::string current_step_;
+    // Device state manager
+    deviceState devices_;
     
-    // Step index in sequence
+    // Current step and step index
+    std::string current_step_;
     size_t step_index_;
     
     // Test mode flag
     bool is_test_mode_;
     
-    // Device state manager
-    deviceState devices_;
-    
     // Process sequences
     std::vector<std::string> production_sequence_;
     std::vector<std::string> test_sequence_;
     
-    /**
-     * @brief Initialize process sequences
-     */
-    void initializeSequences();
-    
-    /**
-     * @brief Get the active sequence
-     * @return Reference to current sequence
-     */
+    void initializeProcessSequences();
     const std::vector<std::string>& getCurrentSequence() const;
 };
 

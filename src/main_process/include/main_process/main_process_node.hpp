@@ -6,19 +6,30 @@
 #include <string>
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
+#include "msg_format/srv/process_service.hpp"
+#include "main_process/process_control.hpp"
 
-/**
- * @brief Publisher node that publishes the current process step
- */
 class MainProcessNode : public rclcpp::Node {
 public:
-    MainProcessNode(const std::string& name, const std::string& topic);
-
+    explicit MainProcessNode(const std::string& node_name, bool is_test_mode = true);
+    
 private:
-    rclcpp::Publisher<msg_format::msg::ProcessMsg>::SharedPtr publisher_;
-    rclcpp::TimerBase::SharedPtr timer_;
-    std::string last_message_;
-    void timerCallback();
+    // Process controller
+    ProcessController process_controller_;
+    
+    // Last published step (to reduce logging)
+    std::string last_published_step_;
+    
+    // Service, publisher, and timer
+    rclcpp::Service<msg_format::srv::ProcessService>::SharedPtr process_service_;
+    rclcpp::Publisher<msg_format::msg::ProcessMsg>::SharedPtr step_publisher_;
+    rclcpp::TimerBase::SharedPtr publish_timer_;
+    
+    void processServiceCallback(
+        const std::shared_ptr<msg_format::srv::ProcessService::Request> request,
+        std::shared_ptr<msg_format::srv::ProcessService::Response> response);
+    
+    void publishCurrentStep();
 };
 
 #endif // MAIN_PROCESS_NODE_HPP
