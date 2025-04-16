@@ -37,6 +37,7 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
     std::string message = msg->process;
     
     if (message.compare(current_step_) != 0) {
+        RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
         current_step_ = message;
         
         bool action_result = weighing_->make_action(message);

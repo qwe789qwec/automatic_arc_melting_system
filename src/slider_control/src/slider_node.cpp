@@ -39,11 +39,8 @@ void SliderSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr m
 {
     std::string message = msg->process;
     
-    if (message != current_step_){
-        RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
-    }
-    
     if (message.compare(current_step_) != 0) {
+        RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
         current_step_ = message;
         
         bool action_result = slider_->make_action(message);
