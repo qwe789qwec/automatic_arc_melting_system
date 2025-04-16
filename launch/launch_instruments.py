@@ -6,7 +6,7 @@ def generate_launch_description():
         Node(
             package='plc_control',
             # namespace='plc',
-            executable='PlcControl',
+            executable='PlcMain',
             # name='plc'
         ),
         Node(
