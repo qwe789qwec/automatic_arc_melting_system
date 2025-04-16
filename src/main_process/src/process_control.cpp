@@ -1,11 +1,11 @@
 #include "main_process/process_control.hpp"
 
 ProcessController::ProcessController(bool is_test_mode)
-    : current_step_("slider init cobotta init weighing init plc init"), 
-      step_index_(0), 
+    : current_step_("slider init cobotta init weighing init plc init"),
+      step_index_(0),
       is_test_mode_(is_test_mode) {
     
-    // Initialize device state manager
+    // Initialize devices
     devices_.addDevice(Instrument::WEIGHING);
     devices_.addDevice(Instrument::COBOTTA);
     devices_.addDevice(Instrument::SLIDER);
@@ -13,11 +13,11 @@ ProcessController::ProcessController(bool is_test_mode)
     devices_.initialized = true;
     
     // Initialize process sequences
-    initializeProcessSequences();
+    initializeSequences();
 }
 
-void ProcessController::initializeProcessSequences() {
-    // Production sequence
+void ProcessController::initializeSequences() {
+    // Production sequence with all manufacturing steps
     production_sequence_ = {
         "slider init cobotta init weighing init plc init",
         "cobotta take_cup_from_stock",
@@ -76,7 +76,7 @@ void ProcessController::initializeProcessSequences() {
         "weighing close"
     };
     
-    // Test sequence
+    // Test sequence for development & testing
     test_sequence_ = {
         "slider init cobotta init weighing init plc init",
         "slider1 shelf1 plc buzz",
@@ -89,74 +89,72 @@ std::string ProcessController::getCurrentStep() const {
     return current_step_;
 }
 
-std::string ProcessController::processDeviceAction(const std::string& action) {
-    // Update device status
+void ProcessController::updateDeviceStatus(const std::string& action) {
     devices_.updateDeviceStatus(action);
-    return "Status updated";
-}
-
-bool ProcessController::areAllDevicesStandby() const {
-    return devices_.checkDevices(Situation::STANDBY);
 }
 
 std::string ProcessController::extractDeviceAction(const std::string& step, size_t index) const {
     std::vector<std::string> devices = {"weighing", "slider", "slider1", "plc", "cobotta"};
     
-    size_t found_index = 0;
+    size_t foundIndex = 0;
     for (const auto& device : devices) {
         size_t found = step.find(device);
         if (found != std::string::npos) {
-            if (found_index == index) {
+            if (foundIndex == index) {
                 return device + " action";
             }
-            found_index++;
+            foundIndex++;
         }
     }
 
-    return ""; // Device not found
+    return "Keyword not found at index " + std::to_string(index);
 }
 
-bool ProcessController::isSequenceCompleted() const {
-    return step_index_ >= getCurrentSequence().size();
-}
-
-bool ProcessController::isTestMode() const {
-    return is_test_mode_;
+bool ProcessController::areDevicesReady() const {
+    return devices_.checkDevices(Situation::STANDBY);
 }
 
 const std::vector<std::string>& ProcessController::getCurrentSequence() const {
     return is_test_mode_ ? test_sequence_ : production_sequence_;
 }
 
-std::string ProcessController::moveToNextStep() {
-    // Get the current sequence in use
-    const auto& current_sequence = getCurrentSequence();
+std::string ProcessController::processRequest(const std::string& action) {
+    // Update device status based on the action
+    updateDeviceStatus(action);
     
-    // Check if current step matches the expected step in the sequence
-    if (current_step_ == current_sequence[step_index_]) {
-        // Move to the next step
-        step_index_++;
+    // Check if all devices are standby
+    if (areDevicesReady()) {
+        const auto& processArray = getCurrentSequence();
         
-        if (step_index_ < current_sequence.size()) {
-            // Update current step
-            current_step_ = current_sequence[step_index_];
+        // Check if current step matches expected step
+        if (current_step_ == processArray[step_index_]) {
+            step_index_++;
             
-            // Update device states to active
-            for (size_t i = 0; i < 3; i++) {
-                std::string device_action = extractDeviceAction(current_step_, i);
-                if (!device_action.empty()) {
-                    devices_.updateDeviceStatus(device_action);
+            if (step_index_ < processArray.size()) {
+                // Move to next step
+                current_step_ = processArray[step_index_];
+                
+                // Update device statuses for the new step
+                for (size_t i = 0; i < 3; i++) {
+                    std::string deviceAction = extractDeviceAction(current_step_, i);
+                    if (!deviceAction.empty() && deviceAction.find("not found") == std::string::npos) {
+                        updateDeviceStatus(deviceAction);
+                    }
                 }
+                
+                return "OK";
+            } else {
+                // Process completed
+                current_step_ = "finished";
+                return "Finished";
             }
-            
-            return "OK";
         } else {
-            // Process complete
-            current_step_ = "finished";
-            return "Finished";
+            // Step mismatch
+            current_step_ = "Error";
+            return "Error: step mismatch";
         }
-    } else {
-        // Step mismatch
-        return "Error: Step mismatch";
     }
+    
+    // Devices not ready
+    return "Waiting for devices";
 }
