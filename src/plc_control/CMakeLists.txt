@@ -37,20 +37,15 @@ include_directories(include)
 find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
 find_package(tcp_handle REQUIRED)
-
-add_executable(PlcControl src/plc_control.cpp src/plc.cpp)
+find_package(ros2_utils REQUIRED)
 
 add_executable(PlcMain src/plc_main.cpp src/plc_node.cpp src/plc.cpp)
 
-ament_target_dependencies(PlcControl
-rclcpp msg_format tcp_handle)
-
 ament_target_dependencies(PlcMain
-rclcpp msg_format tcp_handle)
+rclcpp msg_format tcp_handle ros2_utils)
 
 install(
   TARGETS
-  PlcControl
   PlcMain
   DESTINATION lib/${PROJECT_NAME}
 )

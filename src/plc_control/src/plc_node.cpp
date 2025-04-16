@@ -1,4 +1,5 @@
 #include "plc_control/plc_node.hpp"
+#include "ros2_utils/service_utils.hpp"
 #include <iostream>
 #include <iomanip>
 
@@ -38,53 +39,16 @@ void PlcSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg)
         RCLCPP_INFO(this->get_logger(), "Message: %s", message.c_str());
     }
     
-    if (message != current_step_) {
+    if (message.compare(current_step_) != 0) {
         current_step_ = message;
         
         bool action_result = plc_->make_action(message);
         if (action_result) {
-            call_process_service("plc standby");
+            // call process service
+            auto future = service_utils::call_service_async(
+                process_client_, this->get_logger(), "slider standby", "Process");
         } else {
             RCLCPP_ERROR(this->get_logger(), "Error executing action: %s", message.c_str());
         }
-    }
-}
-
-bool PlcSystem::call_process_service(const std::string& action)
-{
-    // set timeout
-    const std::chrono::seconds timeout(3);
-    
-    // wait for the service to be available
-    if (!process_client_->wait_for_service(timeout))
-    {
-        RCLCPP_ERROR(this->get_logger(), "Process service not available after timeout");
-        return false;
-    }
-    
-    // create a request
-    auto request = std::make_shared<msg_format::srv::ProcessService::Request>();
-    request->action = action;
-    
-    // send the request asynchronously
-    auto future = process_client_->async_send_request(request);
-    
-    // wait for the result
-    std::future_status status = future.wait_for(timeout);
-    
-    if (status == std::future_status::ready) {
-        try {
-            auto result = future.get();
-            RCLCPP_INFO(this->get_logger(), "Service result: %s", result->result.c_str());
-            return true;
-        }
-        catch (const std::exception& e) {
-            RCLCPP_ERROR(this->get_logger(), "Exception getting result: %s", e.what());
-            return false;
-        }
-    }
-    else {
-        RCLCPP_ERROR(this->get_logger(), "Service call timed out");
-        return false;
     }
 }
