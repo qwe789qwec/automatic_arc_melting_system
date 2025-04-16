@@ -173,6 +173,9 @@ class cobotta:
         try:
             if action == "init":
                 self.runTask("test1/init")
+            elif action == "test":
+                self.gotoPoint(44)
+                time.sleep(0.5)
             elif action == "take_cup_from_stock":
                 self.take2point(30, 31, "test1/take_cup")
             elif action == "put_cup_to_weight":

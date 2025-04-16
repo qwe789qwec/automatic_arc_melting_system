@@ -113,8 +113,8 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 
     const std::vector<std::string> testArray = {
         "slider init cobotta init weighing init plc init",
-        "slider1 shelf1",
-        "weighing open slider1 weight_pos",
+        "slider1 shelf1 plc buzz",
+        "weighing open slider1 weight_pos cobotta test",
     };
 
     const std::vector<std::string>* processArray = nullptr;
