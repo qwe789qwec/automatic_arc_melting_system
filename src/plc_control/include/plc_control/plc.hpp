@@ -12,7 +12,6 @@
 
 #define on "1"
 #define off "0"
-#define open "1"
 
 //for plc modbus tcp
 #define readCoil "\x01"
