@@ -26,9 +26,14 @@ include_directories(include)
 find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
 
-add_executable(MainProcess src/main_process.cpp src/sequence.cpp src/devices_state.cpp)
+add_executable(MainProcess src/main_process.cpp src/devices_state.cpp)
+
+add_executable(MainProcessNew src/main_process_node.cpp src/process_control.cpp src/devices_state.cpp src/main.cpp)
 
 ament_target_dependencies(MainProcess
+rclcpp msg_format)
+
+ament_target_dependencies(MainProcessNew
 rclcpp msg_format)
 
 if(BUILD_TESTING)
@@ -44,11 +49,12 @@ endif()
 
 install(TARGETS
   MainProcess
+  MainProcessNew
   DESTINATION lib/${PROJECT_NAME})
 
-install(DIRECTORY
-  launch
-  DESTINATION share/${PROJECT_NAME}/
+install(
+  DIRECTORY secquence/
+  DESTINATION share/${PROJECT_NAME}/secquence
 )
 
 ament_package()

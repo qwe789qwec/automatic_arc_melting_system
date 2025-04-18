@@ -113,14 +113,13 @@ void process(const std::shared_ptr<msg_format::srv::ProcessService::Request> req
 
     const std::vector<std::string> testArray = {
         "slider init cobotta init weighing init plc init",
-        "plc gateOpen",
-        "plc wait20s",
-        "plc gateClose",
-
+        "slider1 shelf1 plc buzz",
+        "weighing open slider1 weight_pos cobotta test",
+        "slider init cobotta init weighing init plc init",
     };
 
     const std::vector<std::string>* processArray = nullptr;
-    bool test = false;
+    bool test = true;
 
     if (!test) {
         processArray = &stepArray;
@@ -199,9 +198,14 @@ struct MainPublisher : public rclcpp::Node
             }
             msg->process = step.c_str();
             // RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", step.c_str());
-            printf(
-                "Published message: %s, and address: 0x%" PRIXPTR "\n", msg->process.c_str(),
-                reinterpret_cast<std::uintptr_t>(msg.get()));
+            // printf(
+            //     "Published message: %s, and address: 0x%" PRIXPTR "\n", msg->process.c_str(),
+            //     reinterpret_cast<std::uintptr_t>(msg.get()));
+            static std::string last_message = "";
+            if (msg->process != last_message) {
+                printf("Message changed: %s\n", msg->process.c_str());
+                last_message = msg->process;
+            }
             pub_ptr->publish(std::move(msg));
         };
         timer_ = this->create_wall_timer(1s, callback);

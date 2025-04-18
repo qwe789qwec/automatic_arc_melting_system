@@ -22,9 +22,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'CobottaMain = cobotta_bcap.cobotta_main:main',
             'CobottaControl = cobotta_bcap.cobotta_control:main',
-            'service = cobotta_bcap.io_control_service:main',
-            'client = cobotta_bcap.cobotta_client:main',
         ],
     },
 )

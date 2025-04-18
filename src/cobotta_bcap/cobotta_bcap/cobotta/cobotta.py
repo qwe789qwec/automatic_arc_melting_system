@@ -140,6 +140,9 @@ class cobotta:
     def get_action(self, compare, target):
         # Find the target string in compare string
         pos = compare.find(target)
+        if compare == "init":
+            return "init"
+        
         if pos == -1:
             return "error"
 
@@ -173,6 +176,9 @@ class cobotta:
         try:
             if action == "init":
                 self.runTask("test1/init")
+            elif action == "test":
+                self.gotoPoint(44)
+                time.sleep(0.5)
             elif action == "take_cup_from_stock":
                 self.take2point(30, 31, "test1/take_cup")
             elif action == "put_cup_to_weight":
@@ -232,20 +238,20 @@ class cobotta:
         self.bcap.robot_execute(self.robotHandle,Command,Param)
 
         # Disconnect
-        if self.valueHandle :
+        if self.valueHandle != 0:
             self.bcap.variable_release(self.valueHandle)
             self.valueHandle = 0
 
-        if self.taskHandle :
+        if self.taskHandle != 0:
             self.bcap.variable_release(self.taskHandle)
             self.taskHandle = 0
 
-        if self.robotHandle :
+        if self.robotHandle != 0:
             self.bcap.robot_release(self.robotHandle)
             HRobot = 0
 
         # End If
-        if self.hCtrl :
+        if self.hCtrl != 0:
             self.bcap.controller_disconnect(self.hCtrl)
             self.hCtrl = 0
             

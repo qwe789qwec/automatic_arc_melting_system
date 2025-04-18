@@ -17,7 +17,7 @@ void deviceState::addDevice(Instrument device){
 	if(initialized == false){
 		Device newDevice;
 		newDevice.name = device;
-		newDevice.status = Situation::ACTION;
+		newDevice.status = Situation::STANDBY;
 		devices.push_back(newDevice);
 	}
 }
@@ -71,17 +71,17 @@ Instrument deviceState::stringToDevice(std::string device){
 	}
 }
 
-bool deviceState::checkDevices(Situation status){
+bool deviceState::checkDevices(Situation status) const{
 	// if all devices are standby, return true
 	long unsigned int i;
 	for (i = 0; i < devices.size(); i++){
-		printf("count:%ld \n", i);
+		//printf("count:%ld \n", i);
 		if (devices[i].status != status){
-			printf("false\n");
+			//printf("false\n");
 			return false;
 		}
 	}
-	printf("all true\n");
+	//printf("all true\n");
 	return true;
 }
 
