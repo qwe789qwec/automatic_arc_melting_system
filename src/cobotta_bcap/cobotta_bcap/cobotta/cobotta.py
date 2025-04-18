@@ -140,6 +140,9 @@ class cobotta:
     def get_action(self, compare, target):
         # Find the target string in compare string
         pos = compare.find(target)
+        if compare == "init":
+            return "init"
+        
         if pos == -1:
             return "error"
 

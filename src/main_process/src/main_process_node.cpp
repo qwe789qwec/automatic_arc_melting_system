@@ -38,8 +38,8 @@ void MainProcessNode::processServiceCallback(
 }
 
 void MainProcessNode::publishCurrentStep() {
-    // Get current step
     
+    // Get current step
     if (process_controller_.isReadyToNextStep()) {
         process_controller_.moveToNextStep();
     }

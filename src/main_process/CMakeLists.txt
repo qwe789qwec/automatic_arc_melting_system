@@ -52,4 +52,9 @@ install(TARGETS
   MainProcessNew
   DESTINATION lib/${PROJECT_NAME})
 
+install(
+  DIRECTORY secquence/
+  DESTINATION share/${PROJECT_NAME}/secquence
+)
+
 ament_package()

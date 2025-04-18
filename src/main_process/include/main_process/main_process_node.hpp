@@ -18,7 +18,7 @@ private:
     ProcessController process_controller_;
     
     // Last published step (to reduce logging)
-    std::string last_published_step_;
+    std::string last_published_step_ = "start";
     
     // Service, publisher, and timer
     rclcpp::Service<msg_format::srv::ProcessService>::SharedPtr process_service_;

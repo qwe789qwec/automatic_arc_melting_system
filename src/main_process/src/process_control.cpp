@@ -3,6 +3,8 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <unistd.h>
+#include <limits.h>
 
 ProcessController::ProcessController(std::string command)
     : current_step_(command), 
@@ -17,13 +19,22 @@ ProcessController::ProcessController(std::string command)
     
     // Initialize process sequences
     initializeSequences();
+    moveToNextStep();
 }
 
 void ProcessController::initializeSequences() {
+
+    char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        std::cerr << "Current working directory: " << cwd << std::endl;
+    } else {
+        std::cerr << "Failed to get current directory" << std::endl;
+    }
     
     // Load sequences from file or define them directly
     // try to load from file
     std::ifstream file(secquence_file_);
+    
     if (!file.is_open()) {
         std::cerr << "Error opening file: " << secquence_file_ << std::endl;
         sequence_ = {
@@ -36,6 +47,7 @@ void ProcessController::initializeSequences() {
         return;
     }
     else {
+        std::cerr << "load process from file: " << secquence_file_ << std::endl;
         std::string line;
         while (std::getline(file, line)) {
             // if line is empty or a comment, skip it
