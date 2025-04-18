@@ -9,7 +9,7 @@ class ProcessController {
 public:
     explicit ProcessController(std::string command = "init");
     std::string getCurrentStep() const;
-    std::string updateDeviceStatus(const std::string& status);
+    std::string updateDeviceStatuses(const std::string& command);
     bool isReadyToNextStep() const;
     bool isSequenceCompleted() const;
     void moveToNextStep();
@@ -19,6 +19,8 @@ private:
 
     // Device state manager
     deviceState devices_;
+    std::vector<std::string> devices_list_ = {"weighing", "slider", "slider1", "plc", "cobotta"};
+
     
     // Current step and step index
     std::string current_step_;

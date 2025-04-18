@@ -32,7 +32,7 @@ void MainProcessNode::processServiceCallback(
     RCLCPP_INFO(get_logger(), "Service request received: %s", action.c_str());
     
     // Update device status
-    std::string message = process_controller_.updateDeviceStatus(action);
+    std::string message = process_controller_.updateDeviceStatuses(action);
     response->result = message;
     RCLCPP_INFO(get_logger(), "Device status updated: %s", message.c_str());
 }

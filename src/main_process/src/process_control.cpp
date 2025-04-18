@@ -3,6 +3,10 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <string>
+#include <vector>
+#include <regex>
+#include <map>
 #include <unistd.h>
 #include <limits.h>
 
@@ -65,9 +69,32 @@ std::string ProcessController::getCurrentStep() const {
     return current_step_;
 }
 
-std::string ProcessController::updateDeviceStatus(const std::string& status) {
-    devices_.updateDeviceStatus(status);
-    return "updated " + status;
+std::string ProcessController::updateDeviceStatuses(const std::string& command) {    
+    std::string update = "";
+    for (const auto& device : devices_list_) {
+        // match the device name in the command
+        std::regex device_pattern("\\b" + device + "\\s+([^\\s]+(?:\\s+[^\\s]+)*)");
+        std::smatch matches;
+        
+        // search for the device in the command
+        if (std::regex_search(command, matches, device_pattern) && matches.size() > 1) {
+            std::string action = matches[1].str();
+            if (action == "standby") {
+                devices_.updateDeviceStatus(device + " standby");
+                update += device + " standby ";
+            }
+            else{
+                devices_.updateDeviceStatus(device + " " + "action");
+                update += device + " " + " action ";
+            }
+        }
+    }
+
+    if (update == "") {
+        update = "No devices found in command";
+    }
+
+    return update;
 }
 
 bool ProcessController::isReadyToNextStep() const {
