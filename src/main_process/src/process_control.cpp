@@ -101,15 +101,16 @@ bool ProcessController::isReadyToNextStep() const {
     return devices_.checkDevices(Situation::STANDBY);
 }
 
-
 bool ProcessController::isSequenceCompleted() const {
     return step_index_ >= sequence_.size();
 }
 
 void ProcessController::moveToNextStep() {
     if (step_index_ == 0 && current_step_ != "init") {
+        updateDeviceStatuses(current_step_);
         return;
     }
     current_step_ = sequence_[step_index_];
+    updateDeviceStatuses(current_step_);
     step_index_++;
 }

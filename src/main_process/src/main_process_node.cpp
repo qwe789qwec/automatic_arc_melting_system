@@ -40,12 +40,11 @@ void MainProcessNode::processServiceCallback(
 void MainProcessNode::publishCurrentStep() {
     
     // Get current step
-    if (process_controller_.isReadyToNextStep()) {
-        process_controller_.moveToNextStep();
-    }
-    else if (process_controller_.isSequenceCompleted()) {
+    if (process_controller_.isSequenceCompleted() && process_controller_.isReadyToNextStep()) {
         RCLCPP_INFO(get_logger(), "Process sequence completed");
-        return;
+    }
+    else if (process_controller_.isReadyToNextStep()) {
+        process_controller_.moveToNextStep();
     }
     std::string current_step = process_controller_.getCurrentStep();
     
