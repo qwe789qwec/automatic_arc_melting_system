@@ -11,7 +11,7 @@
 
 class MainProcessNode : public rclcpp::Node {
 public:
-    explicit MainProcessNode(const std::string& node_name, bool is_test_mode = true);
+    explicit MainProcessNode(const std::string& node_name, std::string command = "init");
     
 private:
     // Process controller

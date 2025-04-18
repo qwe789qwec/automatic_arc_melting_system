@@ -2,9 +2,6 @@
 #include "rclcpp/rclcpp.hpp"
 #include "main_process/main_process_node.hpp"
 
-/**
- * @brief Main function
- */
 int main(int argc, char *argv[]) {
     // Disable stdout buffering
     setvbuf(stdout, nullptr, _IONBF, BUFSIZ);
@@ -13,16 +10,14 @@ int main(int argc, char *argv[]) {
     rclcpp::init(argc, argv);
     
     // Parse command line arguments to determine test mode
-    bool test_mode = true;  // Default to test mode
-    for (int i = 1; i < argc; ++i) {
-        std::string arg = argv[i];
-        if (arg == "--production" || arg == "-p") {
-            test_mode = false;
-        }
+    bool test = true;  // Default to test mode
+    std::string command = "init";
+    if (test && argc > 1) {
+        std::string command = argv[1];
     }
     
     // Create main process node
-    auto main_process_node = std::make_shared<MainProcessNode>("main_process", test_mode);
+    auto main_process_node = std::make_shared<MainProcessNode>("main_process", command);
     
     // Create executor and add node
     rclcpp::executors::SingleThreadedExecutor executor;

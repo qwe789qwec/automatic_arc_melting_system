@@ -2,8 +2,10 @@
 
 using namespace std::chrono_literals;
 
-MainProcessNode::MainProcessNode(const std::string& node_name, bool is_test_mode)
-    : Node(node_name), process_controller_(is_test_mode), last_published_step_("") {
+MainProcessNode::MainProcessNode(const std::string& node_name, std::string command)
+    : Node(node_name), 
+    process_controller_(command), 
+    last_published_step_("") {
     
     // Create service
     process_service_ = create_service<msg_format::srv::ProcessService>(
@@ -20,8 +22,6 @@ MainProcessNode::MainProcessNode(const std::string& node_name, bool is_test_mode
         
     RCLCPP_INFO(get_logger(), "Main process node initialized");
     RCLCPP_INFO(get_logger(), "Starting with step: %s", process_controller_.getCurrentStep().c_str());
-    RCLCPP_INFO(get_logger(), "Running in %s mode", 
-               process_controller_.isTestMode() ? "TEST" : "PRODUCTION");
 }
 
 void MainProcessNode::processServiceCallback(
@@ -32,31 +32,21 @@ void MainProcessNode::processServiceCallback(
     RCLCPP_INFO(get_logger(), "Service request received: %s", action.c_str());
     
     // Update device status
-    process_controller_.processDeviceAction(action);
-    
-    // Check if all devices are in standby state
-    if (process_controller_.areAllDevicesStandby()) {
-        // Process next step
-        std::string result = process_controller_.moveToNextStep();
-        response->result = result;
-        
-        if (result == "OK") {
-            RCLCPP_INFO(get_logger(), "Moving to next step: %s", 
-                       process_controller_.getCurrentStep().c_str());
-        } else if (result == "Finished") {
-            RCLCPP_INFO(get_logger(), "Process sequence completed");
-        } else {
-            RCLCPP_ERROR(get_logger(), "Error processing step: %s", result.c_str());
-        }
-    } else {
-        // Devices not ready yet
-        response->result = "Waiting for devices";
-        RCLCPP_INFO(get_logger(), "Waiting for all devices to be ready");
-    }
+    std::string message = process_controller_.updateDeviceStatus(action);
+    response->result = message;
+    RCLCPP_INFO(get_logger(), "Device status updated: %s", message.c_str());
 }
 
 void MainProcessNode::publishCurrentStep() {
     // Get current step
+    
+    if (process_controller_.isReadyToNextStep()) {
+        process_controller_.moveToNextStep();
+    }
+    else if (process_controller_.isSequenceCompleted()) {
+        RCLCPP_INFO(get_logger(), "Process sequence completed");
+        return;
+    }
     std::string current_step = process_controller_.getCurrentStep();
     
     // Only log when step changes to reduce message volume
