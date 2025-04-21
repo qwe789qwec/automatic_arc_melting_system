@@ -1,132 +1,178 @@
 #include <chrono>
 #include <thread>
-
 #include <stdio.h>
 #include <unistd.h>
 #include <vector>
-
+#include <iostream>
+#include <sstream>
 #include "main_process/devices_state.hpp"
 
-deviceState::deviceState(){
-	// initialize the device state
-	initialized = false;
+// Device
+Device::Device(const std::string& id) 
+    : id_(id), status_(Situation::STANDBY) {
 }
 
-void deviceState::addDevice(Instrument device){
-	// add the device to the list
-	if(initialized == false){
-		Device newDevice;
-		newDevice.name = device;
-		newDevice.status = Situation::STANDBY;
-		devices.push_back(newDevice);
-	}
+void Device::setStatus(Situation status) {
+    status_ = status;
 }
 
-void deviceState::removeDevice(Instrument device){
-	// remove the device from the list
-	long unsigned int i;
-	for (i = 0; i < devices.size(); i++){
-		if (devices[i].name == device){
-			devices.erase(devices.begin() + i);
-		}
-	}
+void Device::addComponent(const std::string& component_id) {
+    if (components_.find(component_id) == components_.end()) {
+        components_[component_id] = Situation::STANDBY;
+    }
 }
 
-Situation deviceState::getDeviceStatus(Instrument device){
-	// return the status of the device
-	long unsigned int i;
-	for (i = 0; i < devices.size(); i++){
-		if (devices[i].name == device){
-			return devices[i].status;
-		}
-	}
-	return Situation::ERROR;
+bool Device::hasComponent(const std::string& component_id) const {
+    return components_.find(component_id) != components_.end();
 }
 
-Instrument deviceState::stringToDevice(std::string device){
-	// convert string to device
-	if (device.compare("slider") == 0){
-		return Instrument::SLIDER;
-	}
-	else if (device.compare("slider1") == 0){
-		return Instrument::SLIDER1;
-	}
-	else if (device.compare("slider2") == 0){
-		return Instrument::SLIDER2;
-	}
-	else if (device.compare("slider3") == 0){
-		return Instrument::SLIDER3;
-	}
-	else if (device.compare("weighing") == 0){
-		return Instrument::WEIGHING;
-	}
-	else if (device.compare("cobotta") == 0){
-		return Instrument::COBOTTA;
-	}
-	else if (device.compare("plc") == 0){
-		return Instrument::PLC;
-	}
-	else{
-		return Instrument::error;
-	}
+void Device::setComponentStatus(const std::string& component_id, Situation status) {
+    if (hasComponent(component_id)) {
+        components_[component_id] = status;
+    }
 }
 
-bool deviceState::checkDevices(Situation status) const{
-	// if all devices are standby, return true
-	long unsigned int i;
-	for (i = 0; i < devices.size(); i++){
-		//printf("count:%ld \n", i);
-		if (devices[i].status != status){
-			//printf("false\n");
+Situation Device::getComponentStatus(const std::string& component_id) const {
+    auto it = components_.find(component_id);
+    if (it != components_.end()) {
+        const auto& [comp_id, status] = *it;
+        return status;
+    }
+    return Situation::ERROR;
+}
+
+bool Device::isAllInStatus(Situation status) const {
+    if (status_ != status) return false;
+    
+    for (const auto& [comp_id, comp_status] : components_) {
+        if (comp_status != status) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// DeviceStateManager
+DeviceStateManager::DeviceStateManager() {
+    initialized = false;
+}
+
+void DeviceStateManager::addDevice(const std::string& device_id) {
+    if (devices_.find(device_id) == devices_.end()) {
+        devices_[device_id] = std::make_shared<Device>(device_id);
+    }
+}
+
+void DeviceStateManager::removeDevice(const std::string& device_id) {
+    devices_.erase(device_id);
+}
+
+bool DeviceStateManager::hasDevice(const std::string& device_id) const {
+    return devices_.find(device_id) != devices_.end();
+}
+
+void DeviceStateManager::addComponent(const std::string& device_id, const std::string& component_id) {
+    if (hasDevice(device_id)) {
+        devices_[device_id]->addComponent(component_id);
+    }
+}
+
+Situation DeviceStateManager::getDeviceStatus(const std::string& device_id) const {
+    auto it = devices_.find(device_id);
+    if (it != devices_.end()) {
+        const auto& [id, device] = *it;
+		const auto& status = device->getStatus();
+        return status;
+    }
+    return Situation::ERROR;
+}
+
+void DeviceStateManager::updateDeviceStatus(const std::string& message) {
+    std::istringstream iss(message);
+    std::string device_id, status_str;
+    std::string component_id;
+    
+    iss >> device_id;
+    
+    std::string next;
+    while (iss >> next) {
+        if (next == "online" || next == "offline" || next == "action" || 
+            next == "standby" || next == "error") {
+            status_str = next;
+            break;
+        } else {
+            if (component_id.empty()) {
+                component_id = next;
+            } else {
+                component_id += " " + next;
+            }
+        }
+    }
+    
+    if (status_str.empty() && !component_id.empty()) {
+        size_t last_space = component_id.find_last_of(' ');
+        if (last_space != std::string::npos) {
+            status_str = component_id.substr(last_space + 1);
+            component_id = component_id.substr(0, last_space);
+        } else {
+            status_str = component_id;
+            component_id = "";
+        }
+    }
+    
+    Situation status = Situation::ERROR;
+    if (status_str == "online") status = Situation::ONLINE;
+    else if (status_str == "offline") status = Situation::OFFLINE;
+    else if (status_str == "action") status = Situation::ACTION;
+    else if (status_str == "standby") status = Situation::STANDBY;
+    
+    if (hasDevice(device_id)) {
+        if (component_id.empty()) {
+            devices_[device_id]->setStatus(status);
+        } else {
+            if (!devices_[device_id]->hasComponent(component_id)) {
+                devices_[device_id]->addComponent(component_id);
+            }
+            devices_[device_id]->setComponentStatus(component_id, status);
+        }
+    } else {
+        addDevice(device_id);
+        devices_[device_id]->setStatus(status);
+        
+        if (!component_id.empty()) {
+            devices_[device_id]->addComponent(component_id);
+            devices_[device_id]->setComponentStatus(component_id, status);
+        }
+    }
+}
+
+bool DeviceStateManager::checkDevices(Situation status) const {
+    if (devices_.empty()) return false;
+    
+    for (const auto& [device_id, device_ptr] : devices_) {  // 結構化綁定
+        if (device_ptr->getStatus() != status) {
+            printf("Device %s is not in %d status\n", 
+                   device_id.c_str(), static_cast<int>(status));
+            return false;
+        }
+    }
+    
+    printf("All devices in %d status\n", static_cast<int>(status));
+    return true;
+}
+
+bool DeviceStateManager::checkDevicesList(const std::vector<std::string>& devicesList, Situation status) const {
+    for (const auto& device_id : devicesList) {
+        auto it = devices_.find(device_id);
+        if (it == devices_.end()) {
+            return false;
+        }
+		const auto& [id, device_ptr] = *it;
+		if (device_ptr->getStatus() != status) {
+			printf("Device %s is not in %d status\n", 
+				   device_id.c_str(), static_cast<int>(status));
 			return false;
 		}
-	}
-	//printf("all true\n");
-	return true;
-}
-
-bool deviceState::checkDevicesList(std::vector<Instrument> devicesList, Situation status){
-	// check if all device on the devicesList in the devices are standby
-	// if all devices are standby, return true
-	long unsigned int i,j;
-	for (i = 0; i < devicesList.size(); i++){
-		for (j = 0; j < devices.size(); j++){
-			if (devices[j].name == devicesList[i]){
-				if (devices[j].status != status){
-					return false;
-				}
-			}
-		}
-	}
-	return true;
-}
-
-void deviceState::updateDeviceStatus(std::string message){
-	// update the status of the device
-	std::string device = message.substr(0, message.find(" "));
-	Instrument deviceEnum = stringToDevice(device);
-	if(deviceEnum == Instrument::error){
-		return;
-	}
-	std::string status = message.substr(message.find(" ") + 1, message.length());
-	long unsigned int i;
-	for (i = 0; i < devices.size(); i++){
-		if (devices[i].name == deviceEnum){
-			if (status.compare("online") == 0){
-				devices[i].status = Situation::ONLINE;
-			}
-			else if (status.compare("offline") == 0){
-				devices[i].status = Situation::OFFLINE;
-			}
-			else if (status.compare("action") == 0){
-				devices[i].status = Situation::ACTION;
-			}
-			else if (status.compare("standby") == 0){
-				devices[i].status = Situation::STANDBY;
-			}
-			else if (status.compare("error") == 0){
-				devices[i].status = Situation::ERROR;
-			}
-		}
-	}
+    }
+    return true;
 }

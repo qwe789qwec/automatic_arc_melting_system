@@ -1,52 +1,60 @@
-#ifndef SLIDER_HPP
-#define SLIDER_HPP
+#ifndef DEVICES_STATE_HPP
+#define DEVICES_STATE_HPP
 
-#include <chrono>
-#include <cstdlib>
-#include <memory>
-#include <unistd.h>
-#include <stdio.h>
 #include <string>
 #include <vector>
+#include <map>
+#include <memory>
 
 enum class Situation {
-   ONLINE,
-   OFFLINE,
-   ACTION,
-   STANDBY,
-   ERROR
+    ONLINE,
+    OFFLINE,
+    ACTION,
+    STANDBY,
+    ERROR
 };
 
-enum class Instrument {
-   SLIDER,
-   SLIDER1,
-   SLIDER2,
-   SLIDER3,
-   WEIGHING,
-   COBOTTA,
-   PLC,
-   error
+class Device {
+public:
+    Device(const std::string& id);
+    
+    std::string getId() const { return id_; }
+    Situation getStatus() const { return status_; }
+    void setStatus(Situation status);
+    
+    void addComponent(const std::string& component_id);
+    bool hasComponent(const std::string& component_id) const;
+    void setComponentStatus(const std::string& component_id, Situation status);
+    Situation getComponentStatus(const std::string& component_id) const;
+    
+    bool isAllInStatus(Situation status) const;
+
+private:
+    std::string id_;
+    Situation status_;
+    std::map<std::string, Situation> components_;
 };
 
-struct Device {
-   Instrument name;
-   Situation status;
+class DeviceStateManager {
+public:
+    DeviceStateManager();
+    
+    void addDevice(const std::string& device_id);
+    void removeDevice(const std::string& device_id);
+    bool hasDevice(const std::string& device_id) const;
+    
+    void addComponent(const std::string& device_id, const std::string& component_id);
+    
+    Situation getDeviceStatus(const std::string& device_id) const;
+    void updateDeviceStatus(const std::string& message);
+    
+    bool checkDevices(Situation status) const;
+    bool checkDevicesList(const std::vector<std::string>& devicesList, Situation status) const;
+
+    bool initialized;
+    
+private:
+    std::map<std::string, std::shared_ptr<Device>> devices_;
 };
 
-class deviceState
-{
-    public:
-        deviceState();
-        bool initialized;
-        void addDevice(Instrument device);
-        void removeDevice(Instrument device);
-        Situation getDeviceStatus(Instrument device);
-        Instrument stringToDevice(std::string device);
-        bool checkDevices(Situation status) const;
-        bool checkDevicesList(std::vector<Instrument> deviceslist, Situation status);
-        void updateDeviceStatus(std::string message);
-    private:
-        std::vector<Device> devices;
-};
-
-#endif // RECTANGLE_HPP
+#endif // DEVICES_STATE_HPP
