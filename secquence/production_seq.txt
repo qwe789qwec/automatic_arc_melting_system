@@ -1,55 +1,55 @@
-slider init cobotta init weighing init plc init
-cobotta take_cup_from_stock
-weighing open slider1 weight_pos
-cobotta put_cup_to_weight
-slider1 shelf1 weighing close
-cobotta take_dose_from_shelf
-weighing open slider1 weight_pos
-cobotta put_dose_to_weight
-weighing mgram180.2
-cobotta take_dose_from_weight
-weighing close slider1 shelf1
-cobotta put_dose_to_shelf
-slider1 shelf3
-cobotta take_dose_from_shelf2
-weighing open slider weight_pos
-cobotta put_dose_to_weight
-weighing mgram319.8
-cobotta take_cup_from_weight plc vent
-weighing close slider1 pos1
-cobotta put_cup_to_arc plc gateOpen
-slider weight_pos weighing open
-slider put_cup_arc cobotta take_dose_from_weight
-plc gateClose slider1 shelf3
-plc pump cobotta put_dose_to_shelf2 weighing close
-slider arcinit
-plc buzz
-plc arcOn
-slider arc_cw_3
-plc arcOff
-plc wait20s
-plc autoFlip
-plc buzz
-plc arcOn
-slider arc_ccw_3
-plc arcOff
-plc wait20s
-plc autoFlip
-plc buzz
-plc arcOn
-slider arc_cw_3
-plc arcOff
-plc wait20s
-plc autoFlip
-plc buzz
-plc arcOn
-slider arc_ccw_3
-plc arcOff
-plc wait20s
-plc vent slider pos1
-plc gateOpen
-slider take_cup_arc
-plc gateClose cobotta take_cup_from_arc
-slider1 weight_pos weighing open
-plc singlePump cobotta put_cup_to_weight
-weighing close
+slider_init cobotta_init weighing_init plc_init
+cobotta_take_cup_from_stock
+weighing_open slider1_weight_pos
+cobotta_put_cup_to_weight
+slider1_shelf1 weighing_close
+cobotta_take_dose_from_shelf
+weighing_open slider1_weight_pos
+cobotta_put_dose_to_weight
+weighing_mgram180.2
+cobotta_take_dose_from_weight
+weighing_close slider1_shelf1
+cobotta_put_dose_to_shelf
+slider1_shelf3
+cobotta_take_dose_from_shelf2
+weighing_open slider_weight_pos
+cobotta_put_dose_to_weight
+weighing_mgram319.8
+cobotta_take_cup_from_weight plc_vent
+weighing_close slider1_pos1
+cobotta_put_cup_to_arc plc_gateOpen
+slider_weight_pos weighing_open
+slider_put_cup_arc cobotta_take_dose_from_weight
+plc_gateClose slider1_shelf3
+plc_pump cobotta_put_dose_to_shelf2 weighing_close
+slider_arcinit
+plc_buzz
+plc_arcOn
+slider_arc_cw_3
+plc_arcOff
+plc_wait20s
+plc_autoFlip
+plc_buzz
+plc_arcOn
+slider_arc_ccw_3
+plc_arcOff
+plc_wait20s
+plc_autoFlip
+plc_buzz
+plc_arcOn
+slider_arc_cw_3
+plc_arcOff
+plc_wait20s
+plc_autoFlip
+plc_buzz
+plc_arcOn
+slider_arc_ccw_3
+plc_arcOff
+plc_wait20s
+plc_vent slider_pos1
+plc_gateOpen
+slider_take_cup_arc
+plc_gateClose cobotta_take_cup_from_arc
+slider1_weight_pos weighing_open
+plc_singlePump cobotta_put_cup_to_weight
+weighing_close

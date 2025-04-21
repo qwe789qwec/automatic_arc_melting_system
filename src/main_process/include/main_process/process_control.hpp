@@ -18,7 +18,7 @@ private:
     const std::string secquence_file_ = "secquence/test_seq.txt";
 
     // Device state manager
-    deviceState devices_;
+    DeviceStateManager devices_manager_;
     std::vector<std::string> devices_list_ = {"weighing", "slider", "slider1", "plc", "cobotta"};
 
     

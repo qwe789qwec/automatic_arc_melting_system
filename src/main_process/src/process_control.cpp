@@ -15,11 +15,11 @@ ProcessController::ProcessController(std::string command)
       step_index_(0){
     
     // Initialize device state manager
-    devices_.addDevice(Instrument::WEIGHING);
-    devices_.addDevice(Instrument::COBOTTA);
-    devices_.addDevice(Instrument::SLIDER);
-    devices_.addDevice(Instrument::PLC);
-    devices_.initialized = true;
+    devices_manager_.addDevice("weighing");
+    devices_manager_.addDevice("slider");
+    devices_manager_.addDevice("cobotta");
+    devices_manager_.addDevice("plc");
+    devices_manager_.initialized = true;
     
     // Initialize process sequences
     initializeSequences();
@@ -43,8 +43,8 @@ void ProcessController::initializeSequences() {
         std::cerr << "Error opening file: " << secquence_file_ << std::endl;
         sequence_ = {
             "slider init cobotta init weighing init plc init",
-            "slider1 shelf1 plc buzz",
-            "weighing open slider1 weight_pos cobotta test",
+            "slider shelf1 plc buzz",
+            "weighing open slider weight_pos cobotta test",
             "slider init cobotta init weighing init plc init",
             "finished"
         };
@@ -80,11 +80,11 @@ std::string ProcessController::updateDeviceStatuses(const std::string& command) 
         if (std::regex_search(command, matches, device_pattern) && matches.size() > 1) {
             std::string action = matches[1].str();
             if (action == "standby") {
-                devices_.updateDeviceStatus(device + " standby");
+                devices_manager_.updateDeviceStatus(device + " standby");
                 update += device + " standby ";
             }
             else{
-                devices_.updateDeviceStatus(device + " " + "action");
+                devices_manager_.updateDeviceStatus(device + " " + "action");
                 update += device + " " + " action ";
             }
         }
@@ -98,7 +98,7 @@ std::string ProcessController::updateDeviceStatuses(const std::string& command) 
 }
 
 bool ProcessController::isReadyToNextStep() const {
-    return devices_.checkDevices(Situation::STANDBY);
+    return devices_manager_.checkDevices(Situation::STANDBY);
 }
 
 bool ProcessController::isSequenceCompleted() const {

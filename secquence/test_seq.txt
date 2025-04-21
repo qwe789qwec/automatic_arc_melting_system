@@ -1,4 +1,4 @@
-slider init cobotta init weighing init plc init
-slider shelf1 plc buzz
-weighing open slider weight_pos cobotta test
-slider init cobotta init weighing init plc init
+slider_init cobotta_init weighing_init plc_init
+slider_shelf1 plc_buzz
+weighing_open slider_weight_pos cobotta_test
+slider_init cobotta_init weighing_init plc_init

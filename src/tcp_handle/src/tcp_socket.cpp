@@ -167,29 +167,44 @@ bool tcp_socket::check_receive(std::string compare, int timeout_seconds)
 
 std::string tcp_socket::get_action(std::string compare, std::string target)
 {	
-	//find the target string in compare string
-	std::string::size_type pos = compare.find(target);
-	if (pos == std::string::npos) {
-		return "error";
+	if (compare == "test"){
+		return "test";
+	}
+	else if (compare == "init"){
+		return "init";
 	}
 
-	// find the space after the target string
-	std::string::size_type posAfterTarget = pos + target.length() + 1;
-	if(posAfterTarget >= compare.length()){
-		return "error";
-	}
+    std::string::size_type pos = compare.find(target);
+    if (pos == std::string::npos) {
+        return "error";
+    }
 
-	std::string substringAfterTarget = compare.substr(posAfterTarget);
-	pos = substringAfterTarget.find(" ");
+	// get the position of the underscore
+    std::string::size_type underscorePos = pos + target.length();
+    if (underscorePos >= compare.length() || compare[underscorePos] != '_') {
+        return "error";
+    }
 
-	// no space after the target string
-	std::string return_string = (pos == std::string::npos) ? substringAfterTarget : substringAfterTarget.substr(0, pos);
+	// find the position of the first space after the underscore
+    std::string::size_type actionStart = underscorePos + 1;
+    std::string::size_type spacePos = compare.find(' ', actionStart);
+    
+    // extract the action string
+    std::string action;
+    if (spacePos == std::string::npos) {
+        // no space found, take the rest of the string
+        action = compare.substr(actionStart);
+    } else {
+        // space found, take the substring until the space
+        action = compare.substr(actionStart, spacePos - actionStart);
+    }
 
-	if (return_string.length() <= 2) {
-		return "error";
-	}
-	
-	return return_string;
+    // check if the action is empty
+    if (action.empty()) {
+        return "error";
+    }
+    
+    return action;
 }
 
 void tcp_socket::close()
