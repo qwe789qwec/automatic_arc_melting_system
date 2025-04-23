@@ -133,34 +133,26 @@ std::string weighing_machine::take_data(const std::string& xml_data, std::string
     return "none";
 }
 
-std::string weighing_machine::get_action(std::string step)
-{
-    // separate action by underscore
-    size_t first_underscore = step.find('_');
-    if (step == "test" || step == "init") {
-        // Handle special cases for "init" and "test"
-        return step;
-    }
-
-    if (first_underscore == std::string::npos) {
-        printf("Format error: missing underscore separator in message: %s\n", step.c_str());
-        return "error";
-    }
-
-    // Extract action from the command
-    std::string action = step.substr(0, first_underscore);
-    
-    // Return the extracted action
-    return action;
-}
-
 bool weighing_machine::make_action(std::string step)
 {    
     // Extract weighing machine specific action
     std::string command = service_utils::get_command(step, "weighing");
-    std::string action = get_action(command);
-    if (action == "error") {
+    std::string action = "none";
+    if (command == "test" || command == "init") {
+        action = command;
+    }
+    else if (command == "none") {
+        return true;
+    }
+    else if (command == "error") {
         return false;
+    }
+
+    if (action == "none") {
+        std::vector<std::string>token = service_utils::split_string(command);
+        if (token.size() > 1) {
+            action = token[1];
+        }
     }
 
     // Process different action types

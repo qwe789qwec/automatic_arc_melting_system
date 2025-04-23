@@ -156,14 +156,12 @@ bool DeviceStateManager::updateDeviceStatus(const std::string& message) {
         }
         
         // set status
-        Situation status = Situation::ERROR;
+        Situation status = Situation::ACTION;
         if (status_str == "online") status = Situation::ONLINE;
         else if (status_str == "offline") status = Situation::OFFLINE;
         else if (status_str == "action") status = Situation::ACTION;
         else if (status_str == "standby") status = Situation::STANDBY;
-        else {
-            status = Situation::ACTION;
-        }
+        else if (status_str == "error") status = Situation::ERROR;
         
         // update status
         if (hasDevice(device_id)) {

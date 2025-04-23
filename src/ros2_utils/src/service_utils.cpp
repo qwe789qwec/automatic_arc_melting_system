@@ -123,4 +123,16 @@ std::string get_command(
     return device_command;
 }
 
+std::vector<std::string> split_string(const std::string& input, char delimiter = '_') {
+    std::vector<std::string> tokens;
+    std::stringstream ss(input);
+    std::string token;
+    
+    while (std::getline(ss, token, delimiter)) {
+        tokens.push_back(token);
+    }
+    
+    return tokens;
+}
+
 } // namespace service_utils
