@@ -14,12 +14,6 @@ weighing_machine::weighing_machine(std::string ip, int port)
     weiging_tcp.connect(ip, port);
 }
 
-weighing_machine::~weighing_machine()
-{
-    // Close TCP connection
-    weiging_tcp.close();
-}
-
 bool weighing_machine::front_door(bool state)
 {
     if (state == DOOR_OPEN) {
@@ -202,4 +196,10 @@ bool weighing_machine::make_action(std::string step)
         // Unknown command
         return false;
     }
+}
+
+weighing_machine::~weighing_machine()
+{
+    // Close TCP connection
+    weiging_tcp.close();
 }
