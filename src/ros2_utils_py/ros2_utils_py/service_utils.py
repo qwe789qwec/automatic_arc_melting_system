@@ -142,17 +142,3 @@ def get_command(command: str, device_id: str) -> str:
         return "error"
     
     return device_command
-
-
-def split_string(input_str: str, delimiter: str = '_') -> list:
-    """
-    Split a string by delimiter.
-    
-    Args:
-        input_str: Input string to split
-        delimiter: Character to split on (default: '_')
-        
-    Returns:
-        list: List of token strings
-    """
-    return input_str.split(delimiter)
