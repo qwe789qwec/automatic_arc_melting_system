@@ -148,12 +148,12 @@ bool weighing_machine::make_action(std::string step)
         return false;
     }
 
-    if (action == "none") {
-        std::vector<std::string>token = service_utils::split_string(command);
-        if (token.size() > 1) {
-            action = token[1];
-        }
+    std::vector<std::string>token = service_utils::split_string(command);
+    // if no token found, return false
+    if (token.size() < 2 && action == "none") {
+        return false;
     }
+    action = token[1];
 
     // Process different action types
     if (action == "init") {
