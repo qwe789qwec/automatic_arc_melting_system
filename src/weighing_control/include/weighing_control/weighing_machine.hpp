@@ -4,35 +4,38 @@
 #include <chrono>
 #include <cstdlib>
 #include <memory>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-
+#include <string>
 #include "tcp_handle/tcp_socket.hpp"
-
-#define opendoor true
-#define closedoor false
-
-#define lock_dose true
-#define unlock_dose false
 
 class weighing_machine
 {
 public:
-	weighing_machine(std::string ip, int port);
+    weighing_machine(std::string ip, int port);
+    ~weighing_machine();
+    
+    bool make_action(std::string step);
+    std::string getsampledata();
+
+    bool data_flag;
+
+private:
+    enum DoorState {
+        DOOR_OPEN = true,
+        DOOR_CLOSE = false
+    };
+    
+    enum DosingHeadState {
+        DOSE_LOCK = true,
+        DOSE_UNLOCK = false
+    };
+    
     bool frontdoor(bool state);
     bool dosinghead(bool state);
     bool setgram(std::string gram);
     bool startdosing();
-    std::string getsampledata();
-    std::string takedata(const std::string& xml_data, std::string start, std::string end) ;
-    bool make_action(std::string step);
-    bool data_flag;
-    std::string action;
-	~weighing_machine();
-
-private:
+    std::string takedata(const std::string& xml_data, std::string start, std::string end);
+    
     tcp_socket weiging_tcp;
 };
 
-#endif // RECTANGLE_HPP
+#endif // WEIGHING_MACHINE_HPP
