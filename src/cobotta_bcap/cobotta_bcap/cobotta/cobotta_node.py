@@ -8,6 +8,8 @@ from rclpy.node import Node
 from msg_format.srv import ProcessService
 from msg_format.msg import ProcessMsg
 
+from ros2_utils_py.service_utils import call_service
+
 from .cobotta import cobotta
 
 class CobottaNode(Node):
@@ -26,6 +28,9 @@ class CobottaNode(Node):
         self.last_process = "cobotta init"
         self.processing_lock = threading.Lock()
         self.service_in_progress = False
+        
+        # create cobotta instance
+        self.process_client = self.create_client(ProcessService, 'process_service')
         
         # create subscriber
         self.subscription = self.create_subscription(
@@ -46,8 +51,17 @@ class CobottaNode(Node):
             try:
                 cobotta_handle = cobotta(self.host, self.port, self.timeout)
                 action_result = cobotta_handle.make_action(process)
+                
                 if action_result != "error":
-                    self.call_process_service("cobotta standby")
+                    success = call_service(
+                        client=self.process_client,
+                        logger=self.get_logger(),
+                        action="cobotta standby",
+                        service_name="process_service"
+                    )
+                    
+                    if not success:
+                        self.get_logger().error('Failed to call standby service')
                 else:
                     self.get_logger().error('Error cannot make action')
             
@@ -55,18 +69,3 @@ class CobottaNode(Node):
                 self.get_logger().error(f'Exception during action execution: {str(e)}')
             
             time.sleep(1.5)
-    
-    def call_process_service(self, action):
-        client = self.create_client(ProcessService, 'process_service')
-
-        while not client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('Service not available, waiting again...')
-
-        # create request
-        request = ProcessService.Request()
-        request.action = action
-        # send request
-        future = client.call_async(request)
-        rclpy.spin_until_future_complete(self, future)
-        
-        return future.result()
