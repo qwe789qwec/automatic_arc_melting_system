@@ -19,7 +19,7 @@ private:
 
     // Device state manager
     DeviceStateManager devices_manager_;
-    std::vector<std::string> devices_list_ = {"weighing", "slider", "slider1", "plc", "cobotta"};
+    std::vector<std::string> devices_list_ = {"weighing", "slider", "plc", "cobotta"};
 
     
     // Current step and step index

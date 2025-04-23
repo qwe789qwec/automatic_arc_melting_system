@@ -93,4 +93,34 @@ std::shared_future<bool> call_service_async(
     return future;
 }
 
+std::string get_commend(
+    const std::string& command,
+    const std::string& device_id) {
+    
+    if (command == "test" || command == "init"){
+        return command;
+    }
+
+    std::string::size_type pos = command.find(device_id);
+    if (pos == std::string::npos) {
+        return "error";
+    }
+
+    // get the position of the underscore
+    std::string::size_type underscorePos = pos + device_id.length();
+    if (underscorePos >= command.length() || command[underscorePos] != '_') {
+        return "error";
+    }
+    // get the command
+    std::string::size_type spacePos = command.find(' ', underscorePos + 1);
+    std::string device_command = command.substr(pos, spacePos - pos);
+
+    // check if the action is empty
+    if (device_command.empty()) {
+        return "error";
+    }
+    
+    return device_command;
+}
+
 } // namespace service_utils

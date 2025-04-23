@@ -98,13 +98,6 @@ bool DeviceStateManager::addComponent(const std::string& device_id, const std::s
 }
 
 Situation DeviceStateManager::getDeviceStatus(const std::string& command) const {
-    auto it = devices_.find(command);
-    if (it != devices_.end()) {
-        const auto& [id, device] = *it;
-        const auto& status = device->getStatus();
-        return status;
-    }
-
 	size_t first_underscore = command.find('_');
 	std::string device_id, component_id;
     if (first_underscore != std::string::npos) {
@@ -132,57 +125,66 @@ Situation DeviceStateManager::getDeviceStatus(const std::string& command) const 
     return Situation::ERROR;
 }
 
-bool DeviceStateManager::updateDeviceStatus(const std::string& message) {   
-    std::string device_id;
-    std::string component_id;
-    std::string status_str;
+bool DeviceStateManager::updateDeviceStatus(const std::string& message) {
+    std::istringstream iss(message);
+    std::string device_message;
+    bool all_success = true;
     
-    size_t first_underscore = message.find('_');
-    if (first_underscore == std::string::npos) {
-        // format error
-        printf("Format error: missing underscore separator\n");
-        return false;
-    }
-    
-    device_id = message.substr(0, first_underscore);
-    
-    // find the second underscore
-    size_t second_underscore = message.find('_', first_underscore + 1);
-    if (second_underscore == std::string::npos) {
-        // deviceId_statusStr
-        status_str = message.substr(first_underscore + 1);
-    } else {
-        // deviceId_componentId_statusStr
-        component_id = message.substr(first_underscore + 1, second_underscore - first_underscore - 1);
-        status_str = message.substr(second_underscore + 1);
-    }
-    
-    // set status
-    Situation status = Situation::ERROR;
-    if (status_str == "online") status = Situation::ONLINE;
-    else if (status_str == "offline") status = Situation::OFFLINE;
-    else if (status_str == "action") status = Situation::ACTION;
-    else if (status_str == "standby") status = Situation::STANDBY;
-    else {
-        printf("Invalid status string: %s\n", status_str.c_str());
-        return false;
-    }
-    
-    // update device status
-    if (hasDevice(device_id)) {
-        if (component_id.empty()) {
-            devices_[device_id]->setStatus(status);
-        } else {
-            if (!devices_[device_id]->hasComponent(component_id)) {
-                return false; // component not found
-            }
-            devices_[device_id]->setComponentStatus(component_id, status);
+    while (iss >> device_message) {
+        std::string device_id;
+        std::string component_id;
+        std::string status_str;
+        
+        size_t first_underscore = device_message.find('_');
+        if (first_underscore == std::string::npos) {
+            printf("Format error: missing underscore separator in message: %s\n", device_message.c_str());
+            all_success = false;
+            continue;
         }
-    } else {
-        return false; // device not found
+        
+        device_id = device_message.substr(0, first_underscore);
+        
+        // find the second underscore
+        size_t second_underscore = device_message.find('_', first_underscore + 1);
+        if (second_underscore == std::string::npos) {
+            // deviceId_statusStr
+            status_str = device_message.substr(first_underscore + 1);
+        } else {
+            // deviceId_componentId_statusStr
+            component_id = device_message.substr(first_underscore + 1, second_underscore - first_underscore - 1);
+            status_str = device_message.substr(second_underscore + 1);
+        }
+        
+        // set status
+        Situation status = Situation::ERROR;
+        if (status_str == "online") status = Situation::ONLINE;
+        else if (status_str == "offline") status = Situation::OFFLINE;
+        else if (status_str == "action") status = Situation::ACTION;
+        else if (status_str == "standby") status = Situation::STANDBY;
+        else {
+            status = Situation::ACTION;
+        }
+        
+        // update status
+        if (hasDevice(device_id)) {
+            if (component_id.empty()) {
+                devices_[device_id]->setStatus(status);
+            } else {
+                if (!devices_[device_id]->hasComponent(component_id)) {
+                    printf("Component %s not found in device %s\n", component_id.c_str(), device_id.c_str());
+                    all_success = false;
+                    continue;
+                }
+                devices_[device_id]->setComponentStatus(component_id, status);
+            }
+        } else {
+            printf("Device %s not found\n", device_id.c_str());
+            all_success = false;
+            continue;
+        }
     }
     
-    return true; // update success
+    return all_success;  // 只有全部更新成功時才返回 true
 }
 
 bool DeviceStateManager::checkDevices(Situation status) const {

@@ -27,6 +27,15 @@ ProcessController::ProcessController(std::string command)
     moveToNextStep();
 }
 
+std::string ProcessController::updateDeviceStatuses(const std::string& command) {
+    bool message = devices_manager_.updateDeviceStatus(command);
+    if (message) {
+        return "update device status success";
+    } else {
+        return "update device status error";
+    }
+}
+
 void ProcessController::initializeSequences() {
 
     char cwd[PATH_MAX];
@@ -43,10 +52,10 @@ void ProcessController::initializeSequences() {
     if (!file.is_open()) {
         std::cerr << "Error opening file: " << secquence_file_ << std::endl;
         sequence_ = {
-            "slider init cobotta init weighing init plc init",
-            "slider shelf1 plc buzz",
-            "weighing open slider weight_pos cobotta test",
-            "slider init cobotta init weighing init plc init",
+            "slider_init cobotta_init weighing_init plc_init",
+            "slider_shelf1 plc_buzz",
+            "weighing_open slider_weight_pos cobotta_test",
+            "slider_init cobotta_init weighing_init plc_init",
             "finished"
         };
         return;
@@ -68,34 +77,6 @@ void ProcessController::initializeSequences() {
 
 std::string ProcessController::getCurrentStep() const {
     return current_step_;
-}
-
-std::string ProcessController::updateDeviceStatuses(const std::string& command) {    
-    std::string update = "";
-    for (const auto& device : devices_list_) {
-        // match the device name in the command
-        std::regex device_pattern("\\b" + device + "\\s+([^\\s]+(?:\\s+[^\\s]+)*)");
-        std::smatch matches;
-        
-        // search for the device in the command
-        if (std::regex_search(command, matches, device_pattern) && matches.size() > 1) {
-            std::string action = matches[1].str();
-            if (action == "standby") {
-                devices_manager_.updateDeviceStatus(device + " standby");
-                update += device + " standby ";
-            }
-            else{
-                devices_manager_.updateDeviceStatus(device + " " + "action");
-                update += device + " " + " action ";
-            }
-        }
-    }
-
-    if (update == "") {
-        update = "No devices found in command";
-    }
-
-    return update;
 }
 
 bool ProcessController::isReadyToNextStep() const {

@@ -26,4 +26,8 @@ std::shared_future<bool> call_service_async(
 
 } // namespace service_utils
 
+std::string get_commend(
+    const std::string& command,
+    const std::string& device_id);
+
 #endif // SERVICE_UTILS_HPP
