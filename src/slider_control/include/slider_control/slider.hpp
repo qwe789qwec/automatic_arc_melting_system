@@ -13,18 +13,19 @@ public:
 
 private:
     // Position Constants - Slider Positions
-    static constexpr const char* ARC_POS = "00000001";
-    static constexpr const char* SLIDER1_INIT = "00000001";  // slider for cobotta 0.000 mm, also cup stock (left)
-    static constexpr const char* SLIDER2_INIT = "0001869F";  // slider for vertical 100.000 mm
-    static constexpr const char* SLIDER3_INIT = "00000001";  // slider for horizontal 3.000 mm
-    static constexpr const char* CUP_STOCK_R = "0000EA60";   // cup stock (right), slider1 60.000 mm
-    static constexpr const char* SHELF_POS1 = "000249F0";
-    static constexpr const char* SHELF_POS2 = "00033450";
-    static constexpr const char* SHELF_POS3 = "00041EB0";
-    static constexpr const char* SHELF_POS4 = "00050910";
-    static constexpr const char* SHELF_POS5 = "0005F370";
-    static constexpr const char* WEIGHING_POS = "0009C400";  // weighing position, slider1 640.000 mm
-    static constexpr const char* PRODUCT_STOCK_R = "000AAA78"; // arc product (right), slider1 699.000 mm
+    static constexpr const int ZERO = 0;
+    static constexpr const int SLIDER1_INIT = 0;
+    static constexpr const int SLIDER2_INIT = 100000;  // slider for vertical 100.000 mm
+    static constexpr const int SLIDER3_INIT = 0;  // slider for horizontal 3.000 mm
+    static constexpr const int CUP_STOCK_R = 600000;   // cup stock (right), slider1 60.000 mm
+    static constexpr const int SHELF_POS = 150000;  // shelf position, slider1 150.000 mm
+    // static constexpr const char* SHELF_POS1 = "000249F0";
+    // static constexpr const char* SHELF_POS2 = "00033450";
+    // static constexpr const char* SHELF_POS3 = "00041EB0";
+    // static constexpr const char* SHELF_POS4 = "00050910";
+    // static constexpr const char* SHELF_POS5 = "0005F370";
+    static constexpr const int WEIGHING_POS = 640000;  // weighing position, slider1 640.000 mm
+    static constexpr const int PRODUCT_STOCK_R = 699000; // arc product (right), slider1 699.000 mm
 
     // Position Constants - Cup Handling
     static constexpr const char* SLIDER2_LIFTCUP = "000055F0";   // vertical slider position to lift cup

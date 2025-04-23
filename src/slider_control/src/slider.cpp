@@ -225,16 +225,16 @@ void slider::put_cup_arc()
     std::string putSpeed = "4";
     
     // Movement sequence to put cup into arc furnace
-    move(MOTOR_3, SLIDER3_INIT);
-    move(MOTOR_2, SLIDER2_INIT);
+    move(MOTOR_3, length2string(SLIDER3_INIT));
+    move(MOTOR_2, length2string(SLIDER2_INIT));
     move(MOTOR_2, SLIDER2_LIFTCUP);
     move(MOTOR_3, SLIDER3_OFFCUP_ARC);
     move(MOTOR_3, SLIDER3_INTO_ARC, putSpeed);
     move(MOTOR_2, SLIDER2_PUTCUP_ARC, putSpeed);
     move(MOTOR_3, SLIDER3_OFFCUP_ARC, putSpeed);
     move(MOTOR_2, SLIDER2_BEFORECUP_ARC, putSpeed);
-    move(MOTOR_3, SLIDER3_INIT);
-    move(MOTOR_2, SLIDER2_INIT);
+    move(MOTOR_3, length2string(SLIDER3_INIT));
+    move(MOTOR_2, length2string(SLIDER2_INIT));
 }
 
 void slider::take_cup_arc()
@@ -242,16 +242,16 @@ void slider::take_cup_arc()
     std::string putSpeed = "4";
     
     // Movement sequence to take cup from arc furnace
-    move(MOTOR_3, SLIDER3_INIT);
-    move(MOTOR_2, SLIDER2_INIT);
+    move(MOTOR_3, length2string(SLIDER3_INIT));
+    move(MOTOR_2, length2string(SLIDER2_INIT));
     move(MOTOR_2, SLIDER2_LIFTCUP);
     move(MOTOR_3, SLIDER3_BEFORECUP_ARC);
     move(MOTOR_2, SLIDER2_OFFCUP_ARC);
     move(MOTOR_3, SLIDER3_PUTCUP_ARC, putSpeed);
     move(MOTOR_2, SLIDER2_INTO_ARC, putSpeed);
     move(MOTOR_3, SLIDER3_BEFORECUP_ARC, putSpeed);
-    move(MOTOR_3, SLIDER3_INIT);
-    move(MOTOR_2, SLIDER2_INIT);
+    move(MOTOR_3, length2string(SLIDER3_INIT));
+    move(MOTOR_2, length2string(SLIDER2_INIT));
 }
 
 bool slider::make_action(std::string step)
@@ -279,9 +279,9 @@ bool slider::make_action(std::string step)
     // Process different actions
     if(action == "init") {
         printf("Start init in sub process\n");
-        move(MOTOR_1, SLIDER1_INIT);
-        move(MOTOR_3, SLIDER3_INIT);
-        move(MOTOR_2, SLIDER2_INIT);
+        move(MOTOR_1, length2string(SLIDER1_INIT), "100");
+        move(MOTOR_3, length2string(SLIDER3_INIT), "100");
+        move(MOTOR_2, length2string(SLIDER2_INIT), "100");
         move(MOTOR_Z, length2string(70*1000), "08");
         move(MOTOR_X, length2string(57*1000), "08");
         move(MOTOR_Y, length2string(70*1000), "08");
@@ -295,25 +295,15 @@ bool slider::make_action(std::string step)
     }
     else if(action == "pos1") {
         printf("Start move to pos1 in sub process\n");
-        move(MOTOR_1, SLIDER1_INIT, "100");
+        move(MOTOR_1, length2string(SLIDER1_INIT), "100");
     }
-    else if(action == "shelf1") {
-        move(MOTOR_1, SHELF_POS1, "100");
-    }
-    else if(action == "shelf2") {
-        move(MOTOR_1, SHELF_POS2, "100");
-    }
-    else if(action == "shelf3") {
-        move(MOTOR_1, SHELF_POS3, "100");
-    }
-    else if(action == "shelf4") {
-        move(MOTOR_1, SHELF_POS4, "100");
-    }
-    else if(action == "shelf5") {
-        move(MOTOR_1, SHELF_POS5, "100");
+    else if(action == "shelf") {
+        int position = std::stoi(token[2]);
+        std::string shelf_pos = length2string(SHELF_POS + (position - 1) * 60000);
+        move(MOTOR_1, shelf_pos, "100");
     }
     else if(action == "weightPos") {
-        move(MOTOR_1, WEIGHING_POS, "100");
+        move(MOTOR_1, length2string(WEIGHING_POS), "100");
     }
     else if(action == "putCupArc") {
         put_cup_arc();
@@ -322,10 +312,10 @@ bool slider::make_action(std::string step)
         take_cup_arc();
     }
     else if(action == "cupStockR") {
-        move(MOTOR_1, CUP_STOCK_R, "100");
+        move(MOTOR_1, length2string(CUP_STOCK_R), "100");
     }
     else if(action == "productStockR") {
-        move(MOTOR_1, PRODUCT_STOCK_R, "100");
+        move(MOTOR_1, length2string(PRODUCT_STOCK_R), "100");
     }
 	else if(action == "arc") {
 		std::string dir = token[2];

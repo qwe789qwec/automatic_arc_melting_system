@@ -123,7 +123,7 @@ std::string get_command(
     return device_command;
 }
 
-std::vector<std::string> split_string(const std::string& input, char delimiter = '_') {
+std::vector<std::string> split_string(const std::string& input, char delimiter) {
     std::vector<std::string> tokens;
     std::stringstream ss(input);
     std::string token;
