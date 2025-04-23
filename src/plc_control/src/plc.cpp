@@ -199,29 +199,33 @@ bool plc::make_action(std::string step)
             usleep(1000 * 1000);  // 1 second delay
         }
     }
-    else if(action == "arcOn"){
-        // Turn on arc
-        std::cout << "arc on" << std::endl;
-        return_message = coilWrite(ARC_ON_M20, COIL_ON);
+    else if(action == "arc"){
+        std::string coil = "none";
+        if(token[2] == "on"){
+            // Turn on arc
+            std::cout << "arc on" << std::endl;
+            coil = ARC_ON_M20;
+        }
+        else if(token[2] == "off"){
+            // Turn off arc
+            std::cout << "arc off" << std::endl;
+            coil = ARC_OFF_M21;
+        }
+        return_message = coilWrite(coil.c_str(), COIL_ON);
         usleep(3 * 1000 * 1000);  // 3 second delay
-        return_message = coilWrite(ARC_ON_M20, COIL_OFF);
+        return_message = coilWrite(coil.c_str(), COIL_OFF);
     }
-    else if(action == "arcOff"){
-        // Turn off arc
-        std::cout << "arc off" << std::endl;
-        return_message = coilWrite(ARC_OFF_M21, COIL_ON);
-        usleep(3 * 1000 * 1000);  // 3 second delay
-        return_message = coilWrite(ARC_OFF_M21, COIL_OFF);
-    }
-    else if(action == "waterOn"){
-        // Turn on water
-        std::cout << "water start" << std::endl;
-        return_message = coilWrite(WATER_Y4, COIL_ON);
-    }
-    else if(action == "waterOff"){
-        // Turn off water
-        std::cout << "water off" << std::endl;
-        return_message = coilWrite(WATER_Y4, COIL_OFF);
+    else if(action == "water"){
+        if(token[2] == "on"){
+            // Turn on water
+            std::cout << "water on" << std::endl;
+            return_message = coilWrite(WATER_Y4, COIL_ON);
+        }
+        else if(token[2] == "off"){
+            // Turn off water
+            std::cout << "water off" << std::endl;
+            return_message = coilWrite(WATER_Y4, COIL_OFF);
+        }
     }
     else if(action == "buzz"){
         // Activate buzzer
@@ -230,29 +234,36 @@ bool plc::make_action(std::string step)
         usleep(3 * 1000 * 1000);  // 3 second delay
         return_message = coilWrite(BUZZ_Y17, COIL_OFF);
     }
-    else if(action == "gateOpen"){
-        // Open gate valve
-        std::cout << "gate start" << std::endl;
-        return_message = coilWrite(OPEN_GATE_VALVE_M17, COIL_ON);
+    else if(action == "gate"){
+        // Control gate valve based on command
+        std::string coil = "none";
+        if(token[2] == "open"){
+            // Open gate valve
+            std::cout << "gate start" << std::endl;
+            coil = OPEN_GATE_VALVE_M17;
+        }
+        else if(token[2] == "close"){
+            // Close gate valve
+            std::cout << "gate start" << std::endl;
+            coil = CLOSE_GATE_VALVE_M19;
+        }
+        return_message = coilWrite(coil.c_str(), COIL_ON);
+        usleep(2 * 1000 * 1000);  // 2 second delay
+        return_message = coilWrite(coil.c_str(), COIL_OFF);
         usleep(20 * 1000 * 1000);  // 20 second delay
-        return_message = coilWrite(OPEN_GATE_VALVE_M17, COIL_OFF);
     }
-    else if(action == "gateClose"){
-        // Close gate valve
-        std::cout << "gate start" << std::endl;
-        return_message = coilWrite(CLOSE_GATE_VALVE_M19, COIL_ON);
-        usleep(20 * 1000 * 1000);  // 20 second delay
-        return_message = coilWrite(CLOSE_GATE_VALVE_M19, COIL_OFF);
-    }
-    else if(action == "airOn"){
-        // Turn on air flow
-        std::cout << "air start" << std::endl;
-        return_message = coilWrite(AIR_FLOW_Y12, COIL_ON);
-    }
-    else if(action == "airOff"){
-        // Turn off air flow
-        std::cout << "air off" << std::endl;
-        return_message = coilWrite(AIR_FLOW_Y12, COIL_OFF);
+    else if(action == "air"){
+        // Control air flow based on command
+        if(token[2] == "on"){
+            // Turn on air flow
+            std::cout << "air on" << std::endl;
+            return_message = coilWrite(AIR_FLOW_Y12, COIL_ON);
+        }
+        else if(token[2] == "off"){
+            // Turn off air flow
+            std::cout << "air off" << std::endl;
+            return_message = coilWrite(AIR_FLOW_Y12, COIL_OFF);
+        }
     }
     else if(action == "checkEMG"){
         // Check emergency stop status
@@ -302,6 +313,7 @@ bool plc::make_action(std::string step)
     
     return true;
 }
+
 plc::~plc()
 {
     // Turn off water and close connection

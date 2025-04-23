@@ -239,7 +239,7 @@ void slider::put_cup_arc()
 
 void slider::take_cup_arc()
 {
-    std::string putSpeed = "4";
+    std::string takeSpeed = "4";
     
     // Movement sequence to take cup from arc furnace
     move(MOTOR_3, length2string(SLIDER3_INIT));
@@ -247,9 +247,9 @@ void slider::take_cup_arc()
     move(MOTOR_2, SLIDER2_LIFTCUP);
     move(MOTOR_3, SLIDER3_BEFORECUP_ARC);
     move(MOTOR_2, SLIDER2_OFFCUP_ARC);
-    move(MOTOR_3, SLIDER3_PUTCUP_ARC, putSpeed);
-    move(MOTOR_2, SLIDER2_INTO_ARC, putSpeed);
-    move(MOTOR_3, SLIDER3_BEFORECUP_ARC, putSpeed);
+    move(MOTOR_3, SLIDER3_PUTCUP_ARC, takeSpeed);
+    move(MOTOR_2, SLIDER2_INTO_ARC, takeSpeed);
+    move(MOTOR_3, SLIDER3_BEFORECUP_ARC, takeSpeed);
     move(MOTOR_3, length2string(SLIDER3_INIT));
     move(MOTOR_2, length2string(SLIDER2_INIT));
 }
@@ -320,12 +320,12 @@ bool slider::make_action(std::string step)
 	else if(action == "arc") {
 		std::string dir = token[2];
 		std::string times = token[3];
-		std::string stop_times = token[4];
+		// std::string stop_times = token[4];
 		int direction = (dir == "cw") ? CW : CCW;
 		int times_int = std::stoi(times);
-		int stop_times_int = std::stoi(stop_times);
+		// int stop_times_int = std::stoi(stop_times);
 		
-		arc_path(direction, times_int, stop_times_int);
+		arc_path(direction, times_int, 3);
 	}
     else {
         return false;
