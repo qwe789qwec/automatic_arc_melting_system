@@ -15,11 +15,12 @@ ProcessController::ProcessController(std::string command)
       step_index_(0){
     
     // Initialize device state manager
+    devices_manager_.initializing = true;
     devices_manager_.addDevice("weighing");
     devices_manager_.addDevice("slider");
     devices_manager_.addDevice("cobotta");
     devices_manager_.addDevice("plc");
-    devices_manager_.initialized = true;
+    devices_manager_.initializing = false;
     
     // Initialize process sequences
     initializeSequences();

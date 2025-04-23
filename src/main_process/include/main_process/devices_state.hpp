@@ -19,8 +19,8 @@ public:
     Device(const std::string& id);
     
     std::string getId() const { return id_; }
-    Situation getStatus() const { return status_; }
     void setStatus(Situation status);
+    Situation getStatus() const { return status_; }
     
     void addComponent(const std::string& component_id);
     bool hasComponent(const std::string& component_id) const;
@@ -39,19 +39,19 @@ class DeviceStateManager {
 public:
     DeviceStateManager();
     
-    void addDevice(const std::string& device_id);
-    void removeDevice(const std::string& device_id);
+    bool addDevice(const std::string& device_id);
     bool hasDevice(const std::string& device_id) const;
+    bool removeDevice(const std::string& device_id);
     
-    void addComponent(const std::string& device_id, const std::string& component_id);
+    bool addComponent(const std::string& device_id, const std::string& component_id);
     
     Situation getDeviceStatus(const std::string& device_id) const;
-    void updateDeviceStatus(const std::string& message);
+    bool updateDeviceStatus(const std::string& message);
     
     bool checkDevices(Situation status) const;
     bool checkDevicesList(const std::vector<std::string>& devicesList, Situation status) const;
 
-    bool initialized;
+    bool initializing;
     
 private:
     std::map<std::string, std::shared_ptr<Device>> devices_;
