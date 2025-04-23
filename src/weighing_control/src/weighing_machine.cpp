@@ -20,7 +20,7 @@ weighing_machine::~weighing_machine()
     weiging_tcp.close();
 }
 
-bool weighing_machine::frontdoor(bool state)
+bool weighing_machine::front_door(bool state)
 {
     if (state == DOOR_OPEN) {
         // Send open door command
@@ -35,7 +35,7 @@ bool weighing_machine::frontdoor(bool state)
     return weiging_tcp.check_receive("QRA 60 7 A", 6);
 }
 
-bool weighing_machine::dosinghead(bool state)
+bool weighing_machine::dosing_head(bool state)
 {
     if (state == DOSE_LOCK) {
         // Send lock dosing head command
@@ -50,7 +50,7 @@ bool weighing_machine::dosinghead(bool state)
     return weiging_tcp.check_receive("QRA 60 2 A", 6);
 }
 
-bool weighing_machine::setgram(std::string gram)
+bool weighing_machine::set_gram(std::string gram)
 {
     // Compose and send weight setting command
     std::string message = "QRD 1 1 5 " + gram + "\r\n";
@@ -60,7 +60,7 @@ bool weighing_machine::setgram(std::string gram)
     return weiging_tcp.check_receive("QRD 1 1 5 A", 6);
 }
 
-bool weighing_machine::startdosing()
+bool weighing_machine::start_dosing()
 {
     // Send dosing start command
     weiging_tcp.write("QRA 61 1\r\n");
@@ -89,7 +89,7 @@ std::string weighing_machine::getsampledata()
     {
         if (weiging_tcp.receive(receivemessage)) {
             // Extract weight value from XML-formatted response
-            receivemessage = takedata(receivemessage, "<Content Unit=\"mg\">", "</Content>");
+            receivemessage = take_data(receivemessage, "<Content Unit=\"mg\">", "</Content>");
             if (receivemessage != "none") {
                 return receivemessage;
             }
@@ -113,7 +113,7 @@ std::string weighing_machine::getsampledata()
     }
 }
 
-std::string weighing_machine::takedata(const std::string& xml_data, std::string start, std::string end)
+std::string weighing_machine::take_data(const std::string& xml_data, std::string start, std::string end)
 {
     // Find start tag position
     size_t start_pos = xml_data.find(start);
@@ -133,10 +133,32 @@ std::string weighing_machine::takedata(const std::string& xml_data, std::string 
     return "none";
 }
 
+std::string weighing_machine::get_action(std::string step)
+{
+    // separate action by underscore
+    size_t first_underscore = step.find('_');
+    if (step == "test" || step == "init") {
+        // Handle special cases for "init" and "test"
+        return step;
+    }
+
+    if (first_underscore == std::string::npos) {
+        printf("Format error: missing underscore separator in message: %s\n", step.c_str());
+        return "error";
+    }
+
+    // Extract action from the command
+    std::string action = step.substr(0, first_underscore);
+    
+    // Return the extracted action
+    return action;
+}
+
 bool weighing_machine::make_action(std::string step)
 {    
     // Extract weighing machine specific action
-    std::string action = service_utils::get_command(step, "weighing");
+    std::string command = service_utils::get_command(step, "weighing");
+    std::string action = get_action(command);
     if (action == "error") {
         return false;
     }
@@ -145,15 +167,15 @@ bool weighing_machine::make_action(std::string step)
     if (action == "init") {
         // Initialize by closing door
         printf("start init in sub process\n");
-        return frontdoor(DOOR_CLOSE);
+        return front_door(DOOR_CLOSE);
     }
     else if (action == "open") {
         // Open front door
-        return frontdoor(DOOR_OPEN);
+        return front_door(DOOR_OPEN);
     }
     else if (action == "close") {
         // Close front door
-        return frontdoor(DOOR_CLOSE);
+        return front_door(DOOR_CLOSE);
     }
     else if (action.compare(0, 5, "mgram") == 0) {
         // Process weight dosing command (e.g., "mgram30")
@@ -164,12 +186,12 @@ bool weighing_machine::make_action(std::string step)
         usleep(1000 * 1000 * 3);
         
         // Execute full dosing sequence
-        frontdoor(DOOR_CLOSE);
-        dosinghead(DOSE_LOCK);
-        setgram(weight_value);
-        startdosing();
-        dosinghead(DOSE_UNLOCK);
-        frontdoor(DOOR_OPEN);
+        front_door(DOOR_CLOSE);
+        dosing_head(DOSE_LOCK);
+        set_gram(weight_value);
+        start_dosing();
+        dosing_head(DOSE_UNLOCK);
+        front_door(DOOR_OPEN);
         return true;
     }
     else if (action.compare(0, 6, "Tmgram") == 0) {
@@ -178,10 +200,10 @@ bool weighing_machine::make_action(std::string step)
         std::string weight_value = action.substr(6);
         
         // Execute dosing sequence without door operations
-        dosinghead(DOSE_LOCK);
-        setgram(weight_value);
-        startdosing();
-        dosinghead(DOSE_UNLOCK);
+        dosing_head(DOSE_LOCK);
+        set_gram(weight_value);
+        start_dosing();
+        dosing_head(DOSE_UNLOCK);
         return true;
     }
     else {

@@ -29,11 +29,12 @@ private:
         DOSE_UNLOCK = false
     };
     
-    bool frontdoor(bool state);
-    bool dosinghead(bool state);
-    bool setgram(std::string gram);
-    bool startdosing();
-    std::string takedata(const std::string& xml_data, std::string start, std::string end);
+    bool front_door(bool state);
+    bool dosing_head(bool state);
+    bool set_gram(std::string gram);
+    bool start_dosing();
+    std::string take_data(const std::string& xml_data, std::string start, std::string end);
+    std::string get_action(std::string step);
     
     tcp_socket weiging_tcp;
 };
