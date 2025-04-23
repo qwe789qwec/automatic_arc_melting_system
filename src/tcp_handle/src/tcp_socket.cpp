@@ -165,48 +165,6 @@ bool tcp_socket::check_receive(std::string compare, int timeout_seconds)
 	return true;
 }
 
-std::string tcp_socket::get_action(std::string compare, std::string target)
-{	
-	if (compare == "test"){
-		return "test";
-	}
-	else if (compare == "init"){
-		return "init";
-	}
-
-    std::string::size_type pos = compare.find(target);
-    if (pos == std::string::npos) {
-        return "error";
-    }
-
-	// get the position of the underscore
-    std::string::size_type underscorePos = pos + target.length();
-    if (underscorePos >= compare.length() || compare[underscorePos] != '_') {
-        return "error";
-    }
-
-	// find the position of the first space after the underscore
-    std::string::size_type actionStart = underscorePos + 1;
-    std::string::size_type spacePos = compare.find(' ', actionStart);
-    
-    // extract the action string
-    std::string action;
-    if (spacePos == std::string::npos) {
-        // no space found, take the rest of the string
-        action = compare.substr(actionStart);
-    } else {
-        // space found, take the substring until the space
-        action = compare.substr(actionStart, spacePos - actionStart);
-    }
-
-    // check if the action is empty
-    if (action.empty()) {
-        return "error";
-    }
-    
-    return action;
-}
-
 void tcp_socket::close()
 {
 	if (socket_fd > 0)

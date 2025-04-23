@@ -93,9 +93,9 @@ std::shared_future<bool> call_service_async(
     return future;
 }
 
-std::string get_commend(
-    const std::string& command,
-    const std::string& device_id) {
+std::string get_command(
+    std::string command,
+    const std::string device_id) {
     
     if (command == "test" || command == "init"){
         return command;
@@ -103,7 +103,7 @@ std::string get_commend(
 
     std::string::size_type pos = command.find(device_id);
     if (pos == std::string::npos) {
-        return "error";
+        return "none";
     }
 
     // get the position of the underscore

@@ -13,8 +13,8 @@
 #define opendoor true
 #define closedoor false
 
-#define lock true
-#define unlock false
+#define lock_dose true
+#define unlock_dose false
 
 class weighing_machine
 {

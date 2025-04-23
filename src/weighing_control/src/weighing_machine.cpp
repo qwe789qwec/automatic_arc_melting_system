@@ -6,6 +6,7 @@
 
 #include "weighing_control/weighing_machine.hpp"
 #include "tcp_handle/tcp_socket.hpp"
+#include "ros2_utils/service_utils.hpp"
 
 weighing_machine::weighing_machine(std::string ip, int port)
 {   
@@ -27,10 +28,10 @@ bool weighing_machine::frontdoor(bool state)
 
 bool weighing_machine::dosinghead(bool state)
 {
-	if(state == lock){
+	if(state == lock_dose){
         weiging_tcp.write("QRA 60 2 4\r\n"); // lock dosing head
     }
-    else if(state == unlock){
+    else if(state == unlock_dose){
         weiging_tcp.write("QRA 60 2 3\r\n"); // unlock dosing head
     }
 
@@ -103,16 +104,10 @@ std::string weighing_machine::takedata(const std::string& xml_data,  std::string
 
 bool weighing_machine::make_action(std::string step)
 {	
-	action = weiging_tcp.get_action(step, "weighing");
-	if(action.compare("error") == 0 && step.compare("init") != 0){
+	std::string action = service_utils::get_command(step, "weighing");
+	if(action.compare("error") == 0){
 		return false;
 	}
-	else if (step.compare("init") == 0){
-		action = "init";
-	}
-
-	printf("action: %s\n", action.c_str());
-	printf("step: %s\n", step.c_str());
 
 	if(action.compare("init") == 0){
 		printf("start init in sub process");
@@ -129,19 +124,19 @@ bool weighing_machine::make_action(std::string step)
         action = action.substr(5);
         usleep(1000 * 1000 * 3);
 		frontdoor(closedoor);
-        dosinghead(lock);
+        dosinghead(lock_dose);
         setgram(action);
         startdosing();
-        dosinghead(unlock);
+        dosinghead(unlock_dose);
 		frontdoor(opendoor);
     }
 	else if(action.find("Tmgram") == 0){
         //remove the "Tmgram" from the string
         action = action.substr(6);
-        dosinghead(lock);
+        dosinghead(lock_dose);
         setgram(action);
         startdosing();
-        dosinghead(unlock);
+        dosinghead(unlock_dose);
     }
     else{
         return false;

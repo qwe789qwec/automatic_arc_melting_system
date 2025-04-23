@@ -23,11 +23,12 @@ std::shared_future<bool> call_service_async(
     rclcpp::Logger logger,
     const std::string& action,
     const std::string& service_name);
+    
+std::string get_command(
+    std::string command,
+    const std::string device_id);
 
 } // namespace service_utils
 
-std::string get_commend(
-    const std::string& command,
-    const std::string& device_id);
 
 #endif // SERVICE_UTILS_HPP

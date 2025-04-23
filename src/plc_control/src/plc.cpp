@@ -11,6 +11,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "plc_control/plc.hpp"
 #include "tcp_handle/tcp_socket.hpp"
+#include "ros2_utils/service_utils.hpp"
 
 void printcharm(const char *message, int size)
 {   
@@ -173,16 +174,10 @@ void plc::airFlow(std::string flux)
 
 bool plc::make_action(std::string step)
 {	
-	std::string action = plc_tcp.get_action(step, "plc");
-	if(action.compare("error") == 0 && step.compare("init") != 0){
+	std::string action = service_utils::get_command(step, "plc");
+	if(action.compare("error") == 0){
 		return false;
 	}
-	else if (step.compare("init") == 0){
-		action = "init";
-	}
-
-	printf("action: %s\n", action.c_str());
-	printf("step: %s\n", step.c_str());
 
     char* return_message;
 

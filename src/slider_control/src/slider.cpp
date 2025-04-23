@@ -11,6 +11,7 @@
 
 #include "slider_control/slider.hpp"
 #include "tcp_handle/tcp_socket.hpp"
+#include "ros2_utils/service_utils.hpp"
 
 slider::slider(std::string ip, int port)
 {
@@ -348,25 +349,10 @@ void slider::take_cup_arc()
 
 bool slider::make_action(std::string step)
 {	
-	std::string action = slider_tcp.get_action(step, "slider");
+	std::string action = service_utils::get_command(step, "slider");
 	if(action.compare("error") == 0){
-		action = slider_tcp.get_action(step, "slider1");
-	}
-	if(action.compare("error") == 0){
-		action = slider_tcp.get_action(step, "slider2");
-	}
-	if(action.compare("error") == 0){
-		action = slider_tcp.get_action(step, "slider3");
-	}
-	if(action.compare("error") == 0 && step.compare("init") != 0){
 		return false;
 	}
-	else if (step.compare("init") == 0){
-		action = "init";
-	}
-
-	printf("action: %s\n", action.c_str());
-	printf("step: %s\n", step.c_str());
 
 	if(action.compare("init") == 0){
 		printf("start init in sub process");
