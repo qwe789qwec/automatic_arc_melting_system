@@ -56,7 +56,7 @@ class CobottaNode(Node):
                     success = call_service(
                         client=self.process_client,
                         logger=self.get_logger(),
-                        action="cobotta standby",
+                        action="cobotta_standby",
                         service_name="process_service"
                     )
                     

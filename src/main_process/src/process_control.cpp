@@ -53,9 +53,9 @@ void ProcessController::initializeSequences() {
         std::cerr << "Error opening file: " << secquence_file_ << std::endl;
         sequence_ = {
             "slider_init cobotta_init weighing_init plc_init",
-            "slider_shelf1 plc_buzz",
+            "slider_shelf_1 plc_buzz",
             "weighing_open slider_weight_pos cobotta_test",
-            "slider_init cobotta_init weighing_init plc_init",
+            "slider_init cobotta_init weighing_init plc_init"
             "finished"
         };
         return;

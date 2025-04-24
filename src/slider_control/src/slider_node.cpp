@@ -47,7 +47,7 @@ void SliderSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr m
         if (action_result) {
             // call process service
             auto future = service_utils::call_service_async(
-                process_client_, this->get_logger(), "slider standby", "Process");
+                process_client_, this->get_logger(), "slider_standby", "Process");
             
         } else {
             RCLCPP_ERROR(this->get_logger(), "Error cannot make action");

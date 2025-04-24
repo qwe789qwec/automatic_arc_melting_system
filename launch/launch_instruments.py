@@ -24,7 +24,7 @@ def generate_launch_description():
         Node(
             package='cobotta_bcap',
             # namespace='cobotta',
-            executable='CobottaControl',
+            executable='CobottaMain',
             # name='cobotta',
             # arguments=['--test', 'default_topic']
         ),
