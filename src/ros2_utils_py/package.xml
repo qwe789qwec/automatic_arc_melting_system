@@ -1,21 +1,20 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>cobotta_bcap</name>
+  <name>ros2_utils_py</name>
   <version>0.0.0</version>
-  <description>control cobotta by bcap protocol</description>
+  <description>Python version of ros2_utils library</description>
   <maintainer email="qwe789qwec@gmail.com">wilson</maintainer>
-  <license>Apache License 2.0</license>
+  <license>Apache-2.0</license>
 
-  <depend>ros2_utils_py</depend>
+  <depend>rclpy</depend>
+  <depend>msg_format</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
+  <test_depend>ament_xmllint</test_depend>
   <test_depend>python3-pytest</test_depend>
-
-  <exec_depend>rclpy</exec_depend>
-  <exec_depend>msg_format</exec_depend>
 
   <export>
     <build_type>ament_python</build_type>

@@ -1,132 +1,244 @@
 #include <chrono>
 #include <thread>
-
 #include <stdio.h>
 #include <unistd.h>
 #include <vector>
-
+#include <iostream>
+#include <sstream>
 #include "main_process/devices_state.hpp"
 
-deviceState::deviceState(){
-	// initialize the device state
-	initialized = false;
+// Device
+Device::Device(const std::string& id) 
+    : id_(id), status_(Situation::STANDBY) {
 }
 
-void deviceState::addDevice(Instrument device){
-	// add the device to the list
-	if(initialized == false){
-		Device newDevice;
-		newDevice.name = device;
-		newDevice.status = Situation::STANDBY;
-		devices.push_back(newDevice);
-	}
+void Device::setStatus(Situation status) {
+    status_ = status;
 }
 
-void deviceState::removeDevice(Instrument device){
-	// remove the device from the list
-	long unsigned int i;
-	for (i = 0; i < devices.size(); i++){
-		if (devices[i].name == device){
-			devices.erase(devices.begin() + i);
+void Device::addComponent(const std::string& component_id) {
+    if (components_.find(component_id) == components_.end()) {
+        components_[component_id] = Situation::STANDBY;
+    }
+}
+
+bool Device::hasComponent(const std::string& component_id) const {
+    return components_.find(component_id) != components_.end();
+}
+
+void Device::setComponentStatus(const std::string& component_id, Situation status) {
+    if (hasComponent(component_id)) {
+        components_[component_id] = status;
+    }
+}
+
+Situation Device::getComponentStatus(const std::string& component_id) const {
+    auto it = components_.find(component_id);
+    if (it != components_.end()) {
+        const auto& comp_id     = it -> first;(void)comp_id;
+        const auto& comp_status = it -> second;
+        return comp_status;
+    }
+    return Situation::ERROR;
+}
+
+bool Device::isAllInStatus(Situation status) const {
+    if (status_ != status) return false;
+    
+    for (const auto& comp : components_) {
+        const auto& comp_id     = comp.first;(void)comp_id;
+        const auto& comp_status = comp.second;
+        if (comp_status != status) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// DeviceStateManager
+DeviceStateManager::DeviceStateManager() {
+    initializing = false;
+}
+
+bool DeviceStateManager::addDevice(const std::string& device_id) {
+    if (!initializing) {
+        return false;
+    }
+    
+    if (devices_.find(device_id) == devices_.end()) {
+        devices_[device_id] = std::make_shared<Device>(device_id);
+    }
+    return true;
+}
+
+bool DeviceStateManager::removeDevice(const std::string& device_id) {
+    if (!initializing) {
+        return false;
+    }
+    
+    auto it = devices_.find(device_id);
+    if (it != devices_.end()) {
+        devices_.erase(it);
+        return true;
+    }
+    return false;
+}
+
+bool DeviceStateManager::hasDevice(const std::string& device_id) const {
+    return devices_.find(device_id) != devices_.end();
+}
+
+bool DeviceStateManager::addComponent(const std::string& device_id, const std::string& component_id) {
+    if (!initializing) {
+        return false;
+    }
+    
+    if (hasDevice(device_id)) {
+        devices_[device_id]->addComponent(component_id);
+        return true;
+    }
+    return false;
+}
+
+Situation DeviceStateManager::getDeviceStatus(const std::string& command) const {
+	size_t first_underscore = command.find('_');
+	std::string device_id, component_id;
+    if (first_underscore != std::string::npos) {
+		device_id = command.substr(0, first_underscore);
+        component_id = command.substr(first_underscore + 1);
+    }
+	else {
+		device_id = command;
+		auto it = devices_.find(device_id);
+		if (it == devices_.end()) {
+			return Situation::ERROR;
 		}
+		const auto& id     = it -> first;(void)id;
+        const auto& device = it -> second;
+		const auto& status = device->getStatus();
+		return status;
 	}
+
+	auto it = devices_.find(device_id);
+	if (it != devices_.end()) {
+		const auto& id     = it -> first;(void)id;
+        const auto& device = it -> second;
+		const auto& status = device->getComponentStatus(component_id);
+		return status;
+	}
+
+    return Situation::ERROR;
 }
 
-Situation deviceState::getDeviceStatus(Instrument device){
-	// return the status of the device
-	long unsigned int i;
-	for (i = 0; i < devices.size(); i++){
-		if (devices[i].name == device){
-			return devices[i].status;
-		}
-	}
-	return Situation::ERROR;
+bool DeviceStateManager::updateDeviceStatus(const std::string& message) {
+    std::istringstream iss(message);
+    std::string device_message;
+    bool all_success = true;
+    
+    while (iss >> device_message) {
+        std::string device_id;
+        std::string component_id;
+        std::string status_str;
+        
+        size_t first_underscore = device_message.find('_');
+        if (first_underscore == std::string::npos) {
+            printf("Format error: missing underscore separator in message: %s\n", device_message.c_str());
+            all_success = false;
+            continue;
+        }
+        
+        device_id = device_message.substr(0, first_underscore);
+        
+        // find the second underscore
+        size_t second_underscore = device_message.find('_', first_underscore + 1);
+        if (second_underscore == std::string::npos) {
+            // deviceId_statusStr
+            status_str = device_message.substr(first_underscore + 1);
+        } else {
+            // deviceId_componentId_statusStr
+            component_id = device_message.substr(first_underscore + 1, second_underscore - first_underscore - 1);
+            status_str = device_message.substr(second_underscore + 1);
+        }
+        
+        // set status
+        Situation status = Situation::ACTION;
+        if (status_str == "online") status = Situation::ONLINE;
+        else if (status_str == "offline") status = Situation::OFFLINE;
+        else if (status_str == "action") status = Situation::ACTION;
+        else if (status_str == "standby") status = Situation::STANDBY;
+        else if (status_str == "error") status = Situation::ERROR;
+        
+        // update status
+        if (hasDevice(device_id)) {
+            devices_[device_id]->setStatus(status);
+            // if (component_id.empty()) {
+            //     devices_[device_id]->setStatus(status);
+            // } else {
+            //     if (!devices_[device_id]->hasComponent(component_id)) {
+            //         printf("Component %s not found in device %s\n", component_id.c_str(), device_id.c_str());
+            //         all_success = false;
+            //         continue;
+            //     }
+            //     devices_[device_id]->setComponentStatus(component_id, status);
+            // }
+        } else {
+            printf("Device %s not found\n", device_id.c_str());
+            all_success = false;
+            continue;
+        }
+    }
+    
+    return all_success;  // 只有全部更新成功時才返回 true
 }
 
-Instrument deviceState::stringToDevice(std::string device){
-	// convert string to device
-	if (device.compare("slider") == 0){
-		return Instrument::SLIDER;
-	}
-	else if (device.compare("slider1") == 0){
-		return Instrument::SLIDER1;
-	}
-	else if (device.compare("slider2") == 0){
-		return Instrument::SLIDER2;
-	}
-	else if (device.compare("slider3") == 0){
-		return Instrument::SLIDER3;
-	}
-	else if (device.compare("weighing") == 0){
-		return Instrument::WEIGHING;
-	}
-	else if (device.compare("cobotta") == 0){
-		return Instrument::COBOTTA;
-	}
-	else if (device.compare("plc") == 0){
-		return Instrument::PLC;
-	}
-	else{
-		return Instrument::error;
-	}
+bool DeviceStateManager::checkDevices(Situation status) const {
+    static std::string last_message;
+    static int count = 0;
+    if (devices_.empty()) return false;
+    
+    for (const auto& it : devices_) {  // 結構化綁定
+        const auto& id     = it.first;(void)id;
+        const auto& device = it.second;
+        if (device->getStatus() != status) {
+            std::string new_message = "Device " + id + " is not standby\n";
+            if(last_message != new_message || count < 6){
+                printf("%s", new_message.c_str());
+                last_message = new_message;
+                count++;
+            }
+            // printf("Device %s is not in %d status\n", 
+            //        device_id.c_str(), static_cast<int>(status));
+            return false;
+        }
+    }
+    count = 0;
+    printf("All devices in %d status\n", static_cast<int>(status));
+    return true;
 }
 
-bool deviceState::checkDevices(Situation status) const{
-	// if all devices are standby, return true
-	long unsigned int i;
-	for (i = 0; i < devices.size(); i++){
-		//printf("count:%ld \n", i);
-		if (devices[i].status != status){
-			//printf("false\n");
-			return false;
-		}
-	}
-	//printf("all true\n");
-	return true;
-}
-
-bool deviceState::checkDevicesList(std::vector<Instrument> devicesList, Situation status){
-	// check if all device on the devicesList in the devices are standby
-	// if all devices are standby, return true
-	long unsigned int i,j;
-	for (i = 0; i < devicesList.size(); i++){
-		for (j = 0; j < devices.size(); j++){
-			if (devices[j].name == devicesList[i]){
-				if (devices[j].status != status){
-					return false;
-				}
-			}
-		}
-	}
-	return true;
-}
-
-void deviceState::updateDeviceStatus(std::string message){
-	// update the status of the device
-	std::string device = message.substr(0, message.find(" "));
-	Instrument deviceEnum = stringToDevice(device);
-	if(deviceEnum == Instrument::error){
-		return;
-	}
-	std::string status = message.substr(message.find(" ") + 1, message.length());
-	long unsigned int i;
-	for (i = 0; i < devices.size(); i++){
-		if (devices[i].name == deviceEnum){
-			if (status.compare("online") == 0){
-				devices[i].status = Situation::ONLINE;
-			}
-			else if (status.compare("offline") == 0){
-				devices[i].status = Situation::OFFLINE;
-			}
-			else if (status.compare("action") == 0){
-				devices[i].status = Situation::ACTION;
-			}
-			else if (status.compare("standby") == 0){
-				devices[i].status = Situation::STANDBY;
-			}
-			else if (status.compare("error") == 0){
-				devices[i].status = Situation::ERROR;
-			}
-		}
-	}
+bool DeviceStateManager::checkDevicesList(const std::vector<std::string>& devicesList, Situation status) const {
+    static std::string last_message;
+    static int count = 0;
+    for (const auto& device_id : devicesList) {
+        auto it = devices_.find(device_id);
+        if (it == devices_.end()) {
+            printf("Device %s not found\n", device_id.c_str());
+            return false;
+        }
+        const auto& id     = it -> first;(void)id;
+        const auto& device = it -> second;
+        if (device->getStatus() != status) {
+            std::string new_message = "Device " + device_id + " is not standby\n";
+            if(last_message != new_message || count < 6){
+                printf("%s", new_message.c_str());
+                last_message = new_message;
+                count++;
+            }
+            // printf("Device %s is not in %d status\n", 
+            //        device_id.c_str(), static_cast<int>(status));
+            return false;
+        }
+    }
+    count = 0;
+    return true;
 }

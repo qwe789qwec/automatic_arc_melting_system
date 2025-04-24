@@ -26,9 +26,7 @@ include_directories(include)
 find_package(rclcpp REQUIRED)
 find_package(msg_format REQUIRED)
 
-add_executable(MainProcess src/main_process.cpp src/devices_state.cpp)
-
-add_executable(MainProcessNew src/main_process_node.cpp src/process_control.cpp src/devices_state.cpp src/main.cpp)
+add_executable(MainProcess src/main_process_node.cpp src/process_control.cpp src/devices_state.cpp src/main.cpp)
 
 ament_target_dependencies(MainProcess
 rclcpp msg_format)

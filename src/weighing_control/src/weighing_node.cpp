@@ -44,7 +44,7 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
         if (action_result) {
             // call process service
             auto future = service_utils::call_service_async(
-                process_client_, this->get_logger(), "weighing standby", "Process");
+                process_client_, this->get_logger(), "weighing_standby", "Process");
                 
             if (weighing_->data_flag) {
                 std::string gramdata = weighing_->getsampledata();
