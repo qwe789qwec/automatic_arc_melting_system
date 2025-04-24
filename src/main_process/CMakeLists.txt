@@ -31,9 +31,6 @@ add_executable(MainProcess src/main_process_node.cpp src/process_control.cpp src
 ament_target_dependencies(MainProcess
 rclcpp msg_format)
 
-ament_target_dependencies(MainProcessNew
-rclcpp msg_format)
-
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -47,7 +44,6 @@ endif()
 
 install(TARGETS
   MainProcess
-  MainProcessNew
   DESTINATION lib/${PROJECT_NAME})
 
 install(

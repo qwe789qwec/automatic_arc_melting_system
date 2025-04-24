@@ -188,7 +188,7 @@ bool DeviceStateManager::updateDeviceStatus(const std::string& message) {
         }
     }
     
-    return all_success;  // 只有全部更新成功時才返回 true
+    return all_success;  //true
 }
 
 bool DeviceStateManager::checkDevices(Situation status) const {
@@ -196,12 +196,12 @@ bool DeviceStateManager::checkDevices(Situation status) const {
     static int count = 0;
     if (devices_.empty()) return false;
     
-    for (const auto& it : devices_) {  // 結構化綁定
+    for (const auto& it : devices_) { 
         const auto& id     = it.first;(void)id;
         const auto& device = it.second;
         if (device->getStatus() != status) {
             std::string new_message = "Device " + id + " is not standby\n";
-            if(last_message != new_message || count < 6){
+            if(last_message != new_message || count < 3){
                 printf("%s", new_message.c_str());
                 last_message = new_message;
                 count++;
@@ -229,7 +229,7 @@ bool DeviceStateManager::checkDevicesList(const std::vector<std::string>& device
         const auto& device = it -> second;
         if (device->getStatus() != status) {
             std::string new_message = "Device " + device_id + " is not standby\n";
-            if(last_message != new_message || count < 6){
+            if(last_message != new_message || count < 3){
                 printf("%s", new_message.c_str());
                 last_message = new_message;
                 count++;
