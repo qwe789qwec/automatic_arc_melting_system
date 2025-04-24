@@ -40,23 +40,7 @@ def call_service(
     # Send request
     future = client.call_async(request)
     
-    # Wait for response with timeout
-    start_time = time.time()
-    while not future.done() and time.time() - start_time < timeout:
-        time.sleep(0.01)
-    
-    if future.done():
-        try:
-            result = future.result()
-            logger.info(f"{service_name} result: {result.result}")
-            return True
-        except Exception as e:
-            logger.error(f"Exception getting {service_name} result: {str(e)}")
-            return False
-    else:
-        logger.error(f"{service_name} call timed out")
-        return False
-
+    rclpy.spin_until_future_complete(client, future, timeout_sec=timeout)
 
 def call_service_async(
         client: Client,
