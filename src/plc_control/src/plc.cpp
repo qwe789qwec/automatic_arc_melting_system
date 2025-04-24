@@ -161,42 +161,42 @@ bool plc::make_action(std::string step)
     // Process different PLC actions
     if (action == "init"){
         // Initialize with a delay
-        usleep(1000 * 1000);  // 1 second delay
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
     }
     else if (action == "pump"){
         // Start pump and wait for pressure
         return_message = coilWrite(PUMP_M10, COIL_ON);
-        usleep(1000 * 1000);  // 1 second delay
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         return_message = coilWrite(PUMP_M10, COIL_OFF);
         
         // Wait for pressure to build up
         while (!coilRead(PRESURE_S12))
         {   
-            usleep(1000 * 1000);  // 1 second delay
+            rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         }
     }
     else if (action == "singlePump"){
         // Control single pump operation
         return_message = coilWrite(SPUMP_M11, COIL_ON);
-        usleep(1000 * 1000);  // 1 second delay
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         return_message = coilWrite(SPUMP_M11, COIL_OFF);
         
         // Wait for S14 coil to become active
         while (!coilRead(S14_COIL))
         {   
-            usleep(1000 * 1000);  // 1 second delay
+            rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         }
     }
     else if(action == "vent"){
         // Control ventilation
         return_message = coilWrite(VENT_M15, COIL_ON);
-        usleep(1000 * 1000);  // 1 second delay
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         return_message = coilWrite(VENT_M15, COIL_OFF);
         
         // Wait for S13 coil to become inactive
         while (coilRead(S13_COIL))
         {   
-            usleep(1000 * 1000);  // 1 second delay
+            rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         }
     }
     else if(action == "arc"){
@@ -212,7 +212,7 @@ bool plc::make_action(std::string step)
             coil = ARC_OFF_M21;
         }
         return_message = coilWrite(coil.c_str(), COIL_ON);
-        usleep(3 * 1000 * 1000);  // 3 second delay
+        rclcpp::sleep_for(std::chrono::seconds(3)); // 3 second delay
         return_message = coilWrite(coil.c_str(), COIL_OFF);
     }
     else if(action == "water"){
@@ -231,7 +231,7 @@ bool plc::make_action(std::string step)
         // Activate buzzer
         std::cout << "buzz start" << std::endl;
         return_message = coilWrite(BUZZ_Y17, COIL_ON);
-        usleep(3 * 1000 * 1000);  // 3 second delay
+        rclcpp::sleep_for(std::chrono::seconds(3)); // 3 second delay
         return_message = coilWrite(BUZZ_Y17, COIL_OFF);
     }
     else if(action == "gate"){
@@ -239,18 +239,18 @@ bool plc::make_action(std::string step)
         std::string coil = "none";
         if(token[2] == "open"){
             // Open gate valve
-            std::cout << "gate start" << std::endl;
+            std::cout << "gate open" << std::endl;
             coil = OPEN_GATE_VALVE_M17;
         }
         else if(token[2] == "close"){
             // Close gate valve
-            std::cout << "gate start" << std::endl;
+            std::cout << "gate close" << std::endl;
             coil = CLOSE_GATE_VALVE_M19;
         }
         return_message = coilWrite(coil.c_str(), COIL_ON);
-        usleep(2 * 1000 * 1000);  // 2 second delay
+        rclcpp::sleep_for(std::chrono::seconds(2)); // 2 second delay
         return_message = coilWrite(coil.c_str(), COIL_OFF);
-        usleep(20 * 1000 * 1000);  // 20 second delay
+        rclcpp::sleep_for(std::chrono::seconds(20)); // 20 second delay
     }
     else if(action == "air"){
         // Control air flow based on command
@@ -288,19 +288,18 @@ bool plc::make_action(std::string step)
     else if(action == "autoFlip"){
         // Perform auto flip operation
         return_message = coilWrite(FLIP_M30, COIL_ON);
-        usleep(1000 * 1000);  // 1 second delay
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         return_message = coilWrite(FLIP_M30, COIL_OFF);
         
         // Wait for flip to complete
         while (!coilRead(FLIP_S33))
         {   
-            usleep(1000 * 1000);  // 1 second delay
-        }        
+            rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
+        }
     }
     else if(action == "wait"){
         int time = std::stoi(token[2]);
-        // Wait for 15 seconds
-        usleep(time * 1000 * 1000);
+        rclcpp::sleep_for(std::chrono::seconds(time)); // x second delay
     }
     else{
         return false;

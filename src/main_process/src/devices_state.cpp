@@ -170,16 +170,17 @@ bool DeviceStateManager::updateDeviceStatus(const std::string& message) {
         
         // update status
         if (hasDevice(device_id)) {
-            if (component_id.empty()) {
-                devices_[device_id]->setStatus(status);
-            } else {
-                if (!devices_[device_id]->hasComponent(component_id)) {
-                    printf("Component %s not found in device %s\n", component_id.c_str(), device_id.c_str());
-                    all_success = false;
-                    continue;
-                }
-                devices_[device_id]->setComponentStatus(component_id, status);
-            }
+            devices_[device_id]->setStatus(status);
+            // if (component_id.empty()) {
+            //     devices_[device_id]->setStatus(status);
+            // } else {
+            //     if (!devices_[device_id]->hasComponent(component_id)) {
+            //         printf("Component %s not found in device %s\n", component_id.c_str(), device_id.c_str());
+            //         all_success = false;
+            //         continue;
+            //     }
+            //     devices_[device_id]->setComponentStatus(component_id, status);
+            // }
         } else {
             printf("Device %s not found\n", device_id.c_str());
             all_success = false;
@@ -191,23 +192,33 @@ bool DeviceStateManager::updateDeviceStatus(const std::string& message) {
 }
 
 bool DeviceStateManager::checkDevices(Situation status) const {
+    static std::string last_message;
+    static int count = 0;
     if (devices_.empty()) return false;
     
     for (const auto& it : devices_) {  // 結構化綁定
         const auto& id     = it.first;(void)id;
         const auto& device = it.second;
         if (device->getStatus() != status) {
-            printf("Device %s is not in %d status\n", 
-                id.c_str(), static_cast<int>(status));
+            std::string new_message = "Device " + id + " is not standby\n";
+            if(last_message != new_message || count < 6){
+                printf("%s", new_message.c_str());
+                last_message = new_message;
+                count++;
+            }
+            // printf("Device %s is not in %d status\n", 
+            //        device_id.c_str(), static_cast<int>(status));
             return false;
         }
     }
-    
+    count = 0;
     printf("All devices in %d status\n", static_cast<int>(status));
     return true;
 }
 
 bool DeviceStateManager::checkDevicesList(const std::vector<std::string>& devicesList, Situation status) const {
+    static std::string last_message;
+    static int count = 0;
     for (const auto& device_id : devicesList) {
         auto it = devices_.find(device_id);
         if (it == devices_.end()) {
@@ -217,10 +228,17 @@ bool DeviceStateManager::checkDevicesList(const std::vector<std::string>& device
         const auto& id     = it -> first;(void)id;
         const auto& device = it -> second;
         if (device->getStatus() != status) {
-            printf("Device %s is not in %d status\n", 
-                   device_id.c_str(), static_cast<int>(status));
+            std::string new_message = "Device " + device_id + " is not standby\n";
+            if(last_message != new_message || count < 6){
+                printf("%s", new_message.c_str());
+                last_message = new_message;
+                count++;
+            }
+            // printf("Device %s is not in %d status\n", 
+            //        device_id.c_str(), static_cast<int>(status));
             return false;
         }
     }
+    count = 0;
     return true;
 }
