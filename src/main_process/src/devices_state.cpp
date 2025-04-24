@@ -35,8 +35,9 @@ void Device::setComponentStatus(const std::string& component_id, Situation statu
 Situation Device::getComponentStatus(const std::string& component_id) const {
     auto it = components_.find(component_id);
     if (it != components_.end()) {
-        const auto& [comp_id, status] = *it;
-        return status;
+        const auto& comp_id     = it -> first;(void)comp_id;
+        const auto& comp_status = it -> second;
+        return comp_status;
     }
     return Situation::ERROR;
 }
@@ -44,7 +45,9 @@ Situation Device::getComponentStatus(const std::string& component_id) const {
 bool Device::isAllInStatus(Situation status) const {
     if (status_ != status) return false;
     
-    for (const auto& [comp_id, comp_status] : components_) {
+    for (const auto& comp : components_) {
+        const auto& comp_id     = comp.first;(void)comp_id;
+        const auto& comp_status = comp.second;
         if (comp_status != status) {
             return false;
         }
@@ -110,14 +113,16 @@ Situation DeviceStateManager::getDeviceStatus(const std::string& command) const 
 		if (it == devices_.end()) {
 			return Situation::ERROR;
 		}
-		const auto& [id, device] = *it;
+		const auto& id     = it -> first;(void)id;
+        const auto& device = it -> second;
 		const auto& status = device->getStatus();
 		return status;
 	}
 
 	auto it = devices_.find(device_id);
 	if (it != devices_.end()) {
-		const auto& [id, device] = *it;
+		const auto& id     = it -> first;(void)id;
+        const auto& device = it -> second;
 		const auto& status = device->getComponentStatus(component_id);
 		return status;
 	}
@@ -188,10 +193,12 @@ bool DeviceStateManager::updateDeviceStatus(const std::string& message) {
 bool DeviceStateManager::checkDevices(Situation status) const {
     if (devices_.empty()) return false;
     
-    for (const auto& [device_id, device_ptr] : devices_) {  // 結構化綁定
-        if (device_ptr->getStatus() != status) {
+    for (const auto& it : devices_) {  // 結構化綁定
+        const auto& id     = it.first;(void)id;
+        const auto& device = it.second;
+        if (device->getStatus() != status) {
             printf("Device %s is not in %d status\n", 
-                   device_id.c_str(), static_cast<int>(status));
+                id.c_str(), static_cast<int>(status));
             return false;
         }
     }
@@ -207,8 +214,9 @@ bool DeviceStateManager::checkDevicesList(const std::vector<std::string>& device
             printf("Device %s not found\n", device_id.c_str());
             return false;
         }
-        const auto& [id, device_ptr] = *it;
-        if (device_ptr->getStatus() != status) {
+        const auto& id     = it -> first;(void)id;
+        const auto& device = it -> second;
+        if (device->getStatus() != status) {
             printf("Device %s is not in %d status\n", 
                    device_id.c_str(), static_cast<int>(status));
             return false;
