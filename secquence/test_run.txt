@@ -3,23 +3,23 @@ cobotta_takeCup_stock
 weighing_open slider_weightPos
 cobotta_putCup_weight
 slider_shelf_1 weighing_close
-cobotta_takeDose_shelf
+cobotta_takeDose_shelf3
 weighing_open slider_weightPos
 cobotta_putDose_weight
-weighing_mgram_180.2
+# weighing_mgram_180.2
 cobotta_takeDose_weight
 weighing_close slider_shelf_1
-cobotta_putDose_shelf
+cobotta_putDose_shelf3
 slider_shelf_3
 cobotta_takeDose_shelf2
 weighing_open slider_weightPos
 cobotta_putDose_weight
-weighing_mgram_319.8
+# weighing_mgram_319.8
 cobotta_takeCup_weight plc_vent
 weighing_close slider_pos1
 cobotta_putCup_arc plc_gate_open
 slider_weightPos weighing_open
-slider_putCupArc cobotta_takeDose_weight
+slider_putCup_arc cobotta_takeDose_weight
 plc_gate_close slider_shelf_3 weighing_close
 plc_pump cobotta_putDose_shelf2
 slider_arcinit
@@ -30,22 +30,6 @@ plc_arc_off
 plc_wait_20
 plc_autoFlip
 plc_buzz
-plc_arc_on
-slider_arc_ccw_3
-plc_arc_off
-plc_wait_20
-plc_autoFlip
-plc_buzz
-plc_arc_on
-slider_arc_cw_3
-plc_arc_off
-plc_wait_20
-plc_autoFlip
-plc_buzz
-plc_arc_on
-slider_arc_ccw_3
-plc_arc_off
-plc_wait_20
 plc_vent slider_pos1
 plc_gate_open
 slider_takeCupArc

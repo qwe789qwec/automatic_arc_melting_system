@@ -163,10 +163,10 @@ bool weighing_machine::make_action(std::string step)
         // Close front door
         return front_door(DOOR_CLOSE);
     }
-    else if (action.compare(0, 5, "mgram") == 0) {
+    else if (action == "mgram") {
         // Process weight dosing command (e.g., "mgram30")
         // Extract weight value
-        std::string weight_value = action.substr(5);
+        std::string weight_value = token[2];
         
         // Wait 3 seconds before operation
         usleep(1000 * 1000 * 3);
@@ -178,18 +178,6 @@ bool weighing_machine::make_action(std::string step)
         start_dosing();
         dosing_head(DOSE_UNLOCK);
         front_door(DOOR_OPEN);
-        return true;
-    }
-    else if (action.compare(0, 6, "Tmgram") == 0) {
-        // Process test mode dosing (e.g., "Tmgram50")
-        // Extract weight value
-        std::string weight_value = action.substr(6);
-        
-        // Execute dosing sequence without door operations
-        dosing_head(DOSE_LOCK);
-        set_gram(weight_value);
-        start_dosing();
-        dosing_head(DOSE_UNLOCK);
         return true;
     }
     else {
