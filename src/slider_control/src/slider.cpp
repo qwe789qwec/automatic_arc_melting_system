@@ -167,7 +167,8 @@ void slider::curve_move(std::string servo1, std::string servo2, std::string posi
 }
 
 void slider::arc_path(int direction, int times, int stop_times)
-{
+{   int count_dir = 0;
+
     // Define key positions
     std::string center_x = length2string(57*1000);
     std::string center_xy = length2string(57*1000) + length2string(30*1000);
@@ -195,6 +196,8 @@ void slider::arc_path(int direction, int times, int stop_times)
             move(MOTOR_Z, length2string(74.5*1000), "08");
         }
     }
+    times--;
+    count_dir++;
     
 	while (times > 0) {
 		// Move to center and wait
@@ -204,9 +207,10 @@ void slider::arc_path(int direction, int times, int stop_times)
 		
 		// Reverse circular path
 		for(int i = 0; i < sep; i++) {
-			curve_move(MOTOR_X, MOTOR_Y, count_circle(4000, sep, -i * direction, center_xy));
+			curve_move(MOTOR_X, MOTOR_Y, count_circle(4000, sep,  i * direction * (count_dir % 2 == 0 ? 1 : -1), center_xy));
 		}
 		times--;
+        count_dir++;
 	}
 
 

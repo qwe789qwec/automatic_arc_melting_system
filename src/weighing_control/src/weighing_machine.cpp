@@ -85,7 +85,7 @@ std::string weighing_machine::getsampledata()
             // Extract weight value from XML-formatted response
             receivemessage = take_data(receivemessage, "<Content Unit=\"mg\">", "</Content>");
             if (receivemessage != "none") {
-                return receivemessage;
+                return last_material + " " + receivemessage;
             }
         }
         
@@ -166,7 +166,8 @@ bool weighing_machine::make_action(std::string step)
     else if (action == "mgram") {
         // Process weight dosing command (e.g., "mgram30")
         // Extract weight value
-        std::string weight_value = token[2];
+        std::string weight_value = token[3];
+        last_material = token[2];
         
         // Wait 3 seconds before operation
         usleep(1000 * 1000 * 3);

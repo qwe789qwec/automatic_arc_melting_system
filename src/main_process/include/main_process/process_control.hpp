@@ -15,7 +15,7 @@ public:
     void moveToNextStep();
     
 private:
-    const std::string secquence_file_ = "secquence/test_seq.txt";
+    const std::string secquence_file_ = "secquence/sequence_run.txt";
 
     // Device state manager
     DeviceStateManager devices_manager_;

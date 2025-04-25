@@ -215,7 +215,7 @@ class cobotta:
             if position == "stock":
                 self.runPath([self.STOCK_P1, self.STOCK_END], task)
             elif position == "weight":
-                if action.find("cup") != -1:
+                if action.find("Cup") != -1:
                     self.runPath([self.WEIGHT_P1, self.WEIGHT_CUP], task)
                 else:
                     self.runPath([self.WEIGHT_P1, self.WEIGHT_DOSE], task)

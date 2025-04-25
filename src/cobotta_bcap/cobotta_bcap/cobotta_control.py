@@ -67,14 +67,14 @@ class CobottaSubscriber(Node):
             10)
         self.subscription  # prevent unused variable warning
         self.last_process = "cobotta init"
+        self.cobotta_handle = cobotta(host,port,timeout)
 
     def listener_callback(self, msg):
         # self.get_logger().info('I heard: "%s"' % msg.process)
         
         if msg.process != self.last_process:
             self.last_process = msg.process
-            cobotta_handle = cobotta(host,port,timeout)
-            action = cobotta_handle.make_action(msg.process)
+            action = self.cobotta_handle.make_action(msg.process)
             cobotta_client = CobottaClient()
             if action != "error":
                 response = cobotta_client.send_request("cobotta standby")

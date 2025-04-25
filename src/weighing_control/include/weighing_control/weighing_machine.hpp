@@ -34,7 +34,7 @@ private:
     bool set_gram(std::string gram);
     bool start_dosing();
     std::string take_data(const std::string& xml_data, std::string start, std::string end);
-    
+    std::string last_material;
     tcp_socket weiging_tcp;
 };
 

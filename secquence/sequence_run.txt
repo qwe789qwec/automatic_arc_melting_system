@@ -1,0 +1,3 @@
+slider_init cobotta_init weighing_init plc_init
+slider_arc_ccw_3
+slider_init cobotta_init weighing_init plc_init
