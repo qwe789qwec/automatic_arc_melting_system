@@ -32,4 +32,28 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+include_directories(include)
+
+find_package(rclcpp REQUIRED)
+find_package(msg_format REQUIRED)
+find_package(tcp_handle REQUIRED)
+find_package(ros2_utils REQUIRED)
+
+add_executable(record_main
+src/record_main.cpp src/record_node.cpp src/data_record.cpp)
+
+ament_target_dependencies(record_main
+rclcpp msg_format tcp_handle ros2_utils)
+
+install(
+  DIRECTORY include/
+  DESTINATION include
+)
+
+install(
+  TARGETS
+  record_main
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 ament_package()

@@ -3,11 +3,16 @@
 <package format="3">
   <name>data_record</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>data record handle</description>
   <maintainer email="qwe789qwec@gmail.com">song</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>msg_format</depend>
+  <depend>tcp_handle</depend>
+  <depend>ros2_utils</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
