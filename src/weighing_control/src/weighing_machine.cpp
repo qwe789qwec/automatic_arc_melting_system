@@ -76,6 +76,7 @@ std::string weighing_machine::getsampledata()
     weiging_tcp.write("QRD 2 4 12\r\n");
     
     std::string receivemessage;
+    std::string mg_data;
     auto start_time = std::chrono::steady_clock::now();
     
     // Poll for response with 9 second timeout
@@ -83,9 +84,10 @@ std::string weighing_machine::getsampledata()
     {
         if (weiging_tcp.receive(receivemessage)) {
             // Extract weight value from XML-formatted response
-            receivemessage = take_data(receivemessage, "<Content Unit=\"mg\">", "</Content>");
-            if (receivemessage != "none") {
-                return last_material + " " + receivemessage;
+            mg_data = take_data(receivemessage, "<Content Unit=\"mg\">", "</Content>");
+            if (mg_data != "none") {
+                data_flag = false;
+                return last_material + " " + mg_data;
             }
         }
         
