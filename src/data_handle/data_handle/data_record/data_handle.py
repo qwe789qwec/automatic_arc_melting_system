@@ -57,6 +57,9 @@ class DataHandle:
                 data="test",
                 description="test"
             )
+            self.camera.start_recording()
+            time.sleep(5)
+            self.camera.stop_recording()
             return "standby"
         elif action == "vedio":
             state = token[2]

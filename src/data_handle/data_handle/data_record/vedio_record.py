@@ -61,38 +61,6 @@ class camera:
             self.out.release()
             self.out = None
         # cv2.destroyAllWindows()
-        
-    def get_action(self, compare, target):
-        # Find the target string in compare string
-        pos = compare.find(target)
-        if pos == -1:
-            return "error 0"
-
-        # Find the space after the target string
-        if (pos + len(target) + 1) >= len(compare):
-            return "error 1"
-        else:
-            space = compare[pos + len(target) + 1:]
-            pos = space.find(" ")
-            if pos == -1:
-                return space
-            return_string = space[:pos]
-            if len(return_string) <= 2:
-                return "error 2"
-            return space[:pos]
-    
-    def make_action(self, step):
-        action = self.get_action(step, "camera")
-        if action == "init":
-            time.sleep(0.5)
-        elif action == "start":
-            self.start_recording()
-        elif action == "stop":
-            self.stop_recording()
-        else:
-            return action 
-        
-        return "standby"
 
     def __del__(self):
         self.cleanup()
