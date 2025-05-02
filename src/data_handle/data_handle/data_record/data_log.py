@@ -9,6 +9,7 @@ class DataRecord:
             file_name = datetime.now().strftime('%Y-%m-%d')
         self.file_name = os.path.join(self.directory, f'{file_name}.txt')
         self.last_message = None
+        self.record_flag = None
     
     def __del__(self):
         if self.record_flag:

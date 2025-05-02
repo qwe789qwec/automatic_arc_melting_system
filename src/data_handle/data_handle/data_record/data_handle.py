@@ -2,9 +2,9 @@ import sys
 sys.path.append('./pybcapclient')
 import time
 
-from data_log import DataRecord
-from vedio_record import camera
-from elabftw import Elabftw
+from .data_log import DataRecord
+from .vedio_record import camera
+from .elabftw import ElabFTW
 from ros2_utils_py.service_utils import get_command
 
 
@@ -16,8 +16,8 @@ class DataHandle:
         self.camera = camera()
         with open("api_key.txt", "r", encoding="utf-8") as f:
             read_api_key = f.read().strip()
-        self.elabftw = Elabftw(
-            api_url="https://nfm-cup.local/api",
+        self.elabftw = ElabFTW(
+            api_url="https://nfm-cpu.local/api",
             api_key=read_api_key
         )
 
@@ -48,15 +48,15 @@ class DataHandle:
         elif action == "test":
             self.datadecorder.file_Write("test")
             self.systemlog.file_Write("test")
-            self.elabftw.create_experiment(
-                title="test",
-                body="test",
-                category_id=1
-            )
-            self.elabftw.add_data(
-                data="test",
-                description="test"
-            )
+            # self.elabftw.create_experiment(
+            #     title="test",
+            #     body="test",
+            #     category_id=1
+            # )
+            # self.elabftw.add_data(
+            #     data="test",
+            #     description="test"
+            # )
             self.camera.start_recording()
             time.sleep(5)
             self.camera.stop_recording()
@@ -75,4 +75,4 @@ class DataHandle:
     def __del__(self):
         self.systemlog.end_record()
         self.datadecorder.end_record()
-        self.elabftw.close()
+        # self.elabftw.close()

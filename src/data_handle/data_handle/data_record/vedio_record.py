@@ -1,9 +1,11 @@
 import time
 import cv2
+import os
 import threading
+from datetime import datetime
 
 class camera:
-    def __init__(self):
+    def __init__(self, dir = "/home/song/Documents/ww/automatic_arc_melting_system", folder = "vedio"):
         self.camera = cv2.VideoCapture(0, cv2.CAP_V4L2)
         if not self.camera.isOpened():
             self.get_logger().error("Error: Camera not found.")
@@ -17,10 +19,13 @@ class camera:
         self.out = None
         self.recording = False
         self.recording_thread = None
+        self.folder = os.path.join(dir, folder)
 
     def start_recording(self):
         # Ensure frame dimensions match the video writer
-        self.out = cv2.VideoWriter('output.avi', self.fourcc, 15.0, (self.frame_width, self.frame_height))
+        current_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        video_path = os.path.join(self.folder, current_time)
+        self.out = cv2.VideoWriter(video_path + '.avi', self.fourcc, 15.0, (self.frame_width, self.frame_height))
         self.recording = True
         
         # Start the recording in a new thread

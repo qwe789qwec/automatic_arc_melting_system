@@ -1,4 +1,3 @@
-import os
 from datetime import datetime
 import requests
 import json
@@ -14,7 +13,6 @@ class ElabFTW:
         self.session_start_time = datetime.now()
     
     def create_experiment(self, title, body="", category_id=1):
-        """創建新實驗"""
         payload = {
             "title": title,
             "body": body,
@@ -35,7 +33,6 @@ class ElabFTW:
             return None
     
     def add_data(self, data, description=""):
-        """添加實驗數據"""
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         formatted_data = f"{timestamp} - {description}: {data}"
         

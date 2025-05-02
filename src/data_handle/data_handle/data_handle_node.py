@@ -5,7 +5,7 @@ from rclpy.node import Node
 from msg_format.srv import ProcessService
 from msg_format.msg import ProcessMsg
 
-from data_handle.data_handle import DataHandle
+from .data_record.data_handle import DataHandle
 
 class DataRecordNode(Node):
     def __init__(self, file_name = None):
@@ -22,7 +22,9 @@ class DataRecordNode(Node):
             self.listener_callback,
             10)
         
-        self.get_logger().info('Cobotta node initialized')
+        self.get_logger().info('record node initialized')
+
+        self.last_process = "record init"
 
     def write_data(self, request, response):
         write_data = request.action
