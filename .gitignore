@@ -1,4 +1,5 @@
 /.vscode
+/.venv
 /ros2_env
 /build
 /install

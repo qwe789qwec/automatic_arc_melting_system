@@ -17,7 +17,7 @@ class DataHandle:
         with open("api_key.txt", "r", encoding="utf-8") as f:
             read_api_key = f.read().strip()
         self.elabftw = ElabFTW(
-            api_url="https://nfm-cpu.local/api",
+            api_url="https://nfm-cpu.local:443/api/v2",
             api_key=read_api_key
         )
 
