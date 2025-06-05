@@ -47,9 +47,11 @@ class DataHandle:
             return "standby"
         elif action == "on":
             self.record_flag = True
+            self.datalog.file_Write("===============START=================")
             self.datalog.file_Write(step)
         elif action == "off":
             self.record_flag = False
+            self.datalog.file_Write("================END==================")
         elif action == "test":
             self.datalog.file_Write("test")
             # self.elabftw.create_experiment(

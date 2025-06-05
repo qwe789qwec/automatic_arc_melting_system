@@ -61,7 +61,6 @@ class camera:
                 self.out.release()
                 self.out = None
             # cv2.destroyAllWindows()
-        self.cleanup()
 
     def cleanup(self):
         if self.camera.isOpened():
