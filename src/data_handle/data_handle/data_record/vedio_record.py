@@ -21,10 +21,14 @@ class camera:
         self.recording_thread = None
         self.folder = os.path.join(dir, folder)
 
-    def start_recording(self):
+    def start_recording(self, filename=None):
         # Ensure frame dimensions match the video writer
         current_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        video_path = os.path.join(self.folder, current_time)
+        if filename is None:
+            filename = current_time
+        else:
+            filename = f"{filename}_{current_time}"
+        video_path = os.path.join(self.folder, filename)
         self.out = cv2.VideoWriter(video_path + '.avi', self.fourcc, 15.0, (self.frame_width, self.frame_height))
         self.recording = True
         
