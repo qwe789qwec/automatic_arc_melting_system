@@ -27,7 +27,7 @@ class camera:
         if filename is None:
             filename = current_time
         else:
-            filename = f"{filename}_{current_time}"
+            filename = f"{current_time}_{filename}"
         video_path = os.path.join(self.folder, filename)
         self.out = cv2.VideoWriter(video_path + '.avi', self.fourcc, 15.0, (self.frame_width, self.frame_height))
         self.recording = True
