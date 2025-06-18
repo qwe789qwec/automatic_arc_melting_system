@@ -3,10 +3,10 @@
 
 #include <chrono>
 #include <thread>
+#include <string>
 
 #include <arpa/inet.h>
 #include <stdio.h>
-#include <string.h>
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <fcntl.h>
@@ -23,7 +23,6 @@ public:
 	bool receive(std::string &);
 	bool receiveRaw(char* &, int &);
 	bool check_receive(std::string, int);
-	std::string get_action(std::string, std::string);
 	void close();
 	~tcp_socket();
 

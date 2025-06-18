@@ -6,16 +6,15 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/build",
                 "${workspaceFolder}/install",
-                "/opt/ros/foxy/include",
+                "/opt/ros/rolling/include/**",
                 "${workspaceFolder}/install/msg_format/include",
                 "${workspaceFolder}/src/plc_control/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "gnu17",
-            "cppStandard": "gnu++14",
-            "intelliSenseMode": "linux-gcc-x64",
-            "configurationProvider": "ms-vscode.makefile-tools"
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4

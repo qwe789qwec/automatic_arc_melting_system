@@ -1,9 +1,15 @@
 /.vscode
+/.venv
+/ros2_env
 /build
 /install
 /log
 /datalog
-/tera311
+/systemlog
+/vedio
 /launch/__pycache__/
+/api_key.*
 *.DS_Store
 # git remote update origin --prune
+# python -m pip install empy==3.3.4
+# python -m pip install lark

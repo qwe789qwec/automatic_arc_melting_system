@@ -1,37 +1,39 @@
 #include <chrono>
 #include <thread>
-
 #include <cstdlib>
 #include <memory>
 #include <iomanip>
-
+#include <iostream>
 #include <stdio.h>
 #include <unistd.h>
 
 #include "rclcpp/rclcpp.hpp"
 #include "plc_control/plc.hpp"
 #include "tcp_handle/tcp_socket.hpp"
+#include "ros2_utils/service_utils.hpp"
 
 void printcharm(const char *message, int size)
 {   
     std::cout << "size:" << std::dec << size << " message:";
     for (int i = 0; i < size; i++)
     {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(message[i])) << " ";
+        std::cout << std::hex << std::setw(2) << std::setfill('0') 
+                  << static_cast<unsigned int>(static_cast<unsigned char>(message[i])) << " ";
     }
     std::cout << std::endl;
 }
 
 plc::plc(std::string ip, int port)
 {
-	plc_tcp.connect(ip, port);
-    // ioOnOff(waterSupply, on);
-    coilWrite(water0x, coilOn);
-    usleep(1000 * 1000);
+    // Connect to PLC and initialize water system
+    plc_tcp.connect(ip, port);
+    coilWrite(WATER_Y4, COIL_ON);
+    usleep(1000 * 1000);  // 1 second delay
 }
 
 char* plc::dec2hex(int value) 
 {
+    // Convert decimal to 2-byte hex representation
     static char hex_string[2];
     hex_string[0] = (char)(value / 256);
     hex_string[1] = (char)(value % 256);
@@ -39,9 +41,9 @@ char* plc::dec2hex(int value)
     return hex_string;
 }
 
-char* plc::modbus(const char* function,const char* component,const char* data)
+char* plc::modbus(const char* function, const char* component, const char* data)
 {
-    // Allocate memory for the message
+    // Create Modbus protocol message
     static char message[] = "\x00\x01\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00";
     message[7] = function[0];
     message[8] = component[0];
@@ -52,106 +54,30 @@ char* plc::modbus(const char* function,const char* component,const char* data)
     return message;
 }
 
-std::string plc::ioOnOff(std::string io, std::string state)
-{   
-    std::string message;
-    if(state.compare(on) == 0){
-        message = io + "on";
-    }
-    else if(state.compare(off) == 0){
-        message = io + "of";
-    }
-    plc_tcp.write(message);
-    plc_tcp.receive(message);
-    return message;
-}
-
-
-
-int plc::checkPresure(std::string input)
-{   
-    std::string message;
-    plc_tcp.write(input);
-    plc_tcp.receive(message);
-    std::string number = message.substr(0, message.size());
-    int presureValue = strtol(number.c_str(), NULL, 10);
-    return presureValue;
-}
-
-void plc::gateValve(std::string input)
+char* plc::writeRaw(const void* input, int &size) 
 {
-    if(input.compare(on) == 0){
-        ioOnOff(openGateValve, on);
-        usleep(1000 * 1500);
-        ioOnOff(openGateValve, off);
-    }
-    else if(input.compare(off) == 0){
-        ioOnOff(closeGateValve, on);
-        usleep(1000 * 1500);
-        ioOnOff(closeGateValve, off);
-    }
-
-    usleep(1000 * 1000 * 20);
-}
-
-void plc::pump(std::string input)
-{
-    if(input.compare(on) == 0){
-        ioOnOff(startPump, on);
-        usleep(1000 * 1500);
-        ioOnOff(startPump, off);
-
-        // usleep(1000 * 1000 * 60 * 3); //one times pump
-        // usleep(1000 * 1000 * 60 * 5); //two times pump
-        usleep(1000 * 1000 * 60 * 8); //three times pump
-
-    }
-    else if(input.compare(off) == 0){
-        ioOnOff(startVent, on);
-        usleep(1000 * 1500);
-        ioOnOff(startVent, off);
-
-        usleep(1000 * 1000 * 60 * 2);
-    }
-
-    usleep(1000 * 1000 * 30);
-}
-
-std::string plc::write(std::string input) 
-{
-    std::string message;
-    plc_tcp.write(input);
-    plc_tcp.receive(message);
+    // Send raw bytes and get response
+    char* message;
+    plc_tcp.writeRaw(input, size);
+    usleep(300 * 1000);  // 300ms delay
+    plc_tcp.receiveRaw(message, size);
     
     return message;
 }
 
-char* plc::writeRaw(const void* input,int &size) 
+char* plc::coilWrite(const char* component, const char* data)
 {
-    char* message;
-    plc_tcp.writeRaw(input, size);
-    usleep(1000 * 300);
-    plc_tcp.receiveRaw(message, size);
-    // std::cout << "size:" << std::dec << size << " message:";
-    // for (int i = 0; i < size; i++)
-    // {
-    //     std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(message[i])) << " ";
-    // }
-    // std::cout << std::endl;
-    return message;
-}
-
-char* plc::coilWrite(const char* component,const char* data)
-{
+    // Write to a coil
     int message_size = 12;
-    char* return_message = writeRaw(modbus(writeCoil, component, data), message_size);
+    char* return_message = writeRaw(modbus(WRITE_COIL, component, data), message_size);
     return return_message;
 }
 
 bool plc::coilRead(const char* component)
 {
+    // Read from a coil
     int message_size = 12;
-    char* return_message = writeRaw(modbus(readCoil, component, "\x00\x01"), message_size);
+    char* return_message = writeRaw(modbus(READ_COIL, component, "\x00\x01"), message_size);
     if (return_message[message_size-1] == 0x01)
     {
         return true;
@@ -166,8 +92,9 @@ bool plc::coilRead(const char* component)
 
 bool plc::inputRead(const char* component)
 {
+    // Read from an input
     int message_size = 12;
-    char* return_message = writeRaw(modbus(readInput, component, "\x00\x01"), message_size);
+    char* return_message = writeRaw(modbus(READ_INPUT, component, "\x00\x01"), message_size);
     if (return_message[message_size-1] == 0x01)
     {
         return true;
@@ -180,19 +107,24 @@ bool plc::inputRead(const char* component)
     }
 }
 
-char* plc::registerWrite(const char* component,int data)
+char* plc::registerWrite(const char* component, int data)
 {
+    // Write to a register
     int message_size = 12;
-    char* return_message = writeRaw(modbus(writeRegister, component, dec2hex(data)), message_size);
+    char* return_message = writeRaw(modbus(WRITE_REGISTER, component, dec2hex(data)), message_size);
     return return_message;
 }
 
-bool plc::registerRead(const char* component,int data)
+bool plc::registerRead(const char* component, int data)
 {
+    // Read from a register and compare
     int message_size = 12;
     char* checkdata = dec2hex(data);
-    char* return_message = writeRaw(modbus(readRegister, component, "\x00\x01"), message_size);
-    if(checkdata[0] == return_message[message_size - 2] && checkdata[1] == return_message[message_size-1])
+    char* return_message = writeRaw(modbus(READ_REGISTER, component, "\x00\x01"), message_size);
+    
+    // Compare expected and actual values
+    if(checkdata[0] == return_message[message_size - 2] && 
+       checkdata[1] == return_message[message_size - 1])
     {
         return true;
     }
@@ -200,107 +132,143 @@ bool plc::registerRead(const char* component,int data)
     {
         return false;
     }
-    return return_message;
-}
-
-void plc::airFlow(std::string flux)
-{
-    std::string message;
-    plc_tcp.write(flux);
-    plc_tcp.receive(message);
 }
 
 bool plc::make_action(std::string step)
-{	
-	std::string action = plc_tcp.get_action(step, "plc");
-	if(action.compare("error") == 0 && step.compare("init") != 0){
-		return false;
-	}
-	else if (step.compare("init") == 0){
-		action = "init";
-	}
-
-	printf("action: %s\n", action.c_str());
-	printf("step: %s\n", step.c_str());
-
-    char* return_message;
-
-    if (action == "init"){
-        usleep(1000 * 1000);
+{    
+    // Extract PLC-specific action from command
+    std::string command = service_utils::get_command(step, "plc");
+    std::string action = "none";
+    if (command == "test" || command == "init") {
+        action = command;
     }
-	else if (action == "pump"){
-        return_message = coilWrite(M10, coilOn);
-        usleep(1000 * 1000);
-        return_message = coilWrite(M10, coilOff);
-        while (!coilRead(s12coil))
-        {   usleep(1000 * 1000);
+    else if (command == "none") {
+        return true;
+    }
+    else if (command == "error") {
+        return false;
+    }
+
+    std::vector<std::string>token = service_utils::split_string(command);
+    // if no token found, return false
+    if (token.size() < 2 && action == "none") {
+        return false;
+    }
+    action = token[1];
+
+    char* return_message = nullptr;
+
+    // Process different PLC actions
+    if (action == "init"){
+        // Initialize with a delay
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
+    }
+    else if (action == "pump"){
+        // Start pump and wait for pressure
+        return_message = coilWrite(PUMP_M10, COIL_ON);
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
+        return_message = coilWrite(PUMP_M10, COIL_OFF);
+        
+        // Wait for pressure to build up
+        while (!coilRead(PRESURE_S12))
+        {   
+            rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         }
     }
     else if (action == "singlePump"){
-        return_message = coilWrite(M11, coilOn);
-        usleep(1000 * 1000);
-        return_message = coilWrite(M11, coilOff);
-        while (!coilRead(s14coil))
-        {   usleep(1000 * 1000);
+        // Control single pump operation
+        return_message = coilWrite(SPUMP_M11, COIL_ON);
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
+        return_message = coilWrite(SPUMP_M11, COIL_OFF);
+        
+        // Wait for S14 coil to become active
+        while (!coilRead(S14_COIL))
+        {   
+            rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         }
     }
     else if(action == "vent"){
-        return_message = coilWrite(M15, coilOn);
-        usleep(1000 * 1000);
-        return_message = coilWrite(M15, coilOff);
-        while (coilRead(s13coil))
-        {   usleep(1000 * 1000);
+        // Control ventilation
+        return_message = coilWrite(VENT_M15, COIL_ON);
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
+        return_message = coilWrite(VENT_M15, COIL_OFF);
+        
+        // Wait for S13 coil to become inactive
+        while (coilRead(S13_COIL))
+        {   
+            rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         }
     }
-    else if(action == "arcOn"){
-        std::cout << "arc on" << std::endl;
-        return_message = coilWrite(M20, coilOn);
-        usleep(1000 * 1000 * 3);
-        return_message = coilWrite(M20, coilOff);
+    else if(action == "arc"){
+        std::string coil = "none";
+        if(token[2] == "on"){
+            // Turn on arc
+            std::cout << "arc on" << std::endl;
+            coil = ARC_ON_M20;
+        }
+        else if(token[2] == "off"){
+            // Turn off arc
+            std::cout << "arc off" << std::endl;
+            coil = ARC_OFF_M21;
+        }
+        return_message = coilWrite(coil.c_str(), COIL_ON);
+        rclcpp::sleep_for(std::chrono::seconds(3)); // 3 second delay
+        return_message = coilWrite(coil.c_str(), COIL_OFF);
     }
-    else if(action == "arcOff"){
-        std::cout << "arc off" << std::endl;
-        return_message = coilWrite(M21, coilOn);
-        usleep(1000 * 1000 * 3);
-        return_message = coilWrite(M21, coilOff);
-    }
-    else if(action == "waterOn"){
-        std::cout << "water start" << std::endl;
-        return_message = coilWrite(water0x, coilOn);
-    }
-    else if(action == "waterOff"){
-        std::cout << "water off" << std::endl;
-        return_message = coilWrite(water0x, coilOff);
+    else if(action == "water"){
+        if(token[2] == "on"){
+            // Turn on water
+            std::cout << "water on" << std::endl;
+            return_message = coilWrite(WATER_Y4, COIL_ON);
+        }
+        else if(token[2] == "off"){
+            // Turn off water
+            std::cout << "water off" << std::endl;
+            return_message = coilWrite(WATER_Y4, COIL_OFF);
+        }
     }
     else if(action == "buzz"){
+        // Activate buzzer
         std::cout << "buzz start" << std::endl;
-        return_message = coilWrite(buzz0x, coilOn);
-        usleep(1000 * 1000 * 3);
-        return_message = coilWrite(buzz0x, coilOff);
+        return_message = coilWrite(BUZZ_Y17, COIL_ON);
+        rclcpp::sleep_for(std::chrono::seconds(3)); // 3 second delay
+        return_message = coilWrite(BUZZ_Y17, COIL_OFF);
     }
-    else if(action == "gateOpen"){
-        std::cout << "gate start" << std::endl;//20sec
-        return_message = coilWrite(openGateValve0x, coilOn);
-        usleep(20 * 1000 * 1000);
-        return_message = coilWrite(openGateValve0x, coilOff);
+    else if(action == "gate"){
+        // Control gate valve based on command
+        std::string coil = "none";
+        if(token[2] == "open"){
+            // Open gate valve
+            std::cout << "gate open" << std::endl;
+            coil = OPEN_GATE_VALVE_M17;
+        }
+        else if(token[2] == "close"){
+            // Close gate valve
+            std::cout << "gate close" << std::endl;
+            coil = CLOSE_GATE_VALVE_M19;
+        }
+        return_message = coilWrite(coil.c_str(), COIL_ON);
+        rclcpp::sleep_for(std::chrono::seconds(2)); // 2 second delay
+        return_message = coilWrite(coil.c_str(), COIL_OFF);
+        rclcpp::sleep_for(std::chrono::seconds(20)); // 20 second delay
     }
-    else if(action == "gateClose"){
-        std::cout << "gate start" << std::endl;//15sec
-        return_message = coilWrite(closeGateValve0x, coilOn);
-        usleep(20 * 1000 * 1000);
-        return_message = coilWrite(closeGateValve0x, coilOff);
-    }
-    else if(action == "airOn"){
-        std::cout << "air start" << std::endl;
-        return_message = coilWrite(airFlow0x, coilOn);
-    }
-    else if(action == "airOff"){
-        std::cout << "air off" << std::endl;
-        return_message = coilWrite(airFlow0x, coilOff);
+    else if(action == "air"){
+        // Control air flow based on command
+        if(token[2] == "on"){
+            // Turn on air flow
+            std::cout << "air on" << std::endl;
+            return_message = coilWrite(AIR_FLOW_Y12, COIL_ON);
+        }
+        else if(token[2] == "off"){
+            // Turn off air flow
+            std::cout << "air off" << std::endl;
+            return_message = coilWrite(AIR_FLOW_Y12, COIL_OFF);
+        }
     }
     else if(action == "checkEMG"){
+        // Check emergency stop status
         std::cout << "check EMG" << std::endl;
-        if(inputRead(EMG)){
+        if(inputRead(EMGX3)){
             std::cout << "EMG on" << std::endl;
         }
         else{
@@ -308,8 +276,9 @@ bool plc::make_action(std::string step)
         }
     }
     else if(action == "checkPresure"){
+        // Check pressure status
         std::cout << "check presure" << std::endl;
-        if(coilRead(s12coil)){
+        if(coilRead(PRESURE_S12)){
             std::cout << "In s12" << std::endl;
         }
         else{
@@ -317,40 +286,46 @@ bool plc::make_action(std::string step)
         }
     }
     else if(action == "autoFlip"){
-        return_message = coilWrite(M30, coilOn);
-        usleep(1000 * 1000);
-        return_message = coilWrite(M30, coilOff);
-        while (!coilRead(s33coil))
-        {   usleep(1000 * 1000);
-        }        
+        // Perform auto flip operation
+        return_message = coilWrite(FLIP_M30, COIL_ON);
+        rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
+        return_message = coilWrite(FLIP_M30, COIL_OFF);
+        
+        // Wait for flip to complete
+        while (!coilRead(FLIP_S33))
+        {   
+            rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
+        }
     }
     else if(action == "checkValve"){
         std::cout << "Checking vateValve(S16) state..." <<std::endl;
 
-        if(coilRead(s16coil)){
+        if(coilRead(S16_COIL)){
             std::cout << "OK: valve is open." << std::endl;
         } else {
             std::cout << "ERROR: valve is closed." << std::endl;
             return false;
         }
     }
-    else if(action == "wait15s"){
-        usleep(15 * 1000 * 1000);
-    }
-    else if(action == "wait20s"){
-        usleep(20 * 1000 * 1000);
+    else if(action == "wait"){
+        int time = std::stoi(token[2]);
+        rclcpp::sleep_for(std::chrono::seconds(time)); // x second delay
     }
     else{
         return false;
     }
 
-    printcharm(return_message, 12);
-	return true;
+    // Print response message if available
+    if (return_message) {
+        printcharm(return_message, 12);
+    }
+    
+    return true;
 }
 
 plc::~plc()
 {
-    // ioOnOff(waterSupply, off);
-    coilWrite(water0x, coilOff);
-	plc_tcp.close();
+    // Turn off water and close connection
+    coilWrite(WATER_Y4, COIL_OFF);
+    plc_tcp.close();
 }
