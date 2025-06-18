@@ -46,7 +46,7 @@ shelf_put_dose
 class cobotta:
 
     HOME_POINT = 10
-    SHELF1_END = 11
+    SHELF3_END = 11
     SHELF2_P1 = 23
     SHELF2_END = 24
     WEIGHT_P1 = 16
@@ -215,12 +215,12 @@ class cobotta:
             if position == "stock":
                 self.runPath([self.STOCK_P1, self.STOCK_END], task)
             elif position == "weight":
-                if action.find("cup") != -1:
+                if action.find("Cup") != -1:
                     self.runPath([self.WEIGHT_P1, self.WEIGHT_CUP], task)
                 else:
                     self.runPath([self.WEIGHT_P1, self.WEIGHT_DOSE], task)
-            elif position == "shelf":
-                self.runPath([self.SHELF1_END], task)
+            elif position == "shelf3":
+                self.runPath([self.SHELF3_END], task)
             elif position == "shelf2":
                 self.runPath([self.SHELF2_P1, self.SHELF2_END], task)
             elif position == "arc":

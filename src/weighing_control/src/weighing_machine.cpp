@@ -76,6 +76,7 @@ std::string weighing_machine::getsampledata()
     weiging_tcp.write("QRD 2 4 12\r\n");
     
     std::string receivemessage;
+    std::string mg_data;
     auto start_time = std::chrono::steady_clock::now();
     
     // Poll for response with 9 second timeout
@@ -83,9 +84,10 @@ std::string weighing_machine::getsampledata()
     {
         if (weiging_tcp.receive(receivemessage)) {
             // Extract weight value from XML-formatted response
-            receivemessage = take_data(receivemessage, "<Content Unit=\"mg\">", "</Content>");
-            if (receivemessage != "none") {
-                return receivemessage;
+            mg_data = take_data(receivemessage, "<Content Unit=\"mg\">", "</Content>");
+            if (mg_data != "none") {
+                data_flag = false;
+                return last_material + " " + mg_data;
             }
         }
         
@@ -163,10 +165,11 @@ bool weighing_machine::make_action(std::string step)
         // Close front door
         return front_door(DOOR_CLOSE);
     }
-    else if (action.compare(0, 5, "mgram") == 0) {
+    else if (action == "mgram") {
         // Process weight dosing command (e.g., "mgram30")
         // Extract weight value
-        std::string weight_value = action.substr(5);
+        std::string weight_value = token[3];
+        last_material = token[2];
         
         // Wait 3 seconds before operation
         usleep(1000 * 1000 * 3);
@@ -178,18 +181,6 @@ bool weighing_machine::make_action(std::string step)
         start_dosing();
         dosing_head(DOSE_UNLOCK);
         front_door(DOOR_OPEN);
-        return true;
-    }
-    else if (action.compare(0, 6, "Tmgram") == 0) {
-        // Process test mode dosing (e.g., "Tmgram50")
-        // Extract weight value
-        std::string weight_value = action.substr(6);
-        
-        // Execute dosing sequence without door operations
-        dosing_head(DOSE_LOCK);
-        set_gram(weight_value);
-        start_dosing();
-        dosing_head(DOSE_UNLOCK);
         return true;
     }
     else {
