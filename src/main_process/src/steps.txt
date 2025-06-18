@@ -1,4 +1,7 @@
 slider init cobotta init weighing init plc init
-        slider1 cup_stock_r
-        plc buzz
-        slider1 pos1
+
+plc buzz
+plc arcOn
+slider arc_cw_3
+plc arcOff
+plc wait20s

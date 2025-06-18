@@ -1,5 +1,51 @@
 slider init cobotta init weighing init plc init
-        slider1 cup_stock_r
-        plc buzz
-        slider1 pos1
-        
+    slider1 cup_stock_r
+    cobotta take_cup_from_stock
+    weighing open slider1 weight_pos
+    cobotta put_cup_to_weight 
+slider1 shelf1 weighing close
+cobotta take_dose_from_shelf3
+slider1 weight_pos weighing open
+cobotta put_dose_to_weight
+weighing mgram500.0
+cobotta take_dose_from_weight
+slider1 shelf1 weighing close
+cobotta put_dose_to_shelf3
+ 
+cobotta take_cup_from_weight plc vent
+weighing close slider1 pos1
+cobotta put_cup_to_arc plc gateOpen
+plc checkValve
+slider put_cup_arc
+plc gateClose
+plc pump
+slider arcinit
+ 
+plc buzz
+plc arcOn
+slider arc_cw_3
+plc arcOff
+plc wait20s
+plc autoFlip
+ 
+plc buzz
+plc arcOn
+slider arc_ccw_3
+plc arcOff
+plc wait20s
+plc autoFlip
+ 
+plc buzz
+plc arcOn
+slider arc_cw_3
+plc arcOff
+plc wait20s
+ 
+plc vent slider pos1
+plc gateOpen
+plc checkValve
+slider take_cup_arc
+plc gateClose cobotta take_cup_from_arc
+slider1 weight_pos weighing open
+plc singlePump cobotta put_cup_to_weight
+weighing close

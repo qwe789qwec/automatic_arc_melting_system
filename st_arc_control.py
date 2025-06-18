@@ -130,11 +130,10 @@ with tab1:
             st.subheader("Composition Details")
             st.write(output_data)
 
-    steps_content = """slider init cobotta init weighing init plc init
-    slider1 cup_stock_r
-    cobotta take_cup_from_stock
-    weighing open slider1 weight_pos
-    cobotta put_cup_to_weight"""
+    steps_content = "slider init cobotta init weighing init plc init\n"
+    steps_content += "cobotta take_cup_from_stock\n"
+    steps_content += "weighing open slider1 weight_pos\n"
+    steps_content += "cobotta put_cup_to_weight\n"
     if target_composition:
         for element in output_data:
             mass = output_data[element]['mass']
@@ -142,7 +141,7 @@ with tab1:
             position = query_stock(element)
             if position != "Input atom is not in the stock":
                 cobotta_position, slider_position = position
-                steps_content += " \n"
+                steps_content += "\n"
                 steps_content += f"slider1 shelf{slider_position} weighing close\n"
                 steps_content += f"cobotta take_dose_from_shelf{cobotta_position}\n"
                 steps_content += "slider1 weight_pos weighing open\n"
@@ -152,7 +151,8 @@ with tab1:
                 steps_content += f"slider1 shelf{slider_position} weighing close\n"
                 steps_content += f"cobotta put_dose_to_shelf{cobotta_position}\n"
         
-        steps_content += " \n"
+        steps_content += "\n"
+        steps_content += "slider weight_pos weighing open\n"
         steps_content += "cobotta take_cup_from_weight plc vent\n"
         steps_content += "weighing close slider1 pos1\n"
         steps_content += "cobotta put_cup_to_arc plc gateOpen\n"
@@ -167,7 +167,7 @@ with tab1:
                 direction = "cw"
             else:
                 direction = "ccw"
-            steps_content += " \n"
+            steps_content += "\n"
             steps_content += "plc buzz\n"
             steps_content += "plc arcOn\n"
             steps_content += f"slider arc_{direction}_{arc_path}\n"
@@ -176,7 +176,7 @@ with tab1:
             if i != int(flip_times):
                 steps_content += "plc autoFlip\n"
             else:
-                steps_content += " \n"
+                steps_content += "\n"
                 steps_content += "plc vent slider pos1\n"
                 steps_content += "plc gateOpen\n"
                 steps_content += "plc checkValve\n"
@@ -187,7 +187,7 @@ with tab1:
                 steps_content += "weighing close\n"
 
     if st.button('Make steps.txt'):
-        with open('steps.txt', 'w') as f:
+        with open('/home/song/Documents/ww/automatic_arc_melting_system/src/main_process/src/steps.txt', 'w') as f:
             f.write(steps_content)
             st.success('steps.txt has been created!')    
             st.code(steps_content)
