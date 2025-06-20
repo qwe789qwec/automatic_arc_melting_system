@@ -40,13 +40,17 @@ find_package(tcp_handle REQUIRED)
 find_package(ros2_utils REQUIRED)
 
 add_executable(PlcMain src/plc_main.cpp src/plc_node.cpp src/plc.cpp)
+add_executable(Plcxrd_main src/plcxrd_main.cpp src/plcxrd_node.cpp src/plcxrd.cpp)
 
 ament_target_dependencies(PlcMain
+rclcpp msg_format tcp_handle ros2_utils)
+ament_target_dependencies(Plcxrd_main
 rclcpp msg_format tcp_handle ros2_utils)
 
 install(
   TARGETS
   PlcMain
+  Plcxrd_main
   DESTINATION lib/${PROJECT_NAME}
 )
 

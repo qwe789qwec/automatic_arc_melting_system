@@ -1,0 +1,3 @@
+slider_init cobotta_init weighing_init plc_init plcxrd_init
+plc_wait_10 slider_shelf1
+
