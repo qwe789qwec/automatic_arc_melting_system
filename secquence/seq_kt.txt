@@ -1,0 +1,5 @@
+slider_init cobotta_init weighing_init plc_init plcxrd_init record_on
+slider_shelf_1
+plcxrd_doorlock_open
+slider_pos1
+
