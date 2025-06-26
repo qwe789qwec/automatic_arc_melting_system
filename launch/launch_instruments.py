@@ -10,6 +10,12 @@ def generate_launch_description():
             # name='plc'
         ),
         Node(
+            package='plc_control',
+            # namespace='plcxrd',
+            executable='PlcxrdMain',
+            # name='plcxrd',
+        ),
+        Node(
             package='slider_control',
             # namespace='slider',
             executable='SliderMain',
