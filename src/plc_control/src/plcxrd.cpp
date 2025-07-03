@@ -166,20 +166,36 @@ bool plcxrd::make_action(std::string step)
     else if(action == "doorlock"){
         // Control doorlock of xrd machine based on command
         std::string coil = "none";
+        coil = DOORLOCK_OPEN_M11;
         if(token[2] == "open"){
             // release doorlock
             std::cout << "doorlock open" << std::endl;
-            coil = DOORLOCK_OPEN_M11;
+            return_message = coilWrite(coil.c_str(), COIL_ON);
+            rclcpp::sleep_for(std::chrono::seconds(2)); // 2 second delay
         }
         else if(token[2] == "close"){
             // Close doorlock
             std::cout << "doorlock close" << std::endl;
-            coil = DOORLOCK_CLOSE_M12;
+            return_message = coilWrite(coil.c_str(), COIL_OFF);
+            rclcpp::sleep_for(std::chrono::seconds(2)); // 2 second delay
         }
-        return_message = coilWrite(DOORLOCK_OPEN_M11, COIL_ON);
-        rclcpp::sleep_for(std::chrono::seconds(2)); // 2 second delay
-        // return_message = coilWrite(coil.c_str(), COIL_OFF);
-        // rclcpp::sleep_for(std::chrono::seconds(20)); // 20 second delay
+    }
+    else if(action == "door"){
+        // Control doorlock of xrd machine based on command
+        std::string coil = "none";
+        coil = DOOR_OPEN_M13;
+        if(token[2] == "open"){
+            // release doorlock
+            std::cout << "doorlock open" << std::endl;
+            return_message = coilWrite(coil.c_str(), COIL_ON);
+            rclcpp::sleep_for(std::chrono::seconds(2)); // 2 second delay
+        }
+        else if(token[2] == "close"){
+            // Close doorlock
+            std::cout << "doorlock close" << std::endl;
+            return_message = coilWrite(coil.c_str(), COIL_OFF);
+            rclcpp::sleep_for(std::chrono::seconds(2)); // 2 second delay
+        }
     }
     // else if(action == "air"){
     //     // Control air flow based on command
