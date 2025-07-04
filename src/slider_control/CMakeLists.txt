@@ -42,12 +42,21 @@ find_package(ros2_utils REQUIRED)
 add_executable(SliderMain
 src/slider_main.cpp src/slider_node.cpp src/slider.cpp)
 
+add_executable(SliderXrdMain
+src/sliderxrd_main.cpp src/sliderxrd_node.cpp src/sliderxrd.cpp)
+
+
 ament_target_dependencies(SliderMain
 rclcpp msg_format tcp_handle ros2_utils)
+
+ament_target_dependencies(SliderXrdMain
+rclcpp msg_format tcp_handle ros2_utils)
+
 
 install(
   TARGETS
   SliderMain
+  SliderXrdMain
   DESTINATION lib/${PROJECT_NAME}
 )
 

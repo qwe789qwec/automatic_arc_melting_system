@@ -22,6 +22,12 @@ def generate_launch_description():
             # name='slider'
         ),
         Node(
+            package='slider_control',
+            # namespace='slider',
+            executable='SliderXrdMain',
+            # name='slider'
+        ),
+        Node(
             package='weighing_control',
             # namespace='weighing',
             executable='WeighingMain',
