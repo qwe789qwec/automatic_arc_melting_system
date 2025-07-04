@@ -18,6 +18,7 @@ ProcessController::ProcessController(std::string command)
     devices_manager_.initializing = true;
     devices_manager_.addDevice("weighing");
     devices_manager_.addDevice("slider");
+    devices_manager_.addDevice("sliderxrd");
     devices_manager_.addDevice("cobotta");
     devices_manager_.addDevice("plc");
     devices_manager_.addDevice("plcxrd");
