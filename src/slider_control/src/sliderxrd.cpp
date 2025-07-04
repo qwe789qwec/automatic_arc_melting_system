@@ -263,7 +263,7 @@ void sliderxrd::take_cup_arc()
 bool sliderxrd::make_action(std::string step)
 {    
     // Parse the command for slider-specific action
-	std::string command = service_utils::get_command(step, "slider");
+	std::string command = service_utils::get_command(step, "sliderxrd");
     std::string action = "none";
     if (command == "test" || command == "init") {
         action = command;
