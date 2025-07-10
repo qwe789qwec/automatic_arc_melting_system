@@ -3,19 +3,19 @@ from .pybcapclient.bcapclient import BCAPClient
 
 import rclpy
 from rclpy.node import Node
-from .cobotta.cobotta import cobotta
+from .cobotta.cobottaxrd import cobottaxrd
 
-class CobottaActionService(Node):
+class CobottaXRDActionService(Node):
 
     def __init__(self):
-        super().__init__('cobotta_action')
-        self.srv = self.create_service(TestSrv, 'test_srv', self.cobotta_act)
+        super().__init__('cobottaxrd_action')
+        self.srv = self.create_service(TestSrv, 'test_srv_xrd', self.cobotta_act)
 
     def cobotta_act(self, request, response):
         self.get_logger().info('Incoming request\nactionOne: %s actionTwo: %s' % (request.action_1, request.action_2))
         response.result = 'init status'
 
-        cobotta_client = cobotta("192.168.0.1", 5007, 2000)
+        cobotta_client = cobottaxrd("192.168.0.11", 5007, 2000)
 
         if request.action_1.startswith("run"):
             action = request.action_1.replace("run", "")
@@ -43,7 +43,7 @@ class CobottaActionService(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    cobotta_action = CobottaActionService()
+    cobotta_action = CobottaXRDActionService()
 
     rclpy.spin(cobotta_action)
 

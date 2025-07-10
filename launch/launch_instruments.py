@@ -41,6 +41,13 @@ def generate_launch_description():
             # arguments=['--test', 'default_topic']
         ),
         Node(
+            package='cobotta_bcap',
+            # namespace='cobotta',
+            executable='CobottaXRDMain',
+            # name='cobotta',
+            # arguments=['--test', 'default_topic']
+        ),
+        Node(
             package='data_handle',
             # namespace='data_handle',
             executable='service',
