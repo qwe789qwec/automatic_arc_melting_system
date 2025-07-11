@@ -48,6 +48,13 @@ def generate_launch_description():
             # arguments=['--test', 'default_topic']
         ),
         Node(
+            package='xrd_meas',
+            # namespace='xrd_meas',
+            executable='XrdMeas',
+            # name = 'xrd_meas',
+            # arguments=['--test', 'default_topic']
+        ),
+        Node(
             package='data_handle',
             # namespace='data_handle',
             executable='service',

@@ -20,8 +20,10 @@ ProcessController::ProcessController(std::string command)
     devices_manager_.addDevice("slider");
     devices_manager_.addDevice("sliderxrd");
     devices_manager_.addDevice("cobotta");
+    devices_manager_.addDevice("cobottaxrd");
     devices_manager_.addDevice("plc");
     devices_manager_.addDevice("plcxrd");
+    devices_manager_.addDevice("xrdmeas");
     devices_manager_.initializing = false;
     
     // Initialize process sequences
