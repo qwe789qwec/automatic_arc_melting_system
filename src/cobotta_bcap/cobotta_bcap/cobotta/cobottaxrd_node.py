@@ -10,14 +10,14 @@ from msg_format.msg import ProcessMsg
 
 from ros2_utils_py.service_utils import call_service
 
-from .cobotta import cobottaxrd
+from .cobottaxrd import cobottaxrd
 
 class CobottaXRDNode(Node):
     """
     Cobotta Node class that subscribes to a topic and processes messages.
     """
     def __init__(self):
-        super().__init__('cobotta_subscriber')
+        super().__init__('cobottxrd_subscriber')
         
         # cobotta parameters
         self.host = "192.168.0.11"

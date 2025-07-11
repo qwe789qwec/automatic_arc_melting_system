@@ -208,13 +208,17 @@ class cobottaxrd:
                 return "standby"
             elif action == "takeplatexrd":
                 task = self.TASK_TAKE_PLATEXRD
+                self.runTask(task)
             elif action == "putplatexrd":
                 task = self.TASK_PUT_PLATEXRD
+                self.runTask(task)
             elif action == "takeplatestock":
                 task = self.TASK_TAKE_PLATESTOCK
+                self.runTask(task)
             elif action == "putplatestock":
                 task = self.TASK_PUT_PLATESTOCK
-            
+                self.runTask(task)
+           
             # position = token[2]
             # if position == "stock":
             #     self.runPath([self.STOCK_P1, self.STOCK_END], task)
