@@ -1,6 +1,20 @@
 slider_init sliderxrd_init cobotta_init cobottaxrd_init weighing_init plc_init plcxrd_init xrdmeas_init record_on
-slider_shelf_1
-cobottaxrd_takeplatexrd
+#plcxrd_doorlock_open doorlock_close door_open door_close 
+#cobottaxrd_takeplatexrd putplatexrd takeplatexrd putplatestock
+#xrdmeas_run_test
+#sliderxrd_xrdpos
+plcxrd_doorlock_open
+plcxrd_door_open
+sliderxrd_xrdpos
+sliderxrd_init
+plcxrd_door_close
+plcxrd_wait_3
+plcxrd_doorlock_close
 xrdmeas_run_test
-slider_pos1
-
+plcxrd_doorlock_open
+plcxrd_door_open
+sliderxrd_xrdpos
+sliderxrd_init
+plcxrd_door_close
+plcxrd_wait_3
+plcxrd_doorlock_close

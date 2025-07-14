@@ -11,6 +11,7 @@ class XrdMeasSystem(Node):
         super().__init__('xrd_meas_system')
         self.device_id = 'xrdmeas'
         self.current_step = ""
+        self.last_command = None# prevents double execution
 
         self.process_client = self.create_client(ProcessService, 'process_service')
 
@@ -34,6 +35,11 @@ class XrdMeasSystem(Node):
                 continue
 
             self.get_logger().info(f"Matched command: {cmd}")
+
+            if cmd == self.last_command:
+                #self.get_logger().info(f"Ignored duplicate command: {cmd}")
+                return
+            self.last_command = cmd
 
             if cmd == f"{self.device_id}_standby":
                 self.publish_status("standby")
