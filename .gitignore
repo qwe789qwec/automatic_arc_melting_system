@@ -6,7 +6,7 @@
 /log
 /datalog
 /systemlog
-/vedio
+/video
 /launch/__pycache__/
 /api_key.*
 *.DS_Store

@@ -3,7 +3,7 @@ sys.path.append('./pybcapclient')
 import time
 
 from .data_log import DataRecord
-from .vedio_record import camera
+from .video_record import camera
 # from .elabftw import ElabFTW
 from ros2_utils_py.service_utils import get_command
 
@@ -67,7 +67,7 @@ class DataHandle:
             time.sleep(5)
             self.camera.stop_recording()
             return "standby"
-        elif action == "vedio":
+        elif action == "video":
             state = token[2]
             if state == "start":
                 if len(token) > 3:
