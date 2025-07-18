@@ -5,7 +5,7 @@ import threading
 from datetime import datetime
 
 class camera:
-    def __init__(self, dir = "/home/song/Documents/ww/automatic_arc_melting_system", folder = "vedio"):
+    def __init__(self, dir = "/home/song/Documents/ww/automatic_arc_melting_system", folder = "video"):
         self.camera = cv2.VideoCapture(0, cv2.CAP_V4L2)
         if not self.camera.isOpened():
             self.get_logger().error("Error: Camera not found.")
