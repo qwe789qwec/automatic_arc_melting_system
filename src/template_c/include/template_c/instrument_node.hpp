@@ -8,7 +8,7 @@
 #include <atomic>
 
 #include "rclcpp/rclcpp.hpp"
-#include "cppblank/instrument.hpp"
+#include "template_c/instrument.hpp"
 #include "msg_format/msg/process_msg.hpp"
 #include "msg_format/srv/process_service.hpp"
 
