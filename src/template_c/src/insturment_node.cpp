@@ -1,4 +1,4 @@
-#include "cppblank/instrument_node.hpp"
+#include "template_c/instrument_node.hpp"
 #include "ros2_utils/service_utils.hpp"
 #include <iostream>
 #include <iomanip>
@@ -23,7 +23,7 @@ InstrumentSystem::InstrumentSystem() : Node("instrument_system")
     RCLCPP_INFO(this->get_logger(), "Instrument initialized");
 }
 
-bool InstrumentSystem::test_plc_action(const std::string& action_param)
+bool InstrumentSystem::test_instrument_action(const std::string& action_param)
 {
     instrument test_instrument(insturment_ip_, insturment_port_);
     std::string test_action = "Instrument_" + action_param;
