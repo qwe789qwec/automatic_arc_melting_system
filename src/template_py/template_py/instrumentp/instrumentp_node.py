@@ -10,26 +10,26 @@ from msg_format.msg import ProcessMsg
 
 from ros2_utils_py.service_utils import call_service
 
-from .Instrument import Instrument
+from .instrumentp import instrumentp
 
-class InstrumentNode(Node):
+class InstrumentPNode(Node):
     """
     Instrument Node class that subscribes to a topic and processes messages.
     """
     def __init__(self):
-        super().__init__('Instrument_subscriber')
+        super().__init__('InstrumentP_subscriber')
         
         # Instrument parameters
         self.host = "192.168.0.999"
         self.port = 7777
-        self.timeout = 2000
+        self.instrumentp_handle = instrumentp(self.host, self.port)
         
         # initial state
-        self.last_process = "Instrument init"
+        self.last_process = "instrumentp init"
         self.processing_lock = threading.Lock()
         self.service_in_progress = False
         
-        # create Instrument instance
+        # create InstrumentP instance
         self.process_client = self.create_client(ProcessService, 'process_service')
         
         # create subscriber
@@ -39,7 +39,7 @@ class InstrumentNode(Node):
             self.listener_callback,
             10)
         
-        self.get_logger().info('Cobotta node initialized')
+        self.get_logger().info('InstrumentP node initialized')
     
     def listener_callback(self, msg):
         process = msg.process
@@ -49,14 +49,13 @@ class InstrumentNode(Node):
             self.get_logger().info(f'Processing new step: {process}')
             
             try:
-                cobotta_handle = cobotta(self.host, self.port, self.timeout)
-                action_result = cobotta_handle.make_action(process)
+                action_result = self.instrumentp_handle.make_action(process)
                 
                 if action_result != "error":
                     success = call_service(
                         client=self.process_client,
                         logger=self.get_logger(),
-                        action="cobotta_standby",
+                        action="instrumentp_standby",
                         service_name="process_service"
                     )
                     
