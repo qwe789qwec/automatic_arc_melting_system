@@ -8,30 +8,30 @@
 #include <atomic>
 
 #include "rclcpp/rclcpp.hpp"
-#include "template_c/instrument.hpp"
+#include "template_c/instrumentc.hpp"
 #include "msg_format/msg/process_msg.hpp"
 #include "msg_format/srv/process_service.hpp"
 
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
-class InstrumentSystem : public rclcpp::Node
+class InstrumentCSystem : public rclcpp::Node
 {
     public:
-        InstrumentSystem();
-        ~InstrumentSystem() = default;
+        InstrumentCSystem();
+        ~InstrumentCSystem() = default;
 
         // test plc action
-        static bool test_instrument_action(const std::string& action_param);
+        static bool test_instrumentc_action(const std::string& action_param);
 
     private:
         // parameters
-        std::string instrument_ip_;
-        int instrument_port_;
+        std::string instrumentc_ip_;
+        int instrumentc_port_;
         std::string current_step_;
         
         // instrument control
-        std::unique_ptr<instrument> instrument_;
+        std::unique_ptr<instrument> instrumentc_;
         rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr process_client_;
         rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 

@@ -5,11 +5,11 @@
 #include <vector>
 #include "tcp_handle/tcp_socket.hpp"
 
-class instrument
+class instrumentc
 {
 public:
-    instrument(std::string ip, int port);
-    ~instrument();
+    instrumentc(std::string ip, int port);
+    ~instrumentc();
     bool make_action(std::string step);
 
 private:
@@ -25,7 +25,7 @@ private:
     char* dec2hex(int value);
     
     // TCP socket for communication
-    tcp_socket instrument_tcp;
+    tcp_socket instrumentc_tcp;
 };
 
 #endif // INSTRUMENT_HPP
