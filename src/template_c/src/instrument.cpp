@@ -8,15 +8,15 @@
 #include <unistd.h>
 
 #include "rclcpp/rclcpp.hpp"
-#include "cppblank/instrument.hpp"
+#include "template_c/instrumentc.hpp"
 #include "tcp_handle/tcp_socket.hpp"
 #include "ros2_utils/service_utils.hpp"
 
 
-instrument::instrument(std::string ip, int port)
+instrumentc::instrumentc(std::string ip, int port)
 {
     // Connect to PLC and initialize water system
-    instrument_tcp.connect(ip, port);
+    instrumentc_tcp.connect(ip, port);
     initprocess();
 }
 
@@ -33,7 +33,7 @@ char* instrument::dec2hex(int value)
 bool instrument::make_action(std::string step)
 {    
     // Extract instrument action from command
-    std::string command = service_utils::get_command(step, "instrument");
+    std::string command = service_utils::get_command(step, "instrumentc");
     std::string action = "none";
     if (command == "test" || command == "init") {
         action = command;
@@ -62,9 +62,11 @@ bool instrument::make_action(std::string step)
     else if (action == "action1"){
 
         if(token[2] == "start"){
+            instrumentc_tcp.write("start\r\n");
             // start action
         }
         else if(token[2] == "stop"){
+            instrumentc_tcp.write("stop\r\n");
             // stop action
         }
 
@@ -73,22 +75,15 @@ bool instrument::make_action(std::string step)
     else if (action == "action2"){
         
         if(token[2] == "on"){
+            instrumentc_tcp.write("turn_on\r\n");
             // turn on
         }
         else if(token[2] == "off"){
+            instrumentc_tcp.write("turn_off\r\n");
             // turn off
         }
 
         rclcpp::sleep_for(std::chrono::seconds(TWO)); //delay
-    }
-    else if(action == "action3"){
-        
-        // get message
-        char* message = dec2hex(3);
-        if (message == no_3){
-            // perform action 3
-        }
-        
     }
     
     return true;
@@ -97,6 +92,5 @@ bool instrument::make_action(std::string step)
 instrument::~instrument()
 {
     // Turn off water and close connection
-    coilWrite(WATER_Y4, COIL_OFF);
-    instrument_tcp.close();
+    instrumentc_tcp.close();
 }
