@@ -50,7 +50,8 @@ private:
     static constexpr const char* PRESURE_S12 = "\xB0\x0C";
     static constexpr const char* S13_COIL = "\xB0\x0D";
     static constexpr const char* S14_COIL = "\xB0\x0E";
-    
+    static constexpr const char* S16_COIL = "\xB0\x10";
+
     static constexpr const char* SD6180 = "\x68\x24";  // For analog
 
     char* modbus(const char* function, const char* component, const char* data);
