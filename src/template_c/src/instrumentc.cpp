@@ -62,11 +62,13 @@ bool instrument::make_action(std::string step)
     else if (action == "action1"){
 
         if(token[2] == "start"){
-            instrumentc_tcp.write("start\r\n");
+            std::cout << "Instrument action1 start" << std::endl;
+            // instrumentc_tcp.write("start\r\n");
             // start action
         }
         else if(token[2] == "stop"){
-            instrumentc_tcp.write("stop\r\n");
+            std::cout << "Instrument action1 stop" << std::endl;
+            // instrumentc_tcp.write("stop\r\n");
             // stop action
         }
 
@@ -75,11 +77,13 @@ bool instrument::make_action(std::string step)
     else if (action == "action2"){
         
         if(token[2] == "on"){
-            instrumentc_tcp.write("turn_on\r\n");
+            std::cout << "Instrument action2 on" << std::endl;
+            // instrumentc_tcp.write("turn_on\r\n");
             // turn on
         }
         else if(token[2] == "off"){
-            instrumentc_tcp.write("turn_off\r\n");
+            std::cout << "Instrument action2 off" << std::endl;
+            // instrumentc_tcp.write("turn_off\r\n");
             // turn off
         }
 

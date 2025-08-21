@@ -27,42 +27,49 @@ class instrumentp:
     
     def make_action(self, step):
         command = get_command(step, "instrumentp")
-        action = "none"
-        if command == "test" or command == "init":
+        if command in ["none", "error"]:
+            return command
+
+        action, position = "none", "none"
+        tokens = command.split("_")
+
+        # command validation
+        if command in ["test", "init"]:
             action = command
-        elif command == "none":
-            return "none"
-        elif command == "error":
+        elif len(tokens) >= 2:
+            action = tokens[1]
+            if len(tokens) >= 3:
+                position = tokens[2]
+        else:
             return "error"
 
-        token = command.split("_")
-        if len(token) < 2 and action == "none":
-            return "error"
-        
-        action = token[1]
-
-        position = token[2]
-
+        # === action ===
         if action == "init":
-            self.instrumentp.send(f"{self.NO_1} {self.ZERO}".encode())
+            self.instrumentp.sendall(f"{self.NO_1} {self.ZERO}\n".encode())
             print("Instrument initialized")
             return "standby"
+
         elif action == "action2":
             if position == self.NO_2:
-                # self.instrumentp.send(f"{self.NO_2} {self.TWO}".encode())
                 print(f"Action 2 at {self.NO_2}")
             elif position == self.NO_3:
-                # self.instrumentp.send(f"{self.NO_3} {self.TWO}".encode())
                 print(f"Action 2 at {self.NO_3}")
+            else:
+                print(f"Unknown position for action2: {position}")
+
         elif action == "test":
-            # self.instrumentp.send(f"{self.NO_2} {self.ONE}".encode())
             print("Instrument test action executed")
-        
-        data = self.instrumentp.recv(1024)
-        if data:
-            response = data.decode()
-            print(f"Response from instrument: {response}")
+
+        # === wait for response ===
+        try:
+            data = self.instrumentp.recv(1024)
+            if data:
+                response = data.decode()
+                print(f"Response from instrument: {response}")
+        except socket.timeout:
+            print("No response from instrument (timeout)")
 
         return "standby"
+    
     def __del__(self):
         self.instrumentp.close()

@@ -1,4 +1,4 @@
-#include "template_c/instrument_node.hpp"
+#include "template_c/instrumentc_node.hpp"
 #include "ros2_utils/service_utils.hpp"
 #include <iostream>
 #include <iomanip>

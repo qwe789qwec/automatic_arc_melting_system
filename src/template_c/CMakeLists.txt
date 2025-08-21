@@ -39,14 +39,14 @@ find_package(msg_format REQUIRED)
 find_package(tcp_handle REQUIRED)
 find_package(ros2_utils REQUIRED)
 
-add_executable(template_c src/instrument_main.cpp src/instrument_node.cpp src/instrument.cpp)
+add_executable(InstrumentCMain src/instrumentc_main.cpp src/instrumentc_node.cpp src/instrumentc.cpp)
 
-ament_target_dependencies(template_c
+ament_target_dependencies(InstrumentCMain
 rclcpp msg_format tcp_handle ros2_utils)
 
 install(
   TARGETS
-  template_c
+  InstrumentCMain
   DESTINATION lib/${PROJECT_NAME}
 )
 

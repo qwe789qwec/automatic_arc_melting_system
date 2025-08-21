@@ -1,5 +1,5 @@
 #include <cstdlib>
-#include "template_c/instrument_node.hpp"
+#include "template_c/instrumentc_node.hpp"
 
 int main(int argc, char* argv[])
 {
