@@ -8,7 +8,7 @@ InstrumentCSystem::InstrumentCSystem() : Node("instrumentc_system")
     // initialize parameters
     insturmentc_ip_ = "192.168.0.999"; // Set your instrument's IP address
     insturmentc_port_ = 7777; // Set your instrument's port
-    current_step_ = "insturmentc_init";
+    current_step_ = "insturmentc init";
     
     // initialize insturment
     insturmentc_ = std::make_unique<instrumentc>(insturmentc_ip_, insturmentc_port_);
