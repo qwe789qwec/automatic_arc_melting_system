@@ -15,7 +15,7 @@ public:
     void moveToNextStep();
     
 private:
-    const std::string secquence_file_ = "secquence/seq_kt_fullsequencial2.txt";
+    const std::string secquence_file_ = "secquence/seq_kt.txt";
 
     // Device state manager
     DeviceStateManager devices_manager_;
