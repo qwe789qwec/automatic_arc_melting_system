@@ -100,7 +100,7 @@ class cobotta:
 
         # set ExtSpeed Speed,Accel,Decel
         Command = "ExtSpeed"
-        Speed = 95
+        Speed = 75
         Accel = 50
         Decel = 50
         Param = [Speed,Accel,Decel]
@@ -218,6 +218,8 @@ class cobotta:
                 task = self.TASK_PUT_DOSE
             elif action == "putCupStock":
                 self.runTask(self.TASK_PUTCUP_STOCK)
+                time.sleep(0.5)
+                return "standby"
             
             position = token[2]
             if position == "stock":

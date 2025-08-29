@@ -49,7 +49,7 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
             if (weighing_->data_flag) {
                 if (current_step_.find("getweight") != std::string::npos){
                     char buffer[50];
-                    snprintf(buffer, sizeof(buffer), "Weight: %.0f mg", weighing_->last_weight_mg);
+                    snprintf(buffer, sizeof(buffer), "Weight: %.1f mg", weighing_->last_weight_mg);
                     std::string data_str = buffer;
                     RCLCPP_INFO(this->get_logger(), "%s", data_str.c_str());
                     service_utils::call_service_async(
@@ -61,6 +61,9 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
                     data_client_, this->get_logger(), gramdata + " mg", "Data");
                 }
             }
+
+            weighing_->data_flag = false;// reset the state
+
         } else {
             RCLCPP_ERROR(this->get_logger(), "Error cannot make action");
         }

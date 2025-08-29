@@ -2,6 +2,7 @@
 #include <thread>
 #include <stdio.h>
 #include <unistd.h>
+#include <iomanip>
 
 #include "weighing_control/weighing_machine.hpp"
 #include "tcp_handle/tcp_socket.hpp"
@@ -93,7 +94,7 @@ std::string weighing_machine::getsampledata()
         }
         
         // Check for timeout
-        if (std::chrono::steady_clock::now() - start_time >= std::chrono::seconds(9)) {
+        if (std::chrono::steady_clock::now() - start_time >= std::chrono::seconds(15)) {
             printf("take data timeout\n");
             return "take data timeout";
         }
@@ -185,32 +186,36 @@ bool weighing_machine::make_action(std::string step)
         return true;
     }
     else if (action == "getweight") {
-        weighing_tcp.writeRaw("\x53\x0D\x0A", 3);// sending S\r\n
-        char* message;
-        usleep(1000 * 1000 * 1);
-        int size;
-        weighing_tcp.receiveRaw(message, size);
-        //print message
-        if (size > 0) {
-            message[size] = '\0';
-            std::cout << "Received: " << message << std::endl;
-        }
-
-        if (size > 0) {
-            // "S S weight g" の形式で解析
-            std::vector<std::string> tokens;
-            std::stringstream ss(message);
-            std::string t;
-            while (ss >> t) tokens.push_back(t);
-
-            if (tokens.size() >= 4 && tokens[0] == "S" && tokens[1] == "S") {
-                last_weight_mg = std::stod(tokens[2]) * 1000.0; // g -> mg
+        const char request[] = "\x53\x0D\x0A"; // S\r\n
+        char* message = nullptr;
+        int size = 0;
+        int retries = 3;
+    
+        while (retries-- > 0) {
+            weighing_tcp.writeRaw(request, sizeof(request) - 1);
+            usleep(1000 * 1000 * 1); // 1 second delay
+    
+            weighing_tcp.receiveRaw(message, size);
+    
+            if (size > 0) {
+                message[size] = '\0';
+                std::cout << "Received: " << message << std::endl;
+    
+                // assuming the format is "S S weight g"
+                std::vector<std::string> tokens;
+                std::stringstream ss(message);
+                std::string t;
+                while (ss >> t) tokens.push_back(t);
+    
+                if (tokens.size() >= 4 && tokens[0] == "S" && tokens[1] == "S") {
+                    last_weight_mg = std::stod(tokens[2]) * 1000.0; // g -> mg
+                    std::cout << std::fixed << std::setprecision(4) << last_weight_mg << std::endl;
+    
+                    data_flag = true;
+                    return true;
                 }
-                std::cout << last_weight_mg << std::endl;
-
-                data_flag = true;
-                return true;
             }
+        }
     }
     else {
         // Unknown command
