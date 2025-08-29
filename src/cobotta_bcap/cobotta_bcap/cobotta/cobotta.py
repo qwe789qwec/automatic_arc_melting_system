@@ -104,7 +104,7 @@ class cobotta:
 
         # set ExtSpeed Speed,Accel,Decel
         Command = "ExtSpeed"
-        Speed = 75
+        Speed = 95
         Accel = 50
         Decel = 50
         Param = [Speed,Accel,Decel]
