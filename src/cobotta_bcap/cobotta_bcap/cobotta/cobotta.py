@@ -18,6 +18,8 @@ xp13 p10 to p12 mid
 p14 weighing dosing position
 p15 weighing bowl position
 P16 into weighing
+p17 intermediate between p10 and p18
+p18 cup position after synthesis
 
 P20 p1 to arc standby
 P21 p2 to arc standby
@@ -39,6 +41,7 @@ arc_put_bowl
 arc_take_bowl
 shelf_take_dose
 shelf_put_dose
+stock_put_cup
 """
 
 # host = "192.168.0.1"
@@ -58,12 +61,15 @@ class cobotta:
     ARC_P2 = 21
     ARC_STANDBY = 22
     TEST_POINT = 44
+    CUPSTOCK_P1 = 15# this option is not used though
+    CUPSTOCK_END = 16# this option is not used though
 
     TASK_INIT = "test1/init"
     TASK_TAKE_CUP = "test1/take_cup"
     TASK_PUT_CUP = "test1/put_cup"
     TASK_TAKE_DOSE = "test1/take_dose"
     TASK_PUT_DOSE = "test1/put_dose"
+    TASK_PUTCUP_STOCK = "test1/put_cupstock"# this is used
 
     VAR_TAKE = "I10"
     VAR_PUT = "I11"
@@ -94,7 +100,7 @@ class cobotta:
 
         # set ExtSpeed Speed,Accel,Decel
         Command = "ExtSpeed"
-        Speed = 75
+        Speed = 95
         Accel = 50
         Decel = 50
         Param = [Speed,Accel,Decel]
@@ -210,6 +216,8 @@ class cobotta:
                 task = self.TASK_TAKE_DOSE
             elif action == "putDose":
                 task = self.TASK_PUT_DOSE
+            elif action == "putCupStock":
+                self.runTask(self.TASK_PUTCUP_STOCK)
             
             position = token[2]
             if position == "stock":

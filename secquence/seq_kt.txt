@@ -3,6 +3,5 @@ slider_init sliderxrd_init cobotta_init cobottaxrd_init weighing_init plc_init p
 #cobottaxrd_takeplatexrd putplatexrd takeplatexrd putplatestock
 #xrdmeas_run_test
 #sliderxrd_xrdpos
-weighing_open
-weighing_getweight
-record_off
+slider_productStockR
+cobotta_putCupStock

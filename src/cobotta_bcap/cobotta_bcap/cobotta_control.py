@@ -24,6 +24,8 @@ xp13 p10 to p12 mid
 p14 weighing dosing position
 p15 weighing bowl position
 P16 into weighing
+p17 intermediate between p10 and p18
+p18 cup position after synthesis
 
 P20 p1 to arc standby
 P21 p2 to arc standby
@@ -39,6 +41,7 @@ arc_put_bowl
 arc_take_bowl
 shelf_take_dose
 shelf_put_dose
+stock_put_cup
 """
 
 class CobottaClient(Node):
