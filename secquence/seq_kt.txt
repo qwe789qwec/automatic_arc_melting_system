@@ -62,7 +62,23 @@ plc_gate_open
 plc_checkValve
 slider_takeCupArc
 
-plc_gate_close cobotta_takeCup_arc
+# plc_gate_close cobotta_takeCup_arc
+# slider_weightPos weighing_open
+# plc_singlePump cobotta_putCup_weight
+# weighing_close
+# plc_wait_3
+# weighing_getweight
+# weighing_open
+# cobotta_takeCup_weight
+# weighing_close slider_productStockR
+# cobotta_putCupStock
+# slider_init cobotta_init weighing_init plc_init record_off
+
+# slider_shelf_4
+# cobotta_takeDose_shelf4
+# slider_weightPos weighing_open
+# cobotta_putDose_weight
+
 slider_weightPos weighing_open
 plc_singlePump cobotta_putCup_weight
 weighing_close
