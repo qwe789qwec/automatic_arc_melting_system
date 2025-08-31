@@ -52,6 +52,10 @@ class cobotta:
     SHELF3_END = 11
     SHELF2_P1 = 23
     SHELF2_END = 24
+    SHELF4_P1 = 25
+    SHELF4_END = 26
+    SHELF1_P1 = 27
+    SHELF1_END = 28
     WEIGHT_P1 = 16
     WEIGHT_DOSE = 14
     WEIGHT_CUP = 15
@@ -61,8 +65,8 @@ class cobotta:
     ARC_P2 = 21
     ARC_STANDBY = 22
     TEST_POINT = 44
-    CUPSTOCK_P1 = 15# this option is not used though
-    CUPSTOCK_END = 16# this option is not used though
+    CUPSTOCK_P1 = 17# this option is not used though
+    CUPSTOCK_END = 18# this option is not used though
 
     TASK_INIT = "test1/init"
     TASK_TAKE_CUP = "test1/take_cup"
@@ -229,10 +233,14 @@ class cobotta:
                     self.runPath([self.WEIGHT_P1, self.WEIGHT_CUP], task)
                 else:
                     self.runPath([self.WEIGHT_P1, self.WEIGHT_DOSE], task)
-            elif position == "shelf3":
-                self.runPath([self.SHELF3_END], task)
+            elif position == "shelf1":
+                self.runPath([self.SHELF1_P1, self.SHELF1_END], task)
             elif position == "shelf2":
                 self.runPath([self.SHELF2_P1, self.SHELF2_END], task)
+            elif position == "shelf3":
+                self.runPath([self.SHELF3_END], task)
+            elif position == "shelf4":
+                self.runPath([self.SHELF4_P1, self.SHELF4_END], task)
             elif position == "arc":
                 self.runPath([self.ARC_P1, self.ARC_P2, self.ARC_STANDBY], task)
             else:

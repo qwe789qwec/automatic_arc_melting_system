@@ -1,4 +1,5 @@
-slider_init sliderxrd_init cobotta_init cobottaxrd_init weighing_init plc_init plcxrd_init xrdmeas_init record_on
+slider_init sliderxrd_init cobotta_init cobottaxrd_init weighing_init plc_init plcxrd_init xrdmeas_init
+# record_on
 #plcxrd_doorlock_open doorlock_close door_open door_close 
 #cobottaxrd_takeplatexrd putplatexrd takeplatexrd putplatestock
 #xrdmeas_run_test
@@ -10,12 +11,13 @@ slider_init sliderxrd_init cobotta_init cobottaxrd_init weighing_init plc_init p
 
 # slider_shelf_1 weighing_close
 # cobotta_takeDose_shelf1
+# cobotta_putDose_shelf1
 # weighing_open slider_weightPos
 # cobotta_putDose_weight
-# weighing_mgram_Al_400.0
+# weighing_mgram_Al_50.0
 # cobotta_takeDose_weight
 # weighing_close slider_shelf_1
-# cobotta_putDose_shelf1
+# cobotta_putDose_shelf2
 
 # slider_shelf_2
 # cobotta_takeDose_shelf2
@@ -66,15 +68,25 @@ slider_init sliderxrd_init cobotta_init cobottaxrd_init weighing_init plc_init p
 # plc_checkValve
 # slider_takeCupArc
 
-plc_gate_close cobotta_takeCup_arc
+# plc_gate_close cobotta_takeCup_arc
+# slider_weightPos weighing_open
+# plc_singlePump cobotta_putCup_weight
+# weighing_close
+# plc_wait_3
+# weighing_getweight
+# weighing_open
+# cobotta_takeCup_weight
+# weighing_close slider_productStockR
+# cobotta_putCupStock
+# slider_init cobotta_init weighing_init plc_init record_off
+
+# slider_shelf_4
+# cobotta_takeDose_shelf4
+# slider_weightPos weighing_open
+# cobotta_putDose_weight
+
 slider_weightPos weighing_open
-plc_singlePump cobotta_putCup_weight
-weighing_close
-plc_wait_3
-weighing_getweight
-plc_wait_1
-weighing_open
-cobotta_takeCup_weight
-weighing_close slider_productStockR
-cobotta_putCupStock
-slider_init cobotta_init weighing_init plc_init record_off
+cobotta_takeDose_weight
+slider_shelf_4
+cobotta_putDose_shelf4
+
