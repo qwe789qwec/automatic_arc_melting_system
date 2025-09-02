@@ -25,7 +25,7 @@ private:
     // static constexpr const char* SHELF_POS4 = "00050910";
     // static constexpr const char* SHELF_POS5 = "0005F370";
     static constexpr const int WEIGHING_POS = 640000;  // weighing position, slider1 640.000 mm
-    static constexpr const int PRODUCT_STOCK_R = 699000; // arc product (right), slider1 699.000 mm
+    static constexpr const int PRODUCT_STOCK = 699000; // arc product (right), slider1 699.000 mm
 
     // Position Constants - Cup Handling
     static constexpr const char* SLIDER2_LIFTCUP = "000055F0";   // vertical slider position to lift cup
