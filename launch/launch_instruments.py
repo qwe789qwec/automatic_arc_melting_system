@@ -10,21 +10,9 @@ def generate_launch_description():
             # name='plc'
         ),
         Node(
-            package='plc_control',
-            # namespace='plcxrd',
-            executable='PlcxrdMain',
-            # name='plcxrd',
-        ),
-        Node(
             package='slider_control',
             # namespace='slider',
             executable='SliderMain',
-            # name='slider'
-        ),
-        Node(
-            package='slider_control',
-            # namespace='slider',
-            executable='SliderXrdMain',
             # name='slider'
         ),
         Node(
@@ -38,20 +26,6 @@ def generate_launch_description():
             # namespace='cobotta',
             executable='CobottaMain',
             # name='cobotta',
-            # arguments=['--test', 'default_topic']
-        ),
-        Node(
-            package='cobotta_bcap',
-            # namespace='cobotta',
-            executable='CobottaXRDMain',
-            # name='cobotta',
-            # arguments=['--test', 'default_topic']
-        ),
-        Node(
-            package='xrd_meas',
-            # namespace='xrd_meas',
-            executable='XrdMeas',
-            # name = 'xrd_meas',
             # arguments=['--test', 'default_topic']
         ),
         Node(

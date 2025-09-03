@@ -17,7 +17,7 @@ MainProcessNode::MainProcessNode(const std::string& node_name, std::string comma
     step_publisher_ = create_publisher<msg_format::msg::ProcessMsg>("topic", 10);
     
     // Setup timer to periodically publish current step
-    publish_timer_ = create_wall_timer(1s, 
+    publish_timer_ = create_wall_timer(1.5s, 
         std::bind(&MainProcessNode::publishCurrentStep, this));
         
     RCLCPP_INFO(get_logger(), "Main process node initialized");

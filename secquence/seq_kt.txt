@@ -1,4 +1,3 @@
-sliderxrd_init cobottaxrd_init plcxrd_init xrdmeas_init
 record_on
 slider_init
 cobotta_init
