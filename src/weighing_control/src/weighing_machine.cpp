@@ -189,11 +189,11 @@ bool weighing_machine::make_action(std::string step)
         const char request[] = "\x53\x0D\x0A"; // S\r\n
         char* message = nullptr;
         int size = 0;
-        int retries = 10;
+        int retries = 20;
     
         while (retries-- > 0) {
             weighing_tcp.writeRaw(request, sizeof(request) - 1);
-            usleep(1000 * 1000 * 0.5); // 1 second delay
+            usleep(1000 * 1000 * 0.5); // 0.5 second delay
     
             weighing_tcp.receiveRaw(message, size);
     
