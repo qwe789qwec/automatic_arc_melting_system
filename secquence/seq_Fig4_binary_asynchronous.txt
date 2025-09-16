@@ -1,9 +1,4 @@
-sliderxrd_init cobottaxrd_init plcxrd_init xrdmeas_init
 record_on slider_init cobotta_init weighing_init plc_init
-#plcxrd_doorlock_open doorlock_close door_open door_close 
-#cobottaxrd_takeplatexrd putplatexrd takeplatexrd putplatestock
-#xrdmeas_run_test
-#sliderxrd_xrdpos
 
 cobotta_takeCup_stock
 weighing_open slider_weightPos
@@ -75,7 +70,7 @@ plc_wait_3
 weighing_getweight
 weighing_open
 cobotta_takeCup_weight
-weighing_close slider_productStockR
+weighing_close slider_productStock
 cobotta_putCupStock
 slider_init cobotta_init weighing_init plc_init record_off
 

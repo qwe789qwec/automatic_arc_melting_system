@@ -132,53 +132,55 @@ class cobotta:
         Param = None
         self.bcap.robot_execute(self.robotHandle,Command,Param)
 
-    # def runTask(self, task):
-    #     ### get task Object Handl
-    #     if(self.taskHandle == 0):
-    #         self.taskHandle = self.bcap.controller_gettask(self.hCtrl,task,"")
+    def runTask(self, task):
+        ### get task Object Handl
+        if(self.taskHandle == 0):
+            self.taskHandle = self.bcap.controller_gettask(self.hCtrl,task,"")
 
-    #     #Start pro1
-    #     #mode  1:One cycle execution, 2:Continuous execution, 3:Step forward
-    #     mode = 1
-    #     taskStatus = self.bcap.task_start(self.taskHandle, mode, "")
+        #Start pro1
+        #mode  1:One cycle execution, 2:Continuous execution, 3:Step forward
+        mode = 1
+        taskStatus = self.bcap.task_start(self.taskHandle, mode, "")
         
-    #     status = False
-    #     while True:
-    #         taskStatus = self.bcap.task_execute(self.taskHandle,"GetStatus")
-    #         if(taskStatus != 3):
-    #             status = True
-    #             break
+        status = False
+        while True:
+            taskStatus = self.bcap.task_execute(self.taskHandle,"GetStatus")
+            if(taskStatus != 3):
+                status = True
+                break
         
-    #     return status
-    def runTask(self, task, start_timeout=5.0, finish_timeout=300.0, poll=0.05):
-        if self.taskHandle == 0:
-            self.taskHandle = self.bcap.controller_gettask(self.hCtrl, task, "")
+        return status
 
-        self.bcap.task_start(self.taskHandle, 1, "")# start task
-        saw_running = False
+    # def runTask(self, task, start_timeout=5.0, finish_timeout=300.0, poll=0.05):
+    #     if self.taskHandle == 0:
+    #         self.taskHandle = self.bcap.controller_gettask(self.hCtrl, task, "")
 
-        t_start = time.time()# wait until it becomes running (st==3)
-        while time.time() - t_start < finish_timeout:
-            st1 = self.bcap.task_execute(self.taskHandle, "GetStatus")
+    #     self.bcap.task_start(self.taskHandle, 1, "")# start task
+    #     saw_running = False
 
-            if st1 == 3:
-                # 動作中
-                saw_running = True
-            else:
-                if saw_running or task == self.TASK_INIT:
-                    # 一度は RUNNING を確認済み → standby 判定フェーズ
-                    time.sleep(0.5)
-                    st2 = self.bcap.task_execute(self.taskHandle, "GetStatus")
-                    if st2 != 3:
-                        # 0秒と0.5秒後ともに standby → 完了確定
-                        return True
-                    # st2==3 ならまだ動作中 → 続行
-            time.sleep(poll)
+    #     t_start = time.time()# wait until it becomes running (st==3)
+    #     while time.time() - t_start < finish_timeout:
+    #         st1 = self.bcap.task_execute(self.taskHandle, "GetStatus")
 
-        return False  # タイムアウト
+    #         if st1 == 3:
+    #             # 動作中
+    #             saw_running = True
+    #         else:
+    #             if saw_running or task == self.TASK_INIT:
+    #                 # 一度は RUNNING を確認済み → standby 判定フェーズ
+    #                 time.sleep(0.5)
+    #                 st2 = self.bcap.task_execute(self.taskHandle, "GetStatus")
+    #                 if st2 != 3:
+    #                     # 0秒と0.5秒後ともに standby → 完了確定
+    #                     return True
+    #                 # st2==3 ならまだ動作中 → 続行
+    #         time.sleep(poll)
+
+    #     return False  # タイムアウト
 
     def changeValue(self, ioNum, value):
         # get I[1] Object Handl
+        
         if(self.valueHandle == 0):
             self.valueHandle = self.bcap.controller_getvariable(self.hCtrl, ioNum, "")
         # write value

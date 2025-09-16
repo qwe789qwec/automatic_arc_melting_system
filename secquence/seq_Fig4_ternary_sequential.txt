@@ -1,7 +1,5 @@
-sliderxrd_init cobottaxrd_init plcxrd_init xrdmeas_init
-record_on
+cobotta_init record_on
 slider_init
-cobotta_init
 weighing_init
 plc_init
 cobotta_takeCup_stock
@@ -54,7 +52,7 @@ plc_pump
 cobotta_putDose_shelf3
 slider_arcinit
 plc_buzz
-record_video_start_Alternaryasynarc1
+record_video_start_Alternaryseqarc1
 plc_arc_on
 slider_arc_cw_3
 plc_arc_off
@@ -62,7 +60,7 @@ plc_wait_20
 plc_autoFlip
 record_video_stop
 plc_buzz
-record_video_start_Alternaryasynarc2
+record_video_start_Alternaryseqarc2
 plc_arc_on
 slider_arc_ccw_3
 plc_arc_off
@@ -70,7 +68,7 @@ plc_wait_20
 plc_autoFlip
 record_video_stop
 plc_buzz
-record_video_start_Alternaryasynarc3
+record_video_start_Alternaryseqarc3
 plc_arc_on
 slider_arc_cw_3
 plc_arc_off
@@ -78,7 +76,7 @@ plc_wait_20
 plc_autoFlip
 record_video_stop
 plc_buzz
-record_video_start_Alternaryasynarc4
+record_video_start_Alternaryseqarc4
 plc_arc_on
 slider_arc_ccw_3
 plc_arc_off
