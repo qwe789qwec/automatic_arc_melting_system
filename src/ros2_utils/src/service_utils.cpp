@@ -58,7 +58,7 @@ std::shared_future<bool> call_service_async(
     
     // check if the service is available
     if (!client->service_is_ready()) {
-        const std::chrono::milliseconds short_timeout(100);
+        const std::chrono::milliseconds short_timeout(3000);
         if (!client->wait_for_service(short_timeout)) {
             RCLCPP_ERROR(logger, "%s service not available", service_name.c_str());
             promise->set_value(false);

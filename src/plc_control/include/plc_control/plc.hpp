@@ -11,6 +11,7 @@ public:
     plc(std::string ip, int port);
     ~plc();
     bool make_action(std::string step);
+    std::future<bool> make_action_async(std::string step);
 
 private:
     // Modbus function codes
@@ -61,6 +62,14 @@ private:
     bool inputRead(const char* component);
     char* registerWrite(const char* component, int data);
     bool registerRead(const char* component, int data);
+    
+    // Thread control
+    std::queue<std::pair<std::string, std::promise<bool>>> task_queue_;
+    std::mutex queue_mutex_;
+    std::condition_variable cv_;
+    std::atomic<bool> stop_worker_{false};
+    std::thread worker_thread_;
+    void worker_loop(); // Worker thread function
     
     // TCP socket for communication
     tcp_socket plc_tcp;

@@ -29,6 +29,13 @@ plc::plc(std::string ip, int port)
     plc_tcp.connect(ip, port);
     coilWrite(WATER_Y4, COIL_ON);
     usleep(1000 * 1000);  // 1 second delay
+    coilWrite(ARC_OFF_M21, COIL_ON);
+    usleep(1000 * 1000);  // 1 second delay
+    coilWrite(ARC_OFF_M21, COIL_OFF);
+    usleep(1000 * 1000);  // 1 second delay
+
+    // Start working thread
+    worker_thread_ = std::thread(&plc::worker_loop, this);
 }
 
 char* plc::dec2hex(int value) 
@@ -134,27 +141,20 @@ bool plc::registerRead(const char* component, int data)
     }
 }
 
-bool plc::make_action(std::string step)
-{    
-    // Extract PLC-specific action from command
-    std::string command = service_utils::get_command(step, "plc");
-    std::string action = "none";
+bool plc::make_action(std::string command)
+{ 
+    if (command == "none") return true;
+    if (command == "error") return false;
+
+    std::string action;
+    std::vector<std::string>tokens = service_utils::split_string(command);
+
     if (command == "test" || command == "init") {
         action = command;
+    } else {
+        if (tokens.size() < 2) return false;
+        action = tokens[1];
     }
-    else if (command == "none") {
-        return true;
-    }
-    else if (command == "error") {
-        return false;
-    }
-
-    std::vector<std::string>token = service_utils::split_string(command);
-    // if no token found, return false
-    if (token.size() < 2 && action == "none") {
-        return false;
-    }
-    action = token[1];
 
     char* return_message = nullptr;
 
@@ -201,12 +201,12 @@ bool plc::make_action(std::string step)
     }
     else if(action == "arc"){
         std::string coil = "none";
-        if(token[2] == "on"){
+        if(tokens[2] == "on"){
             // Turn on arc
             std::cout << "arc on" << std::endl;
             coil = ARC_ON_M20;
         }
-        else if(token[2] == "off"){
+        else if(tokens[2] == "off"){
             // Turn off arc
             std::cout << "arc off" << std::endl;
             coil = ARC_OFF_M21;
@@ -216,12 +216,12 @@ bool plc::make_action(std::string step)
         return_message = coilWrite(coil.c_str(), COIL_OFF);
     }
     else if(action == "water"){
-        if(token[2] == "on"){
+        if(tokens[2] == "on"){
             // Turn on water
             std::cout << "water on" << std::endl;
             return_message = coilWrite(WATER_Y4, COIL_ON);
         }
-        else if(token[2] == "off"){
+        else if(tokens[2] == "off"){
             // Turn off water
             std::cout << "water off" << std::endl;
             return_message = coilWrite(WATER_Y4, COIL_OFF);
@@ -237,12 +237,12 @@ bool plc::make_action(std::string step)
     else if(action == "gate"){
         // Control gate valve based on command
         std::string coil = "none";
-        if(token[2] == "open"){
+        if(tokens[2] == "open"){
             // Open gate valve
             std::cout << "gate open" << std::endl;
             coil = OPEN_GATE_VALVE_M17;
         }
-        else if(token[2] == "close"){
+        else if(tokens[2] == "close"){
             // Close gate valve
             std::cout << "gate close" << std::endl;
             coil = CLOSE_GATE_VALVE_M19;
@@ -254,12 +254,12 @@ bool plc::make_action(std::string step)
     }
     else if(action == "air"){
         // Control air flow based on command
-        if(token[2] == "on"){
+        if(tokens[2] == "on"){
             // Turn on air flow
             std::cout << "air on" << std::endl;
             return_message = coilWrite(AIR_FLOW_Y12, COIL_ON);
         }
-        else if(token[2] == "off"){
+        else if(tokens[2] == "off"){
             // Turn off air flow
             std::cout << "air off" << std::endl;
             return_message = coilWrite(AIR_FLOW_Y12, COIL_OFF);
@@ -298,7 +298,7 @@ bool plc::make_action(std::string step)
         }
     }
     else if(action == "wait"){
-        int time = std::stoi(token[2]);
+        int time = std::stoi(tokens[2]);
         rclcpp::sleep_for(std::chrono::seconds(time)); // x second delay
     }
     else{
@@ -313,8 +313,54 @@ bool plc::make_action(std::string step)
     return true;
 }
 
+void plc::worker_loop()
+{
+    while (true) {
+        std::unique_lock<std::mutex> lock(queue_mutex_);
+        cv_.wait(lock, [this]() { return stop_worker_ || !task_queue_.empty(); });
+
+        if (stop_worker_ && task_queue_.empty()) {
+            return;
+        }
+
+        auto [step, prom] = std::move(task_queue_.front());
+        task_queue_.pop();
+        lock.unlock();
+
+        bool result = false;
+        try {
+            result = this->make_action(step);  // Call the synchronous method
+        } catch (const std::exception &e) {
+            std::cerr << "[PLC worker error] " << e.what() << std::endl;
+        }
+
+        prom.set_value(result);
+    }
+}
+
+std::future<bool> plc::make_action_async(std::string step)
+{
+    std::promise<bool> prom;
+    auto fut = prom.get_future();
+
+    {
+        std::lock_guard<std::mutex> lock(queue_mutex_);
+        task_queue_.emplace(step, std::move(prom));
+    }
+
+    cv_.notify_one();
+    return fut;
+}
+
 plc::~plc()
 {
+    {
+        std::lock_guard<std::mutex> lock(queue_mutex_);
+        stop_worker_ = true;
+    }
+    cv_.notify_all();
+    if (worker_thread_.joinable()) worker_thread_.join();
+
     // Turn off water and close connection
     coilWrite(WATER_Y4, COIL_OFF);
     plc_tcp.close();

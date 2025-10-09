@@ -1,5 +1,5 @@
-#ifndef PLC_NODE_H
-#define PLC_NODE_H
+#ifndef PLC_SYSTEM_H
+#define PLC_SYSTEM_H
 
 #include <chrono>
 #include <memory>
@@ -28,15 +28,21 @@ class PlcSystem : public rclcpp::Node
         // parameters
         std::string plc_ip_;
         int plc_port_;
-        std::string current_step_;
+        std::string process_service_;
+        std::string subscription_name_;
+        std::string current_command_;
         
         // plc control
         std::unique_ptr<plc> plc_;
         rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr process_client_;
         rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 
+        // async plc control state
+        std::future<bool> plc_future_;
+        bool plc_future_valid_ = false;
+
         // callback functions
         void topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg);
 };
 
-#endif // PLC_NODE_H
+#endif // PLC_SYSTEM_H

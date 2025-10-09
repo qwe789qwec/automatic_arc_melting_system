@@ -39,7 +39,7 @@ find_package(msg_format REQUIRED)
 find_package(tcp_handle REQUIRED)
 find_package(ros2_utils REQUIRED)
 
-add_executable(PlcMain src/plc_main.cpp src/plc_node.cpp src/plc.cpp)
+add_executable(PlcMain src/plc_main.cpp src/plc.cpp)
 
 ament_target_dependencies(PlcMain
 rclcpp msg_format tcp_handle ros2_utils)
