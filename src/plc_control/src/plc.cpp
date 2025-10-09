@@ -23,19 +23,15 @@ void printcharm(const char *message, int size)
     std::cout << std::endl;
 }
 
-plc::plc(std::string ip, int port)
+plc::plc(const std::string& ip, int port)
+: InstrumentControl(ip, port)
 {
-    // Connect to PLC and initialize water system
-    plc_tcp.connect(ip, port);
     coilWrite(WATER_Y4, COIL_ON);
     usleep(1000 * 1000);  // 1 second delay
     coilWrite(ARC_OFF_M21, COIL_ON);
     usleep(1000 * 1000);  // 1 second delay
     coilWrite(ARC_OFF_M21, COIL_OFF);
     usleep(1000 * 1000);  // 1 second delay
-
-    // Start working thread
-    worker_thread_ = std::thread(&plc::worker_loop, this);
 }
 
 char* plc::dec2hex(int value) 
@@ -65,9 +61,9 @@ char* plc::writeRaw(const void* input, int &size)
 {
     // Send raw bytes and get response
     char* message;
-    plc_tcp.writeRaw(input, size);
+    instrument_socket_.writeRaw(input, size);
     usleep(300 * 1000);  // 300ms delay
-    plc_tcp.receiveRaw(message, size);
+    instrument_socket_.receiveRaw(message, size);
     
     return message;
 }
@@ -313,45 +309,6 @@ bool plc::make_action(std::string command)
     return true;
 }
 
-void plc::worker_loop()
-{
-    while (true) {
-        std::unique_lock<std::mutex> lock(queue_mutex_);
-        cv_.wait(lock, [this]() { return stop_worker_ || !task_queue_.empty(); });
-
-        if (stop_worker_ && task_queue_.empty()) {
-            return;
-        }
-
-        auto [step, prom] = std::move(task_queue_.front());
-        task_queue_.pop();
-        lock.unlock();
-
-        bool result = false;
-        try {
-            result = this->make_action(step);  // Call the synchronous method
-        } catch (const std::exception &e) {
-            std::cerr << "[PLC worker error] " << e.what() << std::endl;
-        }
-
-        prom.set_value(result);
-    }
-}
-
-std::future<bool> plc::make_action_async(std::string step)
-{
-    std::promise<bool> prom;
-    auto fut = prom.get_future();
-
-    {
-        std::lock_guard<std::mutex> lock(queue_mutex_);
-        task_queue_.emplace(step, std::move(prom));
-    }
-
-    cv_.notify_one();
-    return fut;
-}
-
 plc::~plc()
 {
     {
@@ -363,5 +320,4 @@ plc::~plc()
 
     // Turn off water and close connection
     coilWrite(WATER_Y4, COIL_OFF);
-    plc_tcp.close();
 }

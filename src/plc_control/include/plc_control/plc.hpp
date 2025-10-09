@@ -4,16 +4,17 @@
 #include <string>
 #include <vector>
 #include "tcp_handle/tcp_socket.hpp"
+#include "ros2_utils/instrument_node.hpp"
 
-class plc
+class plc : public InstrumentControl
 {
 public:
-    plc(std::string ip, int port);
+    plc(const std::string& ip, int port);
     ~plc();
-    bool make_action(std::string step);
-    std::future<bool> make_action_async(std::string step);
+    bool make_action(std::string step) override;
 
 private:
+
     // Modbus function codes
     static constexpr const char* READ_COIL = "\x01";
     static constexpr const char* READ_INPUT = "\x02";
@@ -63,16 +64,6 @@ private:
     char* registerWrite(const char* component, int data);
     bool registerRead(const char* component, int data);
     
-    // Thread control
-    std::queue<std::pair<std::string, std::promise<bool>>> task_queue_;
-    std::mutex queue_mutex_;
-    std::condition_variable cv_;
-    std::atomic<bool> stop_worker_{false};
-    std::thread worker_thread_;
-    void worker_loop(); // Worker thread function
-    
-    // TCP socket for communication
-    tcp_socket plc_tcp;
 };
 
 #endif // PLC_HPP
