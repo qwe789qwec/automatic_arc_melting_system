@@ -18,6 +18,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(tcp_handle REQUIRED)
 find_package(msg_format REQUIRED)
 
 if(BUILD_TESTING)
@@ -33,8 +34,8 @@ if(BUILD_TESTING)
 endif()
 
 include_directories(include)
-add_library(ros2_utils src/service_utils.cpp)
-ament_target_dependencies(ros2_utils rclcpp msg_format)
+add_library(ros2_utils src/service_utils.cpp src/instrument_node.cpp)
+ament_target_dependencies(ros2_utils rclcpp msg_format tcp_handle)
 ament_export_targets(ros2_utils HAS_LIBRARY_TARGET)
 
 install(

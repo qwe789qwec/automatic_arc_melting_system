@@ -1,8 +1,8 @@
 #include <cstdlib>
-#include "plc_control/plc_system.hpp"
-#include "ros2_utils/service_utils.hpp"
 #include <iostream>
 #include <iomanip>
+#include "plc_control/plc_system.hpp"
+#include "ros2_utils/service_utils.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -91,12 +91,12 @@ void PlcSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg)
     }
 
     if (command.compare(current_command_) != 0) {
-        RCLCPP_INFO(this->get_logger(), "get command: %s", message.c_str());
+        RCLCPP_INFO(this->get_logger(), "get command: %s", command.c_str());
         current_command_ = command;
 
         // start new PLC task
         RCLCPP_INFO(this->get_logger(), "Starting new PLC task...");
-        plc_future_ = plc_->make_action_async(message);
+        plc_future_ = plc_->make_action_async(command);
         plc_future_valid_ = true;
     }
 }
