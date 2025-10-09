@@ -1,15 +1,9 @@
 #include <chrono>
-#include <thread>
-#include <cstdlib>
-#include <memory>
-#include <iomanip>
-#include <iostream>
 #include <stdio.h>
 #include <unistd.h>
 
 #include "rclcpp/rclcpp.hpp"
 #include "plc_control/plc.hpp"
-#include "tcp_handle/tcp_socket.hpp"
 #include "ros2_utils/service_utils.hpp"
 
 void printcharm(const char *message, int size)

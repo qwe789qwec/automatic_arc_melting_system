@@ -1,14 +1,8 @@
 #include <chrono>
-#include <thread>
 #include <stdio.h>
 #include <unistd.h>
-#include <math.h>
-#include <sstream>
-#include <iomanip>
-#include <iostream>
 
 #include "slider_control/slider.hpp"
-#include "tcp_handle/tcp_socket.hpp"
 #include "ros2_utils/service_utils.hpp"
 
 slider::slider(std::string ip, int port)

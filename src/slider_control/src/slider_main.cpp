@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include "ros2_utils/instrument_node.hpp"
 #include "slider_control/slider.hpp"
 
 int main(int argc, char* argv[])
