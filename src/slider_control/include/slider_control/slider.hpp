@@ -3,13 +3,14 @@
 
 #include <string>
 #include "tcp_handle/tcp_socket.hpp"
+#include "ros2_utils/instrument_node.hpp"
 
-class slider
+class slider : public InstrumentControl
 {
 public:
     slider(std::string ip, int port);
     ~slider();
-    bool make_action(std::string step);
+    bool make_action(std::string step) override;
 
 private:
     // Position Constants - Slider Positions
@@ -70,8 +71,6 @@ private:
     void put_cup_arc();
     void take_cup_arc();
 
-    // TCP connection
-    tcp_socket slider_tcp;
 };
 
 #endif // SLIDER_HPP

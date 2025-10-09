@@ -12,26 +12,24 @@
 #include "ros2_utils/service_utils.hpp"
 
 slider::slider(std::string ip, int port)
-{
-    // Connect to the slider controller
-    slider_tcp.connect(ip, port);
-    
+: InstrumentControl(ip, port)
+{    
     // Activate all required servos
-    slider_tcp.write(servo_onf(MOTOR_1, ON));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_2, ON));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_3, ON));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_X, ON));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_Y, ON));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_Z, ON));
-    slider_tcp.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_1, ON));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_2, ON));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_3, ON));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_X, ON));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_Y, ON));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_Z, ON));
+    instrument_socket_.check_receive("#992322C", 3);
     // Optional motors not activated in this implementation
-    // slider_tcp.write(servo_onf(MOTOR_7, ON));
-    // slider_tcp.write(servo_onf(MOTOR_8, ON));
+    // instrument_socket_.write(servo_onf(MOTOR_7, ON));
+    // instrument_socket_.write(servo_onf(MOTOR_8, ON));
 }
 
 std::string slider::command(std::string command)
@@ -112,8 +110,8 @@ void slider::check_position(std::string servo)
     
     // Poll status until servo reports completion or timeout
     while (true) {
-        slider_tcp.write(status(servo));
-        slider_tcp.receive(message);
+        instrument_socket_.write(status(servo));
+        instrument_socket_.receive(message);
         
         if (message.substr(0, compare.size()) == compare) {
             // Position reached
@@ -134,8 +132,8 @@ void slider::check_position(std::string servo)
 void slider::move(std::string servo, std::string position, std::string speed)
 {
     // Send move command
-    slider_tcp.write(servo_move(servo, position, speed));
-    slider_tcp.check_receive("#99234", 3);
+    instrument_socket_.write(servo_move(servo, position, speed));
+    instrument_socket_.check_receive("#99234", 3);
     
     // Wait for move to complete
     check_position(servo);
@@ -155,8 +153,8 @@ void slider::curve_move(std::string servo1, std::string servo2, std::string posi
     std::string servo = oss.str();
     
     // Send move command for both servos
-    slider_tcp.write(servo_move(servo, position, speed));
-    slider_tcp.check_receive("#99234", 3);
+    instrument_socket_.write(servo_move(servo, position, speed));
+    instrument_socket_.check_receive("#99234", 3);
     
     // Wait for both servos to complete movement
     check_position(servo1);
@@ -341,22 +339,19 @@ bool slider::make_action(std::string step)
 slider::~slider()
 {
     // Turn off all servos before closing connection
-    slider_tcp.write(servo_onf(MOTOR_1, OFF));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_2, OFF));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_3, OFF));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_X, OFF));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_Y, OFF));
-    slider_tcp.check_receive("#992322C", 3);
-    slider_tcp.write(servo_onf(MOTOR_Z, OFF));
-    slider_tcp.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_1, OFF));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_2, OFF));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_3, OFF));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_X, OFF));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_Y, OFF));
+    instrument_socket_.check_receive("#992322C", 3);
+    instrument_socket_.write(servo_onf(MOTOR_Z, OFF));
+    instrument_socket_.check_receive("#992322C", 3);
     // Optional motors not deactivated in this implementation
-    // slider_tcp.write(servo_onf(MOTOR_7, OFF));
-    // slider_tcp.write(servo_onf(MOTOR_8, OFF));
-    
-    // Close TCP connection
-    slider_tcp.close();
+    // instrument_socket_.write(servo_onf(MOTOR_7, OFF));
+    // instrument_socket_.write(servo_onf(MOTOR_8, OFF));
 }

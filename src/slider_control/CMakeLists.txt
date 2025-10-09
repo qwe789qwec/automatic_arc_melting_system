@@ -40,7 +40,7 @@ find_package(tcp_handle REQUIRED)
 find_package(ros2_utils REQUIRED)
 
 add_executable(SliderMain
-src/slider_main.cpp src/slider_node.cpp src/slider.cpp)
+src/slider_main.cpp src/slider.cpp)
 
 ament_target_dependencies(SliderMain
 rclcpp msg_format tcp_handle ros2_utils)
