@@ -19,12 +19,14 @@ class InstrumentControl
 {
     public:
         InstrumentControl(const std::string& ip, int port);
-        virtual ~InstrumentControl() = default;
-
-        virtual bool make_action(std::string step);
+        virtual ~InstrumentControl();
+        virtual bool make_action(std::string step) = 0;
         virtual std::future<bool> make_action_async(std::string step);
         
     protected:
+
+        // Thread control
+        // Task queue for asynchronous actions
         std::queue<std::pair<std::string, std::promise<bool>>> task_queue_;
         std::mutex queue_mutex_;
         std::condition_variable cv_;
@@ -32,18 +34,17 @@ class InstrumentControl
         std::thread worker_thread_;
         virtual void worker_loop(); // Worker thread function
     
-        tcp_socket socket_;
+        tcp_socket instrument_socket_;
 };
 
 class InstrumentNode : public rclcpp::Node
 {
     public:
         InstrumentNode(
-            const std::string& Node_name_,
-            const std::string& ip_, 
-            const int port_, 
-            const std::string& process_service_name_, 
-            const std::string& subscription_name_);
+            const std::string& Node_name,
+            std::unique_ptr<InstrumentControl> instrument,
+            const std::string& process_service_name, 
+            const std::string& subscription_name);
         ~InstrumentNode() = default;
 
         // test instrument action
@@ -52,8 +53,6 @@ class InstrumentNode : public rclcpp::Node
     protected:
         // parameters
         std::string instrument_name_;
-        std::string instrument_ip_;
-        int instrument_port_;
         std::string current_command_;
         std::string process_service_;
         

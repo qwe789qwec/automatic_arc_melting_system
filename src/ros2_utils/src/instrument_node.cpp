@@ -8,40 +8,86 @@
 #include "ros2_utils/instrument_node.hpp"
 
 
+InstrumentControl::InstrumentControl(const std::string& ip, int port)
+{
+    // Connect to instrument
+    instrument_socket_.connect(ip, port);
+
+    // Start working thread
+    worker_thread_ = std::thread(&InstrumentControl::worker_loop, this);
+}
+InstrumentControl::~InstrumentControl()
+{    
+    // Close socket connection
+    instrument_socket_.close();
+}
+
+std::future<bool> InstrumentControl::make_action_async(std::string step)
+{
+    std::promise<bool> action_promise;
+    std::future<bool> action_future = action_promise.get_future();
+
+    {
+        std::lock_guard<std::mutex> lock(queue_mutex_);
+        task_queue_.emplace(step, std::move(action_promise));
+    }
+    cv_.notify_one();
+
+    return action_future;
+}
+
+void InstrumentControl::worker_loop()
+{
+    while (true) {
+        std::unique_lock<std::mutex> lock(queue_mutex_);
+        cv_.wait(lock, [this]() { return stop_worker_ || !task_queue_.empty(); });
+
+        if (stop_worker_ && task_queue_.empty()) {
+            return;
+        }
+
+        auto [step, prom] = std::move(task_queue_.front());
+        task_queue_.pop();
+        lock.unlock();
+
+        bool result = false;
+        try {
+            result = this->make_action(step);  // Call the synchronous method
+        } catch (const std::exception &e) {
+            std::cerr << "[Instrument worker error] " << e.what() << std::endl;
+        }
+
+        prom.set_value(result);
+    }
+}
 
 InstrumentNode::InstrumentNode
-(   const std::string& Node_name_,
-    const std::string& ip_, 
-    const int port_, 
-    const std::string& process_service_name_, 
-    const std::string& subscription_name_)
-: Node(Node_name_ + "_node")
+(   const std::string& Node_name,
+    std::unique_ptr<InstrumentControl> instrument,
+    const std::string& process_service_name,
+    const std::string& subscription_name)
+: Node(Node_name + "_node"),
+  instrument_(std::move(instrument))
 {
     // initialize parameters
-    instrument_name_ = Node_name_;
-    current_command_ = Node_name_ + "_first";
-    instrument_ip_ = ip_;
-    instrument_port_ = port_;
-    process_service_ = process_service_name_;
-
-    // initialize instrument
-    instrument_ = std::make_unique<InstrumentControl>(instrument_ip_, instrument_port_);
+    instrument_name_ = Node_name;
+    current_command_ = Node_name + "_first";
+    process_service_ = process_service_name;
 
     // create a client for the process service
-    process_client_ = this->create_client<msg_format::srv::ProcessService>(process_service_name_);
+    process_client_ = this->create_client<msg_format::srv::ProcessService>(process_service_name);
 
     // create a subscription for the process message
     subscription_ = this->create_subscription<msg_format::msg::ProcessMsg>(
-        subscription_name_, 10, std::bind(&InstrumentNode::command_action, this, _1));
+        subscription_name, 10, std::bind(&InstrumentNode::command_action, this, _1));
 
-    RCLCPP_INFO(this->get_logger(), "initialized %s", Node_name_.c_str());
+    RCLCPP_INFO(this->get_logger(), "initialized %s", Node_name.c_str());
 }
 
 bool InstrumentNode::test_instrument_action(const std::string& action_param)
 {
-    InstrumentControl test_instrument(instrument_ip_, instrument_port_);
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Test action: %s", action_param.c_str());
-    return test_instrument.make_action(action_param);
+    return instrument_->make_action(action_param);
 }
 
 void InstrumentNode::call_service(std::string status)
