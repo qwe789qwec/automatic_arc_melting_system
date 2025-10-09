@@ -7,9 +7,8 @@
 #include <memory>
 
 enum class Situation {
-    ONLINE,
-    OFFLINE,
     ACTION,
+    WAITING,
     STANDBY,
     ERROR
 };

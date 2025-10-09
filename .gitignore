@@ -9,6 +9,8 @@
 /video
 /launch/__pycache__/
 /api_key.*
+test_*.py
+/test_*
 *.DS_Store
 # git remote update origin --prune
 # python -m pip install empy==3.3.4
