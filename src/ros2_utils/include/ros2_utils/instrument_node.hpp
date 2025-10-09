@@ -19,10 +19,13 @@ class InstrumentControl
 {
     public:
         InstrumentControl(const std::string& ip, int port);
-        virtual ~InstrumentControl();
+        ~InstrumentControl();
         virtual bool make_action(std::string step) = 0;
-        virtual std::future<bool> make_action_async(std::string step);
+        std::future<bool> make_action_async(std::string step);
         
+        bool data_flag = false;
+        virtual std::string write_datalog() { return "0000"; };
+
     protected:
 
         // Thread control
@@ -32,7 +35,7 @@ class InstrumentControl
         std::condition_variable cv_;
         std::atomic<bool> stop_worker_{false};
         std::thread worker_thread_;
-        virtual void worker_loop(); // Worker thread function
+        void worker_loop(); // Worker thread function
     
         tcp_socket instrument_socket_;
 };
@@ -59,6 +62,7 @@ class InstrumentNode : public rclcpp::Node
         // instrument control
         std::unique_ptr<InstrumentControl> instrument_;
         rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr process_client_;
+        rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr data_client_;
         rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 
         // async instrument control state

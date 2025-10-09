@@ -74,8 +74,9 @@ InstrumentNode::InstrumentNode
     current_command_ = Node_name + "_first";
     process_service_ = process_service_name;
 
-    // create a client for the process service
+    // create a client
     process_client_ = this->create_client<msg_format::srv::ProcessService>(process_service_name);
+    data_client_ = this->create_client<msg_format::srv::ProcessService>("write_data");
 
     // create a subscription for the process message
     subscription_ = this->create_subscription<msg_format::msg::ProcessMsg>(
@@ -116,6 +117,11 @@ void InstrumentNode::command_action(const msg_format::msg::ProcessMsg::SharedPtr
             if (result) {
                 RCLCPP_INFO(this->get_logger(), "Command %s completed successfully", current_command_.c_str());
                 call_service("_standby");
+                if (instrument_->data_flag) {
+                    std::string datalog = instrument_->write_datalog();
+                    service_utils::call_service_async(
+                        data_client_, this->get_logger(), datalog, "Data");
+                }
             } else {
                 RCLCPP_ERROR(this->get_logger(), "Command %s failed", current_command_.c_str());
                 call_service("_error");
