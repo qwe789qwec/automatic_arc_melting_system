@@ -16,32 +16,41 @@ class CobottaNode(Node):
     """
     Cobotta Node class that subscribes to a topic and processes messages.
     """
-    def __init__(self):
-        super().__init__('cobotta_subscriber')
+    def __init__(self, 
+                 node_name :str, 
+                 instrument_control: cobotta, 
+                 process_service_name: str = 'process_service',
+                 subscription_name: str = 'topic'):
+        super().__init__(node_name + '_node')
         
-        # cobotta parameters
-        self.host = "192.168.0.1"
-        self.port = 5007
-        self.timeout = 2000
+        self.cobotta_control = instrument_control
         
         # initial state
-        self.last_process = "cobotta init"
-        self.processing_lock = threading.Lock()
-        self.service_in_progress = False
+        self.last_process = node_name + "_first"
         
         # create cobotta instance
-        self.process_client = self.create_client(ProcessService, 'process_service')
+        self.process_client = self.create_client(ProcessService, process_service_name)
+        self.data_client = self.create_client(ProcessService, "write_data")
         
         # create subscriber
         self.subscription = self.create_subscription(
             ProcessMsg,
-            'topic',
-            self.listener_callback,
+            subscription_name,
+            self.command_action,
             10)
         
         self.get_logger().info('Cobotta node initialized')
     
-    def listener_callback(self, msg):
+    def test_instrument_action(self, action: str):
+        """
+        Test the instrument action directly.
+        """
+        try:
+            return self.cobotta_control.make_action(action)
+        except Exception as e:
+            self.get_logger().error(f"Exception during test action: {str(e)}")
+    
+    def command_action(self, msg):
         process = msg.process
         
         if process != self.last_process:

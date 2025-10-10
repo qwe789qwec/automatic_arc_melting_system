@@ -23,7 +23,6 @@ setup(
     entry_points={
         'console_scripts': [
             'CobottaMain = cobotta_bcap.cobotta_main:main',
-            'CobottaControl = cobotta_bcap.cobotta_control:main',
         ],
     },
 )
