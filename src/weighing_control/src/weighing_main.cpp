@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
     auto weighing_control = std::make_unique<weighing_machine>("192.168.0.2", 8001);
 
     // create instrument node
-    auto node = std::make_shared<InstrumentNode>(
+    auto weighing_node = std::make_shared<InstrumentNode>(
         "weighing",
         std::move(weighing_control),
         "process_service",
@@ -20,11 +20,11 @@ int main(int argc, char* argv[])
     bool test = false;
     if (argc == 2 && test) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Start test");
-        node->test_instrument_action(argv[1]);
+        weighing_node->test_instrument_action(argv[1]);
         test = false;
     }
 
-    rclcpp::spin(node);
+    rclcpp::spin(weighing_node);
     rclcpp::shutdown();
     return 0;
 }

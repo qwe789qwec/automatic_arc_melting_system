@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
     auto plc_control = std::make_unique<plc>("192.168.0.5", 9528);
 
     // create instrument node
-    auto node = std::make_shared<InstrumentNode>(
+    auto plc_node = std::make_shared<InstrumentNode>(
         "plc",
         std::move(plc_control),
         "Process_service",
@@ -20,11 +20,11 @@ int main(int argc, char* argv[])
     bool test = false;
     if (argc == 2 && test) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Start test");
-        node->test_instrument_action(argv[1]);
+        plc_node->test_instrument_action(argv[1]);
         test = false;
     }
 
-    rclcpp::spin(node);
+    rclcpp::spin(plc_node);
     rclcpp::shutdown();
     return 0;
 }

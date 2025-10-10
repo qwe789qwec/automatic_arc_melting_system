@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
     auto slider_control = std::make_unique<slider>("192.168.0.3", 64511);
     
     // create instrument node
-    auto node = std::make_shared<InstrumentNode>(
+    auto slider_node = std::make_shared<InstrumentNode>(
         "slider",
         std::move(slider_control),
         "Process_service",
@@ -20,11 +20,11 @@ int main(int argc, char* argv[])
     bool test = false;
     if (argc == 2 && test) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Start test");
-        node->test_instrument_action(argv[1]);
+        slider_node->test_instrument_action(argv[1]);
         test = false;
     }
 
-    rclcpp::spin(node);
+    rclcpp::spin(slider_node);
     rclcpp::shutdown();
     return 0;
 }
