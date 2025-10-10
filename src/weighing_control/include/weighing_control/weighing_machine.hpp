@@ -1,22 +1,19 @@
 #ifndef WEIGHING_MACHINE_HPP
 #define WEIGHING_MACHINE_HPP
 
-#include <chrono>
-#include <cstdlib>
-#include <memory>
 #include <string>
-#include "tcp_handle/tcp_socket.hpp"
+#include <vector>
+#include "ros2_utils/instrument_node.hpp"
 
-class weighing_machine
+class weighing_machine : public InstrumentControl
 {
 public:
-    weighing_machine(std::string ip, int port);
+    weighing_machine(const std::string& ip, int port);
     ~weighing_machine();
-    
-    bool make_action(std::string step);
-    std::string getsampledata();
+    bool make_action(std::string step) override;
 
-    bool data_flag;
+    std::string getsampledata();
+    std::string write_datalog() override { return getsampledata(); };
 
 private:
     enum DoorState {
@@ -35,7 +32,6 @@ private:
     bool start_dosing();
     std::string take_data(const std::string& xml_data, std::string start, std::string end);
     std::string last_material;
-    tcp_socket weiging_tcp;
 };
 
 #endif // WEIGHING_MACHINE_HPP

@@ -40,7 +40,7 @@ find_package(tcp_handle REQUIRED)
 find_package(ros2_utils REQUIRED)
 
 add_executable(WeighingMain
-src/weighing_main.cpp src/weighing_node.cpp src/weighing_machine.cpp)
+src/weighing_main.cpp src/weighing_machine.cpp)
 
 ament_target_dependencies(WeighingMain
 rclcpp msg_format tcp_handle ros2_utils)
