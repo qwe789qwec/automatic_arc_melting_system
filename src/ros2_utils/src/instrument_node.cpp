@@ -94,7 +94,7 @@ bool InstrumentNode::test_instrument_action(const std::string& action_param)
 void InstrumentNode::call_service(std::string status)
 {
     service_utils::call_service_async(
-            process_client_, this->get_logger(), instrument_name_ + status, process_service_);
+            process_client_, this->get_logger(), instrument_name_ + status);
 }
 
 void InstrumentNode::command_action(const msg_format::msg::ProcessMsg::SharedPtr msg)
@@ -120,7 +120,7 @@ void InstrumentNode::command_action(const msg_format::msg::ProcessMsg::SharedPtr
                 if (instrument_->data_flag) {
                     std::string datalog = instrument_->write_datalog();
                     service_utils::call_service_async(
-                        data_client_, this->get_logger(), datalog, "Data");
+                        data_client_, this->get_logger(), datalog);
                 }
             } else {
                 RCLCPP_ERROR(this->get_logger(), "Command %s failed", current_command_.c_str());
