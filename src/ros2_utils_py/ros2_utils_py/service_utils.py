@@ -13,7 +13,6 @@ def call_service(
         client: Client,
         logger,
         action: str,
-        service_name: str,
         timeout: float = 3.0) -> bool:
     """
     Blocking service call with timeout.
@@ -28,6 +27,9 @@ def call_service(
     Returns:
         bool: True if service call successful, False otherwise
     """
+
+    service_name = client.srv_name
+
     # Wait for service to be available
     if not client.wait_for_service(timeout_sec=timeout):
         logger.error(f"{service_name} service not available after timeout")
@@ -41,55 +43,6 @@ def call_service(
     future = client.call_async(request)
     
     rclpy.spin_until_future_complete(client, future, timeout_sec=timeout)
-
-def call_service_async(
-        client: Client,
-        logger,
-        action: str,
-        service_name: str) -> concurrent.futures.Future:
-    """
-    Non-blocking service call.
-    
-    Args:
-        client: ROS2 service client
-        logger: ROS2 logger
-        action: Action string to send in the request
-        service_name: Name of the service (for logging)
-        
-    Returns:
-        Future: A future that resolves to True if successful, False otherwise
-    """
-    # Create a Future to return
-    result_future = concurrent.futures.Future()
-    
-    # Check if service is available
-    if not client.service_is_ready():
-        if not client.wait_for_service(timeout_sec=0.1):
-            logger.error(f"{service_name} service not available")
-            result_future.set_result(False)
-            return result_future
-    
-    # Create request
-    request = ProcessService.Request()
-    request.action = action
-    
-    # Define callback for when response is received
-    def response_callback(future: Future):
-        try:
-            result = future.result()
-            logger.info(f"{service_name} result for '{action}': {result.result}")
-            result_future.set_result(True)
-        except Exception as e:
-            logger.error(f"Exception in {service_name} call '{action}': {str(e)}")
-            result_future.set_result(False)
-    
-    # Send request asynchronously
-    ros_future = client.call_async(request)
-    ros_future.add_done_callback(response_callback)
-    
-    logger.debug(f"{service_name} request '{action}' sent asynchronously")
-    return result_future
-
 
 def get_command(command: str, device_id: str) -> str:
     """
