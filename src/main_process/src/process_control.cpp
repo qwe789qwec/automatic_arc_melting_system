@@ -30,9 +30,11 @@ ProcessController::ProcessController(std::string command)
 std::string ProcessController::updateDeviceStatuses(const std::string& command) {
     bool message = devices_manager_.updateDeviceStatus(command);
     if (message) {
-        return "update device status success";
+        // return "update device status success";
+        return "success";
     } else {
-        return "update device status error";
+        // return "update device status error";
+        return "error";
     }
 }
 
