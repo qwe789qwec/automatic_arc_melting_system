@@ -15,12 +15,7 @@ bool call_service(
         rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr client,
         rclcpp::Logger logger,
         const std::string& action,
-        const std::chrono::seconds& timeout = std::chrono::seconds(3));
-
-std::shared_future<bool> call_service_async(
-    rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr client,
-    rclcpp::Logger logger,
-    const std::string& action);
+        const std::chrono::seconds& timeout = std::chrono::seconds(6));
     
 std::string get_command(
     std::string command,

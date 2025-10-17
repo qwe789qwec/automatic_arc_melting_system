@@ -57,10 +57,9 @@ class InstrumentNode : public rclcpp::Node
         // parameters
         std::string instrument_name_;
         std::string current_command_;
-        std::string process_service_;
         
         // instrument control
-        std::unique_ptr<InstrumentControl> instrument_;
+        std::unique_ptr<InstrumentControl> instrument_control_;
         rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr process_client_;
         rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr data_client_;
         rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
@@ -70,7 +69,6 @@ class InstrumentNode : public rclcpp::Node
         bool instrument_future_valid_ = false;
 
         // callback functions
-        void call_service(std::string status);
         void command_action(const msg_format::msg::ProcessMsg::SharedPtr msg);
 };
 
