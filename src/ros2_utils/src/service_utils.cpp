@@ -37,6 +37,36 @@ bool call_service(
     }
 }
 
+std::string get_command(
+    std::string command,
+    const std::string device_id) {
+    
+    if (command == "test" || command == "init"){
+        return command;
+    }
+
+    std::string::size_type pos = command.find(device_id);
+    if (pos == std::string::npos) {
+        return "none";
+    }
+
+    // get the position of the underscore
+    std::string::size_type underscorePos = pos + device_id.length();
+    if (underscorePos >= command.length() || command[underscorePos] != '_') {
+        return "error";
+    }
+    // get the command
+    std::string::size_type spacePos = command.find(' ', underscorePos + 1);
+    std::string device_command = command.substr(pos, spacePos - pos);
+
+    // check if the action is empty
+    if (device_command.empty()) {
+        return "error";
+    }
+    
+    return device_command;
+}
+
 std::vector<std::string> split_string(const std::string& input, char delimiter) {
     std::vector<std::string> tokens;
     std::stringstream ss(input);
