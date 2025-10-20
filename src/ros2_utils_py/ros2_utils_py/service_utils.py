@@ -13,20 +13,7 @@ def call_service(
         client: Client,
         logger,
         action: str,
-        timeout: float = 3.0) -> bool:
-    """
-    Blocking service call with timeout.
-    
-    Args:
-        client: ROS2 service client
-        logger: ROS2 logger
-        action: Action string to send in the request
-        service_name: Name of the service (for logging)
-        timeout: Timeout in seconds
-        
-    Returns:
-        bool: True if service call successful, False otherwise
-    """
+        timeout: float = 6.0) -> bool:
 
     service_name = client.srv_name
 
@@ -42,11 +29,18 @@ def call_service(
     # Send request
     future = client.call_async(request)
     
-    rclpy.spin_until_future_complete(client, future, timeout_sec=timeout)
+    ret = rclpy.spin_until_future_complete(client, future, timeout_sec=timeout)
+
+    if ret == rclpy.FutureReturnCode.SUCCESS:
+        logger.info(f"Service {service_name} call succeeded")
+        return True
+    else:
+        logger.error(f"Service {service_name} call timed out")
+        return False
 
 def get_command(command: str, device_id: str) -> str:
     """
-    Parse command to extract device-specific command.
+    Parse command to extract device_specific command.
     
     Args:
         command: The full command string

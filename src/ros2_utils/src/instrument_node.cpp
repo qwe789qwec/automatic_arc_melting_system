@@ -95,22 +95,21 @@ void InstrumentNode::command_action(const msg_format::msg::ProcessMsg::SharedPtr
     const std::string& message = msg->process;
     std::string command = service_utils::get_command(message, instrument_name_);
     std::string status = "_action";
-    bool new_command = false;
 
     if(command.compare(current_command_) != 0) {
         current_command_ = command;
         RCLCPP_INFO(this->get_logger(), "Get command: %s", command.c_str());
-        new_command = true;
-    }
-
-    if (new_command && instrument_future_valid_ == false) {
-        instrument_future_ = instrument_control_->make_action_async(current_command_);
-        instrument_future_valid_ = true;
-        status = "_action";
-    }
-    else if (new_command && instrument_future_valid_ == true) {
-        // instrument_future_ = instrument_control_->make_action_async(current_command_);
-        status = "_error";
+        if (instrument_future_valid_ == false) {
+            instrument_future_ = instrument_control_->make_action_async(current_command_);
+            instrument_future_valid_ = true;
+            status = "_action";
+        }
+        else {
+            // instrument_future_ = instrument_control_->make_action_async(current_command_);
+            status = "_error";
+        }
+        service_utils::call_service(process_client_, this->get_logger(), instrument_name_ + status);
+        return;
     }
     
     if (instrument_future_valid_ && 
@@ -134,9 +133,6 @@ void InstrumentNode::command_action(const msg_format::msg::ProcessMsg::SharedPtr
             status = "_error";
         }
         instrument_future_valid_ = false;
-    }
-
-    if (new_command) {
         service_utils::call_service(process_client_, this->get_logger(), instrument_name_ + status);
     }
 

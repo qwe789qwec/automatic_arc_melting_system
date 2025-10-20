@@ -25,6 +25,7 @@ class InstrumentControl
         
         bool data_flag = false;
         virtual std::string write_datalog() { return "0000"; };
+        virtual std::string get_datalog() { return "0000"; };
 
     protected:
 

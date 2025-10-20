@@ -12,7 +12,7 @@ from ros2_utils_py.service_utils import call_service, get_command
 
 class InstrumentControl:
     def __init__(self):
-        data_flag = False
+        self.data_flag = False
 
     def make_action(self, action: str):
         pass
@@ -20,10 +20,13 @@ class InstrumentControl:
     def make_action_async(self, action: str):
         pass
 
+    def write_data(self):
+        pass
+    
+    def get_data(self):
+        pass
+
 class InstrumentNode(Node):
-    """
-    Cobotta Node class that subscribes to a topic and processes messages.
-    """
     def __init__(self, 
                  node_name :str, 
                  instrument_control: InstrumentControl, 
@@ -53,9 +56,6 @@ class InstrumentNode(Node):
         self.get_logger().info('Cobotta node initialized')
     
     def test_instrument_action(self, action: str):
-        """
-        Test the instrument action directly.
-        """
         try:
             return self.instrument_control.make_action(action)
         except Exception as e:
@@ -64,32 +64,42 @@ class InstrumentNode(Node):
     def command_action(self, msg):
         message = msg.process
         command = get_command(message, self.instrument_name)
+        status = "_action"
 
-        if self.instrument_future_valid and not self.instrument_future.done():
-            # self.get_logger().info(f"Command {self.current_command} is still running")
-            return
-
-        
         if command != self.current_command:
             self.current_command = command
-            self.get_logger().info(f'Processing new step: {command}')
-            
+            self.get_logger().info(f"Get command: {command}")
+
+            if not self.instrument_future_valid:
+                self.instrument_future = self.instrument_control.make_action_async(self.current_command)
+                self.instrument_future_valid = True
+                status = "_action"
+            else:
+                status = "_error"
+
+            call_service(self.process_client, self.get_logger(), self.instrument_name + status)
+            return
+
+        if self.instrument_future_valid and self.instrument_future.done():
             try:
-                action_result = self.instrument_control.make_action(command)
-                
-                if action_result != "error":
-                    success = call_service(
-                        client=self.process_client,
-                        logger=self.get_logger(),
-                        action="cobotta_standby"
-                    )
-                    
-                    if not success:
-                        self.get_logger().error('Failed to call standby service')
+                result = self.instrument_future.result()
+                if result:
+                    self.get_logger().info(f"Command {self.current_command} completed successfully")
+                    status = "_standby"
+                    if self.instrument_control.data_flag:
+                        datalog = self.instrument_control.write_datalog()
+                        call_service(
+                            self.data_client, self.get_logger(), datalog
+                        )
                 else:
-                    self.get_logger().error('Error cannot make action')
-            
+                    self.get_logger().error(f"Command {self.current_command} failed")
+                    status = "_error"
+
             except Exception as e:
-                self.get_logger().error(f'Exception during action execution: {str(e)}')
-            
-            time.sleep(1.5)
+                self.get_logger().error(f"Exception in command {self.current_command}: {e}")
+                status = "_error"
+
+            self.instrument_future_valid = False
+            call_service(self.process_client, self.get_logger(), self.instrument_name + status)
+
+        return
