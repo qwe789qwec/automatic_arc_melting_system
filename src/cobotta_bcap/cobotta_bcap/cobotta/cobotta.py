@@ -6,6 +6,7 @@ from rclpy.node import Node
 
 from ..pybcapclient.bcapclient import BCAPClient
 from ros2_utils_py.service_utils import get_command
+from ros2_utils_py.instrument_node import InstrumentControl
 
 import argparse
 
@@ -43,7 +44,8 @@ shelf_put_dose
 
 # host = "192.168.0.1"
 
-class cobotta:
+class cobotta(InstrumentControl):
+    super().__init__()
 
     HOME_POINT = 10
     SHELF3_END = 11
@@ -234,6 +236,12 @@ class cobotta:
             return "error"  
         
         return "standby"
+    
+    def make_action_async(self, step):
+        make_action_future = rclpy.executors.Future()
+        make_action_future.set_result(self.make_action(step))
+        return make_action_future
+    
     def __del__(self):
 
         # motor off

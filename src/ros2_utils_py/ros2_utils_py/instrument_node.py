@@ -83,7 +83,7 @@ class InstrumentNode(Node):
         if self.instrument_future_valid and self.instrument_future.done():
             try:
                 result = self.instrument_future.result()
-                if result:
+                if result != "error":
                     self.get_logger().info(f"Command {self.current_command} completed successfully")
                     status = "_standby"
                     if self.instrument_control.data_flag:
