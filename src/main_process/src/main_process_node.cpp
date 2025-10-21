@@ -2,9 +2,9 @@
 
 using namespace std::chrono_literals;
 
-MainProcessNode::MainProcessNode(const std::string& node_name, std::string command)
+MainProcessNode::MainProcessNode(const std::string& node_name)
     : Node(node_name), 
-    process_controller_(command), 
+    process_controller_(), 
     last_published_step_("") {
     
     // Create service
@@ -40,11 +40,11 @@ void MainProcessNode::processServiceCallback(
 void MainProcessNode::publishCurrentStep() {
     
     // Get current step
-    if (process_controller_.isSequenceCompleted() && process_controller_.isReadyToNextStep()) {
+    if (process_controller_.isSequenceCompleted(0) && process_controller_.isReadyToNextStep(0)) {
         RCLCPP_INFO(get_logger(), "Process sequence completed");
     }
-    else if (process_controller_.isReadyToNextStep()) {
-        process_controller_.moveToNextStep();
+    else if (process_controller_.isReadyToNextStep(0)) {
+        process_controller_.moveToNextStep(0);
     }
     std::string current_step = process_controller_.getCurrentStep();
     

@@ -10,80 +10,52 @@
 #include <unistd.h>
 #include <limits.h>
 
-ProcessController::ProcessController(std::string command)
-    : current_step_(command), 
-      step_index_(0){
-
-    
-    initializeSequences();
-    // Initialize device state manager
-    DeviceStateManager manager;
-    manager.initializing = true;
-    getDevicesListFromStep(sequence_[0][0]);
-    for (const auto& device_id : devices_list_) {
-        manager.addDevice(device_id);
-    }
-    manager.initializing = false;
-    devices_manager_.push_back(manager);
-    
-    // moveToNextStep();
-}
-
-std::string ProcessController::updateDeviceStatuses(const std::string& command) {
-    std::string message = "error";
-    for (auto manager : devices_manager_) {
-        if (manager.updateDeviceStatus(command)) {
-            // return "update device status success";
-            message = "success";
-        }
-    }
-    return message;
-}
-
-void ProcessController::initializeSequences() {
-
-    char cwd[PATH_MAX];
-    if (getcwd(cwd, sizeof(cwd)) != NULL) {
-        std::cerr << "Current working directory: " << cwd << std::endl;
-    } else {
-        std::cerr << "Failed to get current directory" << std::endl;
-    }
-    
-    // Load sequences from file or define them directly
-    // try to load from file
-    for (const auto& file_path : secquence_file_) {
+ProcessController::ProcessController(){
+    for (size_t i = 0; i < sequence_files_.size(); ++i) {
+        const auto& file_path = sequence_files_[i];
         std::ifstream file(file_path);
+        Process seq;
         if (!file.is_open()) {
             std::cerr << "Error opening file: " << file_path << std::endl;
-            sequence_.push_back({
+            seq.sequence = {
                 "slider_init cobotta_init weighing_init plc_init",
                 "slider_shelf_1 plc_buzz",
                 "weighing_open slider_weight_pos cobotta_test",
-                "slider_init cobotta_init weighing_init plc_init"
+                "slider_init cobotta_init weighing_init plc_init",
                 "finished"
-            });
-            return;
-        }
-        else {
-            std::cerr << "load process from file: " << file_path << std::endl;
+            };
+        } else {
             std::string line;
-            std::vector<std::string> file_sequence;
+            seq.sequence.push_back("start");
             while (std::getline(file, line)) {
-                // if line is empty or a comment, skip it
-                if (line.empty() || line[0] == '#') {
-                    continue;
-                }
-                file_sequence.push_back(line);
+                if (line.empty() || line[0] == '#') continue;
+                seq.sequence.push_back(line);
             }
-            file.close();
-            file_sequence.push_back("finished");
-            sequence_.push_back(file_sequence);
+            seq.sequence.push_back("finished");
         }
+
+        std::vector<std::string> devices = getDevicesListFromStep(seq.sequence[0]);
+        for (const auto& device : devices)
+            seq.device_manager.addDevice(device);
+
+        sequences_[i] = std::move(seq);
     }
+
+    moveToNextStep(0);
 }
 
-void ProcessController::getDevicesListFromStep(const std::string& step) {
-    devices_list_.clear();
+std::string ProcessController::updateDeviceStatuses(const std::string& command) {
+    bool success = false;
+    for (auto& [_, process] : sequences_) {
+        if (process.device_manager.updateDeviceStatus(command)) {
+            success = true;
+        }
+    }
+    return success ? "success" : "error";
+}
+
+std::vector<std::string> ProcessController::getDevicesListFromStep(const std::string& step) {
+    std::vector<std::string> devices_list_;
     std::istringstream iss(step);
     std::string token;
     while (iss >> token) {
@@ -95,26 +67,42 @@ void ProcessController::getDevicesListFromStep(const std::string& step) {
             }
         }
     }
+    return devices_list_;
 }
 
-std::string ProcessController::getCurrentStep() const {
+std::string ProcessController::getCurrentStep() {
+    std::string current_step_ = "";
+    for (auto& [process_number, process] : sequences_) {
+        if (process.sequence[process.current_step] == "finished" || 
+            process.sequence[process.current_step] == "start") {
+            continue;
+        }
+        current_step_ += process.sequence[process.current_step] + " ";
+    }
     return current_step_;
 }
 
-bool ProcessController::isReadyToNextStep(int sequence_number) const {
-    return devices_manager_[sequence_number].checkDevices(Situation::STANDBY);
-}
-
-bool ProcessController::isSequenceCompleted(int sequence_number) const {
-    return step_index_[sequence_number] >= sequence_[sequence_number].size();
-}
-
-void ProcessController::moveToNextStep(int sequence_number) {
-    if (step_index_[sequence_number] == 0 && current_step_ != "init") {
-        updateDeviceStatuses(current_step_);
-        return;
+bool ProcessController::isReadyToNextStep(int process_number) const {
+    auto seq = sequences_.find(process_number);
+    if (seq != sequences_.end()) {
+        return seq->second.device_manager.checkDevices(Situation::STANDBY);
     }
-    current_step_ = sequence_[sequence_number][step_index_[sequence_number]];
-    updateDeviceStatuses(current_step_);
-    step_index_[sequence_number]++;
+    return false;
+}
+
+bool ProcessController::isSequenceCompleted(int process_number) const {
+    const auto& seq = sequences_.at(process_number);
+    return seq.current_step >= seq.sequence.size();
+}
+
+void ProcessController::moveToNextStep(int process_number) {
+    sequences_.at(process_number).current_step++;
+}
+
+void ProcessController::insertSequence(int process_number, std::vector<std::string> seq) {
+    sequences_.at(process_number).sequence.insert(
+        sequences_.at(process_number).sequence.begin() + sequences_.at(process_number).current_step + 1,
+        seq.begin(),
+        seq.end()
+    );
 }

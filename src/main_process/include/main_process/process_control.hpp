@@ -4,34 +4,33 @@
 #include <string>
 #include <vector>
 #include "main_process/devices_state.hpp"
+#include <map>
+
+struct Process {
+    std::vector<std::string> sequence;
+    size_t current_step = 0;
+    DeviceStateManager device_manager;
+};
+
 
 class ProcessController {
 public:
-    explicit ProcessController(std::string command = "init");
-    std::string getCurrentStep() const;
+    explicit ProcessController();
+    std::string getCurrentStep();
     std::string updateDeviceStatuses(const std::string& command);
-    bool isReadyToNextStep(int sequence_number) const;
-    bool isSequenceCompleted(int sequence_number) const;
-    void moveToNextStep(int sequence_number);
+    bool isReadyToNextStep(int process_number) const;
+    bool isSequenceCompleted(int process_number) const;
+    void moveToNextStep(int process_number);
+    void insertSequence(int process_number, std::vector<std::string> seq);
     
 private:
-    const std::vector<std::string> secquence_file_ = {"secquence/sequence_run.txt"};
-    const int secquence_number_ = secquence_file_.size();
+    std::map<int, Process> sequences_;
+    const std::vector<std::string> sequence_files_ = {
+        "sequence/sequence_run.txt",
+        "sequence/sequence_test.txt"
+    };
 
-    // Device state manager
-    std::vector<DeviceStateManager> devices_manager_;
-    std::vector<std::string> devices_list_;
-
-    
-    // Current step and step index
-    std::string current_step_;
-    std::vector<size_t> step_index_;
-    
-    // Process sequences
-    std::vector<std::vector<std::string>> sequence_;
-    
-    void getDevicesListFromStep(const std::string& step);
-    void initializeSequences();
+    std::vector<std::string> getDevicesListFromStep(const std::string& step);
 };
 
 #endif // PROCESS_CONTROL_HPP

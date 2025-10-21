@@ -9,15 +9,8 @@ int main(int argc, char *argv[]) {
     // Initialize ROS2
     rclcpp::init(argc, argv);
     
-    // Parse command line arguments to determine test mode
-    bool test = true;  // Default to test mode
-    std::string command = "init";
-    if (test && argc > 1) {
-        std::string command = argv[1];
-    }
-    
     // Create main process node
-    auto main_process_node = std::make_shared<MainProcessNode>("main_process", command);
+    auto main_process_node = std::make_shared<MainProcessNode>("main_process");
     
     // Create executor and add node
     rclcpp::executors::SingleThreadedExecutor executor;
