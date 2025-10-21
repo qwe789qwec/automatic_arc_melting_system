@@ -82,6 +82,10 @@ std::string ProcessController::getCurrentStep() {
     return current_step_;
 }
 
+int ProcessController::getCurrentStepNumber(int process_number) const {
+    return sequences_.at(process_number).current_step;
+}
+
 bool ProcessController::isReadyToNextStep(int process_number) const {
     auto seq = sequences_.find(process_number);
     if (seq != sequences_.end()) {

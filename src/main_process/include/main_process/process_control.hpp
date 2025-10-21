@@ -17,6 +17,7 @@ class ProcessController {
 public:
     explicit ProcessController();
     std::string getCurrentStep();
+    int getCurrentStepNumber(int process_number) const;
     std::string updateDeviceStatuses(const std::string& command);
     bool isReadyToNextStep(int process_number) const;
     bool isSequenceCompleted(int process_number) const;

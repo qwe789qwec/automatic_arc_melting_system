@@ -35,17 +35,24 @@ void MainProcessNode::processServiceCallback(
     std::string message = process_controller_.updateDeviceStatuses(action);
     response->result = message;
     RCLCPP_INFO(get_logger(), "Device status updated: %s", message.c_str());
-}
 
-void MainProcessNode::publishCurrentStep() {
-    
-    // Get current step
     if (process_controller_.isSequenceCompleted(0) && process_controller_.isReadyToNextStep(0)) {
         RCLCPP_INFO(get_logger(), "Process sequence completed");
     }
     else if (process_controller_.isReadyToNextStep(0)) {
         process_controller_.moveToNextStep(0);
     }
+    if (process_controller_.isSequenceCompleted(1) && process_controller_.isReadyToNextStep(1)) {
+        RCLCPP_INFO(get_logger(), "Test sequence completed");
+    }
+    else if (process_controller_.getCurrentStepNumber(0) >= 9 && process_controller_.isReadyToNextStep(1)) {
+        process_controller_.moveToNextStep(1);
+    }
+}
+
+void MainProcessNode::publishCurrentStep() {
+    
+    // Get current step
     std::string current_step = process_controller_.getCurrentStep();
     
     // Only log when step changes to reduce message volume
