@@ -2,6 +2,7 @@
 #include <thread>
 #include <stdio.h>
 #include <unistd.h>
+#include <iomanip>
 
 #include "rclcpp/rclcpp.hpp"
 #include "weighing_control/weighing_machine.hpp"

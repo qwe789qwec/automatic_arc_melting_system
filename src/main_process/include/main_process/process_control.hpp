@@ -27,8 +27,8 @@ public:
 private:
     std::map<int, Process> sequences_;
     const std::vector<std::string> sequence_files_ = {
-        "sequence/sequence_run.txt",
-        "sequence/sequence_test.txt"
+        "sequence/test_1.txt",
+        "sequence/test_2.txt"
     };
 
     std::vector<std::string> getDevicesListFromStep(const std::string& step);

@@ -1,6 +1,7 @@
 #include <chrono>
 #include <stdio.h>
 #include <unistd.h>
+#include <iomanip>
 
 #include "slider_control/slider.hpp"
 #include "ros2_utils/service_utils.hpp"

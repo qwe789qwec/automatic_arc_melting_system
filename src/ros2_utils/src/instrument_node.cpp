@@ -46,7 +46,9 @@ void InstrumentControl::worker_loop()
             return;
         }
 
-        auto [step, prom] = std::move(task_queue_.front());
+        auto task = std::move(task_queue_.front());
+        auto step = std::move(task.first);
+        auto prom = std::move(task.second);
         task_queue_.pop();
         lock.unlock();
 

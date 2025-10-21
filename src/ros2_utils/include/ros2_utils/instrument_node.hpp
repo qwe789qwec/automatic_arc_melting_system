@@ -6,6 +6,8 @@
 #include <string>
 #include <mutex>
 #include <atomic>
+#include <queue>
+
 
 #include "rclcpp/rclcpp.hpp"
 #include "msg_format/msg/process_msg.hpp"
