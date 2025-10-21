@@ -10,25 +10,27 @@ public:
     explicit ProcessController(std::string command = "init");
     std::string getCurrentStep() const;
     std::string updateDeviceStatuses(const std::string& command);
-    bool isReadyToNextStep() const;
-    bool isSequenceCompleted() const;
-    void moveToNextStep();
+    bool isReadyToNextStep(int sequence_number) const;
+    bool isSequenceCompleted(int sequence_number) const;
+    void moveToNextStep(int sequence_number);
     
 private:
-    const std::string secquence_file_ = "secquence/sequence_run.txt";
+    const std::vector<std::string> secquence_file_ = {"secquence/sequence_run.txt"};
+    const int secquence_number_ = secquence_file_.size();
 
     // Device state manager
-    DeviceStateManager devices_manager_;
-    std::vector<std::string> devices_list_ = {"weighing", "slider", "plc", "cobotta"};
+    std::vector<DeviceStateManager> devices_manager_;
+    std::vector<std::string> devices_list_;
 
     
     // Current step and step index
     std::string current_step_;
-    size_t step_index_;
+    std::vector<size_t> step_index_;
     
     // Process sequences
-    std::vector<std::string> sequence_;
+    std::vector<std::vector<std::string>> sequence_;
     
+    void getDevicesListFromStep(const std::string& step);
     void initializeSequences();
 };
 
