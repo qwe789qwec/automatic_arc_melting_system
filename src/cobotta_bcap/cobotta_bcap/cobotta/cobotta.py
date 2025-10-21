@@ -45,8 +45,6 @@ shelf_put_dose
 # host = "192.168.0.1"
 
 class cobotta(InstrumentControl):
-    super().__init__()
-
     HOME_POINT = 10
     SHELF3_END = 11
     SHELF2_P1 = 23
@@ -71,6 +69,7 @@ class cobotta(InstrumentControl):
     VAR_PUT = "I11"
 
     def __init__(self, host, port = 5007, timeout = 2000):
+        super().__init__()
         self.host = host
         self.port = port
         self.timeout = timeout
@@ -180,8 +179,7 @@ class cobotta(InstrumentControl):
             self.gotoPoint(path[i])
             time.sleep(0.5)
     
-    def make_action(self, step):
-        command = get_command(step, "cobotta")
+    def make_action(self, command):
         action = "none"
         if command == "test" or command == "init":
             action = command

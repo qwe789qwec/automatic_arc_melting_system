@@ -97,6 +97,9 @@ void InstrumentNode::command_action(const msg_format::msg::ProcessMsg::SharedPtr
     const std::string& message = msg->process;
     std::string command = service_utils::get_command(message, instrument_name_);
     std::string status = "_action";
+    if(command.compare("none") == 0) {
+        return;
+    }
 
     if(command.compare(current_command_) != 0) {
         current_command_ = command;

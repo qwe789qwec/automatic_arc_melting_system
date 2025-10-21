@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     auto plc_node = std::make_shared<InstrumentNode>(
         "plc",
         std::move(plc_control),
-        "Process_service",
+        "process_service",
         "topic"
     );
     

@@ -18,6 +18,7 @@ ProcessController::ProcessController(){
         if (!file.is_open()) {
             std::cerr << "Error opening file: " << file_path << std::endl;
             seq.sequence = {
+                "start",
                 "slider_init cobotta_init weighing_init plc_init",
                 "slider_shelf_1 plc_buzz",
                 "weighing_open slider_weight_pos cobotta_test",
@@ -34,9 +35,11 @@ ProcessController::ProcessController(){
             seq.sequence.push_back("finished");
         }
 
-        std::vector<std::string> devices = getDevicesListFromStep(seq.sequence[0]);
+        seq.device_manager.initializing = true;
+        std::vector<std::string> devices = getDevicesListFromStep(seq.sequence[1]);
         for (const auto& device : devices)
             seq.device_manager.addDevice(device);
+        seq.device_manager.initializing = false;
 
         sequences_[i] = std::move(seq);
     }
@@ -46,11 +49,15 @@ ProcessController::ProcessController(){
 
 std::string ProcessController::updateDeviceStatuses(const std::string& command) {
     bool success = false;
-    for (auto& [_, process] : sequences_) {
+
+    for (auto& item : sequences_) {
+        // item = pair<key, value>
+        auto& process = item.second;
         if (process.device_manager.updateDeviceStatus(command)) {
             success = true;
         }
     }
+
     return success ? "success" : "error";
 }
 
@@ -72,13 +79,22 @@ std::vector<std::string> ProcessController::getDevicesListFromStep(const std::st
 
 std::string ProcessController::getCurrentStep() {
     std::string current_step_ = "";
-    for (auto& [process_number, process] : sequences_) {
-        if (process.sequence[process.current_step] == "finished" || 
-            process.sequence[process.current_step] == "start") {
+
+    for (auto& item : sequences_) {
+        // item = pair<key, value>
+        auto& process = item.second;
+        if (process.current_step >= process.sequence.size()) {
             continue;
         }
-        current_step_ += process.sequence[process.current_step] + " ";
+
+        const std::string& step = process.sequence[process.current_step];
+        if (step == "finished" || step == "start") {
+            continue;
+        }
+
+        current_step_ += step + " ";
     }
+
     return current_step_;
 }
 

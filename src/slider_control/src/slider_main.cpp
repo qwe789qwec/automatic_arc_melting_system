@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     auto slider_node = std::make_shared<InstrumentNode>(
         "slider",
         std::move(slider_control),
-        "Process_service",
+        "process_service",
         "topic"
     );
 

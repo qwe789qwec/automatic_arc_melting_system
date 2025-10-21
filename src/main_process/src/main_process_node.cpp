@@ -45,7 +45,7 @@ void MainProcessNode::processServiceCallback(
     if (process_controller_.isSequenceCompleted(1) && process_controller_.isReadyToNextStep(1)) {
         RCLCPP_INFO(get_logger(), "Test sequence completed");
     }
-    else if (process_controller_.getCurrentStepNumber(0) >= 9 && process_controller_.isReadyToNextStep(1)) {
+    else if (process_controller_.getCurrentStepNumber(0) >= 3 && process_controller_.isReadyToNextStep(1)) {
         process_controller_.moveToNextStep(1);
     }
 }

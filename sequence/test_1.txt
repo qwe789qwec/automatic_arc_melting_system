@@ -3,7 +3,6 @@ slider_shelf_1
 slider_shelf_2
 slider_shelf_3
 slider_weightPos
-slider_putCupArc
 slider_shelf_1
 slider_shelf_2
 slider_shelf_3

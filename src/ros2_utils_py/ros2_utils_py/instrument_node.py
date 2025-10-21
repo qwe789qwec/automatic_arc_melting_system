@@ -66,6 +66,9 @@ class InstrumentNode(Node):
         command = get_command(message, self.instrument_name)
         status = "_action"
 
+        if command == "none":
+            return
+
         if command != self.current_command:
             self.current_command = command
             self.get_logger().info(f"Get command: {command}")
@@ -86,11 +89,10 @@ class InstrumentNode(Node):
                 if result != "error":
                     self.get_logger().info(f"Command {self.current_command} completed successfully")
                     status = "_standby"
+
                     if self.instrument_control.data_flag:
                         datalog = self.instrument_control.write_datalog()
-                        call_service(
-                            self.data_client, self.get_logger(), datalog
-                        )
+                        call_service(self.data_client, self.get_logger(), datalog)
                 else:
                     self.get_logger().error(f"Command {self.current_command} failed")
                     status = "_error"

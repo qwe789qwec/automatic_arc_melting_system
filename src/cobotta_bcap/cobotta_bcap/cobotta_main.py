@@ -3,7 +3,6 @@
 import sys
 import rclpy
 import time
-from .cobotta.cobotta_node import CobottaNode
 from .cobotta.cobotta import cobotta
 from ros2_utils_py.instrument_node import InstrumentNode
 
@@ -13,7 +12,7 @@ def main(args=None):
     cobotta_control = cobotta("192.168.0.1", 5007, 2000)
 
     # create CobottaNode
-    cobottanode = InstrumentNode("cobotta", cobotta_control, "process_service", "cobotta_topic")
+    cobottanode = InstrumentNode("cobotta", cobotta_control, "process_service", "topic")
 
     # test action
     test = False

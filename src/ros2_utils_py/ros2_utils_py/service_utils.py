@@ -28,10 +28,12 @@ def call_service(
     
     # Send request
     future = client.call_async(request)
-    
-    ret = rclpy.spin_until_future_complete(client, future, timeout_sec=timeout)
 
-    if ret == rclpy.FutureReturnCode.SUCCESS:
+    temp_node = rclpy.create_node("temp_node")
+    ret = rclpy.spin_until_future_complete(temp_node, future, timeout_sec=timeout)
+    temp_node.destroy_node()
+
+    if ret:
         logger.info(f"Service {service_name} call succeeded")
         return True
     else:
