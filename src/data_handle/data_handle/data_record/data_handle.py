@@ -24,13 +24,18 @@ class DataHandle:
 
     def record_data(self, data):
         self.datalog.file_Write(data)
+        # added since the same in make_action does not work
+        if self.record_flag:
+            print(f"[DEBUG] elabftw.record_data() called from record_data() with: {data}")
+            self.elabftw.record_data(data)
 
     def make_action(self, step):
         command = get_command(step, "record")
-        if self.record_flag:
-            self.datalog.file_Write(step) # write in datalog
-            self.elabftw.record_data(step) # write in elabftw
-        action = "none"
+
+        # if self.record_flag:
+        #     self.datalog.file_Write(step) # write in datalog
+        #     self.elabftw.record_data(step) # collect metadata info for elabftw
+
         if command == "test" or command == "init":
             action = command
         elif command == "none":
@@ -55,6 +60,8 @@ class DataHandle:
         elif action == "off":
             self.record_flag = False
             self.datalog.file_Write("================END==================")
+            self.elabftw.update_metadata() # update metadata at elabftw
+
         elif action == "test":
             self.datalog.file_Write("test")
             # self.elabftw.create_experiment(

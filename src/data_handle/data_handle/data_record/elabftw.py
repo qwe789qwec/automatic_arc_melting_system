@@ -85,6 +85,8 @@ class ElabFTW:
         self.metadata_form["extra_fields"][name]["value"] = parameter
 
     def record_data(self, data):
+        print(f"[DEBUG] record_data received: {repr(data)}")  # for debugging
+
         if data.startswith("slider_arc_cw") or data.startswith("slider_arc_ccw"):
             arc_path = self.metadata_form["extra_fields"]["Arc Path"]["value"]
             if arc_path == " ":
@@ -117,9 +119,11 @@ class ElabFTW:
                 number_of_flips = int(number_of_flips) + 1
             self.metadata_form["extra_fields"]["Number of Flips"]["value"] = str(number_of_flips)
         
-        if data.startswith("Weight:"):
-            total_mass_after_arc = data.split(" ")[1]
-            self.metadata_form["extra_fields"]["Total Mass After Arc"]["value"] = total_mass_after_arc
+        if "Weight:" in data:
+            match = re.search(r"Weight:\s*([-+]?[0-9]*\.?[0-9]+)", data)
+            if match:
+                total_mass_after_arc = match.group(1)
+                self.metadata_form["extra_fields"]["Total Mass After Arc"]["value"] = str(total_mass_after_arc)
 
         
         
@@ -137,7 +141,7 @@ class ElabFTW:
         else:
             print("Failed to upload metadata:", patch_resp.status_code, patch_resp.text)
 
-test = True
+test = False
 
 if test:
     # Example usage

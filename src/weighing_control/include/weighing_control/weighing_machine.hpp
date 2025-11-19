@@ -17,6 +17,7 @@ public:
     std::string getsampledata();
 
     bool data_flag;
+    double last_weight_mg;
 
 private:
     enum DoorState {
@@ -35,7 +36,7 @@ private:
     bool start_dosing();
     std::string take_data(const std::string& xml_data, std::string start, std::string end);
     std::string last_material;
-    tcp_socket weiging_tcp;
+    tcp_socket weighing_tcp;
 };
 
 #endif // WEIGHING_MACHINE_HPP
