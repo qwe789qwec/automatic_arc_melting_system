@@ -59,7 +59,11 @@ class DataHandle:
             self.record_flag = True
             self.datalog.file_Write("===============START=================")
             self.datalog.file_Write(step)
-            self.elabftw.create_experiment(token[2])
+            if len(token) > 2:
+                self.title = token[2]
+            else:
+                self.title = None
+            self.elabftw.create_experiment(self.title)
             return "standby"
         elif action == "off":
             self.record_flag = False
