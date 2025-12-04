@@ -26,34 +26,34 @@ plc_gate_close slider_shelf_1 weighing_close
 plc_pump cobotta_putDose_shelf2
 
 slider_arcinit
-plc_buzz record_vedio_start_TaV2arc1
+plc_buzz record_video_start_TaV2arc1
 plc_arc_on
 slider_arc_cw_3
 plc_arc_off
 plc_wait_20
 plc_autoFlip
-record_vedio_stop
+record_video_stop
 
-plc_buzz record_vedio_start_TaV2arc2
+plc_buzz record_video_start_TaV2arc2
 plc_arc_on
 slider_arc_ccw_3
 plc_arc_off
 plc_wait_20
 plc_autoFlip
-record_vedio_stop
+record_video_stop
 
-plc_buzz record_vedio_start_TaV2arc3
+plc_buzz record_video_start_TaV2arc3
 plc_arc_on
 slider_arc_cw_3
 plc_arc_off
 plc_wait_20
 plc_autoFlip
-record_vedio_stop
+record_video_stop
 
-plc_buzz record_vedio_start_TaV2arc4
+plc_buzz record_video_start_TaV2arc4
 plc_arc_on
 slider_arc_ccw_3
-plc_arc_off record_vedio_stop
+plc_arc_off record_video_stop
 plc_wait_20
 
 plc_vent slider_pos1
