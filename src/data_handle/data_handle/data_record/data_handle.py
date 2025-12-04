@@ -31,10 +31,11 @@ class DataHandle:
 
     def make_action(self, step):
         command = get_command(step, "record")
+        action = "none" # initialize first 20251201
 
-        # if self.record_flag:
-        #     self.datalog.file_Write(step) # write in datalog
-        #     self.elabftw.record_data(step) # collect metadata info for elabftw
+        if self.record_flag:
+            self.datalog.file_Write(step) # write in datalog
+            self.elabftw.record_data(step) # collect metadata info for elabftw
 
         if command == "test" or command == "init":
             action = command
@@ -44,6 +45,8 @@ class DataHandle:
             return "error"
 
         token = command.split("_")
+        # if len(token) < 2 and action == "none":
+        #     return "error"
         if len(token) < 2 and action == "none":
             return "error"
         
@@ -57,10 +60,12 @@ class DataHandle:
             self.datalog.file_Write("===============START=================")
             self.datalog.file_Write(step)
             self.elabftw.create_experiment(token[2])
+            return "standby"
         elif action == "off":
             self.record_flag = False
             self.datalog.file_Write("================END==================")
             self.elabftw.update_metadata() # update metadata at elabftw
+            return "standby"
 
         elif action == "test":
             self.datalog.file_Write("test")

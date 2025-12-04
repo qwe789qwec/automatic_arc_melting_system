@@ -1,8 +1,4 @@
-slider_init cobotta_init weighing_init plc_init record_on_V3Ge
-
-cobotta_takeCup_stock
-weighing_open slider_weightPos
-cobotta_putCup_weight
+slider_init cobotta_init weighing_init plc_init record_on_Al2.1
 
 slider_shelf_1 weighing_close
 cobotta_takeDose_shelf1
