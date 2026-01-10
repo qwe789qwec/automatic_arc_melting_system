@@ -15,7 +15,7 @@ class CobottaActionService(Node):
         self.get_logger().info('Incoming request\nactionOne: %s actionTwo: %s' % (request.action_1, request.action_2))
         response.result = 'init status'
 
-        cobotta_client = cobotta("192.168.0.11", 5007, 2000)
+        cobotta_client = cobotta("192.168.0.1", 5007, 2000)
 
         if request.action_1.startswith("run"):
             action = request.action_1.replace("run", "")

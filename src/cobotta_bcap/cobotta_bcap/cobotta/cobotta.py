@@ -18,6 +18,8 @@ xp13 p10 to p12 mid
 p14 weighing dosing position
 p15 weighing bowl position
 P16 into weighing
+p17 intermediate between p10 and p18
+p18 cup position after synthesis
 
 P20 p1 to arc standby
 P21 p2 to arc standby
@@ -39,6 +41,7 @@ arc_put_bowl
 arc_take_bowl
 shelf_take_dose
 shelf_put_dose
+stock_put_cup
 """
 
 # host = "192.168.0.1"
@@ -49,6 +52,10 @@ class cobotta:
     SHELF3_END = 11
     SHELF2_P1 = 23
     SHELF2_END = 24
+    SHELF4_P1 = 25
+    SHELF4_END = 26
+    SHELF1_P1 = 27
+    SHELF1_END = 28
     WEIGHT_P1 = 16
     WEIGHT_DOSE = 14
     WEIGHT_CUP = 15
@@ -58,12 +65,15 @@ class cobotta:
     ARC_P2 = 21
     ARC_STANDBY = 22
     TEST_POINT = 44
+    CUPSTOCK_P1 = 17# this option is not used though
+    CUPSTOCK_END = 18# this option is not used though
 
     TASK_INIT = "test1/init"
     TASK_TAKE_CUP = "test1/take_cup"
     TASK_PUT_CUP = "test1/put_cup"
     TASK_TAKE_DOSE = "test1/take_dose"
     TASK_PUT_DOSE = "test1/put_dose"
+    TASK_PUTCUP_STOCK = "test1/put_cupstock"# this is used
 
     VAR_TAKE = "I10"
     VAR_PUT = "I11"
@@ -141,8 +151,36 @@ class cobotta:
         
         return status
 
+    # def runTask(self, task, start_timeout=5.0, finish_timeout=300.0, poll=0.05):
+    #     if self.taskHandle == 0:
+    #         self.taskHandle = self.bcap.controller_gettask(self.hCtrl, task, "")
+
+    #     self.bcap.task_start(self.taskHandle, 1, "")# start task
+    #     saw_running = False
+
+    #     t_start = time.time()# wait until it becomes running (st==3)
+    #     while time.time() - t_start < finish_timeout:
+    #         st1 = self.bcap.task_execute(self.taskHandle, "GetStatus")
+
+    #         if st1 == 3:
+    #             # 動作中
+    #             saw_running = True
+    #         else:
+    #             if saw_running or task == self.TASK_INIT:
+    #                 # 一度は RUNNING を確認済み → standby 判定フェーズ
+    #                 time.sleep(0.5)
+    #                 st2 = self.bcap.task_execute(self.taskHandle, "GetStatus")
+    #                 if st2 != 3:
+    #                     # 0秒と0.5秒後ともに standby → 完了確定
+    #                     return True
+    #                 # st2==3 ならまだ動作中 → 続行
+    #         time.sleep(poll)
+
+    #     return False  # タイムアウト
+
     def changeValue(self, ioNum, value):
         # get I[1] Object Handl
+        
         if(self.valueHandle == 0):
             self.valueHandle = self.bcap.controller_getvariable(self.hCtrl, ioNum, "")
         # write value
@@ -210,6 +248,10 @@ class cobotta:
                 task = self.TASK_TAKE_DOSE
             elif action == "putDose":
                 task = self.TASK_PUT_DOSE
+            elif action == "putCupStock":
+                self.runTask(self.TASK_PUTCUP_STOCK)
+                time.sleep(0.5)
+                return "standby"
             
             position = token[2]
             if position == "stock":
@@ -219,10 +261,14 @@ class cobotta:
                     self.runPath([self.WEIGHT_P1, self.WEIGHT_CUP], task)
                 else:
                     self.runPath([self.WEIGHT_P1, self.WEIGHT_DOSE], task)
-            elif position == "shelf3":
-                self.runPath([self.SHELF3_END], task)
+            elif position == "shelf1":
+                self.runPath([self.SHELF1_P1, self.SHELF1_END], task)
             elif position == "shelf2":
                 self.runPath([self.SHELF2_P1, self.SHELF2_END], task)
+            elif position == "shelf3":
+                self.runPath([self.SHELF3_END], task)
+            elif position == "shelf4":
+                self.runPath([self.SHELF4_P1, self.SHELF4_END], task)
             elif position == "arc":
                 self.runPath([self.ARC_P1, self.ARC_P2, self.ARC_STANDBY], task)
             else:

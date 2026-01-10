@@ -27,7 +27,7 @@ WeighingSystem::WeighingSystem() : Node("weighing_system")
 bool WeighingSystem::test_weighing_machine(const std::string& action_param)
 {
     weighing_machine weighing("192.168.0.2", 8001);
-    std::string test_action = "weighing " + action_param;
+    std::string test_action = "weighing_" + action_param;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Test action: %s", test_action.c_str());
     return weighing.make_action(test_action);
 }
@@ -47,10 +47,23 @@ void WeighingSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr
                 process_client_, this->get_logger(), "weighing_standby", "Process");
                 
             if (weighing_->data_flag) {
+                if (current_step_.find("getweight") != std::string::npos){
+                    char buffer[50];
+                    snprintf(buffer, sizeof(buffer), "Weight: %.1f mg", weighing_->last_weight_mg);
+                    std::string data_str = buffer;
+                    RCLCPP_INFO(this->get_logger(), "%s", data_str.c_str());
+                    service_utils::call_service_async(
+                        data_client_, this->get_logger(), data_str, "Data");
+                }
+                else {
                 std::string gramdata = weighing_->getsampledata();
                 service_utils::call_service_async(
                     data_client_, this->get_logger(), gramdata + " mg", "Data");
+                }
             }
+
+            weighing_->data_flag = false;// reset the state
+
         } else {
             RCLCPP_ERROR(this->get_logger(), "Error cannot make action");
         }

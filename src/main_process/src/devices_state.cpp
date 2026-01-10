@@ -199,6 +199,13 @@ bool DeviceStateManager::checkDevices(Situation status) const {
     for (const auto& it : devices_) { 
         const auto& id     = it.first;(void)id;
         const auto& device = it.second;
+
+        // Debug log
+        // printf("Device %s status: %d, isAllInStatus: %d\n",
+        //     id.c_str(),
+        //     static_cast<int>(device->getStatus()),
+        //     static_cast<int>(device->isAllInStatus(status)));
+
         if (device->getStatus() != status) {
             std::string new_message = "Device " + id + " is not standby\n";
             if(last_message != new_message || count < 3){

@@ -15,11 +15,11 @@ public:
     void moveToNextStep();
     
 private:
-    const std::string secquence_file_ = "secquence/sequence_run.txt";
+    const std::string secquence_file_ = "secquence/seq_kt.txt";
 
     // Device state manager
     DeviceStateManager devices_manager_;
-    std::vector<std::string> devices_list_ = {"weighing", "slider", "plc", "cobotta"};
+    std::vector<std::string> devices_list_ = {"weighing", "slider", "plc", "cobotta", "record"};
 
     
     // Current step and step index

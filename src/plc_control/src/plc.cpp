@@ -297,6 +297,16 @@ bool plc::make_action(std::string step)
             rclcpp::sleep_for(std::chrono::seconds(1)); // 1 second delay
         }
     }
+    else if(action == "checkValve"){
+        std::cout << "Checking vateValve(S16) state..." <<std::endl;
+
+        if(coilRead(S16_COIL)){
+            std::cout << "OK: valve is open." << std::endl;
+        } else {
+            std::cout << "ERROR: valve is closed." << std::endl;
+            return false;
+        }
+    }
     else if(action == "wait"){
         int time = std::stoi(token[2]);
         rclcpp::sleep_for(std::chrono::seconds(time)); // x second delay

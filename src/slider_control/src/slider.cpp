@@ -318,8 +318,8 @@ bool slider::make_action(std::string step)
     else if(action == "cupStockR") {
         move(MOTOR_1, length2string(CUP_STOCK_R), "100");
     }
-    else if(action == "productStockR") {
-        move(MOTOR_1, length2string(PRODUCT_STOCK_R), "100");
+    else if(action == "productStock") {
+        move(MOTOR_1, length2string(PRODUCT_STOCK), "100");
     }
 	else if(action == "arc") {
 		std::string dir = token[2];

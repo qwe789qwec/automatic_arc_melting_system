@@ -2,6 +2,7 @@
 #include <thread>
 #include <stdio.h>
 #include <unistd.h>
+#include <iomanip>
 
 #include "weighing_control/weighing_machine.hpp"
 #include "tcp_handle/tcp_socket.hpp"
@@ -11,56 +12,57 @@ weighing_machine::weighing_machine(std::string ip, int port)
     : data_flag(false)
 {   
     // Connect to weighing machine through TCP
-    weiging_tcp.connect(ip, port);
+    weighing_tcp.connect(ip, port);
 }
+
 
 bool weighing_machine::front_door(bool state)
 {
     if (state == DOOR_OPEN) {
         // Send open door command
-        weiging_tcp.write("QRA 60 7 3\r\n");
+        weighing_tcp.write("QRA 60 7 3\r\n");
     }
     else if (state == DOOR_CLOSE) {
         // Send close door command
-        weiging_tcp.write("QRA 60 7 2\r\n");
+        weighing_tcp.write("QRA 60 7 2\r\n");
     }
 
     // Wait for acknowledgment and return result
-    return weiging_tcp.check_receive("QRA 60 7 A", 6);
+    return weighing_tcp.check_receive("QRA 60 7 A", 6);
 }
 
 bool weighing_machine::dosing_head(bool state)
 {
     if (state == DOSE_LOCK) {
         // Send lock dosing head command
-        weiging_tcp.write("QRA 60 2 4\r\n");
+        weighing_tcp.write("QRA 60 2 4\r\n");
     }
     else if (state == DOSE_UNLOCK) {
         // Send unlock dosing head command
-        weiging_tcp.write("QRA 60 2 3\r\n");
+        weighing_tcp.write("QRA 60 2 3\r\n");
     }
 
     // Wait for acknowledgment and return result
-    return weiging_tcp.check_receive("QRA 60 2 A", 6);
+    return weighing_tcp.check_receive("QRA 60 2 A", 6);
 }
 
 bool weighing_machine::set_gram(std::string gram)
 {
     // Compose and send weight setting command
     std::string message = "QRD 1 1 5 " + gram + "\r\n";
-    weiging_tcp.write(message);
+    weighing_tcp.write(message);
     
     // Wait for acknowledgment and return result
-    return weiging_tcp.check_receive("QRD 1 1 5 A", 6);
+    return weighing_tcp.check_receive("QRD 1 1 5 A", 6);
 }
 
 bool weighing_machine::start_dosing()
 {
     // Send dosing start command
-    weiging_tcp.write("QRA 61 1\r\n");
+    weighing_tcp.write("QRA 61 1\r\n");
     
     // Wait for acknowledgment with extended timeout
-    if (weiging_tcp.check_receive("QRA 61 1 A", 200)) {
+    if (weighing_tcp.check_receive("QRA 61 1 A", 200)) {
         data_flag = true;
         return true;
     }
@@ -73,7 +75,7 @@ bool weighing_machine::start_dosing()
 std::string weighing_machine::getsampledata()
 {
     // Request current weight data
-    weiging_tcp.write("QRD 2 4 12\r\n");
+    weighing_tcp.write("QRD 2 4 12\r\n");
     
     std::string receivemessage;
     std::string mg_data;
@@ -82,7 +84,7 @@ std::string weighing_machine::getsampledata()
     // Poll for response with 9 second timeout
     while (true)
     {
-        if (weiging_tcp.receive(receivemessage)) {
+        if (weighing_tcp.receive(receivemessage)) {
             // Extract weight value from XML-formatted response
             mg_data = take_data(receivemessage, "<Content Unit=\"mg\">", "</Content>");
             if (mg_data != "none") {
@@ -92,7 +94,7 @@ std::string weighing_machine::getsampledata()
         }
         
         // Check for timeout
-        if (std::chrono::steady_clock::now() - start_time >= std::chrono::seconds(9)) {
+        if (std::chrono::steady_clock::now() - start_time >= std::chrono::seconds(15)) {
             printf("take data timeout\n");
             return "take data timeout";
         }
@@ -100,7 +102,7 @@ std::string weighing_machine::getsampledata()
     
     // The following code is technically unreachable due to the infinite loop above
     // Keeping it for compatibility with original implementation
-    if (weiging_tcp.check_receive("QRD 2 4 12 A", 5)) {
+    if (weighing_tcp.check_receive("QRD 2 4 12 A", 5)) {
         data_flag = false;
         return receivemessage;
     }
@@ -183,14 +185,48 @@ bool weighing_machine::make_action(std::string step)
         front_door(DOOR_OPEN);
         return true;
     }
+    else if (action == "getweight") {
+        const char request[] = "\x53\x0D\x0A"; // S\r\n
+        char* message = nullptr;
+        int size = 0;
+        int retries = 10;
+    
+        while (retries-- > 0) {
+            weighing_tcp.writeRaw(request, sizeof(request) - 1);
+            usleep(1000 * 1000 * 0.5); // 1 second delay
+    
+            weighing_tcp.receiveRaw(message, size);
+    
+            if (size > 0) {
+                message[size] = '\0';
+                std::cout << "Received: " << message << std::endl;
+    
+                // assuming the format is "S S weight g"
+                std::vector<std::string> tokens;
+                std::stringstream ss(message);
+                std::string t;
+                while (ss >> t) tokens.push_back(t);
+    
+                if (tokens.size() >= 4 && tokens[0] == "S" && tokens[1] == "S") {
+                    last_weight_mg = std::stod(tokens[2]) * 1000.0; // g -> mg
+                    std::cout << std::fixed << std::setprecision(4) << last_weight_mg << std::endl;
+    
+                    data_flag = true;
+                    return true;
+                }
+            }
+        }
+    }
     else {
         // Unknown command
         return false;
     }
+
+    return true;
 }
 
 weighing_machine::~weighing_machine()
 {
     // Close TCP connection
-    weiging_tcp.close();
+    weighing_tcp.close();
 }
