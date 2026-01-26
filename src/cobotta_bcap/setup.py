@@ -24,6 +24,8 @@ setup(
         'console_scripts': [
             'CobottaMain = cobotta_bcap.cobotta_main:main',
             'CobottaControl = cobotta_bcap.cobotta_control:main',
+            'CobottaXRDMain = cobotta_bcap.cobottaxrd_main:main',
+            'CobottaXRDControl = cobotta_bcap.cobottaxrd_control:main',
         ],
     },
 )
