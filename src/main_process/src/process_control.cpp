@@ -47,10 +47,10 @@ void ProcessController::initializeSequences() {
     
     // Load sequences from file or define them directly
     // try to load from file
-    std::ifstream file(secquence_file_);
+    std::ifstream file(sequence_file_);
     
     if (!file.is_open()) {
-        std::cerr << "Error opening file: " << secquence_file_ << std::endl;
+        std::cerr << "Error opening file: " << sequence_file_ << std::endl;
         sequence_ = {
             "slider_init cobotta_init weighing_init plc_init",
             "slider_shelf_1 plc_buzz",
@@ -61,7 +61,7 @@ void ProcessController::initializeSequences() {
         return;
     }
     else {
-        std::cerr << "load process from file: " << secquence_file_ << std::endl;
+        std::cerr << "load process from file: " << sequence_file_ << std::endl;
         std::string line;
         while (std::getline(file, line)) {
             // if line is empty or a comment, skip it
