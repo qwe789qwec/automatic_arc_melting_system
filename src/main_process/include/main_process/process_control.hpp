@@ -15,7 +15,7 @@ public:
     bool isReadyToNextStep() const;
     bool isSequenceCompleted() const;
     void moveToNextStep();
-    
+
 private:
     const std::string sequence_file_ = "sequence/test_prefixes.txt";
 
@@ -26,7 +26,7 @@ private:
     // Current step and step index
     std::string current_step_;
     size_t step_index_;
-    
+
     // Process sequences
     std::vector<std::string> sequence_;
 
