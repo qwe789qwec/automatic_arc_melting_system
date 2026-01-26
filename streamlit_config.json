@@ -1,0 +1,15 @@
+{
+    "files": {
+      "stock": {
+        "path": "./stock.txt"
+      },
+      "sequence": {
+        "dir": "./sequence/",
+        "filename": "sequence.txt"
+      }
+    },
+    "ros2": {
+      "setup_bash": "/home/your_directory/automatic_arc_melting_system/install/setup.bash"
+    }
+  }
+  
