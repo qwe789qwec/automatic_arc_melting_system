@@ -15,6 +15,7 @@ public:
     bool isReadyToNextStep() const;
     bool isSequenceCompleted() const;
     void moveToNextStep();
+    void readSegmentFile(std::string file_name);
     
 private:
     const std::string sequence_file_ = "sequence/test_prefixes.txt";
