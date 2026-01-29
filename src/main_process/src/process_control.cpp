@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <cstdlib>
+#include <unordered_map>
 #include <algorithm>
 #include <string>
 #include <vector>
@@ -36,38 +38,57 @@ std::string ProcessController::updateDeviceStatuses(const std::string& command) 
     }
 }
 
+void ProcessController::readSegmentFile(std::string file_name) {
+    std::ifstream file(file_name);
+    std::string line;
+    // do not use A file in B file and B file in A file to avoid infinite loop
+    if (!file.is_open()) {
+        std::cerr << "\033[1;31m[ERROR] Could not open: " << file_name << "\033[0m" << std::endl;
+        std::exit(EXIT_FAILURE); 
+    }
+    while (std::getline(file, line)) {
+        std::cout << line << std::endl;
+        sequence_.push_back(line);
+        if (line.compare(0, 8, "SEGMENT_") == 0) {
+            std::string file_name = line.substr(8);
+            readSegmentFile(file_name);
+        }
+    }
+    file.close();
+}
+
 void ProcessController::initializeSequences() {
 
+    // Check Current Working Directory for debugging
     char cwd[PATH_MAX];
-    if (getcwd(cwd, sizeof(cwd)) != NULL) {
-        std::cerr << "Current working directory: " << cwd << std::endl;
-    } else {
-        std::cerr << "Failed to get current directory" << std::endl;
+    if (getcwd(cwd, sizeof(cwd)) != nullptr) {
+        std::cerr << "[INFO] Working Directory: " << cwd << std::endl;
     }
+
+    std::cerr << "[INFO] Loading sequence file: " << sequence_file_ << std::endl;
+    std::ifstream file(sequence_file_);
     
-    // Load sequences from file or define them directly
-    // try to load from file
-    std::ifstream file(secquence_file_);
-    
+    // Error: Cannot open main sequence file
     if (!file.is_open()) {
-        std::cerr << "Error opening file: " << secquence_file_ << std::endl;
-        sequence_ = {
-            "slider_init cobotta_init weighing_init plc_init",
-            "slider_shelf_1 plc_buzz",
-            "weighing_open slider_weight_pos cobotta_test",
-            "slider_init cobotta_init weighing_init plc_init"
-            "finished"
-        };
-        return;
+        std::cerr << "\033[1;31m[ERROR] Could not open: " << sequence_file_ << "\033[0m" << std::endl;
+        std::exit(EXIT_FAILURE); 
     }
     else {
-        std::cerr << "load process from file: " << secquence_file_ << std::endl;
+        std::cerr << "load process from file: " << sequence_file_ << std::endl;
         std::string line;
+        size_t count_step = 0;
         while (std::getline(file, line)) {
             // if line is empty or a comment, skip it
             if (line.empty() || line[0] == '#') {
                 continue;
             }
+            if (line.compare(0, 8, "SEGMENT_") == 0) {
+                // Note: readSegmentFile should also use std::exit on failure
+                std::string file_name = line.substr(8);
+                readSegmentFile(file_name); 
+                continue;
+            }
+            
             sequence_.push_back(line);
         }
         file.close();

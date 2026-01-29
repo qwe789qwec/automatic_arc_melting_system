@@ -13,9 +13,10 @@ public:
     bool isReadyToNextStep() const;
     bool isSequenceCompleted() const;
     void moveToNextStep();
+    void readSegmentFile(std::string file_name);
     
 private:
-    const std::string secquence_file_ = "secquence/seq_kt.txt";
+    const std::string sequence_file_ = "sequence/seq_kt.txt";
 
     // Device state manager
     DeviceStateManager devices_manager_;
