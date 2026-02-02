@@ -33,40 +33,44 @@ std::string ProcessController::updateDeviceStatuses(const std::string& command) 
     bool message = devices_manager_.updateDeviceStatus(command);
 
     if (command.compare(0, 4, "VAR_") == 0) {
-        std::vector<std::string> operators = {"=", "+=", "-="};
-        //remove all blanks
-        std::string cmd_no_space = command;
-        cmd_no_space.erase(std::remove_if(cmd_no_space.begin(), cmd_no_space.end(), ::isspace), cmd_no_space.end());
-        //find operator
-        std::string op_found;
-        for (const auto& op : operators) {
-            if (cmd_no_space.find(op) != std::string::npos) {
-                op_found = op;
-                break;
-            }
-        }
-        //update variable
-        if (op_found == "=") {
-            std::string var_name = command.substr(4, command.find("=") - 4);
-            var_name.erase(std::remove_if(var_name.begin(), var_name.end(), ::isspace), var_name.end());
-            vars_map_[var_name] = std::stoi(command.substr(command.find("=") + 1));
-        }
-        else if (op_found == "+=") {
-            std::string var_name = command.substr(4, command.find("+=") - 4);
-            var_name.erase(std::remove_if(var_name.begin(), var_name.end(), ::isspace), var_name.end());
-            vars_map_[var_name] += std::stoi(command.substr(command.find("+=") + 2));
-        }
-        else if (op_found == "-=") {
-            std::string var_name = command.substr(4, command.find("-=") - 4);
-            var_name.erase(std::remove_if(var_name.begin(), var_name.end(), ::isspace), var_name.end());
-            vars_map_[var_name] -= std::stoi(command.substr(command.find("-=") + 2));
-        }
+        handleVariable(command);
     }
 
     if (message) {
         return "update device status success";
     } else {
         return "update device status error";
+    }
+}
+
+void ProcessController::handleVariable(const std::string& command) {
+    std::vector<std::string> operators = {"=", "+=", "-="};
+    //remove all blanks
+    std::string cmd_no_space = command;
+    cmd_no_space.erase(std::remove_if(cmd_no_space.begin(), cmd_no_space.end(), ::isspace), cmd_no_space.end());
+    //find operator
+    std::string op_found;
+    for (const auto& op : operators) {
+        if (cmd_no_space.find(op) != std::string::npos) {
+            op_found = op;
+            break;
+        }
+    }
+    //update variable
+    if (op_found == "=") {
+        std::string var_name = command.substr(4, command.find("=") - 4);
+        var_name.erase(std::remove_if(var_name.begin(), var_name.end(), ::isspace), var_name.end());
+        vars_map_[var_name] = std::stoi(command.substr(command.find("=") + 1));
+    }
+    else if (op_found == "+=") {
+        std::string var_name = command.substr(4, command.find("+=") - 4);
+        var_name.erase(std::remove_if(var_name.begin(), var_name.end(), ::isspace), var_name.end());
+        vars_map_[var_name] += std::stoi(command.substr(command.find("+=") + 2));
+    }
+    else if (op_found == "-=") {
+        std::string var_name = command.substr(4, command.find("-=") - 4);
+        var_name.erase(std::remove_if(var_name.begin(), var_name.end(), ::isspace), var_name.end());
+        vars_map_[var_name] -= std::stoi(command.substr(command.find("-=") + 2));
     }
 }
 
@@ -145,8 +149,7 @@ void ProcessController::initializeSequences() {
             //find "=" VAR_materialType=2
             size_t pos = sequence_[i].find("=");
             if (pos == std::string::npos) {
-                std::cerr << "[ERROR] Invalid variable declaration: " << sequence_[i] << std::endl;
-                std::exit(EXIT_FAILURE);
+                continue;
             }
             std::string var_name = sequence_[i].substr(4, pos - 4);
             std::string var_value = sequence_[i].substr(pos + 1);
