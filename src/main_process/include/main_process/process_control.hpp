@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include "main_process/devices_state.hpp"
 
 class ProcessController {
@@ -24,7 +25,8 @@ private:
     // Current step and step index
     std::string current_step_;
     size_t step_index_;
-
+    std::unordered_map<std::string, size_t> label_map_;
+    
     // Process sequences
     std::vector<std::string> sequence_;
 

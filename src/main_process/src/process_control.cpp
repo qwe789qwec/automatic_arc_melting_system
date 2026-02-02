@@ -94,6 +94,22 @@ void ProcessController::initializeSequences() {
         file.close();
         sequence_.push_back("finished");
     }
+
+    // generate label map
+    for (size_t i = 0; i < sequence_.size(); i++) {
+        if (sequence_[i].compare(0, 6, "LABEL_") == 0) {
+            std::string label_name = sequence_[i].substr(6);
+            
+            // Safety check: Avoid duplicate labels
+            if (label_map_.find(label_name) != label_map_.end()) {
+                std::cerr << "[ERROR] Duplicate label detected: " << label_name << std::endl;
+                std::exit(EXIT_FAILURE);
+            }
+            
+            // Map the label to this index.
+            label_map_[label_name] = i;
+        }
+    }
 }
 
 std::string ProcessController::getCurrentStep() const {
@@ -113,6 +129,23 @@ void ProcessController::moveToNextStep() {
         updateDeviceStatuses(current_step_);
         return;
     }
+    
+    // 1. Handle Jumps (GOTO)
+    if (sequence_[step_index_].compare(0, 5, "GOTO_") == 0) {
+        std::string label_name = sequence_[step_index_].substr(5);
+        if (label_map_.find(label_name) == label_map_.end()) {
+            std::cerr << "[ERROR] GOTO target not found: " << label_name << std::endl;
+            std::exit(EXIT_FAILURE);
+        }
+        step_index_ = label_map_[label_name]; 
+    }
+
+    // 2. Skip Label markers (they are not executable commands)
+    // IMPORTANT: Add boundary check to prevent crash at the end of file
+    while (step_index_ < sequence_.size() && sequence_[step_index_].compare(0, 6, "LABEL_") == 0) {
+        step_index_++;
+    }
+
     current_step_ = sequence_[step_index_];
     updateDeviceStatuses(current_step_);
     step_index_++;
