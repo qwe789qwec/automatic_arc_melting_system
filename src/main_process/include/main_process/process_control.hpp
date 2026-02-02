@@ -15,6 +15,7 @@ public:
     bool isSequenceCompleted() const;
     void moveToNextStep();
     void readSegmentFile(std::string file_name);
+    void handleVariable(const std::string& command);
     
 private:
     const std::string sequence_file_ = "sequence/seq_kt.txt";
