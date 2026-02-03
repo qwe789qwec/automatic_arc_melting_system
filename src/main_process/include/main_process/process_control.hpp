@@ -15,8 +15,6 @@ public:
     bool isReadyToNextStep() const;
     bool isSequenceCompleted() const;
     void moveToNextStep();
-    void readSegmentFile(std::string file_name);
-    void handleVariable(const std::string& command);
     
 private:
     const std::string sequence_file_ = "sequence/test_prefixes.txt";
@@ -28,8 +26,6 @@ private:
     // Current step and step index
     std::string current_step_;
     size_t step_index_;
-    std::unordered_map<std::string, size_t> label_map_;
-    std::unordered_map<std::string, size_t> vars_map_;
     
     // Process sequences
     std::vector<std::string> sequence_;
