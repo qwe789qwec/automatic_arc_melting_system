@@ -16,7 +16,7 @@ public:
     void moveToNextStep();
     
 private:
-    const std::string sequence_file_ = "sequence/sequence.txt";
+    const std::string sequence_file_ = "sequence/test_prefixes.txt";
 
     // Device state manager
     DeviceStateManager devices_manager_;
@@ -30,8 +30,9 @@ private:
     std::vector<std::string> sequence_;
 
     // Process control
+    bool running_ = false;
     std::unordered_map<std::string, size_t> label_map_;
-    std::unordered_map<std::string, size_t> vars_map_;
+    std::unordered_map<std::string, int> vars_map_;
     std::vector<std::string> prefixes_ = {"GOTO_", "LABEL_", "VAR_", "IF_", "IFNOT_"};
     
     void initializeSequences();

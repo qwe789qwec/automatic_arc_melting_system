@@ -1,0 +1,28 @@
+slider_init cobotta_init weighing_init plc_init record_on
+VAR_times=3
+GOTO_first
+slider_shelf_1 plc_buzz
+#slider_shelf_2 plc_vent
+#slider_shelf_3 weighing_open
+#slider_shelf_5 plc_gate_open
+#record_vedio_start_test1
+#slider_arc_cw_2 weighing_close cobotta_takeDose_shelf2
+#record_video_stop
+#weighing_mgram_t1_20.0
+#record_off
+#plc_autoFlip cobotta_putDose_shelf2
+#weighing_open slider_weightPos cobotta_test plc_gate_close
+#plc_pump
+#record_vedio_start_test2
+LABEL_first
+LABEL_arcRun
+IF_times>0
+GOTO_arc
+GOTO_end
+LABEL_arc
+SEGMENT_arc_test.txt
+VAR_times-=1
+GOTO_arcRun
+LABEL_end
+#record_video_stop
+slider_init cobotta_init weighing_init plc_init

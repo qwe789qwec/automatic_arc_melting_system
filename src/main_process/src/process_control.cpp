@@ -112,7 +112,7 @@ void ProcessController::handleVariable(const std::string& command) {
             try {
                 right_val = std::stoi(right_side);
             } catch (...) {
-                std::cerr << "[ERROR] Invalid value on right side: " << right_side << std::endl;
+                printf("[ERROR] Variable operation aborted.\n");
                 return; 
             }
         }
@@ -121,24 +121,25 @@ void ProcessController::handleVariable(const std::string& command) {
         // If the left variable doesn't exist yet, it defaults to 0 in map
         if (op == "=") {
             vars_map_[left_var] = right_val;
-        } else if (op == "+=") {
+        } else if (op == "+=" && running_) {
             vars_map_[left_var] += right_val;
-        } else if (op == "-=") {
+        } else if (op == "-=" && running_) {
             vars_map_[left_var] -= right_val;
         }
 
-        std::cout << "[VAR] " << left_var << " is now " << vars_map_[left_var] << std::endl;
+        printf("[VAR] %s is now %d\n", left_var.c_str(), vars_map_[left_var]);
     } else {
-        std::cerr << "[ERROR] Malformed variable command: " << command << std::endl;
+        printf("[ERROR] Variable operation aborted.\n");
     }
 }
 
 void ProcessController::readSegmentFile(std::string file_name) {
-    std::ifstream file(file_name);
+    std::string file_path = "segment/" + file_name;
+    std::ifstream file(file_path);
     std::string line;
     // do not use A file in B file and B file in A file to avoid infinite loop
     if (!file.is_open()) {
-        std::cerr << "\033[1;31m[ERROR] Could not open: " << file_name << "\033[0m" << std::endl;
+        std::cerr << "\033[1;31m[ERROR] Could not open: " << file_path << "\033[0m" << std::endl;
         std::exit(EXIT_FAILURE); 
     }
     while (std::getline(file, line)) {
@@ -171,7 +172,6 @@ void ProcessController::initializeSequences() {
     else {
         std::cerr << "load process from file: " << sequence_file_ << std::endl;
         std::string line;
-        size_t count_step = 0;
         while (std::getline(file, line)) {
             // if line is empty or a comment, skip it
             if (line.empty() || line[0] == '#') {
@@ -204,19 +204,12 @@ void ProcessController::initializeSequences() {
             // Map the label to this index.
             label_map_[label_name] = i;
         }
-        else if (sequence_[i].compare(0, 4, "VAR_") == 0) {
-            //find "=" VAR_materialType=2
-            size_t pos = sequence_[i].find("=");
-            if (pos == std::string::npos) {
-                continue;
-            }
-            std::string var_name = sequence_[i].substr(4, pos - 4);
-            std::string var_value = sequence_[i].substr(pos + 1);
-            vars_map_[var_name] = std::stoi(var_value);
-            // Remove variable declaration from sequence
-            sequence_.erase(sequence_.begin() + i);
+        else if (sequence_[i].compare(0, 4, "VAR_") == 0) {\
+            handleVariable(sequence_[i]);
         }
     }
+
+    running_ = true;
 }
 
 std::string ProcessController::getCurrentStep() const {
