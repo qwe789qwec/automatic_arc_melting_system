@@ -12,15 +12,16 @@
 #include "tcp_handle/tcp_socket.hpp"
 #include "ros2_utils/service_utils.hpp"
 
+constexpr int instrumentc::number_ONE;
+constexpr int instrumentc::number_TWO;
 
 instrumentc::instrumentc(std::string ip, int port)
 {
     // Connect to PLC and initialize water system
     instrumentc_tcp.connect(ip, port);
-    initprocess();
 }
 
-char* instrument::dec2hex(int value) 
+char* instrumentc::dec2hex(int value) 
 {
     // Convert decimal to 2-byte hex representation
     static char hex_string[2];
@@ -30,7 +31,7 @@ char* instrument::dec2hex(int value)
     return hex_string;
 }
 
-bool instrument::make_action(std::string step)
+bool instrumentc::make_action(std::string step)
 {    
     // Extract instrument action from command
     std::string command = service_utils::get_command(step, "instrumentc");
@@ -72,7 +73,7 @@ bool instrument::make_action(std::string step)
             // stop action
         }
 
-        rclcpp::sleep_for(std::chrono::seconds(ONE)); //delay
+        rclcpp::sleep_for(std::chrono::seconds(number_ONE)); //delay
     }
     else if (action == "action2"){
         
@@ -87,13 +88,13 @@ bool instrument::make_action(std::string step)
             // turn off
         }
 
-        rclcpp::sleep_for(std::chrono::seconds(TWO)); //delay
+        rclcpp::sleep_for(std::chrono::seconds(number_TWO)); //delay
     }
     
     return true;
 }
 
-instrument::~instrument()
+instrumentc::~instrumentc()
 {
     // Turn off water and close connection
     instrumentc_tcp.close();
