@@ -6,32 +6,31 @@
 InstrumentCSystem::InstrumentCSystem() : Node("instrumentc_system")
 {    
     // initialize parameters
-    insturmentc_ip_ = "192.168.0.999"; // Set your instrument's IP address
-    insturmentc_port_ = 7777; // Set your instrument's port
+    instrumentc_ip_ = "192.168.0.999"; // Set your instrument's IP address
+    instrumentc_port_ = 7777; // Set your instrument's port
     current_step_ = "insturmentc init";
     
     // initialize insturment
-    insturmentc_ = std::make_unique<instrumentc>(insturmentc_ip_, insturmentc_port_);
+    instrumentc_ = std::make_unique<instrumentc>(instrumentc_ip_, instrumentc_port_);
     
     // create a client for the process service
     process_client_ = this->create_client<msg_format::srv::ProcessService>("process_service");
     
     // create a subscription for the process message
     subscription_ = this->create_subscription<msg_format::msg::ProcessMsg>(
-        "topic", 10, std::bind(&InstrumentSystem::topic_callback, this, _1));
+        "topic", 10, std::bind(&InstrumentCSystem::topic_callback, this, _1));
         
     RCLCPP_INFO(this->get_logger(), "InstrumentC initialized");
 }
 
-bool InstrumentSystem::test_instrumentc_action(const std::string& action_param)
+bool InstrumentCSystem::test_instrumentc_action(const std::string& action_param)
 {
-    instrumentc test_instrumentc(insturment_ip_, insturment_port_);
     std::string test_action = "Instrumentc_" + action_param;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Test action: %s", test_action.c_str());
-    return test_instrumentc.make_action(test_action);
+    return instrumentc_->make_action(test_action);
 }
 
-void InstrumentSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg)
+void InstrumentCSystem::topic_callback(const msg_format::msg::ProcessMsg::SharedPtr msg)
 {    
     const std::string& message = msg->process;
     

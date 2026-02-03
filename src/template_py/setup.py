@@ -1,7 +1,7 @@
 from setuptools import setup
 
 package_name = 'template_py'
-instrument = 'template_py/instrument'
+instrument = 'template_py/instrumentp'
 
 setup(
     name=package_name,
