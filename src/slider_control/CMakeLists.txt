@@ -50,6 +50,7 @@ rclcpp msg_format tcp_handle ros2_utils)
 install(
   TARGETS
   SliderMain
+  SliderXrdMain
   DESTINATION lib/${PROJECT_NAME}
 )
 

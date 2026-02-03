@@ -21,7 +21,6 @@ private:
     DeviceStateManager devices_manager_;
     std::vector<std::string> devices_list_ = {"weighing", "slider", "plc", "cobotta", "record"};
 
-
     // Current step and step index
     std::string current_step_;
     size_t step_index_;
