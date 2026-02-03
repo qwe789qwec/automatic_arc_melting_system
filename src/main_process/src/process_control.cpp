@@ -43,34 +43,93 @@ std::string ProcessController::updateDeviceStatuses(const std::string& command) 
     }
 }
 
-void ProcessController::handleVariable(const std::string& command) {
-    std::vector<std::string> operators = {"=", "+=", "-="};
-    //remove all blanks
-    std::string cmd_no_space = command;
-    cmd_no_space.erase(std::remove_if(cmd_no_space.begin(), cmd_no_space.end(), ::isspace), cmd_no_space.end());
-    //find operator
-    std::string op_found;
-    for (const auto& op : operators) {
-        if (cmd_no_space.find(op) != std::string::npos) {
-            op_found = op;
-            break;
+bool ProcessController::handleConditionals(const std::string& command) {
+    bool is_if = command.compare(0, 3, "IF_") == 0;
+    bool is_ifnot = command.compare(0, 6, "IFNOT_") == 0;
+
+    if (!is_if && !is_ifnot) return false;
+
+    // 1. Extract the raw condition string
+    std::string condition = is_if ? command.substr(3) : command.substr(6);
+
+    // 2. Updated Regex: Group 3 is now (\w+) to support both digits and variable names
+    std::regex condition_regex(R"((\w+)(==|!=|>=|<=|>|<)(\w+))");
+    std::smatch match;
+
+    if (std::regex_search(condition, match, condition_regex)) {
+        std::string left_var = match[1];
+        std::string op = match[2];
+        std::string right_side = match[3];
+
+        // 3. Get values for comparison
+        int left_val = vars_map_.count(left_var) ? vars_map_[left_var] : 0;
+        int right_val;
+
+        // Check if right_side is a variable name in the map
+        if (vars_map_.count(right_side)) {
+            right_val = vars_map_[right_side];
+        } else {
+            // If not in map, try to treat it as a literal number
+            try {
+                right_val = std::stoi(right_side);
+            } catch (...) {
+                right_val = 0; // Or handle as an error
+            }
         }
+
+        // 4. Perform comparison
+        bool result = false;
+        if (op == "==")      result = (left_val == right_val);
+        else if (op == "!=") result = (left_val != right_val);
+        else if (op == ">=") result = (left_val >= right_val);
+        else if (op == "<=") result = (left_val <= right_val);
+        else if (op == ">")  result = (left_val > right_val);
+        else if (op == "<")  result = (left_val < right_val);
+
+        // 5. Invert if it's an IFNOT
+        return is_if ? result : !result;
     }
-    //update variable
-    if (op_found == "=") {
-        std::string var_name = command.substr(4, command.find("=") - 4);
-        var_name.erase(std::remove_if(var_name.begin(), var_name.end(), ::isspace), var_name.end());
-        vars_map_[var_name] = std::stoi(command.substr(command.find("=") + 1));
-    }
-    else if (op_found == "+=") {
-        std::string var_name = command.substr(4, command.find("+=") - 4);
-        var_name.erase(std::remove_if(var_name.begin(), var_name.end(), ::isspace), var_name.end());
-        vars_map_[var_name] += std::stoi(command.substr(command.find("+=") + 2));
-    }
-    else if (op_found == "-=") {
-        std::string var_name = command.substr(4, command.find("-=") - 4);
-        var_name.erase(std::remove_if(var_name.begin(), var_name.end(), ::isspace), var_name.end());
-        vars_map_[var_name] -= std::stoi(command.substr(command.find("-=") + 2));
+
+    return false;
+}
+
+void ProcessController::handleVariable(const std::string& command) {
+    if (command.compare(0, 4, "VAR_") != 0) return;
+
+    std::regex var_regex(R"(VAR_(\w+)\s*(=|\+=|-=)\s*(\w+))");
+    std::smatch match;
+
+    if (std::regex_search(command, match, var_regex)) {
+        std::string left_var = match[1];
+        std::string op = match[2];
+        std::string right_side = match[3];
+
+        // 2. Resolve the right-side value
+        int right_val = 0;
+        if (vars_map_.count(right_side)) {
+            right_val = vars_map_[right_side];
+        } else {
+            try {
+                right_val = std::stoi(right_side);
+            } catch (...) {
+                std::cerr << "[ERROR] Invalid value on right side: " << right_side << std::endl;
+                return; 
+            }
+        }
+
+        // 3. Apply the operator
+        // If the left variable doesn't exist yet, it defaults to 0 in map
+        if (op == "=") {
+            vars_map_[left_var] = right_val;
+        } else if (op == "+=") {
+            vars_map_[left_var] += right_val;
+        } else if (op == "-=") {
+            vars_map_[left_var] -= right_val;
+        }
+
+        std::cout << "[VAR] " << left_var << " is now " << vars_map_[left_var] << std::endl;
+    } else {
+        std::cerr << "[ERROR] Malformed variable command: " << command << std::endl;
     }
 }
 
@@ -177,20 +236,27 @@ void ProcessController::moveToNextStep() {
         updateDeviceStatuses(current_step_);
         return;
     }
-    
-    // 1. Handle Jumps (GOTO)
-    if (sequence_[step_index_].compare(0, 5, "GOTO_") == 0) {
-        std::string label_name = sequence_[step_index_].substr(5);
-        if (label_map_.find(label_name) == label_map_.end()) {
-            std::cerr << "[ERROR] GOTO target not found: " << label_name << std::endl;
-            std::exit(EXIT_FAILURE);
-        }
-        step_index_ = label_map_[label_name]; 
-    }
 
-    // 2. Skip Label markers (they are not executable commands)
-    // IMPORTANT: Add boundary check to prevent crash at the end of file
-    while (step_index_ < sequence_.size() && sequence_[step_index_].compare(0, 6, "LABEL_") == 0) {
+    // Skip non-executable commands
+    while (step_index_ < sequence_.size()) {
+        std::string cmd_no_space = sequence_[step_index_];
+        cmd_no_space.erase(std::remove_if(cmd_no_space.begin(), cmd_no_space.end(), ::isspace), cmd_no_space.end());
+        
+        if (cmd_no_space.find("VAR_") == 0) {
+            handleVariable(cmd_no_space);
+        } else if (cmd_no_space.find("GOTO_") == 0) {
+            step_index_ = label_map_[cmd_no_space.substr(5)];
+            continue; // Skip the increment at the end
+        } else if (cmd_no_space.find("IF_") == 0 || cmd_no_space.find("IFNOT_") == 0) {
+            if (!handleConditionals(cmd_no_space)) {
+                step_index_ += 2; // Skip next command if condition fails
+                continue;
+            }
+        } else if (cmd_no_space.find("LABEL_") == 0) {
+            // Just skip labels
+        } else {
+            break; // Found a regular command, exit loop
+        }
         step_index_++;
     }
 
