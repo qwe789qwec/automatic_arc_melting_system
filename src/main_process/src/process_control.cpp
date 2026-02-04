@@ -9,6 +9,7 @@
 #include <vector>
 #include <regex>
 #include <map>
+#include <stack>
 #include <unistd.h>
 #include <limits.h>
 
