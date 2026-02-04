@@ -34,10 +34,13 @@ private:
     std::unordered_map<std::string, size_t> label_map_;
     std::unordered_map<std::string, int> vars_map_;
     std::vector<std::string> prefixes_ = {"GOTO_", "LABEL_", "VAR_", "IF_", "IFNOT_"};
+    std::stack<int> while_stack_;
+    int while_counter_ = 0;
     
     void initializeSequences();
     void readSegmentFile(std::string file_name);
     void handleVariable(const std::string& command);
+    void handleWhileLoops(const std::string& command, size_t index);
     bool handleConditionals(const std::string& command);
     bool isCommandValid(const std::string& command) const;
 
