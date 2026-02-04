@@ -132,6 +132,45 @@ void ProcessController::handleVariable(const std::string& command) {
         printf("[ERROR] Variable operation aborted.\n");
     }
 }
+void ProcessController::handleWhileLoops(const std::string& command, size_t index) {
+
+    if (command.compare(0, 6, "WHILE_") == 0) {
+        std::string condition = command.substr(6);
+        std::string start_label = "WHILE_S_" + std::to_string(while_counter_);
+        std::string end_label = "WHILE_E_" + std::to_string(while_counter_);
+
+        // Replace WHILE_cond with:
+        // 1. LABEL_WHILE_S_n
+        // 2. IFNOT_cond (which will skip the next GOTO_WHILE_E_n if condition is true)
+        // 3. GOTO_WHILE_E_n
+        
+        // We replace the current line and insert the logic
+        sequence_[index] = "LABEL_" + start_label;
+        sequence_.insert(sequence_.begin() + index + 1, "IFNOT_" + condition);
+        sequence_.insert(sequence_.begin() + index + 2, "GOTO_" + end_label);
+
+        while_stack_.push(while_counter_);
+        while_counter_++;
+    } 
+    else if (command == "ENDWHILE") {
+        if (while_stack_.empty()) {
+            std::cerr << "[ERROR] ENDWHILE found without matching WHILE" << std::endl;
+            std::exit(EXIT_FAILURE);
+        }
+
+        int id = while_stack_.top();
+        while_stack_.pop();
+        
+        std::string start_label = "WHILE_S_" + std::to_string(id);
+        std::string end_label = "WHILE_E_" + std::to_string(id);
+
+        // Replace ENDWHILE with:
+        // 1. GOTO_WHILE_S_n
+        // 2. LABEL_WHILE_E_n
+        sequence_[index] = "GOTO_" + start_label;
+        sequence_.insert(sequence_.begin() + index + 1, "LABEL_" + end_label);
+    }
+}
 
 void ProcessController::readSegmentFile(std::string file_name) {
     std::string file_path = "segment/" + file_name;
@@ -149,11 +188,6 @@ void ProcessController::readSegmentFile(std::string file_name) {
             readSegmentFile(file_name);
         }
         sequence_.push_back(line);
-        if (!isCommandValid(line)) {
-            std::cerr << "\033[1;31m[ERROR] Invalid command found in script: " << line << "\033[0m" << std::endl;
-            std::cerr << "[HELP] Command must contain a valid device name or a control prefix." << std::endl;
-            std::exit(EXIT_FAILURE);
-        }
     }
     file.close();
 }
@@ -212,19 +246,27 @@ void ProcessController::initializeSequences() {
                 readSegmentFile(file_name); 
                 continue;
             }
-
-            if (!isCommandValid(line)) {
-                std::cerr << "\033[1;31m[ERROR] Invalid command found in script: " << line << "\033[0m" << std::endl;
-                std::cerr << "[HELP] Command must contain a valid device name or a control prefix." << std::endl;
-                std::exit(EXIT_FAILURE);
-            }
             
             sequence_.push_back(line);
         }
         file.close();
-        sequence_.push_back("finished");
     }
 
+    //check command validity
+    for (size_t i = 0; i < sequence_.size(); i++) {
+        if (sequence_[i].compare(0, 6, "WHILE_") == 0 || sequence_[i] == "ENDWHILE") {
+            handleWhileLoops(sequence_[i], i);
+            // After expansion, skip the newly inserted lines to avoid re-processing
+            if (sequence_[i].find("LABEL_WHILE_S") == 0) i += 3; 
+            else if (sequence_[i].find("GOTO_WHILE_S") == 0) i += 2;
+        }
+    }
+
+    if (!while_stack_.empty()) {
+        std::cerr << "[ERROR] Missing ENDWHILE for nesting level: " << while_stack_.size() << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+    
     // generate label map
     for (size_t i = 0; i < sequence_.size(); i++) {
         if (sequence_[i].compare(0, 6, "LABEL_") == 0) {
@@ -242,7 +284,14 @@ void ProcessController::initializeSequences() {
         else if (sequence_[i].compare(0, 4, "VAR_") == 0) {\
             handleVariable(sequence_[i]);
         }
+        if (!isCommandValid(sequence_[i])) {
+            std::cerr << "\033[1;31m[ERROR] Invalid command found in script: " << sequence_[i] << "\033[0m" << std::endl;
+            std::cerr << "[HELP] Command must contain a valid device name or a control prefix." << std::endl;
+            std::exit(EXIT_FAILURE);
+        }
     }
+
+    sequence_.push_back("finished");
 
     running_ = true;
 }
