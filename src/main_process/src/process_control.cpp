@@ -144,10 +144,15 @@ void ProcessController::readSegmentFile(std::string file_name) {
     }
     while (std::getline(file, line)) {
         std::cout << line << std::endl;
-        sequence_.push_back(line);
         if (line.compare(0, 8, "SEGMENT_") == 0) {
             std::string file_name = line.substr(8);
             readSegmentFile(file_name);
+        }
+        sequence_.push_back(line);
+        if (!isCommandValid(line)) {
+            std::cerr << "\033[1;31m[ERROR] Invalid command found in script: " << line << "\033[0m" << std::endl;
+            std::cerr << "[HELP] Command must contain a valid device name or a control prefix." << std::endl;
+            std::exit(EXIT_FAILURE);
         }
     }
     file.close();
