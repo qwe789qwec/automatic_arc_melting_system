@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <stack>
 #include <unordered_map>
 #include "main_process/devices_state.hpp"
 
