@@ -153,6 +153,30 @@ void ProcessController::readSegmentFile(std::string file_name) {
     file.close();
 }
 
+bool ProcessController::isCommandValid(const std::string& command) const
+{
+    // 1. check device keywords
+    for (const auto& device : devices_list_) {
+        if (command.find(device) != std::string::npos) {
+            return true;
+        }
+    }
+
+    // 2. check prefixes
+    for (const auto& prefix : prefixes_) {
+        if (command.rfind(prefix, 0) == 0) {  // starts with prefix
+            return true;
+        }
+    }
+
+    // 3. invalid command
+    std::cerr << "\033[1;31m[ERROR] Invalid command detected: "
+              << command << "\033[0m" << std::endl;
+    return false;
+}
+
+
+
 void ProcessController::initializeSequences() {
 
     // Check Current Working Directory for debugging
@@ -182,6 +206,12 @@ void ProcessController::initializeSequences() {
                 std::string file_name = line.substr(8);
                 readSegmentFile(file_name); 
                 continue;
+            }
+
+            if (!isCommandValid(line)) {
+                std::cerr << "\033[1;31m[ERROR] Invalid command found in script: " << line << "\033[0m" << std::endl;
+                std::cerr << "[HELP] Command must contain a valid device name or a control prefix." << std::endl;
+                std::exit(EXIT_FAILURE);
             }
             
             sequence_.push_back(line);

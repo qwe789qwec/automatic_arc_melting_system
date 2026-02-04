@@ -39,6 +39,8 @@ private:
     void readSegmentFile(std::string file_name);
     void handleVariable(const std::string& command);
     bool handleConditionals(const std::string& command);
+    bool isCommandValid(const std::string& command) const;
+
 };
 
 #endif // PROCESS_CONTROL_HPP
