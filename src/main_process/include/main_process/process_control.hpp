@@ -17,7 +17,7 @@ public:
     void moveToNextStep();
     
 private:
-    const std::string sequence_file_ = "sequence/test_prefixes.txt";
+    const std::string sequence_file_ = "sequence/sequence.txt";
 
     // Device state manager
     DeviceStateManager devices_manager_;
