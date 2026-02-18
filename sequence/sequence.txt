@@ -97,5 +97,5 @@ weighing_getweight
 weighing_open
 cobotta_takeCup_weight
 weighing_close slider_productStock
-cobotta_putCupStck
+cobotta_putCupStock
 slider_init cobotta_init weighing_init plc_init record_off
