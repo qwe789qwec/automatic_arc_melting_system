@@ -22,7 +22,7 @@ class InstrumentCSystem : public rclcpp::Node
         ~InstrumentCSystem() = default;
 
         // test plc action
-        static bool test_instrumentc_action(const std::string& action_param);
+        bool test_instrumentc_action(const std::string& action_param);
 
     private:
         // parameters
@@ -31,7 +31,7 @@ class InstrumentCSystem : public rclcpp::Node
         std::string current_step_;
         
         // instrument control
-        std::unique_ptr<instrument> instrumentc_;
+        std::unique_ptr<instrumentc> instrumentc_;
         rclcpp::Client<msg_format::srv::ProcessService>::SharedPtr process_client_;
         rclcpp::Subscription<msg_format::msg::ProcessMsg>::SharedPtr subscription_;
 

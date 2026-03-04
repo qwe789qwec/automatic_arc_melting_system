@@ -17,9 +17,9 @@ private:
     static constexpr const char* NO_1 = "\x01";
     static constexpr const char* NO_2 = "\x02";
     static constexpr const char* NO_3 = "\x03";
-    static constexpr const int ZERO = 0;
-    static constexpr const int ONE = 1;
-    static constexpr const int TWO = 2;
+    static constexpr const int number_ZERO = 0;
+    static constexpr const int number_ONE = 1;
+    static constexpr const int number_TWO = 2;
 
     bool initProcess();
     char* dec2hex(int value);
