@@ -19,10 +19,20 @@ private:
     
     // Last published step (to reduce logging)
     std::string last_published_step_ = "start";
+
+    // Current task ID for CSV workflow
+    std::string current_task_id_;
     
-    // Service, publisher, and timer
+    // Service for process control
     rclcpp::Service<msg_format::srv::ProcessService>::SharedPtr process_service_;
+
+    // Publisher for current step
     rclcpp::Publisher<msg_format::msg::ProcessMsg>::SharedPtr step_publisher_;
+
+    // Publisher for task status (CSV workflow)
+    rclcpp::Publisher<msg_format::msg::ProcessMsg>::SharedPtr task_status_publisher_;
+
+    // Timer for periodic publishing
     rclcpp::TimerBase::SharedPtr publish_timer_;
     
     void processServiceCallback(
@@ -30,6 +40,9 @@ private:
         std::shared_ptr<msg_format::srv::ProcessService::Response> response);
     
     void publishCurrentStep();
+    
+    // Utility function to extract key-value pairs from action string
+    static std::string get_kv(const std::string& action, const std::string& key);
 };
 
 #endif // MAIN_PROCESS_NODE_HPP

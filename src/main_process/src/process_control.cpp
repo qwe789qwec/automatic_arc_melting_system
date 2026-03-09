@@ -227,6 +227,7 @@ void ProcessController::initializeSequences() {
 
     std::cerr << "[INFO] Loading sequence file: " << sequence_file_ << std::endl;
     std::ifstream file(sequence_file_);
+    // file.open(sequence_file_);
     
     // Error: Cannot open main sequence file
     if (!file.is_open()) {
@@ -310,10 +311,7 @@ bool ProcessController::isSequenceCompleted() const {
 }
 
 void ProcessController::moveToNextStep() {
-    if (step_index_ == 0 && current_step_ != "init") {
-        updateDeviceStatuses(current_step_);
-        return;
-    }
+
 
     // Skip non-executable commands
     while (step_index_ < sequence_.size()) {
@@ -341,4 +339,71 @@ void ProcessController::moveToNextStep() {
     current_step_ = sequence_[step_index_];
     updateDeviceStatuses(current_step_);
     step_index_++;
+}
+
+
+
+// added for csv_driven
+bool ProcessController::loadSequenceFromFile(const std::string& path) {
+    std::ifstream file(path);
+    if (!file.is_open()) {
+        std::cerr << "\033[1;31m[ERROR] Could not open: " << path << "\033[0m" << std::endl;
+        return false;
+    }
+
+    // シーケンスをクリアして新規ロード
+    sequence_.clear();
+    step_index_ = 0;
+    current_step_.clear();
+    label_map_.clear();
+    vars_map_.clear();
+
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.empty()) continue;
+        
+        // コメント行はスキップ
+        if (line[0] == '#') continue;
+        
+        // 既存のisCommandValidを使って検証
+        if (!isCommandValid(line)) {
+            std::cerr << "\033[1;31m[ERROR] Invalid command in sequence: " << line << "\033[0m" << std::endl;
+            // テストでは続行、本番では return false; も可
+        }
+        
+        sequence_.push_back(line);
+    }
+    file.close();
+
+    // ラベルと変数の処理（initializeSequencesと同様）
+    for (size_t i = 0; i < sequence_.size(); ++i) {
+        if (sequence_[i].compare(0, 6, "LABEL_") == 0) {
+            std::string label_name = sequence_[i].substr(6);
+            label_map_[label_name] = i;
+        } else if (sequence_[i].compare(0, 4, "VAR_") == 0) {
+            handleVariable(sequence_[i]);
+        }
+    }
+
+    // 終了マーカー
+    sequence_.push_back("finished");
+    running_ = true;
+    
+    // 最初のステップを設定
+    step_index_ = 0;
+    if (!sequence_.empty() && sequence_[0] != "finished") {
+        current_step_ = sequence_[0];
+        //execute first command
+        updateDeviceStatuses(current_step_);
+        step_index_ = 1;
+    } else {
+        current_step_ = "finished";
+        step_index_ = 0;
+    }
+
+    std::cerr << "[INFO] Loaded " << sequence_.size() << " commands" << std::endl;
+    std::cerr << "[INFO] First command: " << current_step_ << std::endl;
+    std::cerr << "[INFO] Current step index: " << step_index_ << std::endl;
+    
+    return true;
 }

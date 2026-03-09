@@ -1,0 +1,3 @@
+task_id,Target_composition,Target_weight_(g),Weighing_order,Number_of_flips,Arc_path,status,result,timestamp
+1,Test1,1.0,melting_point,2,1,to_be_done,,
+2,Test2,0.5,Alphabetical,1,2,to_be_done,,

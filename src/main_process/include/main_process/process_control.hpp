@@ -15,6 +15,9 @@ public:
     bool isReadyToNextStep() const;
     bool isSequenceCompleted() const;
     void moveToNextStep();
+
+    //added: load sequence actively from file
+    bool loadSequenceFromFile(const std::string& path);
     
 private:
     const std::string sequence_file_ = "sequence/sequence.txt";
