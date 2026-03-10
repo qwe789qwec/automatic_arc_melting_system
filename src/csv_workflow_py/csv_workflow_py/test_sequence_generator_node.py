@@ -49,18 +49,17 @@ class TestSequenceGenerator(Node):
         
         # テスト用：slider_init <-> slider_shelf_1 の往復
         lines = []
-        lines.append('slider_init')
-        lines.append('weighing_init')
-        lines.append('cobotta_init')
-        lines.append('plc_init')
+        lines.append('slider_init weighing_init cobotta_init plc_init')
         
         for i in range(flips):
             lines.append(f'# Flip {i+1}')
             lines.append('slider_shelf_1')
-            lines.append('plc_wait_3')
-            lines.append('slider_init')
-            lines.append('plc_wait_3')
+            lines.append('plc_wait_1')
+            lines.append('slider_pos1')
+            lines.append('plc_wait_1')
         
+        lines_append('plc_buzz')
+
         # 最終位置
         # lines.append('slider_init weighing_init cobotta_init plc_init')
         
