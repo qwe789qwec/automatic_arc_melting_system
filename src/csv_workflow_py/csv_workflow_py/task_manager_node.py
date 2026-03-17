@@ -6,6 +6,7 @@ import rclpy
 from rclpy.node import Node
 from msg_format.msg import ProcessMsg
 from threading import Lock
+from rclpy.qos import QoSProfile, DurabilityPolicy
 
 class TaskManager(Node):
     def __init__(self):
@@ -17,10 +18,22 @@ class TaskManager(Node):
         )
         self.declare_parameter('csv_path', default_csv_path)
         self.csv_path = self.get_parameter('csv_path').get_parameter_value().string_value
-        
+
+        # QoSプロファイルを定義  追加
+        qos_profile_latched = QoSProfile(
+            depth=1,
+            durability=DurabilityPolicy.TRANSIENT_LOCAL
+        )
+
+
         # 発行: new_task（タスク情報をJSONで）
-        self.pub_new_task = self.create_publisher(ProcessMsg, 'new_task', 10)
-        
+        # self.pub_new_task = self.create_publisher(ProcessMsg, 'new_task', 10)
+        self.pub_new_task = self.create_publisher(
+            ProcessMsg,
+            'new_task',
+            qos_profile=qos_profile_latched
+        )        
+
         # 購読: task_status（完了/失敗通知を受けてCSV更新）
         self.sub_task_status = self.create_subscription(
             ProcessMsg, 'task_status', self.on_task_status, 10

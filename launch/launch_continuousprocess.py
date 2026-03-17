@@ -31,8 +31,8 @@ def generate_launch_description():
         # ),
         Node(
             package='csv_workflow_py',
-            executable='sequence_generator_node',
-            name='sequence_generator',
+            executable='sequence_generatorssh_node',
+            name='sequence_generatorssh',
             output='screen',
             parameters=[{
                 'files.sequence.dir': sequence_dir,

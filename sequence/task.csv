@@ -1,3 +1,4 @@
 task_id,status,Target_composition,Target_weight_(g),Weighing_order,Number_of_flips,Arc_path,result,timestamp
-1,to_be_done,Nb3Al,0.1,melting_point,1,2,,
-2,completed,Nb3Al0.9,0.09,Alphabetical,2,3,,
+1,completed,Nb3Al,0.03,melting_point,1,2,,
+2,completed,Nb3Al0.9,0.02,Alphabetical,2,3,,
+3,completed,Nb3Al1.1,0.03,melting_point,3,2,,
