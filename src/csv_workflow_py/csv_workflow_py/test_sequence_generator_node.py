@@ -58,7 +58,7 @@ class TestSequenceGenerator(Node):
             lines.append('slider_pos1')
             lines.append('plc_wait_1')
         
-        lines_append('plc_buzz')
+        lines.append('plc_buzz')
 
         # 最終位置
         # lines.append('slider_init weighing_init cobotta_init plc_init')

@@ -1,6 +1,7 @@
-slider_init weighing_init cobotta_init plc_init
-# Flip 1
+# slider_init weighing_init cobotta_init plc_init
+# # Flip 1
 # slider_shelf_1
 # plc_wait_1
 # slider_pos1
 # plc_wait_1
+# plc_buzz

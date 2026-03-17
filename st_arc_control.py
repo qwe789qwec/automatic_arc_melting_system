@@ -153,20 +153,20 @@ with tab1:
                 steps_content += "slider_weightPos weighing_open\n"
                 steps_content += "cobotta_putDose_weight\n"
                 steps_content += f"weighing_mgram_{element}_{miligram:.1f}\n"
-                steps_content += "cobotta_takeDose_weight\n"
-                steps_content += f"slider_shelf_{slider_position} weighing_close\n"
-                steps_content += f"cobotta_putDose_shelf{cobotta_position}\n"
-        
-        steps_content += "\n"
-        steps_content += "slider_weightPos weighing_open\n"
-        steps_content += "cobotta_takeCup_weight plc_vent\n"
-        steps_content += "weighing_close slider_pos1\n"
-        steps_content += "cobotta_putCup_arc plc_gate_open\n"
-        steps_content += "plc_checkValve\n"
-        steps_content += "slider_putCupArc\n"
-        steps_content += "plc_gate_close\n"
-        steps_content += "plc_pump\n"
-        
+                # 最後の要素の場合は特別な処理
+                if idx == total_elements - 1:  # 最後の要素
+                    steps_content += "cobotta_takeCup_weight plc_vent\n"
+                    steps_content += "weighing_close slider_pos1\n"
+                    steps_content += "cobotta_putCup_arc plc_gate_open\n"
+                    steps_content += "slider_weightPos weighing_open plc_checkValve\n"
+                    steps_content += "slider_putCupArc cobotta_takeDose_weight\n"
+                    steps_content += f"plc_gate_close slider_shelf_{slider_position} weighing_close\n"
+                    steps_content += f"plc_pump cobotta_putDose_shelf{cobotta_position}\n"
+                else:  # 最後以外の要素
+                    steps_content += "cobotta_takeDose_weight\n"
+                    steps_content += f"slider_shelf_{slider_position} weighing_close\n"
+                    steps_content += f"cobotta_putDose_shelf{cobotta_position}\n"
+            
         steps_content += "\n"
         steps_content += "slider_arcinit\n"
 
@@ -179,7 +179,7 @@ with tab1:
             steps_content += f"plc_buzz record_video_start_{target_composition}{i+1}\n"
             steps_content += "plc_arc_on\n"
             steps_content += f"slider_arc_{direction}_{arc_path}\n"
-            steps_content += "plc_arc_pff\n"
+            steps_content += "plc_arc_off\n"
             steps_content += "plc_wait_20\n"
             if i != int(flip_times):
                 steps_content += "plc_autoFlip\n"

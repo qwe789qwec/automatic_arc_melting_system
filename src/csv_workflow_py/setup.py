@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'task_manager_node = csv_workflow_py.task_manager_node:main',
-            'test_sequence_generator_node = csv_workflow_py.test_sequence_generator_node:main'
+            # 'test_sequence_generator_node = csv_workflow_py.test_sequence_generator_node:main',
+            'sequence_generator_node = csv_workflow_py.sequence_generator_node:main'
         ],
     },
 )

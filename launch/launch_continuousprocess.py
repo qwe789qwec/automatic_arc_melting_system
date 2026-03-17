@@ -19,10 +19,20 @@ def generate_launch_description():
                 'csv_path': default_csv
             }],
         ),
+        # Node(
+        #     package='csv_workflow_py',
+        #     executable='test_sequence_generator_node',
+        #     name='test_sequence_generator',
+        #     output='screen',
+        #     parameters=[{
+        #         'files.sequence.dir': sequence_dir,
+        #         'files.sequence.filename': sequence_filename
+        #     }],
+        # ),
         Node(
             package='csv_workflow_py',
-            executable='test_sequence_generator_node',
-            name='test_sequence_generator',
+            executable='sequence_generator_node',
+            name='sequence_generator',
             output='screen',
             parameters=[{
                 'files.sequence.dir': sequence_dir,
