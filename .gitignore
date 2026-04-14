@@ -11,6 +11,8 @@
 /api_key.*
 /test_*
 *.DS_Store
+/sequence/sequence.txt
+/sequence/task.csv
 # git remote update origin --prune
 # python -m pip install empy==3.3.4
 # python -m pip install lark
